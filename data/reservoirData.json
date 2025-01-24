@@ -1,0 +1,32 @@
+[
+    {
+        "code": "30H",
+        "capacity": 30,
+        "heatDis": 0.81,
+        "cost": 10
+    },
+    {
+        "code": "50H",
+        "capacity": 50,
+        "heatDis": 1.5,
+        "cost": 20
+    },
+    {
+        "code": "80H",
+        "capacity": 80,
+        "heatDis": 2,
+        "cost": 30
+    },
+    {
+        "code": "10V",
+        "capacity": 10,
+        "heatDis": 0.54,
+        "cost": 40
+    },
+    {
+        "code": "20V",
+        "capacity": 20,
+        "heatDis": 0.7,
+        "cost": 50
+    }
+]

@@ -1,0 +1,82 @@
+[
+    {
+        "code": "00",
+        "p21Model": null,
+        "description": null,
+        "hCost": 50,
+        "vCost": 50,
+        "valvePattern": null,
+        "material": null,
+        "numStations": 0
+    },
+    {
+        "code": "31",
+        "p21Model": "(L)AD03P012S/S",
+        "description": "MANIFOLD D03 SAE PARALLEL 1 STA. W/RELIEF ",
+        "hCost": 142,
+        "vCost": 154,
+        "valvePattern": "D03",
+        "material": "AL 6061-T6",
+        "numStations": 1
+    },
+    {
+        "code": "32",
+        "p21Model": "AD03P022S/S",
+        "description": "MANIFOLD D03 SAE PARALLEL 1 STA. W/RELIEF ",
+        "hCost": 159,
+        "vCost": 170,
+        "valvePattern": "D03",
+        "material": "AL 6061-T6",
+        "numStations": 2
+    },
+    {
+        "code": "33",
+        "p21Model": "AD03P032S/S",
+        "description": "MANIFOLD D03 SAE PARALLEL 1 STA. W/RELIEF ",
+        "hCost": 183,
+        "vCost": 189,
+        "valvePattern": "D03",
+        "material": "AL 6061-T6",
+        "numStations": 3
+    },
+    {
+        "code": "34",
+        "p21Model": "AD03P042S/S",
+        "description": "MANIFOLD D03 SAE PARALLEL 1 STA. W/RELIEF ",
+        "hCost": 207,
+        "vCost": 213,
+        "valvePattern": "D03",
+        "material": "AL 6061-T6",
+        "numStations": 4
+    },
+    {
+        "code": "35",
+        "p21Model": "AD03P052S/S",
+        "description": "MANIFOLD D03 SAE PARALLEL 1 STA. W/RELIEF ",
+        "hCost": 225,
+        "vCost": 231,
+        "valvePattern": "D03",
+        "material": "AL 6061-T6",
+        "numStations": 5
+    },
+    {
+        "code": "36",
+        "p21Model": "AD03P062S/S",
+        "description": "MANIFOLD D03 SAE PARALLEL 1 STA. W/RELIEF ",
+        "hCost": 249,
+        "vCost": 252,
+        "valvePattern": "D03",
+        "material": "AL 6061-T6",
+        "numStations": 6
+    },
+    {
+        "code": "51",
+        "p21Model": "AD05P01S/S",
+        "description": "MANIFOLD D03 SAE PARALLEL 1 STA. W/RELIEF ",
+        "hCost": 172,
+        "vCost": 189,
+        "valvePattern": "D05",
+        "material": "AL 6061-T6",
+        "numStations": 1
+    }
+]
