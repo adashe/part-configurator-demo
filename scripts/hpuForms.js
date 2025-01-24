@@ -116,7 +116,7 @@ const generateValveDropdown = (data, i) => {
                     <option value="none">None Selected</option>`
 
     data.forEach((valve, index) => {
-        html += `<option value=${index}>${valve.description}</option>`;
+        html += `<option value=${index}>${valve.code}</option>`;
     });
 
     html += `</select>`;
