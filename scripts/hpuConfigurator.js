@@ -73,7 +73,7 @@ class HPUNumber{
         const data = await this.getReservoirData();
 
         // calculation //
-        // let reservoirCapacity = pump.gpm@1750;
+        // let reservoirCapacity = pump.gpm@1750
         // select reservoir with smallest greater than capacity
 
         if(this.pump == null){
