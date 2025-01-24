@@ -34,7 +34,10 @@
             <h2>
                 HPU CONFIGURATOR
             </h2>
-            <form id="hpu-form">
+
+            <form id="hpu-sys-params-form">
+                <h3>System Parameters</h3>
+
                 <div>
                     <label for="maxPressure">Max Pressure (psi):</label>
                     <input type="number" id="maxPressure" placeholder="ex. 2000" required>
@@ -46,8 +49,9 @@
                 </div>
 
                 <div>
-                    <label for="hydraulicType">Hydraulic Type:</label>
-                    <select name="hydraulicType" id="hydraulicType">
+                    <label for="applicationType">Application Type:</label>
+                    <select name="applicationType" id="applicationType" required>
+                        <option value="" disabled selected hidden>...</option>
                         <option value="pressure-holding">Pressure Holding</option>
                         <option value="cylinder">Cylinder</option>
                         <option value="motor">Motor</option>
@@ -55,8 +59,25 @@
                 </div>
 
                 <div>
+                    <label for="heatExchType">Heat Exchanger Type:</label>
+                    <select name="heatExchType" id="heatExchType" required>
+                        <option value="" disabled selected hidden>...</option>
+                        <option value="air">Air</option>
+                        <option value="water">Water</option>
+                    </select>
+                </div>
+
+                <input class="button" type="submit" value="CONTINUE">
+                <button class="button gray restart">RESTART</button>
+            </form>
+
+            <form id="hpu-manifold-options-form">
+                <h3>Manifold Options</h3>
+
+                <div>
                     <label for="numberStations">Number of Stations:</label>
-                    <select name="numberStations" id="numberStations">
+                    <select name="numberStations" id="numberStations" required>
+                        <option value="" disabled selected hidden>...</option>
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -69,16 +90,25 @@
 
                 <div>
                     <label for="portSize">Port Size:</label>
-                    <select name="portSize" id="portSize">
+                    <select name="portSize" id="portSize" required>
+                        <option value="" disabled selected hidden>...</option>
                         <option value="D03">D03</option>
                         <option value="D05">D05</option>
                     </select>
                 </div>
 
-                <div id="solenoid-voltage-div">
+                <input class="button" type="submit" value="CONTINUE">
+                <button class="button gray">PREVIOUS</button>
+                <button class="button gray restart">RESTART</button>
+            </form>
+
+            <form id="hpu-valve-options-form">
+                <h3>Valve Options</h3>
+
+                <div>
                     <label for="solenoidVoltage">Solenoid Voltage:</label>
                     <select name="solenoidVoltage" id="solenoidVoltage">
-                        <option value="null">None Selected</option>
+                        <option value="" disabled selected hidden>...</option>
                         <option value="110VAC">110VAC</option>
                         <option value="24VDC">24VDC</option>
                     </select>
@@ -89,6 +119,7 @@
                 <div>
                     <label for="numFlowControls">Number of Flow Controls:</label>
                     <select name="numFlowControls" id="numFlowControls">
+                        <option value="" disabled selected hidden>...</option>
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -99,18 +130,11 @@
                     </select>
                 </div>
 
-                <div>
-                    <label for="heatExchType">Heat Exchanger Type:</label>
-                    <select name="heatExchType" id="heatExchType">
-                        <option value="none">None</option>
-                        <option value="air">Air</option>
-                        <option value="water">Water</option>
-                    </select>
-                </div>
-
-                <input class="button" type="submit" value="GENERATE PART NUMBER">  
+                <input class="button" type="submit" value="GENERATE PART NUMBER">
+                <button class="button gray">PREVIOUS</button>  
                 <button class="button gray restart">RESTART</button> 
             </form>
+
         </div>
     
         <!-- MSP DIV -->
@@ -136,32 +160,6 @@
                 <button class="button gray restart">RESTART</button>
             </form>
         </div>
-
-        <!-- VALVE DIV -->
-        <!-- <div id="valve-div" class="page-div">
-            <h2>
-                SELECT VALVE OPTIONS
-            </h2>
-            <form id="valve-form">
-                <div>
-                    <label for="solenoid-voltage">Solenoid Voltage:</label>
-                    <select name="solenoid-voltage" id="solenoid-voltage">
-                        <option value="null">None Selected</option>
-                        <option value="110VAC">110VAC</option>
-                        <option value="24VDC">24VDC</option>
-                    </select>
-                </div>
-
-                <div id="valve-selection-div">
-                    <label for="valve-selection">Select Valve Type:</label>
-                    <select name="valve-selection" id="valve-selection">
-                        <option value="none">None</option>
-                    </select>
-                </div>
-
-                <input class="button" type="submit" value="CONFIRM SELECTION">  
-            </form>
-        </div> -->
     
         <!-- PART NUMBER DIV -->
         <div id="part-num-div" class="page-div">
@@ -232,40 +230,9 @@
         </div>
     </div>
 
-    <!-- VALVE POPUP DIV -->
-    <div class="popup-wrapper">
-        <div class="popup-div">
-            <div class="popup-close">x</div>
-            <div class="popup-content">
-                <h2>
-                    SELECT VALVE OPTIONS
-                </h2>
-                <form id="valve-form">
-                    <div>
-                        <label for="solenoid-voltage">Solenoid Voltage:</label>
-                        <select name="solenoid-voltage" id="solenoid-voltage">
-                            <option value="null">None Selected</option>
-                            <option value="110VAC">110VAC</option>
-                            <option value="24VDC">24VDC</option>
-                        </select>
-                    </div>
-    
-                    <div id="valve-selection-div">
-                        <label for="valve-selection">Select Valve Type:</label>
-                        <select name="valve-selection" id="valve-selection">
-                            <option value="none">None</option>
-                        </select>
-                    </div>
-    
-                    <input class="button" type="submit" value="CONFIRM SELECTION">  
-                </form>
-            </div>
-        </div>
-    </div>
-
     <script src="scripts/hpuConfigurator.js"></script>
-    <script src="scripts/hpuUI.js"></script>
-    <script src="scripts/valveUI.js"></script>
+    <script src="scripts/hpuNumUI.js"></script>
+    <script src="scripts/hpuFormsUI.js"></script>
 
     <script src="scripts/app.js"></script>
     <script src="scripts/ui.js"></script>

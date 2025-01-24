@@ -1,14 +1,13 @@
-const componentDiv = document.getElementById('component-div');
-const hpuDiv = document.getElementById('hpu-div');
-const mspDiv = document.getElementById('msp-div');
-const hmiDiv = document.getElementById('hmi-div');
-// const valveDiv = document.getElementById('valve-div');
-const partNumDiv = document.getElementById('part-num-div');
-const emailDiv = document.getElementById('email-div');
-const emailConfDiv = document.getElementById('email-conf-div');
-
 const componentForm = document.querySelector('#component-form');
 const componentType = document.querySelector('#component-type');
+
+const componentDiv = document.querySelector('#component-div');
+const hpuDiv = document.querySelector('#hpu-div');
+const mspDiv = document.querySelector('#msp-div');
+const hmiDiv = document.querySelector('#hmi-div');
+const partNumDiv = document.querySelector('#part-num-div');
+const emailDiv = document.querySelector('#email-div');
+const emailConfDiv = document.querySelector('#email-conf-div');
 
 // Display selected form div
 componentForm.addEventListener('submit', e => {
@@ -18,7 +17,6 @@ componentForm.addEventListener('submit', e => {
         hpuDiv.style.display = 'block';
         mspDiv.style.display = 'none';
         hmiDiv.style.display = 'none';
-        // valveDiv.style.display = 'none';
         partNumDiv.style.display = 'none';
         emailDiv.style.display = 'none';
         emailConfDiv.style.display = 'none';
@@ -27,7 +25,6 @@ componentForm.addEventListener('submit', e => {
         hpuDiv.style.display = 'none';
         mspDiv.style.display = 'block';
         hmiDiv.style.display = 'none';
-        // valveDiv.style.display = 'none';
         partNumDiv.style.display = 'none';
         emailDiv.style.display = 'none';
         emailConfDiv.style.display = 'none';
@@ -36,7 +33,6 @@ componentForm.addEventListener('submit', e => {
         hpuDiv.style.display = 'none';
         mspDiv.style.display = 'none';
         hmiDiv.style.display = 'block';
-        // valveDiv.style.display = 'none';
         partNumDiv.style.display = 'none';
         emailDiv.style.display = 'none';
         emailConfDiv.style.display = 'none';
@@ -49,23 +45,10 @@ const displayComponentDiv = () => {
     hpuDiv.style.display = 'none';
     mspDiv.style.display = 'none';
     hmiDiv.style.display = 'none';
-    // valveDiv.style.display = 'none';
     partNumDiv.style.display = 'none';
     emailDiv.style.display = 'none';
     emailConfDiv.style.display = 'none';
 };
-
-// Display valve div
-// const displayValveDiv = () => {
-//     componentDiv.style.display = 'none';
-//     hpuDiv.style.display = 'none';
-//     mspDiv.style.display = 'none';
-//     hmiDiv.style.display = 'none';
-//     valveDiv.style.display = 'block';
-//     partNumDiv.style.display = 'none';
-//     emailDiv.style.display = 'none';
-//     emailConfDiv.style.display = 'none';
-// };
 
 // Display part number div
 const displayPartNumDiv = () => {
@@ -73,7 +56,6 @@ const displayPartNumDiv = () => {
     hpuDiv.style.display = 'none';
     mspDiv.style.display = 'none';
     hmiDiv.style.display = 'none';
-    // valveDiv.style.display = 'none';
     partNumDiv.style.display = 'block';
     emailDiv.style.display = 'none';
     emailConfDiv.style.display = 'none';
@@ -85,7 +67,6 @@ const displayEmailDiv = () => {
     hpuDiv.style.display = 'none';
     mspDiv.style.display = 'none';
     hmiDiv.style.display = 'none';
-    // valveDiv.style.display = 'none';
     partNumDiv.style.display = 'none';
     emailDiv.style.display = 'block';
     emailConfDiv.style.display = 'none';
@@ -97,7 +78,6 @@ const displayEmailConfDiv = () => {
     hpuDiv.style.display = 'none';
     mspDiv.style.display = 'none';
     hmiDiv.style.display = 'none';
-    // valveDiv.style.display = 'none';
     partNumDiv.style.display = 'none';
     emailDiv.style.display = 'none';
     emailConfDiv.style.display = 'block';

@@ -36,6 +36,9 @@ h4{
 p{
     text-align: center;
 }
+ul{
+    margin: 5px auto;
+}
 #container{
     background: white;
     width: 430px;
@@ -50,6 +53,8 @@ p{
     margin: 10px;
     padding: 10px;
 }
+
+/* FORM STYLES */
 form{
     margin: 10px;
     padding: 10px;
@@ -60,17 +65,23 @@ form{
 form#component-form{
     text-align: center;
 }
-form#hpu-form{
+form#hpu-sys-params-form{
+    text-align: right;
+}
+form#hpu-manifold-options-form{
+    display: none;
+    text-align: right;
+}
+form#hpu-valve-options-form{
+    display: none;
     text-align: right;
 }
 form#email-form{
     text-align: right;
     margin: 10px 20px;
 }
-form#valve-form{
-    text-align: right;
-    margin: 10px 20px;
-}
+
+/* FORM INPUT STYLES */
 input{
     display: inline-block;
     width: 180px;
@@ -90,6 +101,13 @@ select{
 ::placeholder {
     font-style: italic;
 }
+label{
+    display: inline-block;
+    font-family: "Source Sans 3", serif;
+    color: #434343;
+}
+
+/* BUTTON STYLES */
 .button{
     display: block;
     width: 220px;
@@ -118,14 +136,7 @@ button.gray{
     background-color: #d4d4d4;
     font-size: 12px;
 }
-label{
-    display: inline-block;
-    font-family: "Source Sans 3", serif;
-    color: #434343;
-}
-ul{
-    margin: 5px auto;
-}
+/* DIV STYLES */
 #component-div{
     display: block;
 }
@@ -138,12 +149,6 @@ ul{
 #hmi-div{
     display: none;
 }
-#solenoid-voltage-div{
-    display: none;
-}
-/* #valve-div{
-    display: none;
-} */
 #valve-selection-div{
     display: none;
 }
@@ -160,7 +165,7 @@ ul{
     display: none;
 }
 
-/* DROPDOWN STYLES */
+/* PART NUM DROPDOWN STYLES */
 .dropdown .trigger{
     border-bottom: 1px solid #ddd;
     padding: 10px;

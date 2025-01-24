@@ -13,27 +13,27 @@ const tableCloseButton = document.querySelector('.table-close');
 const hpuNum = new HPUNumber();
 
 // Process HPU form input
-hpuForm.addEventListener('submit', e => {
-    e.preventDefault();
+// hpuForm.addEventListener('submit', e => {
+//     e.preventDefault();
 
-    const maxPres = hpuForm.maxPressure.value;
-    const maxFl = hpuForm.maxFlow.value;
-    const hydrType = hpuForm.hydraulicType.value;
-    const numSt = hpuForm.numberStations.value;
-    const portSz = hpuForm.portSize.value;
-    const numFlwCtrl = hpuForm.numFlowControls.value;
-    const htExType = hpuForm.heatExchType.value;
+//     const maxPres = hpuForm.maxPressure.value;
+//     const maxFl = hpuForm.maxFlow.value;
+//     const hydrType = hpuForm.hydraulicType.value;
+//     const numSt = hpuForm.numberStations.value;
+//     const portSz = hpuForm.portSize.value;
+//     const numFlwCtrl = hpuForm.numFlowControls.value;
+//     const htExType = hpuForm.heatExchType.value;
 
-    // Add valves in HPU form inputs to hpuNum for use in htExType calculation
-    addValvesFromHpuForm();
+//     // Add valves in HPU form inputs to hpuNum for use in htExType calculation
+//     addValvesFromHpuForm();
 
-    // Calculate hpuNum using form input values
-    hpuNum.calcHpuNum(maxPres, maxFl, hydrType, numSt, portSz, numFlwCtrl, htExType)
-        .then(data => displayHpuNumber(data))
-        .catch(err => console.log(err.message));
+//     // Calculate hpuNum using form input values
+//     hpuNum.calcHpuNum(maxPres, maxFl, hydrType, numSt, portSz, numFlwCtrl, htExType)
+//         .then(data => displayHpuNumber(data))
+//         .catch(err => console.log(err.message));
 
-    hpuForm.reset();
-});
+//     hpuForm.reset();
+// });
 
 // Process MSP form input
 mspForm.addEventListener('submit', e => {
