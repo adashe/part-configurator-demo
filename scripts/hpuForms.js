@@ -143,10 +143,10 @@ solenoidVoltage.addEventListener('change', e => {
 
     let numValves = hpuInputs.numStat;
 
-    // Generate numSt# of valve dropdowns containing selected solVolt data
+    // Generate valve dropdowns containing selected solVolt data
     // TODO: UPDATE to further narrow data based on port size options
     if(solenoidVoltage.value == 'null'){
-        valveSelectionDiv.style.display = 'none';
+        valveSelectionDiv.innerHTML = '';
 
     } else if (solenoidVoltage.value == '110VAC'){
         for(let i = 0; i < numValves; i++){
@@ -163,21 +163,21 @@ solenoidVoltage.addEventListener('change', e => {
         };
     };
 
-    valveSelectionDiv.style.display = 'inline-block';
 });
 
 // Create individual valve selectors
 const generateValveDropdown = (data, i) => {
 
-    let html = `<label for="valveSelection${i}">Valve ${i}:</label>
-                <select name="valveSelection${i}" id="valveSelection${i}" class="valveSelection">
-                    <option value="none">None Selected</option>`
+    let html = `<div>
+                    <label for="valveSelection${i}">Valve ${i}:</label>
+                    <select name="valveSelection${i}" id="valveSelection${i}" class="valveSelection">
+                        <option value="none">None Selected</option>`
 
     data.forEach((valve, index) => {
         html += `<option value=${index}>${valve.code}</option>`;
     });
 
-    html += `</select>`;
+    html += `</select></div>`;
 
     valveSelectionDiv.innerHTML += html;
 };
@@ -207,3 +207,10 @@ const addValvesToHpuInputs = () => {
 
     return hpuInputs.valves;
 }
+
+// Reset valve options form if number of stations is changed
+numberStations.addEventListener('change', e => {
+    e.preventDefault();
+    valveSelectionDiv.innerHTML = '';
+    hpuValveOptsForm.reset();
+});
