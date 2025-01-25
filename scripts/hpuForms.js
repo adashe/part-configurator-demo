@@ -2,6 +2,10 @@ const hpuSysParamsForm = document.querySelector('#hpu-sys-params-form');
 const hpuManifoldOptsForm = document.querySelector('#hpu-manifold-options-form');
 const hpuValveOptsForm = document.querySelector('#hpu-valve-options-form');
 
+const hpuRestartButtons = document.querySelectorAll('.hpu-restart');
+const sysParamsButtons = document.querySelectorAll('.sys-params-btn');
+const manifoldOptsButtons = document.querySelectorAll('.mani-opts-btn');
+
 const numberStations = document.querySelector('#numberStations');
 const solenoidVoltage = document.querySelector('#solenoidVoltage');
 const valveSelectionDiv = document.querySelector('#valve-selection-div');
@@ -25,7 +29,45 @@ const displayValveOptsForm = () => {
     hpuValveOptsForm.style.display = 'block';
 };
 
+
+// BUTTONS
+// Restart buttons
+hpuRestartButtons.forEach((button) => {
+    button.addEventListener('click', e => {
+        e.preventDefault();
+
+        resetHpuInputs();
+
+        hpuSysParamsForm.reset();
+        hpuManifoldOptsForm.reset();
+        hpuValveOptsForm.reset();
+
+        displaySysParamsForm();
+        displayComponentDiv();
+
+        console.log('RESTARTED', hpuInputs);
+    });
+});
+
+// Buttons to display system parameters form
+sysParamsButtons.forEach((button) => {
+    button.addEventListener('click', e => {
+        e.preventDefault();
+        displaySysParamsForm();
+    });
+});
+
+// Buttons to display manifold options form
+manifoldOptsButtons.forEach((button) => {
+    button.addEventListener('click', e => {
+        e.preventDefault();
+        displayManifoldOptsForm();
+    });
+});
+
+
 // PROCESS FORM INPUTS
+// Initiate null values for HPU inputs
 let hpuInputs = {
     maxPres: null,
     maxFlow: null,
@@ -37,6 +79,22 @@ let hpuInputs = {
     valves: [],
     flowCtrl: [],
     checkValves: []
+};
+
+// Reset HPU inputs
+const resetHpuInputs = () => {
+    hpuInputs = {
+        maxPres: null,
+        maxFlow: null,
+        appType: null,
+        heatExchType: null,
+        numStat: null,
+        portSize: null,
+        solVolt: null,
+        valves: [],
+        flowCtrl: [],
+        checkValves: []
+    };
 };
 
 // Process sys params form inputs

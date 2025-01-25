@@ -2,7 +2,7 @@ const hpuForm = document.querySelector('#hpu-form');
 const mspForm = document.querySelector('#msp-form');
 const hmiForm = document.querySelector('#hmi-form');
 
-const restartButtons = document.querySelectorAll('.restart');
+
 const detailsButtons = document.querySelectorAll('.details');
 const emailButton = document.querySelector('#email');
 const sendEmailButton = document.querySelector('#send-email');
@@ -49,13 +49,7 @@ hmiForm.addEventListener('submit', e => {
     hmiForm.reset();
 });
 
-// Restart buttons
-restartButtons.forEach((button) => {
-    button.addEventListener('click', e => {
-        e.preventDefault();
-        displayComponentDiv();
-    })
-});
+
 
 // Details buttons
 detailsButtons.forEach((button) => {
