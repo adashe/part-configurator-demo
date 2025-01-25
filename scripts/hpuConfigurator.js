@@ -149,11 +149,11 @@ class HPUNumber{
         } else if (this.pump.mountType == 'SAE B'){
             result = data.filter(motor => motor.type == "MTC" && motor.outputHP >= minHP);
         } else {
-            console.log('Cannot calculate motor');
+            console.log('Cannot calculate motor without pump  mount type');
         };
 
         if(result.length == 0){
-            console.log('Cannot calculate motor');
+            console.log('No valid motor results');
         } else {
             this.motor = result.reduce((prev, curr) => (prev.outputHP < curr.outputHP) ? prev : curr);
         };
@@ -190,7 +190,7 @@ class HPUNumber{
             result = data.filter(manifold => manifold.valvePattern == 'D05' && manifold.numStations == numSt);
             this.manifold = result[0];
         } else {
-            console.log('Cannot calculate manifold');
+            console.log('Cannot calculate manifold without port size');
         };
 
         // console.log('manifold', this.manifold);

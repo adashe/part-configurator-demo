@@ -2,7 +2,6 @@ const hpuForm = document.querySelector('#hpu-form');
 const mspForm = document.querySelector('#msp-form');
 const hmiForm = document.querySelector('#hmi-form');
 
-
 const detailsButtons = document.querySelectorAll('.details');
 const emailButton = document.querySelector('#email');
 const sendEmailButton = document.querySelector('#send-email');

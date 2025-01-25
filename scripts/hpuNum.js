@@ -1,4 +1,3 @@
-// Display configured HPU part number and details
 const partNumDisplay = document.querySelectorAll('.part-num-disp');
 const partNumDets = document.querySelector('#part-num-dets');
 
@@ -7,6 +6,7 @@ const tableHead = document.querySelector('thead');
 const tableBody = document.querySelector('tbody');
 
 
+// Display configured HPU part number and details
 const displayHpuNumber = (data) => {
     const reservoir = data.reservoir;
     const pump = data.pump;
@@ -28,6 +28,7 @@ const displayHpuNumber = (data) => {
                 <ul>
                     <li>Capacity: ${reservoir.capacity}</li>
                     <li>Heat Dis: ${reservoir.heatDis}</li>
+                    <li>Cost: $${reservoir.cost}</li>
                 </ul>
                 <button class="button gray edit" id="edit-reservoir">EDIT RESERVOIR</button>
             </div>
@@ -37,9 +38,11 @@ const displayHpuNumber = (data) => {
             <div class="trigger">PUMP ${pump.code}</div>
             <div class="content">        
                 <ul>
-                    <li>${pump.partNum}</li>
-                    <li>${pump.description}</li>
-                    <li>${pump.dispCID}</li> 
+                    <li>Part Number: ${pump.partNum}</li>
+                    <li>Description: ${pump.description}</li>
+                    <li>Dissipation: ${pump.dispCID}</li>
+                    <li>Mount Type: ${pump.mountType}</li> 
+                    <li>Cost: $${pump.cost}</li>
                 </ul>
                 <button class="button gray edit" id="edit-pump">EDIT PUMP</button>
             </div>
@@ -49,9 +52,10 @@ const displayHpuNumber = (data) => {
             <div class="trigger">MOTOR ${motor.code}</div>
             <div class="content">        
                 <ul>
-                    <li>${motor.partNum}</li>
-                    <li>${motor.description}</li>
-                    <li>${motor.output}</li>
+                    <li>Part Number: ${motor.partNum}</li>
+                    <li>Description: ${motor.description}</li>
+                    <li>Output HP: ${motor.outputHP}</li>
+                    <li>Cost: ${motor.cost}</li>
                 </ul>
                 <button class="button gray edit" id="edit-motor">EDIT MOTOR</button>
             </div>
@@ -61,9 +65,11 @@ const displayHpuNumber = (data) => {
             <div class="trigger">MANIFOLD ${manifold.code}</div>
             <div class="content">        
                 <ul>
-                    <li>${manifold.p21Model}</li>
-                    <li>${manifold.description}</li>
-                    <li>${manifold.valvePattern}</li>
+                    <li>Description: ${manifold.description}</li>
+                    <li>Valve Pattern: ${manifold.valvePattern}</li>
+                    <li>Number of Stations: ${manifold.numStations}</li>
+                    <li>H Cost: $${manifold.hCost}</li>
+                    <li>V Cost: $${manifold.vCost}</li>
                 </ul>
                 <button class="button gray edit" id="edit-manifold">EDIT MANIFOLD</button>
             </div>
@@ -73,9 +79,12 @@ const displayHpuNumber = (data) => {
             <div class="trigger">HEAT EXCHANGER ${heatExchanger.code}</div>
             <div class="content">        
                 <ul>
-                    <li>${heatExchanger.description}</li>
-                    <li>${heatExchanger.maxFlow}</li>
-                    <li>${heatExchanger.heatDis}</li>
+                    <li>Description: ${heatExchanger.description}</li>
+                    <li>Type: ${heatExchanger.type}</li>
+                    <li>Max Flow: ${heatExchanger.maxFlow}</li>
+                    <li>Heat Dis: ${heatExchanger.heatDis}</li>
+                    <li>H Cost: $${heatExchanger.hCost}</li>
+                    <li>V Cost: $${heatExchanger.vCost}</li>
                 </ul>
                 <button class="button gray edit" id="edit-heat-exchanger">EDIT HEAT EXCHANGER</button>
             </div>
@@ -229,13 +238,13 @@ const displayPumpTable = (data) => {
         <tr>
             <th>CODE</th>
             <th>DESCRIPTION</th>
-            <th>H3</th>
+            <th>DISSIPATION</th>
             <th>COST</th>
         </tr>
     `;
 
     data.forEach((element, index) => {
-        let rowHTML = `<tr id=${index}><td>${element.code}</td><td>${element.description}</td><td>$${element.code}</td><td>$${element.cost}</td></tr>`;
+        let rowHTML = `<tr id=${index}><td>${element.code}</td><td>${element.description}</td><td>$${element.dispCID}</td><td>$${element.cost}</td></tr>`;
         tableBody.innerHTML += rowHTML;
     });
 
@@ -265,14 +274,14 @@ const displayMotorTable = (data) => {
     tableHead.innerHTML += `
         <tr>
             <th>CODE</th>
-            <th>H2</th>
-            <th>H3</th>
+            <th>PART NUMBER</th>
+            <th>OUTPUT HP</th>
             <th>COST</th>
         </tr>
     `;
 
     data.forEach((element, index) => {
-        let rowHTML = `<tr id=${index}><td>${element.code}</td><td>${element.code}</td><td>${element.code}</td><td>$${element.cost}</td></tr>`;
+        let rowHTML = `<tr id=${index}><td>${element.code}</td><td>${element.partNum}</td><td>${element.outputHP}</td><td>$${element.cost}</td></tr>`;
         tableBody.innerHTML += rowHTML;
     });
 
@@ -339,14 +348,14 @@ const displayHeatExchangerTable = (data) => {
     tableHead.innerHTML += `
         <tr>
             <th>CODE</th>
-            <th>H2</th>
+            <th>TYPE</th>
             <th>H COST</th>
             <th>V COST</th>
         </tr>
     `;
 
     data.forEach((element, index) => {
-        let rowHTML = `<tr id=${index}><td>${element.code}</td><td>${element.code}</td><td>${element.hCost}</td><td>$${element.vCost}</td></tr>`;
+        let rowHTML = `<tr id=${index}><td>${element.code}</td><td>${element.type}</td><td>${element.hCost}</td><td>$${element.vCost}</td></tr>`;
         tableBody.innerHTML += rowHTML;
     });
 
