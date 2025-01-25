@@ -11,6 +11,9 @@ const portSize = document.querySelector('#portSize');
 const solenoidVoltage = document.querySelector('#solenoidVoltage');
 const valveSelectionDiv = document.querySelector('#valve-selection-div');
 
+const hpuNum = new HPUNumber();
+
+
 // DISPLAY AND HIDE FORM ELEMENTS
 const displaySysParamsForm = () => {
     hpuSysParamsForm.style.display = 'block';
@@ -107,7 +110,7 @@ hpuSysParamsForm.addEventListener('submit', e => {
     hpuInputs.appType = hpuSysParamsForm.applicationType.value;
     hpuInputs.heatExchType = hpuSysParamsForm.heatExchType.value;
 
-    console.log(hpuInputs);
+    // console.log(hpuInputs);
 
     displayManifoldOptsForm();
 });
@@ -119,7 +122,7 @@ hpuManifoldOptsForm.addEventListener('submit', e => {
     hpuInputs.numStat = hpuManifoldOptsForm.numberStations.value;
     hpuInputs.portSize = hpuManifoldOptsForm.portSize.value;
 
-    console.log(hpuInputs);
+    // console.log(hpuInputs);
 
     displayValveOptsForm();
     
@@ -132,7 +135,7 @@ hpuValveOptsForm.addEventListener('submit', e => {
     hpuInputs.solVolt = hpuValveOptsForm.solenoidVoltage.value;
     addValvesToHpuInputs();
 
-    console.log(hpuInputs);
+    // console.log(hpuInputs);
 
 });
 
@@ -147,7 +150,6 @@ solenoidVoltage.addEventListener('change', e => {
     let voltage = solenoidVoltage.value;
 
     // Generate valve dropdowns for each number of stations containing selected solVolt data
-    // TODO: UPDATE to further narrow data based on port size options
     if(voltage == 'null'){
         valveSelectionDiv.innerHTML = '';
 
@@ -157,20 +159,6 @@ solenoidVoltage.addEventListener('change', e => {
                 .then(data => generateValveDropdown(data, i))
                 .catch(err => console.log(err.message));
         } 
-        
-    //     else if (solenoidVoltage.value == '110VAC'){
-    //     for(let i = 0; i < numValves; i++){
-    //         hpuNum.get110VACValveData()
-    //             .then(data => generateValveDropdown(data, i))
-    //             .catch(err => console.log(err.message));
-    //     };
-
-    // } else if(solenoidVoltage.value == '24VDC'){
-    //     for(let i = 0; i < numValves; i++){
-    //         hpuNum.get24VDCValveData()
-    //             .then(data => generateValveDropdown(data, i))
-    //             .catch(err => console.log(err.message));
-    //     };
     };
 
 });
@@ -218,6 +206,13 @@ const addValvesToHpuInputs = () => {
     return hpuInputs.valves;
 }
 
+// Add valves to HPU number
+const addValvesToHpuNum = () => {
+    hpuInputs.valves.forEach(valve => {
+        hpuNum.updateValves(valve);
+    });
+};
+
 // Reset valve options form if number of stations is changed
 numberStations.addEventListener('change', e => {
     e.preventDefault();
@@ -230,4 +225,25 @@ portSize.addEventListener('change', e => {
     e.preventDefault();
     valveSelectionDiv.innerHTML = '';
     hpuValveOptsForm.reset();
+});
+
+
+// SUBMIT HPU INPUT DATA AND GENERATE HPU NUMBER
+hpuValveOptsForm.addEventListener('submit', e => {
+
+    // Add valves in HPU form inputs to hpuNum for use in heat exchanger calculation
+    addValvesToHpuNum();
+
+    // Calculate hpuNum using form input values
+    hpuNum.calcHpuNum(
+        hpuInputs.maxPres, 
+        hpuInputs.maxFlow, 
+        hpuInputs.appType, 
+        hpuInputs.heatExchType,
+        hpuInputs.numStat, 
+        hpuInputs.portSize, 
+        hpuInputs.flowCtrl.length, 
+        )
+        .then(data => displayHpuNumber(data))
+        .catch(err => console.log(err.message));
 });

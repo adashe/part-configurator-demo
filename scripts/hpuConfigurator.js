@@ -61,13 +61,6 @@ class HPUNumber{
         return result;
     }
 
-    // async get24VDCValveData(){
-    //     const data = await this.getValveData();
-
-    //     let result = data.filter(valve => valve.voltage == "24VDC");
-        
-    //     return result;
-    // }
 
     // CALCULATE PART NUMBER //
     async calcReservoir(maxFl){
@@ -98,7 +91,7 @@ class HPUNumber{
         return this.reservoir;
     }
 
-    async calcPump(maxPres, maxFl, hydrType){
+    async calcPump(maxPres, maxFl, appType){
         const data = await this.getPumpData();
 
         // calculation //
@@ -110,11 +103,12 @@ class HPUNumber{
 
         const rotationSpeed = 1750;
         const minDis = 231 * maxFl / rotationSpeed;
-        console.log('minDis:', minDis);
+
+        // console.log('minDis:', minDis);
 
         let result = [];
 
-        if(maxPres >= 1500 || hydrType == 'pressure-holding'){
+        if(maxPres >= 1500 || appType == 'pressure-holding'){
             result = data.filter(pump => pump.type == "gear" && pump.dispCID >= minDis);
         } else {
             result = data.filter(pump => pump.type == 'piston' && pump.dispCID >= minDis);
@@ -204,7 +198,7 @@ class HPUNumber{
         return this.manifold;
     }
 
-    async calcHeatExchanger(maxPres, maxFl, numFlwCtrl, htExType){
+    async calcHeatExchanger(maxPres, maxFl, htExType, lenFlowCtrl){
         const data = await this.getHeatExchangerData();
 
         // calculation //
@@ -228,7 +222,7 @@ class HPUNumber{
             return numL;
         })
 
-        console.log('NUM L VALVES', numL);
+        // console.log('NUM L VALVES', numL);
 
         const adder1 = numL * -.1;
 
@@ -246,7 +240,7 @@ class HPUNumber{
 
         // Calculate adder 3
         // ADDER 3 = total num flow controls * flow control adder value (above)
-        const adder3 = numFlwCtrl * .02;
+        const adder3 = lenFlowCtrl * .02;
 
         // needed dissipation = minHP (from motor calc) * (base multiplier + ADDER1 + ADDER2 + ADDER3) 
         const minHP = (maxPres * maxFl / 1714 * 0.85);
@@ -257,7 +251,7 @@ class HPUNumber{
         // value = needed dissipation - reservoir dissipation 
         const reqDis = minHtDis - this.reservoir.heatDis;
 
-        console.log('reqDis:', reqDis);
+        // console.log('reqDis:', reqDis);
 
         // if value is negative, you don't need a heat exchanger ==> select 0 from table
         if(reqDis <= 0){
@@ -295,15 +289,15 @@ class HPUNumber{
     // H and V costs depend on reservoir selection (in reservoir code)
     // add formula to calculate cost based on this criteria
 
-    async calcHpuNum(maxPres, maxFl, hydrType, numSt, portSz, numFlwCtrl, htExType){
+    async calcHpuNum(maxPres, maxFl, appType, htExType, numSt, portSz, lenFlowCtrl, ){
 
         // console.log(maxPres, maxFl, hydrType, numSt, portSz, numFlwCtrl, htExType);
 
-        await this.calcPump(maxPres, maxFl, hydrType);
+        await this.calcPump(maxPres, maxFl, appType);
         await this.calcMotor(maxPres, maxFl);
         await this.calcReservoir(maxFl);
         await this.calcManifold(numSt, portSz);
-        await this.calcHeatExchanger(maxPres, maxFl, numFlwCtrl, htExType);
+        await this.calcHeatExchanger(maxPres, maxFl, htExType, lenFlowCtrl);
 
         return this;
     }

@@ -6,6 +6,7 @@ const tableH2 = document.querySelector('#table-h2');
 const tableHead = document.querySelector('thead');
 const tableBody = document.querySelector('tbody');
 
+
 const displayHpuNumber = (data) => {
     const reservoir = data.reservoir;
     const pump = data.pump;
