@@ -7,6 +7,7 @@ const sysParamsButtons = document.querySelectorAll('.sys-params-btn');
 const manifoldOptsButtons = document.querySelectorAll('.mani-opts-btn');
 
 const numberStations = document.querySelector('#numberStations');
+const portSize = document.querySelector('#portSize');
 const solenoidVoltage = document.querySelector('#solenoidVoltage');
 const valveSelectionDiv = document.querySelector('#valve-selection-div');
 
@@ -142,25 +143,34 @@ solenoidVoltage.addEventListener('change', e => {
     valveSelectionDiv.innerHTML = '';
 
     let numValves = hpuInputs.numStat;
+    let size = hpuInputs.portSize;
+    let voltage = solenoidVoltage.value;
 
     // Generate valve dropdowns for each number of stations containing selected solVolt data
     // TODO: UPDATE to further narrow data based on port size options
-    if(solenoidVoltage.value == 'null'){
+    if(voltage == 'null'){
         valveSelectionDiv.innerHTML = '';
 
-    } else if (solenoidVoltage.value == '110VAC'){
+    } else {
         for(let i = 0; i < numValves; i++){
-            hpuNum.get110VACValveData()
+            hpuNum.getFilteredValveData(size, voltage)
                 .then(data => generateValveDropdown(data, i))
                 .catch(err => console.log(err.message));
-        };
+        } 
+        
+    //     else if (solenoidVoltage.value == '110VAC'){
+    //     for(let i = 0; i < numValves; i++){
+    //         hpuNum.get110VACValveData()
+    //             .then(data => generateValveDropdown(data, i))
+    //             .catch(err => console.log(err.message));
+    //     };
 
-    } else if(solenoidVoltage.value == '24VDC'){
-        for(let i = 0; i < numValves; i++){
-            hpuNum.get24VDCValveData()
-                .then(data => generateValveDropdown(data, i))
-                .catch(err => console.log(err.message));
-        };
+    // } else if(solenoidVoltage.value == '24VDC'){
+    //     for(let i = 0; i < numValves; i++){
+    //         hpuNum.get24VDCValveData()
+    //             .then(data => generateValveDropdown(data, i))
+    //             .catch(err => console.log(err.message));
+    //     };
     };
 
 });
@@ -210,6 +220,13 @@ const addValvesToHpuInputs = () => {
 
 // Reset valve options form if number of stations is changed
 numberStations.addEventListener('change', e => {
+    e.preventDefault();
+    valveSelectionDiv.innerHTML = '';
+    hpuValveOptsForm.reset();
+});
+
+// Reset valve options form if port size is changed
+portSize.addEventListener('change', e => {
     e.preventDefault();
     valveSelectionDiv.innerHTML = '';
     hpuValveOptsForm.reset();

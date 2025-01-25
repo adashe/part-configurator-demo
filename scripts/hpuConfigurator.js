@@ -49,24 +49,25 @@ class HPUNumber{
         const uri = "data/valveData.json";
         const response = await fetch(uri);
         const data = await response.json();
+
         return data;
     }
 
-    async get110VACValveData(){
+    async getFilteredValveData(size, voltage){
         const data = await this.getValveData();
 
-        let result = data.filter(valve => valve.voltage == "110VAC");
+        let result = data.filter(valve => valve.valvePattern == size && valve.voltage == voltage);
 
         return result;
     }
 
-    async get24VDCValveData(){
-        const data = await this.getValveData();
+    // async get24VDCValveData(){
+    //     const data = await this.getValveData();
 
-        let result = data.filter(valve => valve.voltage == "24VDC");
+    //     let result = data.filter(valve => valve.voltage == "24VDC");
         
-        return result;
-    }
+    //     return result;
+    // }
 
     // CALCULATE PART NUMBER //
     async calcReservoir(maxFl){
