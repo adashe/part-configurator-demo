@@ -143,7 +143,7 @@ solenoidVoltage.addEventListener('change', e => {
 
     let numValves = hpuInputs.numStat;
 
-    // Generate valve dropdowns containing selected solVolt data
+    // Generate valve dropdowns for each number of stations containing selected solVolt data
     // TODO: UPDATE to further narrow data based on port size options
     if(solenoidVoltage.value == 'null'){
         valveSelectionDiv.innerHTML = '';
