@@ -75,20 +75,6 @@
                 <h3>Manifold Options</h3>
 
                 <div>
-                    <label for="numberStations">Number of Stations:</label>
-                    <select name="numberStations" id="numberStations" required>
-                        <option value="" disabled selected hidden>...</option>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
-                </div>
-
-                <div>
                     <label for="portSize">Port Size:</label>
                     <select name="portSize" id="portSize" required>
                         <option value="" disabled selected hidden>...</option>
@@ -96,6 +82,8 @@
                         <option value="D05">D05</option>
                     </select>
                 </div>
+
+                <div id="number-stations-div"></div>
 
                 <input class="button" type="submit" value="CONTINUE">
                 <button class="button gray sys-params-btn">PREVIOUS</button>

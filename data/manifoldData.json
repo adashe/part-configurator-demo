@@ -1,11 +1,21 @@
 [
     {
-        "code": "00",
+        "code": "00 D03",
         "p21Model": null,
         "description": null,
         "hCost": 50,
         "vCost": 50,
-        "valvePattern": null,
+        "valvePattern": "D03",
+        "material": null,
+        "numStations": 0
+    },    
+    {
+        "code": "00 D05",
+        "p21Model": null,
+        "description": null,
+        "hCost": 50,
+        "vCost": 50,
+        "valvePattern": "D05",
         "material": null,
         "numStations": 0
     },

@@ -190,7 +190,7 @@ class HPUNumber{
             result = data.filter(manifold => manifold.valvePattern == 'D05' && manifold.numStations == numSt);
             this.manifold = result[0];
         } else {
-            this.manifold = data[0];
+            console.log('Cannot calculate manifold');
         };
 
         // console.log('manifold', this.manifold);

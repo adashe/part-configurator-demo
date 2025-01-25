@@ -6,8 +6,8 @@ const hpuRestartButtons = document.querySelectorAll('.hpu-restart');
 const sysParamsButtons = document.querySelectorAll('.sys-params-btn');
 const manifoldOptsButtons = document.querySelectorAll('.mani-opts-btn');
 
-const numberStations = document.querySelector('#numberStations');
 const portSize = document.querySelector('#portSize');
+const numberStationsDiv = document.querySelector('#number-stations-div');
 const solenoidVoltage = document.querySelector('#solenoidVoltage');
 const valveSelectionDiv = document.querySelector('#valve-selection-div');
 
@@ -213,16 +213,52 @@ const addValvesToHpuNum = () => {
     });
 };
 
-// Reset valve options form if number of stations is changed
-numberStations.addEventListener('change', e => {
-    e.preventDefault();
-    valveSelectionDiv.innerHTML = '';
-    hpuValveOptsForm.reset();
-});
+// Limit number of stations available based on port size selection
+const generateNumberStationsDropdown = () => {
+    const htmlD03 = `
+        <label for="numberStations">Number of Stations:</label>
+            <select name="numberStations" id="numberStations" required>
+                <option value="" disabled selected hidden>...</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>`
 
-// Reset valve options form if port size is changed
+    const htmlD05 = `
+            <label for="numberStations">Number of Stations:</label>
+                <select name="numberStations" id="numberStations" required>
+                    <option value="" disabled selected hidden>...</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>`
+
+    if(portSize.value == 'D03'){
+        numberStationsDiv.innerHTML = htmlD03;
+    } else if (portSize.value == 'D05'){
+        numberStationsDiv.innerHTML = htmlD05;
+    } else {
+        numberStationsDiv.innerHTML = '';
+    };
+
+    const numberStations = document.querySelector('#numberStations');
+
+    // Add event listener to reset valve options form if number of stations is changed
+    numberStations.addEventListener('change', e => {
+        e.preventDefault();
+        valveSelectionDiv.innerHTML = '';
+        hpuValveOptsForm.reset();
+    
+    });
+};
+
+// Reset number of stations and valve options form if port size is changed
 portSize.addEventListener('change', e => {
     e.preventDefault();
+    generateNumberStationsDropdown();
     valveSelectionDiv.innerHTML = '';
     hpuValveOptsForm.reset();
 });
