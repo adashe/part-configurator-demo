@@ -154,5 +154,31 @@
         "springPosition": "OFFSET",
         "center": "OPEN",
         "voltage": "24VDC"
+    },
+    {
+        "code": "SAMPLE D05 110VAC",
+        "p21Model": null,
+        "description": "SAMPLE D05 110VAC",
+        "cost": 0,
+        "valvePattern": "D05",
+        "numSolenoids": 0,
+        "positions": 0,
+        "numPorts": 0,
+        "springPosition": "0",
+        "center": "0",
+        "voltage": "110VAC"
+    },
+    {
+        "code": "SAMPLE D05 24VDC",
+        "p21Model": null,
+        "description": "SAMPLE D05 24VDC",
+        "cost": 0,
+        "valvePattern": "D05",
+        "numSolenoids": 0,
+        "positions": 0,
+        "numPorts": 0,
+        "springPosition": "0",
+        "center": "0",
+        "voltage": "24VDC"
     }
 ]

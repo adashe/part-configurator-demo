@@ -1,0 +1,32 @@
+[
+    {
+        "code": "0",
+        "model": null,
+        "description": null,
+        "cost": null
+    },
+    {
+        "code": "CC",
+        "model": "C03MSV-PC-43-AC",
+        "description": null,
+        "cost": null
+    },
+    {
+        "code": "CA",
+        "model": "C03MSV-PA-43-AC",
+        "description": null,
+        "cost": null
+    },
+    {
+        "code": "CB",
+        "model": "C03MSV-PB-43-AC",
+        "description": null,
+        "cost": null
+    },
+    {
+        "code": "PRA",
+        "model": "P03MSV-PDRP-A50-A-C",
+        "description": null,
+        "cost": null
+    }
+]

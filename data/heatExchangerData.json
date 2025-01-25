@@ -4,8 +4,8 @@
         "type": null,
         "p21Model": null,
         "description": "NO HEAT EXCHANGER",
-        "hCost": 39,
-        "vCost": 47,
+        "hCost": 39.51,
+        "vCost": 47.67,
         "maxFlow": null,
         "heatDis": null
     },
@@ -14,8 +14,8 @@
         "type": "AIR",
         "p21Model": "ASATT07R0U00",
         "description": "HEAT EXCHANGER REAR MOUNT 182T-215T SAE",
-        "hCost": 346,
-        "vCost": 352,
+        "hCost": 346.19,
+        "vCost": 352.26,
         "maxFlow": 0.33,
         "heatDis": 1
     },
@@ -34,8 +34,8 @@
         "type": "AIR",
         "p21Model": "ARL10-3-460",
         "description": "HEAT EXCHANGER W/FAN 1/3HP 460VAC -16 SAE",
-        "hCost": 832,
-        "vCost": 830,
+        "hCost": 832.58,
+        "vCost": 830.31,
         "maxFlow": 10,
         "heatDis": 5
     },
@@ -44,8 +44,8 @@
         "type": "AIR",
         "p21Model": "ARL20-3-460",
         "description": "HEAT EXCHANGER W/FAN 1/2HP 460VAC -20 SAE",
-        "hCost": 898,
-        "vCost": 896,
+        "hCost": 898.37,
+        "vCost": 896.10,
         "maxFlow": 20,
         "heatDis": 12
     },
@@ -54,8 +54,8 @@
         "type": "WATER",
         "p21Model": "AKG-400-20",
         "description": "OIL TO WATER COOLER PLATE STYLE  -8 SAE ",
-        "hCost": 0,
-        "vCost": 0,
+        "hCost": 380.7,
+        "vCost": 381.22,
         "maxFlow": 10,
         "heatDis": 10
     },
@@ -64,9 +64,9 @@
         "type": "WATER",
         "p21Model": "AKG-410-20 ",
         "description": "OIL TO WATER COOLER PLATE STYLE -16 SAE",
-        "hCost": 0,
-        "vCost": 0,
-        "maxFlow": 10,
+        "hCost": 508.2,
+        "vCost": 512.33,
+        "maxFlow": 20,
         "heatDis": 20
     }
 ]
