@@ -70,6 +70,7 @@ class HPUNumber{
         // let reservoirCapacity = pump.gpm@1750
         // select reservoir with smallest greater than capacity
 
+
         if(this.pump == null){
             console.log('Cannot calculate reservoir without pump.');
             return this.reservoir;
@@ -81,7 +82,8 @@ class HPUNumber{
         let result = data.filter(reservoir => reservoir.capacity >= minCap);
 
         if(result.length == 0){
-            console.log('Cannot calculate reservoir');
+            console.log('No valid reservoir results.');
+            alert('No valid reservoir results.');
         } else {
             this.reservoir = result.reduce((prev, curr) => (prev.capacity < curr.capacity) ? prev : curr);
         };
@@ -115,7 +117,8 @@ class HPUNumber{
         };
 
         if(result.length == 0){
-            console.log('Cannot calculate pump, flow is too high');
+            console.log('Cannot calculate pump, flow is too high.');
+            alert('Cannot calculate pump, flow is too high.');
         } else {
             this.pump = result.reduce((prev, curr) => (prev.dispCID < curr.dispCID) ? prev : curr);
         };
@@ -149,11 +152,12 @@ class HPUNumber{
         } else if (this.pump.mountType == 'SAE B'){
             result = data.filter(motor => motor.type == "MTC" && motor.outputHP >= minHP);
         } else {
-            console.log('Cannot calculate motor without pump  mount type');
+            console.log('Cannot calculate motor without pump mount type');
         };
 
         if(result.length == 0){
             console.log('No valid motor results');
+            alert('No valid motor results');
         } else {
             this.motor = result.reduce((prev, curr) => (prev.outputHP < curr.outputHP) ? prev : curr);
         };
@@ -274,7 +278,8 @@ class HPUNumber{
         };
 
         if(result.length == 0){
-            console.log('Cannot calculate heat exchanger');
+            console.log('No valid heat exchanger results');
+            alert('No valid heat exchanger results');
         } else {
             this.heatExchanger = result.reduce((prev, curr) => (prev.heatDis < curr.heatDis) ? prev : curr);
         };
@@ -297,7 +302,8 @@ class HPUNumber{
         };
 
         if(prices.includes(null)){
-            console.log('Invalid configuration');
+            console.log('Invalid configuration.');
+            alert('Invalid configuration.')
         } else {
             totalCost = prices.reduce((x, y) => x + y, totalCost);
         }
