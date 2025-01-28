@@ -13,7 +13,7 @@ const displayHpuNumber = (data) => {
     const motor = data.motor;
     const manifold = data.manifold;
     const heatExchanger = data.heatExchanger;
-    const valves = data.valves;
+    // const valves = data.valves;
     const totalCost = hpuNum.calcCost();
 
     // calculate cost based on V or H reservoir
@@ -114,16 +114,6 @@ const displayHpuNumber = (data) => {
             </div>
         </div>
 
-        <div class="dropdown">
-            <div class="trigger">VALVES</div>
-            <div class="content">        
-                <ul>
-                    <li>${valves[0]}</li>
-                </ul>
-                <button class="button gray edit" id="edit-valves">EDIT VALVES</button>
-            </div>
-        </div>
-
         <h4>ESTIMATED COST: $${totalCost}</h4>
     `
 
@@ -202,11 +192,11 @@ const displayHpuNumber = (data) => {
         tableWrapper.style.display = 'block';
     });
 
-    editValveButton.addEventListener('click', e => {
-        e.preventDefault();
+    // editValveButton.addEventListener('click', e => {
+    //     e.preventDefault();
 
-        displayValveDiv();
-    });
+    //     displayValveDiv();
+    // });
 
     // Display part number div
     displayPartNumDiv();
