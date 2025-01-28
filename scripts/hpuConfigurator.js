@@ -286,8 +286,27 @@ class HPUNumber{
         return this.heatExchanger;
     }
 
-    // H and V costs depend on reservoir selection (in reservoir code)
-    // add formula to calculate cost based on this criteria
+    calcCost(){
+        let prices = [];
+        let totalCost = 0;
+
+        if(this.reservoir.code.includes('H')){
+            prices = [this.pump.hCost, this.motor.hCost, this.manifold.hCost, this.heatExchanger.hCost];
+        } else if (this.reservoir.code.includes('V')){
+            prices = [this.pump.vCost, this.motor.vCost, this.manifold.vCost, this.heatExchanger.vCost];
+        };
+
+        if(prices.includes(null)){
+            console.log('Invalid configuration');
+        } else {
+            totalCost = prices.reduce((x, y) => x + y, totalCost);
+        }
+
+        console.log('prices', prices);
+        console.log('total cost', totalCost);
+
+        return totalCost.toFixed(2);
+    }
 
     async calcHpuNum(maxPres, maxFl, appType, htExType, numSt, portSz, lenFlowCtrl, ){
 

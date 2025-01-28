@@ -14,6 +14,7 @@ const displayHpuNumber = (data) => {
     const manifold = data.manifold;
     const heatExchanger = data.heatExchanger;
     const valves = data.valves;
+    const totalCost = hpuNum.calcCost();
 
     // Display part number at top of part number, edit, and email pages
     partNumDisplay.forEach((element) => {
@@ -55,7 +56,7 @@ const displayHpuNumber = (data) => {
                     <li>Part Number: ${motor.partNum}</li>
                     <li>Description: ${motor.description}</li>
                     <li>Output HP: ${motor.outputHP}</li>
-                    <li>Cost: ${motor.cost}</li>
+                    <li>Cost: $${motor.cost}</li>
                 </ul>
                 <button class="button gray edit" id="edit-motor">EDIT MOTOR</button>
             </div>
@@ -100,7 +101,7 @@ const displayHpuNumber = (data) => {
             </div>
         </div>
 
-        <h4>ESTIMATED COST: $${reservoir.cost + pump.cost + motor.cost + manifold.hCost + manifold.vCost+ heatExchanger.hCost + heatExchanger.vCost}</h4>
+        <h4>ESTIMATED COST: $${totalCost}</h4>
     `
 
     partNumDets.innerHTML = detsHTML;

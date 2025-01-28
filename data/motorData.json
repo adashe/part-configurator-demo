@@ -1,130 +1,146 @@
 [
     {
-        "code": "3MF", 
+        "code": "3F", 
         "type": "MF",
         "partNum": "Z00318ET3E184TYZ", 
-        "description": "3HP 1725 TEFC 184TYZ 230/460/6  3/4 F",
+        "description": "3HP 1725 TEFC 184TYZ 230/460/6 3/4F",
         "outputHP": 3,
-        "cost": 298.66
-    }, 
-    {
-        "code": "5MF", 
-        "type": "MF",
-        "partNum": "Z00518ET3E184TYZ", 
-        "description": "5HP 1725 TEFC 184TYZ 230/460/60/3 3/4 F",
-        "outputHP": 5,
-        "cost": 364.46
+        "hCost": 1187.61,
+        "vCost": 1208.98
     },
     {
-        "code": "7.5MF", 
+        "code": "5F", 
+        "type": "MF",
+        "partNum": "Z00518ET3E184TYZ", 
+        "description": "5HP 1725 TEFC 184TYZ 230/460/60/3 3/4F",
+        "outputHP": 5,
+        "hCost": 1431.32,
+        "vCost": 1452.69
+    },
+    {
+        "code": "7.5F", 
         "type": "MF",
         "partNum": "Z00718ET3E215TYZ", 
         "description": "7.5HP 1725 TEFC 215TYZ 230/460/60/3 3/4",
         "outputHP": 7.5,
-        "cost": 454.12
+        "hCost": 1763.39,
+        "vCost": 1784.76
     },
     {
-        "code": "10MF", 
+        "code": "10F", 
         "type": "MF",
         "partNum": "Z01018ET3E215TYZ", 
-        "description": "10HP 1725 TEFC 215TYZ 230/460/60/3 3/4 F",
+        "description": "10HP 1725 TEFC 215TYZ 230/460/60/3 3/4F",
         "outputHP": 10,
-        "cost": 502.38
+        "hCost": 1942.13,
+        "vCost": 1963.50
     }, 
     {
-        "code": "1.5MTC", 
+        "code": "1.5C", 
         "type": "MTC",
         "partNum": "PEWWE1.5-18-145TC", 
         "description": "1.5HP 1800 145TC 208-230/460/60/3",
         "outputHP": 1.5,
-        "cost": 224.08
+        "hCost": 4043.31,
+        "vCost": 4144.72
     }, 
     {
-        "code": "2MTC", 
+        "code": "2C", 
         "type": "MTC",
         "partNum": "PEWWE2-18-145TC", 
         "description": "2HP 1800 TEFC 145TC 208-230/460/60/3",
         "outputHP": 2,
-        "cost": 237.41
+        "hCost": 4226.16,
+        "vCost": 4327.57
     }, 
     {
-        "code": "3MTC", 
+        "code": "3C", 
         "type": "MTC",
         "partNum": "PEWWE3-18-182TC", 
         "description": "3HP 1800 TEFC 182TC 208-230/460/60/3",
         "outputHP": 3,
-        "cost": 334.21
+        "hCost": 5564.58,
+        "vCost": 5656.24
     }, 
     {
-        "code": "5MTC", 
+        "code": "5C", 
         "type": "MTC",
         "partNum": "PEWWE5-18-184TC", 
         "description": "5HP 1800 TEFC 184TC 208-230/460/60/3",
         "outputHP": 5,
-        "cost": 391.69
+        "hCost": 6352.23,
+        "vCost": 6443.90
     }, 
     {
-        "code": "7.5MTC", 
+        "code": "7.5C", 
         "type": "MTC",
         "partNum": "PEWWE7.5-18-213TC", 
         "description": "7.5HP 1800 TEFC 213TC 208-230/460/60/3",
         "outputHP": 7.5,
-        "cost": 517.90
+        "hCost": 8083.51,
+        "vCost": 8175.17
     }, 
     {
-        "code": "10MTC", 
+        "code": "10C", 
         "type": "MTC",
         "partNum": "PEWWE10-18-215TC", 
-        "description": "10HP  1800 TEFC 215TC 208-230/460/60/3",
+        "description": "10HP 1800 TEFC 215TC 208-230/460/60/3",
         "outputHP": 10,
-        "cost": 627.39
+        "hCost": 9585.43,
+        "vCost": 9677.09
     }, 
     {
-        "code": "15MTC", 
+        "code": "15C", 
         "type": "MTC",
         "partNum": "PEWWE15-18-254TC", 
         "description": "15HP 1800 TEFC 254TC 208-230/460/60/3",
         "outputHP": 15,
-        "cost": 901.71
+        "hCost": 3622.07,
+        "vCost": null
     }, 
     {
-        "code": "20MTC", 
+        "code": "20C", 
         "type": "MTC",
         "partNum": "PEWWE20-18-256TC", 
         "description": "20HP 1800 TEFC 256TC 208-230/460/60/3",
         "outputHP": 20,
-        "cost": 1036.05
+        "hCost": 4119.63,
+        "vCost": null
     }, 
     {
-        "code": "25MTC", 
+        "code": "25C", 
         "type": "MTC",
         "partNum": "PEWWE25-18-284TC", 
         "description": "25HP 1800 TEFC 284TC 208-230/460/60/3",
         "outputHP": 25,
-        "cost": 1351.44
+        "hCost": 5435.89,
+        "vCost": null
     }, 
     {
-        "code": "30MTC", 
+        "code": "30C", 
         "type": "MTC",
         "partNum": "PEWWE30-18-286TC", 
         "description": "30HP 1800 TEFC 286TC 208-230/460/60/3",
         "outputHP": 30,
-        "cost": 1530.94
+        "hCost": 6100.70,
+        "vCost": null
     }, 
     {
-        "code": "40MTC", 
+        "code": "40C", 
         "type": "MTC",
         "partNum": "PEWWE40-18-324TC", 
         "description": "40HP 1800 TEFC 324TC 208-230/460/60/3",
         "outputHP": 40,
-        "cost": 1945.57
+        "hCost": 7644.47,
+        "vCost": null
     }, 
     {
-        "code": "50MTC", 
+        "code": "50C", 
         "type": "MTC",
         "partNum": "PEWWE50-18-326TC", 
         "description": "50HP 1800 TEFC 326TC 208-230/460/60/3",
         "outputHP": 50,
-        "cost": 2210.94
+        "hCost": 8627.32,
+        "vCost": null
     }
 ]

@@ -3,30 +3,30 @@
         "code": "0",
         "model": null,
         "description": null,
-        "cost": null
+        "cost": 0
     },
     {
         "code": "CC",
         "model": "C03MSV-PC-43-AC",
-        "description": null,
-        "cost": null
+        "description": "D03 CECK PILOT OPERATED A AND B PORTS",
+        "cost": 277.78
     },
     {
         "code": "CA",
         "model": "C03MSV-PA-43-AC",
-        "description": null,
-        "cost": null
+        "description": "D03 CECK PILOT OPERATED A PORT",
+        "cost": 266.67
     },
     {
         "code": "CB",
         "model": "C03MSV-PB-43-AC",
-        "description": null,
-        "cost": null
+        "description": "D03 CECK PILOT OPERATED B PORT",
+        "cost": 266.67
     },
     {
         "code": "PRA",
         "model": "P03MSV-PDRP-A50-A-C",
-        "description": null,
-        "cost": null
+        "description": "D03 PRESSURE REDUCING 45-500 PSI P PORT",
+        "cost": 388.89
     }
 ]
