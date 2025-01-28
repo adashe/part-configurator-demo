@@ -16,7 +16,7 @@ const displayHpuNumber = (data) => {
     // const valves = data.valves;
     const totalCost = hpuNum.calcCost();
 
-    // calculate cost based on V or H reservoir
+    // Determine cost based on V or H reservoir
     let reservoirCost = null;
     let pumpCost = null;
     let motorCost = null;
@@ -107,6 +107,7 @@ const displayHpuNumber = (data) => {
         </div>
     `;
 
+    // Logic to display user-friendly null heat exchanger results
     let heatExchangerHTML = '';
 
     if(heatExchanger.code == 0){
