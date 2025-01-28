@@ -83,7 +83,7 @@ class HPUNumber{
 
         if(result.length == 0){
             console.log('No valid reservoir results.');
-            alert('No valid reservoir results.');
+            displayErrorMsg('No valid reservoir results.');
         } else {
             this.reservoir = result.reduce((prev, curr) => (prev.capacity < curr.capacity) ? prev : curr);
         };
@@ -118,7 +118,7 @@ class HPUNumber{
 
         if(result.length == 0){
             console.log('Cannot calculate pump, flow is too high.');
-            alert('Cannot calculate pump, flow is too high.');
+            displayErrorMsg('Cannot calculate pump, flow is too high.');
         } else {
             this.pump = result.reduce((prev, curr) => (prev.dispCID < curr.dispCID) ? prev : curr);
         };
@@ -158,8 +158,8 @@ class HPUNumber{
 
         if(result.length == 0){
             this.motor = null;
-            console.log('No valid motor results');
-            alert('No valid motor results');
+            console.log('No valid motor results.');
+            displayErrorMsg('No valid motor results.');
         } else {
             this.motor = result.reduce((prev, curr) => (prev.outputHP < curr.outputHP) ? prev : curr);
         };
@@ -281,7 +281,7 @@ class HPUNumber{
 
         if(result.length == 0){
             console.log('No valid heat exchanger results');
-            alert('No valid heat exchanger results');
+            displayErrorMsg('No valid heat exchanger results.');
         } else {
             this.heatExchanger = result.reduce((prev, curr) => (prev.heatDis < curr.heatDis) ? prev : curr);
         };
@@ -305,7 +305,7 @@ class HPUNumber{
 
         if(prices.includes(null)){
             console.log('Invalid configuration.');
-            alert('Invalid configuration.')
+            displayErrorMsg('Invalid vertical or horizontal configuration.');
         } else {
             totalCost = prices.reduce((x, y) => x + y, totalCost);
         }
@@ -317,8 +317,6 @@ class HPUNumber{
     }
 
     async calcHpuNum(maxPres, maxFl, appType, htExType, numSt, portSz, lenFlowCtrl, ){
-
-        // console.log(maxPres, maxFl, hydrType, numSt, portSz, numFlwCtrl, htExType);
 
         await this.calcPump(maxPres, maxFl, appType);
         await this.calcMotor(maxPres, maxFl);
