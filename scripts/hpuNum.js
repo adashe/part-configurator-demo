@@ -47,7 +47,7 @@ const displayHpuNumber = (data) => {
     });
 
     // Display part number details on part number page
-    const detsHTML = `
+    const reservoirHTML = `
         <div class="dropdown">
             <div class="trigger">RESERVOIR ${reservoir.code}</div>
             <div class="content">        
@@ -59,7 +59,9 @@ const displayHpuNumber = (data) => {
                 <button class="button gray edit" id="edit-reservoir">EDIT RESERVOIR</button>
             </div>
         </div>
+    `;
 
+    const pumpHTML = `        
         <div class="dropdown">
             <div class="trigger">PUMP ${pump.code}</div>
             <div class="content">        
@@ -73,7 +75,9 @@ const displayHpuNumber = (data) => {
                 <button class="button gray edit" id="edit-pump">EDIT PUMP</button>
             </div>
         </div>
+        `;
 
+    const motorHTML = `
         <div class="dropdown">
             <div class="trigger">MOTOR ${motor.code}</div>
             <div class="content">        
@@ -86,7 +90,9 @@ const displayHpuNumber = (data) => {
                 <button class="button gray edit" id="edit-motor">EDIT MOTOR</button>
             </div>
         </div>
+    `;
 
+    const manifoldHTML = `
         <div class="dropdown">
             <div class="trigger">MANIFOLD ${manifold.code}</div>
             <div class="content">        
@@ -99,25 +105,44 @@ const displayHpuNumber = (data) => {
                 <button class="button gray edit" id="edit-manifold">EDIT MANIFOLD</button>
             </div>
         </div>
+    `;
 
-        <div class="dropdown">
-            <div class="trigger">HEAT EXCHANGER ${heatExchanger.code}</div>
-            <div class="content">        
-                <ul>
-                    <li>Description: ${heatExchanger.description}</li>
-                    <li>Type: ${heatExchanger.type}</li>
-                    <li>Max Flow: ${heatExchanger.maxFlow}</li>
-                    <li>Heat Dis: ${heatExchanger.heatDis}</li>
-                    <li>Cost: $${heatExchangerCost}</li>
-                </ul>
-                <button class="button gray edit" id="edit-heat-exchanger">EDIT HEAT EXCHANGER</button>
+    let heatExchangerHTML = '';
+
+    if(heatExchanger.code == 0){
+         heatExchangerHTML = `
+            <div class="dropdown">
+                <div class="trigger">HEAT EXCHANGER ${heatExchanger.code}</div>
+                <div class="content">        
+                    <ul>
+                        <li>Description: ${heatExchanger.description}</li>
+                        <li>Cost: $${heatExchangerCost}</li>
+                    </ul>
+                    <button class="button gray edit" id="edit-heat-exchanger">EDIT HEAT EXCHANGER</button>
+                </div>
             </div>
-        </div>
+        `;
+    } else {
+        heatExchangerHTML = `
+            <div class="dropdown">
+                <div class="trigger">HEAT EXCHANGER ${heatExchanger.code}</div>
+                <div class="content">        
+                    <ul>
+                        <li>Description: ${heatExchanger.description}</li>
+                        <li>Type: ${heatExchanger.type}</li>
+                        <li>Max Flow: ${heatExchanger.maxFlow}</li>
+                        <li>Heat Dis: ${heatExchanger.heatDis}</li>
+                        <li>Cost: $${heatExchangerCost}</li>
+                    </ul>
+                    <button class="button gray edit" id="edit-heat-exchanger">EDIT HEAT EXCHANGER</button>
+                </div>
+            </div>
+        `;
+    };
 
-        <h4>ESTIMATED COST: $${totalCost}</h4>
-    `
+    const costHTML = `<h4>ESTIMATED COST: $${totalCost}</h4>`;
 
-    partNumDets.innerHTML = detsHTML;
+    partNumDets.innerHTML = reservoirHTML + pumpHTML + motorHTML + manifoldHTML + heatExchangerHTML + costHTML;
 
     // Add event handlers for dropdown functionality
     const dropdowns = document.querySelectorAll('.dropdown');
@@ -140,7 +165,7 @@ const displayHpuNumber = (data) => {
     const editMotorButton = document.querySelector('#edit-motor');
     const editManifoldButton = document.querySelector('#edit-manifold');
     const editHeatExchangerButton = document.querySelector('#edit-heat-exchanger');
-    const editValveButton = document.querySelector('#edit-valves');
+    // const editValveButton = document.querySelector('#edit-valves');
 
     editReservoirButton.addEventListener('click', e => {
         e.preventDefault();

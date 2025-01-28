@@ -29,6 +29,9 @@ h3{
     color: #434343;
     margin: 20px auto auto auto;
 }
+#hpu-div h3{
+    text-align: center;
+}
 h4{
     text-align: center;
     color: #f7b500;
