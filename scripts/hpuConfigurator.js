@@ -138,6 +138,7 @@ class HPUNumber{
 
         if(this.pump == null){
             console.log('Cannot calculate motor without pump.');
+            this.motor = null;
             return this.motor;
         }
 
@@ -156,6 +157,7 @@ class HPUNumber{
         };
 
         if(result.length == 0){
+            this.motor = null;
             console.log('No valid motor results');
             alert('No valid motor results');
         } else {
