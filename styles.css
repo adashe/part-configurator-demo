@@ -192,6 +192,41 @@ button.gray{
     display: block;
 }
 
+/* VALVE POPUP STYLES */
+.valve-popup-wrapper{
+    /* display: none; */
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.valve-popup-div{
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 120px auto;
+    padding: 20px;
+    background: white;
+    position: relative;
+    border: none;
+    border-radius: 5px;
+}
+.valve-popup-div h2{
+    color: #72d1d4;
+}
+.valve-popup-close{
+    position: absolute;
+    font-size: 20px;
+    top: 5px;
+    right: 15px;
+    cursor: pointer;
+}
+#valve-popup-form{
+    text-align: right;
+}
+
 /* POPUP TABLE STYLES */
 .table-wrapper{
     display: none;

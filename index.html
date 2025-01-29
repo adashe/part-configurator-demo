@@ -192,7 +192,44 @@
 
     </div>
 
-    <!-- POPUP TABLE DIV -->
+    <!-- VALVE FORM POPUP DIV -->
+    <div class="valve-popup-wrapper">
+        <div class="valve-popup-div">
+            <div class="valve-popup-close">x</div>
+            <h2>Valve Options</h2>
+
+            <form id="valve-popup-form">
+                <div>
+                    <label for="vPortSize">Port Size:</label>
+                    <select name="vPortSize" id="vPortSize" required>
+                        <option value="" disabled selected hidden>...</option>
+                        <option value="D03">D03</option>
+                        <option value="D05">D05</option>
+                    </select>
+                </div>
+    
+                <div id="v-number-stations-div"></div>
+    
+                <div>
+                    <label for="vSolenoidVoltage">Solenoid Voltage:</label>
+                    <select name="vSolenoidVoltage" id="vSolenoidVoltage">
+                        <option value="none">None Selected</option>
+                        <option value="110VAC">110VAC</option>
+                        <option value="24VDC">24VDC</option>
+                    </select>
+                </div>
+    
+                <div class="valve-popup-content"></div>
+
+                <input class="button" type="submit" value="SUBMIT VALVE SELECTIONS">
+            </form>
+
+            <button class="button gray restart">RESTART</button>
+        </div>
+    </div>
+
+
+    <!-- TABLE POPUP DIV -->
     <div class="table-wrapper">
         <div class="table-div">
             <div class="table-close">x</div>
@@ -222,6 +259,7 @@
     <script src="scripts/hpuConfigurator.js"></script>
     <script src="scripts/hpuNum.js"></script>
     <script src="scripts/hpuForms.js"></script>
+    <script src="scripts/valveForm.js"></script>
 
     <script src="scripts/app.js"></script>
     <script src="scripts/ui.js"></script>
