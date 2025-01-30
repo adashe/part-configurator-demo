@@ -199,26 +199,22 @@
             <h2>Valve Options</h2>
 
             <form id="valve-popup-form">
-                <div>
-                    <label for="vPortSize">Port Size:</label>
-                    <select name="vPortSize" id="vPortSize" required>
-                        <option value="" disabled selected hidden>...</option>
-                        <option value="D03">D03</option>
-                        <option value="D05">D05</option>
-                    </select>
+
+                <div id="valve-settings-div">
+                    <div>
+                        <label for="vPortSize">Port Size:</label>
+                        <select name="vPortSize" id="vPortSize" required>
+                            <option value="" disabled selected hidden>...</option>
+                            <option value="D03">D03</option>
+                            <option value="D05">D05</option>
+                        </select>
+                    </div>
+        
+                    <div id="v-number-stations-div"></div>
+        
+                    <div id="v-sol-volt-div"></div>
                 </div>
-    
-                <div id="v-number-stations-div"></div>
-    
-                <div>
-                    <label for="vSolenoidVoltage">Solenoid Voltage:</label>
-                    <select name="vSolenoidVoltage" id="vSolenoidVoltage">
-                        <option value="none">None Selected</option>
-                        <option value="110VAC">110VAC</option>
-                        <option value="24VDC">24VDC</option>
-                    </select>
-                </div>
-    
+
                 <div class="valve-popup-content"></div>
 
                 <input class="button" type="submit" value="SUBMIT VALVE SELECTIONS">

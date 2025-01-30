@@ -1,6 +1,6 @@
 const vPortSize = document.querySelector('#vPortSize');
 const vNumberStationsDiv = document.querySelector('#v-number-stations-div');
-const vSolenoidVoltage = document.querySelector('#vSolenoidVoltage');
+const vSolVoltDiv = document.querySelector('#v-sol-volt-div');
 
 const valvePopupContent = document.querySelector('.valve-popup-content');
 
@@ -26,18 +26,20 @@ const resetValveInputs = () => {
     };
 };
 
-// Generate number of stations dropdown if port size is changed
+// Generate and show number of stations dropdown when port size is selected or changed
 vPortSize.addEventListener('change', e => {
     e.preventDefault();
 
     valveInputs.portSize = vPortSize.value;
 
     vGenerateNumberStationsDropdown();
+    vSolVoltDiv.innerHTML = '';
     valvePopupContent.innerHTML = '';
     // hpuValveOptsForm.reset();
 });
 
-// Generate number of stations dropdown  based on port size selection
+
+// Create numberStations dropdown based on port size selection
 const vGenerateNumberStationsDropdown = () => {
     const htmlD03 = `
         <label for="vNumberStations">Number of Stations:</label>
@@ -68,42 +70,59 @@ const vGenerateNumberStationsDropdown = () => {
         vNumberStationsDiv.innerHTML = 'NO STATIONS';
     };
 
-    const vNumberStations = document.querySelector('#vNumberStations');
 
-    // Add event listener to reset valve options and sol volt if number of stations is changed
+    // Event listener to reset valve dropdowns and solVolt dropdown if number of stations is changed
+    const vNumberStations = document.querySelector('#vNumberStations');
+    
     vNumberStations.addEventListener('change', e => {
         e.preventDefault();
 
         valveInputs.numStat = vNumberStations.value;
         valvePopupContent.innerHTML = '';
-        vSolenoidVoltage.value = "none";
+        vGenerateSolVoltDropdown();
     
     });
 };
 
-// Generate valve selectors based on numSt and solVolt
-vSolenoidVoltage.addEventListener('change', e => {
-    e.preventDefault();
+// Generate sol volt dropdown
+const vGenerateSolVoltDropdown = () => {
+    const html = `                        
+        <label for="vSolenoidVoltage">Solenoid Voltage:</label>
+        <select name="vSolenoidVoltage" id="vSolenoidVoltage">
+            <option value="none">None Selected</option>
+            <option value="110VAC">110VAC</option>
+            <option value="24VDC">24VDC</option>
+        </select>
+    `;
 
-    valvePopupContent.innerHTML = '';
+    vSolVoltDiv.innerHTML = html;
 
-    valveInputs.solVolt = vSolenoidVoltage.value;
+    // Event listener to create valve selectors based on numSt and solVolt
+    const vSolenoidVoltage = document.querySelector('#vSolenoidVoltage');
 
-    // Generate valve dropdowns for each number of stations containing selected solVolt data
-    if(valveInputs.solVolt == 'null'){
+    vSolenoidVoltage.addEventListener('change', e => {
+        e.preventDefault();
+
         valvePopupContent.innerHTML = '';
 
-    } else {
-        for(let i = 0; i < valveInputs.numStat; i++){
-            hpuNum.getFilteredValveData(valveInputs.portSize, valveInputs.solVolt)
-                .then(data => vGenerateValveDropdown(data, i))
-                .catch(err => console.log(err.message));
-        } 
-    };
+        valveInputs.solVolt = vSolenoidVoltage.value;
 
-});
+        // Generate valve dropdowns for each number of stations containing selected solVolt data
+        if(valveInputs.solVolt == 'null'){
+            valvePopupContent.innerHTML = '';
 
-// Create individual valve selectors
+        } else {
+            for(let i = 0; i < valveInputs.numStat; i++){
+                hpuNum.getFilteredValveData(valveInputs.portSize, valveInputs.solVolt)
+                    .then(data => vGenerateValveDropdown(data, i))
+                    .catch(err => console.log(err.message));
+            }; 
+        };
+    });
+};
+
+
+// Create individual valve dropdowns
 const vGenerateValveDropdown = (data, i) => {
 
     let html = `<div>
@@ -119,11 +138,6 @@ const vGenerateValveDropdown = (data, i) => {
 
     valvePopupContent.innerHTML += html;
 };
-
-
-
-
-
 
 
 

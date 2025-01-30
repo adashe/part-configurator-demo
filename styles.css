@@ -205,7 +205,7 @@ button.gray{
 .valve-popup-div{
     text-align: center;
     width: 100%;
-    max-width: 600px;
+    max-width: 650px;
     margin: 120px auto;
     padding: 20px;
     background: white;
@@ -223,8 +223,13 @@ button.gray{
     right: 15px;
     cursor: pointer;
 }
-#valve-popup-form{
-    text-align: right;
+#valve-settings-div{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+#valve-popup-content{
+    text-align: left;
 }
 
 /* POPUP TABLE STYLES */
