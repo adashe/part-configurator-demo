@@ -61,6 +61,30 @@ class HPUNumber{
         return result;
     }
 
+    async getFlowControlData(){
+        const uri = "data/flowControlData.json";
+        const response = await fetch(uri);
+        const data = await response.json();
+
+        return data;
+    }
+
+    async getFilteredFlowControlData(size){
+        const data = await this.getFlowControlData();
+
+        let result = data.filter(valve => valve.valvePattern == size);
+
+        return result;
+    }
+
+    async getCheckValveData(){
+        const uri = "data/checkValveData.json";
+        const response = await fetch(uri);
+        const data = await response.json();
+
+        return data;
+    }
+
 
     // CALCULATE PART NUMBER //
     async calcReservoir(maxFl){

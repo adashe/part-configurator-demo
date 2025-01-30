@@ -107,7 +107,7 @@ const vGenerateSolVoltDropdown = () => {
 
         valveInputs.solVolt = vSolenoidVoltage.value;
 
-        // Generate valve dropdowns for each number of stations containing selected solVolt data
+        // Generate valve options dropdowns for each number of stations containing selected solVolt data
         if(valveInputs.solVolt == 'null'){
             valvePopupContent.innerHTML = '';
 
@@ -116,33 +116,70 @@ const vGenerateSolVoltDropdown = () => {
                 hpuNum.getFilteredValveData(valveInputs.portSize, valveInputs.solVolt)
                     .then(data => vGenerateValveDropdown(data, i))
                     .catch(err => console.log(err.message));
+                hpuNum.getFilteredFlowControlData(valveInputs.portSize)
+                    .then(data => vGenerateFlowControlDropdown(data, i))
+                    .catch(err => console.log(err.message));
+                hpuNum.getCheckValveData()
+                    .then(data => vGenerateCheckValveDropdown(data, i))
+                    .catch(err => console.log(err.message));
             }; 
         };
     });
 };
 
 
-// Create individual valve dropdowns
+// Create individual valve dropdown
 const vGenerateValveDropdown = (data, i) => {
 
-    let html = `<div>
-                    <label for="valveSelection${i}">Valve ${i}:</label>
-                    <select name="valveSelection${i}" id="valveSelection${i}" class="valveSelection">
-                        <option value="none">None Selected</option>`
+    let html = `
+                <label for="valveSelection${i}">Valve ${i}:</label>
+                <select name="valveSelection${i}" id="valveSelection${i}" class="valveSelection">
+                    <option value="none">None Selected</option>
+                `
 
     data.forEach((valve, index) => {
         html += `<option value=${index}>${valve.code}</option>`;
     });
 
-    html += `</select></div>`;
+    html += `</select>`;
 
     valvePopupContent.innerHTML += html;
 };
 
 
 
-// generate valve dropdown
+// Create individual flow control dropdown
+const vGenerateFlowControlDropdown = (data, i) => {
 
-// generate flow control dropdown
+    let html = `
+                <label for="flowControl${i}">Flow Control ${i}:</label>
+                <select name="flowControl${i}" id="flowControl${i}" class="flowControl">
+                    <option value="none">None Selected</option>
+                `
 
-// generate check valve dropdown
+    data.forEach((flowControl, index) => {
+        html += `<option value=${index}>${flowControl.code}</option>`;
+    });
+
+    html += `</select>`;
+
+    valvePopupContent.innerHTML += html;
+};
+
+// Create individual check valve dropdown
+const vGenerateCheckValveDropdown = (data, i) => {
+
+    let html = `
+                <label for="checkValve${i}">Check Valve ${i}:</label>
+                <select name="checkValve${i}" id="checkValve${i}" class="checkValve">
+                    <option value="none">None Selected</option>
+                `
+
+    data.forEach((checkValve, index) => {
+        html += `<option value=${index}>${checkValve.code}</option>`;
+    });
+
+    html += `</select></div>`;
+
+    valvePopupContent.innerHTML += html;
+};

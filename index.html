@@ -201,7 +201,7 @@
             <form id="valve-popup-form">
 
                 <div id="valve-settings-div">
-                    <div>
+                    <div id="v-port-size-div">
                         <label for="vPortSize">Port Size:</label>
                         <select name="vPortSize" id="vPortSize" required>
                             <option value="" disabled selected hidden>...</option>
@@ -215,12 +215,15 @@
                     <div id="v-sol-volt-div"></div>
                 </div>
 
-                <div class="valve-popup-content"></div>
+                <div id="valve-dropdowns-div">
+                    <div class="valve-popup-content"></div>
+                </div>
+                
 
                 <input class="button" type="submit" value="SUBMIT VALVE SELECTIONS">
+                <button class="button gray restart">RESTART</button>
             </form>
 
-            <button class="button gray restart">RESTART</button>
         </div>
     </div>
 
