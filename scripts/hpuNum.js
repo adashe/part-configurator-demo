@@ -5,6 +5,8 @@ const tableH2 = document.querySelector('#table-h2');
 const tableHead = document.querySelector('thead');
 const tableBody = document.querySelector('tbody');
 
+const valvePopupWrapper = document.querySelector('.valve-popup-wrapper');
+
 
 // Display configured HPU part number and details
 const displayHpuNumber = (data) => {
@@ -141,9 +143,21 @@ const displayHpuNumber = (data) => {
         `;
     };
 
+    const valveHTML = `
+    <div class="dropdown">
+        <div class="trigger">VALVES</div>
+        <div class="content">        
+            <ul>
+                <li>Description: valve description</li>
+            </ul>
+            <button class="button gray edit" id="edit-valves">EDIT VALVES</button>
+        </div>
+    </div>
+`;
+
     const costHTML = `<h4>ESTIMATED COST: $${totalCost}</h4>`;
 
-    partNumDets.innerHTML = reservoirHTML + pumpHTML + motorHTML + manifoldHTML + heatExchangerHTML + costHTML;
+    partNumDets.innerHTML = reservoirHTML + pumpHTML + motorHTML + manifoldHTML + heatExchangerHTML + valveHTML + costHTML;
 
     // Add event handlers for dropdown functionality
     const dropdowns = document.querySelectorAll('.dropdown');
@@ -166,7 +180,7 @@ const displayHpuNumber = (data) => {
     const editMotorButton = document.querySelector('#edit-motor');
     const editManifoldButton = document.querySelector('#edit-manifold');
     const editHeatExchangerButton = document.querySelector('#edit-heat-exchanger');
-    // const editValveButton = document.querySelector('#edit-valves');
+    const editValveButton = document.querySelector('#edit-valves');
 
     editReservoirButton.addEventListener('click', e => {
         e.preventDefault();
@@ -218,11 +232,12 @@ const displayHpuNumber = (data) => {
         tableWrapper.style.display = 'block';
     });
 
-    // editValveButton.addEventListener('click', e => {
-    //     e.preventDefault();
+    editValveButton.addEventListener('click', e => {
+        e.preventDefault();
 
-    //     displayValveDiv();
-    // });
+        displayValvePopup();
+
+    });
 
     // Display part number div
     displayPartNumDiv();
@@ -411,4 +426,13 @@ const displayHeatExchangerTable = (data) => {
             tableWrapper.style.display = 'none';
         });
     });
+};
+
+// Display popup to edit valve, flow control, and check valve
+const displayValvePopup = () => {
+
+    prefillValveForm();
+
+    valvePopupWrapper.style.display = 'block';
+
 };

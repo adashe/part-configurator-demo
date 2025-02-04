@@ -14,6 +14,8 @@ const errorPopupWrapper = document.querySelector('.error-popup-wrapper');
 const errorPopupCloseButton = document.querySelector('.error-popup-close');
 const errorPopupContent = document.querySelector('.error-popup-content');
 
+const valvePopupCloseButton = document.querySelector('.valve-popup-close');
+
 
 // Process MSP form input
 mspForm.addEventListener('submit', e => {
@@ -63,6 +65,12 @@ tableCloseButton.addEventListener('click', e => {
 errorPopupCloseButton.addEventListener('click', e => {
     e.preventDefault();
     errorPopupWrapper.style.display = 'none';
+});
+
+// Valve popup close button
+valvePopupCloseButton.addEventListener('click', e => {
+    e.preventDefault();
+    valvePopupWrapper.style.display = 'none';
 });
 
 // Display error message in error popup

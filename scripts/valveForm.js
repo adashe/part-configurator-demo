@@ -3,6 +3,7 @@ const vNumberStationsDiv = document.querySelector('#v-number-stations-div');
 const vSolVoltDiv = document.querySelector('#v-sol-volt-div');
 
 const valvePopupContent = document.querySelector('.valve-popup-content');
+const valvePopupForm = document.querySelector('#valve-popup-form');
 
 // Initiate null values for valve inputs
 let valveInputs = {
@@ -25,6 +26,50 @@ const resetValveInputs = () => {
         checkValves: []
     };
 };
+
+// Prefill popup if user has already submitted port size, num stat, sol volt in HPU form
+const prefillValveForm = () => {
+
+    // Reset popup when closed and reopened
+    vNumberStationsDiv.innerHTML = '';
+    vSolVoltDiv.innerHTML = '';
+    valvePopupContent.innerHTML = '';
+
+    // Check for values in hpuInputs array and prefill each dropdown if present
+    if(hpuInputs.portSize){
+        vPortSize.value = hpuInputs.portSize;
+        valveInputs.portSize = vPortSize.value;
+        vGenerateNumberStationsDropdown();
+    }
+
+    if(hpuInputs.numStat){
+        vNumberStations.value = hpuInputs.numStat;
+        valveInputs.numStat = vNumberStations.value;
+        vGenerateSolVoltDropdown();
+    }
+
+    if(hpuInputs.solVolt){
+        vSolenoidVoltage.value = hpuInputs.solVolt;
+        valveInputs.solVolt = vSolenoidVoltage.value;
+        generateAllValveDropdowns();
+    }
+
+    // DOES NOT WORK BC ASYNC valve generation???? TO FIX
+    // if(hpuInputs.valves && hpuInputs.valves.length > 0){
+    //     console.log('valves', hpuInputs.valves);
+
+    //     hpuInputs.valves.forEach((valve, index) => {
+    //         console.log('index', index);
+    //         console.log('valve', valve);
+            
+    //         let dropdownID = `#valveSelection${index}`
+    //         let valveDropdown = document.querySelector(dropdownID);
+    //         valveDropdown.value = valve;
+    //     });
+    // }
+
+};
+
 
 // Generate and show number of stations dropdown when port size is selected or changed
 vPortSize.addEventListener('change', e => {
@@ -108,22 +153,8 @@ const vGenerateSolVoltDropdown = () => {
         valveInputs.solVolt = vSolenoidVoltage.value;
 
         // Generate valve options dropdowns for each number of stations containing selected solVolt data
-        if(valveInputs.solVolt == 'null'){
-            valvePopupContent.innerHTML = '';
+        generateAllValveDropdowns();
 
-        } else {
-            for(let i = 0; i < valveInputs.numStat; i++){
-                hpuNum.getFilteredValveData(valveInputs.portSize, valveInputs.solVolt)
-                    .then(data => vGenerateValveDropdown(data, i))
-                    .catch(err => console.log(err.message));
-                hpuNum.getFilteredFlowControlData(valveInputs.portSize)
-                    .then(data => vGenerateFlowControlDropdown(data, i))
-                    .catch(err => console.log(err.message));
-                hpuNum.getCheckValveData()
-                    .then(data => vGenerateCheckValveDropdown(data, i))
-                    .catch(err => console.log(err.message));
-            }; 
-        };
     });
 };
 
@@ -134,7 +165,7 @@ const vGenerateValveDropdown = (data, i) => {
     let html = `
                 <label for="valveSelection${i}">Valve ${i}:</label>
                 <select name="valveSelection${i}" id="valveSelection${i}" class="valveSelection">
-                    <option value="none">None Selected</option>
+                    <option value="none" id="valveOption${i}">None Selected</option>
                 `
 
     data.forEach((valve, index) => {
@@ -144,8 +175,21 @@ const vGenerateValveDropdown = (data, i) => {
     html += `</select>`;
 
     valvePopupContent.innerHTML += html;
+
 };
 
+
+// NOT WORKING. WHERE DOES THIS GO?? #FIX
+// const createValveOptionEventListeners = () => {
+
+//     const selects = document.querySelectorAll('.valveSelection');
+
+//     selects.forEach(select => {
+//         select.addEventListener('mouseover', e => {
+//             console.log('ouch!');
+//         });
+//     });
+// };
 
 
 // Create individual flow control dropdown
@@ -183,3 +227,81 @@ const vGenerateCheckValveDropdown = (data, i) => {
 
     valvePopupContent.innerHTML += html;
 };
+
+// Generate valve options dropdowns for each number of stations containing selected solVolt data
+const generateAllValveDropdowns = () => {
+
+    if(valveInputs.solVolt == 'null'){
+        valvePopupContent.innerHTML = '';
+    
+    } else {
+        for(let i = 0; i < valveInputs.numStat; i++){
+            hpuNum.getFilteredValveData(valveInputs.portSize, valveInputs.solVolt)
+                .then(data => vGenerateValveDropdown(data, i))
+                .catch(err => console.log(err.message));
+            hpuNum.getFilteredFlowControlData(valveInputs.portSize)
+                .then(data => vGenerateFlowControlDropdown(data, i))
+                .catch(err => console.log(err.message));
+            hpuNum.getCheckValveData()
+                .then(data => vGenerateCheckValveDropdown(data, i))
+                .catch(err => console.log(err.message));
+        }; 
+    };
+
+};
+
+
+// Save submitted valve form inputs in stations object
+let stations = {
+    station0: {},
+    station1: {},
+    station2: {},
+    station3: {},
+    station4: {},
+    station5: {},
+};
+
+valvePopupForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    stations.station0 = {
+        valveSelection0,
+        flowControl0,
+        checkValve0
+    }
+
+    stations.station1 = {
+        valveSelection1,
+        flowControl1,
+        checkValve1
+    }
+
+    stations.station2 = {
+        valveSelection2,
+        flowControl2,
+        checkValve2
+    }
+
+    stations.station3 = {
+        valveSelection3,
+        flowControl3,
+        checkValve3
+    }
+
+    stations.station4 = {
+        valveSelection4,
+        flowControl4,
+        checkValve4
+    }
+
+    stations.station5 = {
+        valveSelection5,
+        flowControl5,
+        checkValve5
+    }
+
+    valvePopupWrapper.style.display = 'none';
+
+});
+
+

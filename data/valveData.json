@@ -10,7 +10,8 @@
         "numPorts": 0,
         "springPosition": null,
         "center": null,
-        "voltage": "110VAC"
+        "voltage": "110VAC",
+        "img": "assets/placeholder100x100.svg"
     },
     {
         "code": "V-33A-110",
@@ -23,7 +24,8 @@
         "numPorts": 4,
         "springPosition": "CENTER",
         "center": "CLOSED",
-        "voltage": "110VAC"
+        "voltage": "110VAC",
+        "img": "assets/placeholder100x100.svg"
     },
     {
         "code": "V-33L-110",
@@ -36,7 +38,8 @@
         "numPorts": 4,
         "springPosition": "CENTER",
         "center": "P-T",
-        "voltage": "110VAC"
+        "voltage": "110VAC",
+        "img": "assets/placeholder100x100.svg"
     },
     {
         "code": "V-33F-110",
@@ -49,7 +52,8 @@
         "numPorts": 4,
         "springPosition": "CENTER",
         "center": "A&B TO T",
-        "voltage": "110VAC"
+        "voltage": "110VAC",
+        "img": "assets/placeholder100x100.svg"
     },
     {
         "code": "V-33B-110",
@@ -62,7 +66,8 @@
         "numPorts": 4,
         "springPosition": "CENTER",
         "center": "ALL OPEN",
-        "voltage": "110VAC"
+        "voltage": "110VAC",
+        "img": "assets/placeholder100x100.svg"
     },
     {
         "code": "V-31A-110",
@@ -75,7 +80,8 @@
         "numPorts": 4,
         "springPosition": "OFFSET",
         "center": "CLOSED",
-        "voltage": "110VAC"
+        "voltage": "110VAC",
+        "img": "assets/placeholder100x100.svg"
     },
     {
         "code": "V-31B-110",
@@ -88,7 +94,8 @@
         "numPorts": 4,
         "springPosition": "OFFSET",
         "center": "OPEN",
-        "voltage": "110VAC"
+        "voltage": "110VAC",
+        "img": "assets/placeholder100x100.svg"
     },
     {
         "code": "V-33A-24",
@@ -101,7 +108,8 @@
         "numPorts": 4,
         "springPosition": "CENTER",
         "center": "CLOSED",
-        "voltage": "24VDC"
+        "voltage": "24VDC",
+        "img": "assets/placeholder100x100.svg"
     },
     {
         "code": "V-33L-24",
@@ -114,7 +122,8 @@
         "numPorts": 4,
         "springPosition": "CENTER",
         "center": "P-T",
-        "voltage": "24VDC"
+        "voltage": "24VDC",
+        "img": "assets/placeholder100x100.svg"
     },
     {
         "code": "V-33F-24",
@@ -127,7 +136,8 @@
         "numPorts": 4,
         "springPosition": "CENTER",
         "center": "A&B TO T",
-        "voltage": "24VDC"
+        "voltage": "24VDC",
+        "img": "assets/placeholder100x100.svg"
     },
     {
         "code": "V-33B-24",
@@ -140,7 +150,8 @@
         "numPorts": 4,
         "springPosition": "CENTER",
         "center": "OPEN",
-        "voltage": "24VDC"
+        "voltage": "24VDC",
+        "img": "assets/placeholder100x100.svg"
     },
     {
         "code": "V-31A-24",
@@ -153,7 +164,8 @@
         "numPorts": 4,
         "springPosition": "OFFSET",
         "center": "CLOSED",
-        "voltage": "24VDC"
+        "voltage": "24VDC",
+        "img": "assets/placeholder100x100.svg"
     },
     {
         "code": "V-31B-24",
@@ -166,7 +178,8 @@
         "numPorts": 4,
         "springPosition": "OFFSET",
         "center": "OPEN",
-        "voltage": "24VDC"
+        "voltage": "24VDC",
+        "img": "assets/placeholder100x100.svg"
     },
     {
         "code": "SAMPLE D05 110VAC",
@@ -179,7 +192,8 @@
         "numPorts": 0,
         "springPosition": null,
         "center": null,
-        "voltage": "110VAC"
+        "voltage": "110VAC",
+        "img": "assets/placeholder100x100.svg"
     },
     {
         "code": "SAMPLE D05 24VDC",
@@ -192,6 +206,7 @@
         "numPorts": 0,
         "springPosition": null,
         "center": null,
-        "voltage": "24VDC"
+        "voltage": "24VDC",
+        "img": "assets/placeholder100x100.svg"
     }
 ]
