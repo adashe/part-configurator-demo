@@ -249,11 +249,8 @@ const generateAllValveDropdowns = () => {
 // Combine and display valve rows
 const displayValveRows = () => {
 
-    let valveRowHTML = '';
-
-
     for(i = 0; i < valveInputs.numStat; i++){
-        valveRowHTML = `<div id="station${i}">${valveHtml}${flowControlHtml}${checkValveHtml}</div>`
+        let valveRowHTML = `<div id="station${i}">${valveHtml}${flowControlHtml}${checkValveHtml}</div>`
         valvePopupContent.innerHTML += valveRowHTML;
     };
 
