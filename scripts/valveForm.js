@@ -5,6 +5,7 @@ const vSolVoltDiv = document.querySelector('#v-sol-volt-div');
 const valvePopupContent = document.querySelector('.valve-popup-content');
 const valvePopupForm = document.querySelector('#valve-popup-form');
 
+
 // Initiate null values for valve inputs
 let valveInputs = {
     numStat: null,
@@ -149,27 +150,24 @@ const vGenerateSolVoltDropdown = () => {
 
 
 // Create individual valve dropdown
-const vGenerateValveDropdown = (data, i) => {
+let valveHtml = '';
 
-    // i represents stations 0-6
+const vGenerateValveDropdown = (data) => {
 
-    let html = `
-                <label for="valveSelection${i}">Valve ${i}:</label>
-                <select name="valveSelection${i}" id="valveSelection${i}" class="valveSelection">
+    valveHtml = `
+                <label for="valveSelection">Valve:</label>
+                <select name="valveSelection" id="valveSelection" class="valveSelection">
                     <option value="none">None Selected</option>
-                `
-
-    // index represents each valve in the database
+                `;
 
     data.forEach((valve, index) => {
-        html += `<option value=${index}>${valve.code}</option>`;
+        valveHtml += `<option value=${index}>${valve.code}</option>`;
     });
 
-    html += `</select>`;
+    valveHtml += `</select>`;
 
-    valvePopupContent.innerHTML += html;
-
-};
+    return valveHtml;
+}
 
 
 // NOT WORKING. WHERE DOES THIS GO?? #FIX
@@ -186,39 +184,43 @@ const vGenerateValveDropdown = (data, i) => {
 
 
 // Create individual flow control dropdown
-const vGenerateFlowControlDropdown = (data, i) => {
+let flowControlHtml = '';
 
-    let html = `
-                <label for="flowControl${i}">Flow Control ${i}:</label>
-                <select name="flowControl${i}" id="flowControl${i}" class="flowControl">
+const vGenerateFlowControlDropdown = (data) => {
+
+    flowControlHtml = `
+                <label for="flowControl">Flow Control:</label>
+                <select name="flowControl" id="flowControl" class="flowControl">
                     <option value="none">None Selected</option>
-                `
+                `;
 
     data.forEach((flowControl, index) => {
-        html += `<option value=${index}>${flowControl.code}</option>`;
+        flowControlHtml += `<option value=${index}>${flowControl.code}</option>`;
     });
 
-    html += `</select>`;
+    flowControlHtml += `</select>`;
 
-    valvePopupContent.innerHTML += html;
+    return flowControlHtml;
 };
 
 // Create individual check valve dropdown
-const vGenerateCheckValveDropdown = (data, i) => {
+let checkValveHtml = '';
 
-    let html = `
-                <label for="checkValve${i}">Check Valve ${i}:</label>
-                <select name="checkValve${i}" id="checkValve${i}" class="checkValve">
+const vGenerateCheckValveDropdown = (data) => {
+
+    checkValveHtml = `
+                <label for="checkValve">Check Valve:</label>
+                <select name="checkValve" id="checkValve" class="checkValve">
                     <option value="none">None Selected</option>
-                `
+                `;
 
     data.forEach((checkValve, index) => {
-        html += `<option value=${index}>${checkValve.code}</option>`;
+        checkValveHtml += `<option value=${index}>${checkValve.code}</option>`;
     });
 
-    html += `</select></div>`;
+    checkValveHtml += `</select>`;
 
-    valvePopupContent.innerHTML += html;
+    return checkValveHtml;
 };
 
 // Generate valve options dropdowns for each number of stations containing selected solVolt data
@@ -228,18 +230,31 @@ const generateAllValveDropdowns = () => {
         valvePopupContent.innerHTML = '';
     
     } else {
-        for(let i = 0; i < valveInputs.numStat; i++){
-            hpuNum.getFilteredValveData(valveInputs.portSize, valveInputs.solVolt)
-                .then(data => vGenerateValveDropdown(data, i))
-                .catch(err => console.log(err.message));
-            hpuNum.getFilteredFlowControlData(valveInputs.portSize)
-                .then(data => vGenerateFlowControlDropdown(data, i))
-                .catch(err => console.log(err.message));
-            hpuNum.getCheckValveData()
-                .then(data => vGenerateCheckValveDropdown(data, i))
-                .catch(err => console.log(err.message));
-        }; 
+
+        hpuNum.getFilteredValveData(valveInputs.portSize, valveInputs.solVolt)
+            .then(data => vGenerateValveDropdown(data))
+            .then(
+                hpuNum.getFilteredFlowControlData(valveInputs.portSize)
+                    .then(data => vGenerateFlowControlDropdown(data))
+                    .then(
+                        hpuNum.getCheckValveData()
+                            .then(data => vGenerateCheckValveDropdown(data)
+                                .then(displayValveRows())       // works but creates error #FIX
+                            )
+                    )
+            );
     };
+
+};
+
+// Combine and display full valve element
+let valveRowHTML = '';
+
+const displayValveRows = () => {
+
+    valveRowHTML = `<div>${valveHtml}${flowControlHtml}${checkValveHtml}</div>`
+
+    valvePopupContent.innerHTML = valveRowHTML;
 
 };
 
@@ -311,5 +326,3 @@ valvePopupForm.addEventListener('submit', e => {
     // valvePopupWrapper.style.display = 'none';
 
 });
-
-
