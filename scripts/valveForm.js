@@ -156,7 +156,7 @@ const vGenerateValveDropdown = (data) => {
 
     valveHtml = `
                 <label for="valveSelection">Valve:</label>
-                <select name="valveSelection" id="valveSelection" class="valveSelection">
+                <select name="valveSelection" class="valveSelection">
                     <option value="none">None Selected</option>
                 `;
 
@@ -190,7 +190,7 @@ const vGenerateFlowControlDropdown = (data) => {
 
     flowControlHtml = `
                 <label for="flowControl">Flow Control:</label>
-                <select name="flowControl" id="flowControl" class="flowControl">
+                <select name="flowControl" class="flowControl">
                     <option value="none">None Selected</option>
                 `;
 
@@ -210,7 +210,7 @@ const vGenerateCheckValveDropdown = (data) => {
 
     checkValveHtml = `
                 <label for="checkValve">Check Valve:</label>
-                <select name="checkValve" id="checkValve" class="checkValve">
+                <select name="checkValve" class="checkValve">
                     <option value="none">None Selected</option>
                 `;
 
@@ -238,23 +238,24 @@ const generateAllValveDropdowns = () => {
                     .then(data => vGenerateFlowControlDropdown(data))
                     .then(
                         hpuNum.getCheckValveData()
-                            .then(data => vGenerateCheckValveDropdown(data)
-                                .then(displayValveRows())       // works but creates error #FIX
-                            )
+                            .then(data => vGenerateCheckValveDropdown(data))
+                            // .then(displayValveRows())       // does not display when called here #FIX
                     )
             );
     };
 
 };
 
-// Combine and display full valve element
-let valveRowHTML = '';
-
+// Combine and display valve rows
 const displayValveRows = () => {
 
-    valveRowHTML = `<div>${valveHtml}${flowControlHtml}${checkValveHtml}</div>`
+    let valveRowHTML = '';
 
-    valvePopupContent.innerHTML = valveRowHTML;
+
+    for(i = 0; i < valveInputs.numStat; i++){
+        valveRowHTML = `<div id="station${i}">${valveHtml}${flowControlHtml}${checkValveHtml}</div>`
+        valvePopupContent.innerHTML += valveRowHTML;
+    };
 
 };
 
