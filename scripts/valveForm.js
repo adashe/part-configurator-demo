@@ -160,13 +160,14 @@ const vGenerateValveDropdown = (data, i) => {
     // i represents the station
     html = `
                 <label for="vValveSelection${i}"></label>
-                <select name="vValveSelection${i}" id="vValveSelection${i}" class="vValveSelection">
-                    <option value="" selected>Select valve...</option>
+                <select name="vValveSelection${i}" id="vValveSelection${i}" class="vValveSelection" required>
+                    <option value="" disabled selected hidden>Select valve...</option>
+                    <option value="null">No valve</option>
                 `;
 
     // index represents the element from the database
     data.forEach((valve, index) => {
-        html += `<option value=${index}>${valve.code}</option>`;
+        html += `<option value=${valve.code}>${valve.code}</option>`;
     });
 
     html += `</select>`;
@@ -193,12 +194,13 @@ const vGenerateFlowControlDropdown = (data, i) => {
 
     let html = `
                 <label for="flowControl${i}"></label>
-                <select name="flowControl${i}" id="flowControl${i}" class="flowControl">
-                    <option value="" selected>Select flow control...</option>
+                <select name="flowControl${i}" id="flowControl${i}" class="flowControl" required>
+                    <option value="" disabled selected hidden>Select flow control...</option>
+                    <option value="null">No flow control</option>
                 `;
 
     data.forEach((flowControl, index) => {
-        html += `<option value=${index}>${flowControl.code}</option>`;
+        html += `<option value=${flowControl.code}>${flowControl.code}</option>`;
     });
 
     html += `</select>`;
@@ -211,12 +213,13 @@ const vGenerateCheckValveDropdown = (data, i) => {
 
     let html = `
                 <label for="checkValve${i}"></label>
-                <select name="checkValve${i}" id="checkValve${i}" class="checkValve">
-                    <option value="" selected>Select check valve...</option>
+                <select name="checkValve${i}" id="checkValve${i}" class="checkValve" required>
+                    <option value="" disabled selected hidden>Select check valve...</option>
+                    <option value="null">No check valve</option>
                 `;
 
     data.forEach((checkValve, index) => {
-        html += `<option value=${index}>${checkValve.code}</option>`;
+        html += `<option value=${checkValve.code}>${checkValve.code}</option>`;
     });
 
     html += `</select>`;
@@ -259,6 +262,28 @@ let stations = {};
 valvePopupForm.addEventListener('submit', e => {
     e.preventDefault();
 
+    // reset values when form is resubmitted
+    stations = {};
+
+    // create a stations object for each submitted set of values
+    for(i = 0; i < valveInputs.numStat; i++){
+        let valveID = `vValveSelection${i}`;
+        let flowControlID = `flowControl${i}`;
+        let checkValveID = `checkValve${i}`;
+
+        let valve = document.getElementById(valveID);
+        let flowControl = document.getElementById(flowControlID);
+        let checkValve = document.getElementById(checkValveID);
+
+        stations[i] = {
+            valve: valve.value,
+            flowControl: flowControl.value,
+            checkValve: checkValve.value
+        };
+    };
+
     valvePopupWrapper.style.display = 'none';
+
+    return stations;
 
 });
