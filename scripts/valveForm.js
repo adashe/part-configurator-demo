@@ -254,69 +254,11 @@ async function generateAllValveDropdowns(){
 
 
 // Save submitted valve form inputs in stations object
-let stations = {
-    station0: {},
-    station1: {},
-    station2: {},
-    station3: {},
-    station4: {},
-    station5: {},
-};
+let stations = {};
 
 valvePopupForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    console.log(valvePopupForm.values);
-
-    // for(i = 0; i < 5; i++){
-    //     let templateST = `station${i}`;
-    //     let templateVS = `valveSelection${i}`;
-    //     let templateFC = `flowControl${i}`;
-    //     let templateCV = `checkValve${i}`;
-
-    //     console.log(templateVS.value);
-
-    // }
-
-    // if(valveSelection0){
-
-    // }
-    // stations.station0 = {
-    //     valveSelection0,
-    //     flowControl0,
-    //     checkValve0
-    // }
-
-    // stations.station1 = {
-    //     valveSelection1,
-    //     flowControl1,
-    //     checkValve1
-    // }
-
-    // stations.station2 = {
-    //     valveSelection2,
-    //     flowControl2,
-    //     checkValve2
-    // }
-
-    // stations.station3 = {
-    //     valveSelection3,
-    //     flowControl3,
-    //     checkValve3
-    // }
-
-    // stations.station4 = {
-    //     valveSelection4,
-    //     flowControl4,
-    //     checkValve4
-    // }
-
-    // stations.station5 = {
-    //     valveSelection5,
-    //     flowControl5,
-    //     checkValve5
-    // }
-
-    // valvePopupWrapper.style.display = 'none';
+    valvePopupWrapper.style.display = 'none';
 
 });

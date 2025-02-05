@@ -334,8 +334,8 @@ class HPUNumber{
             totalCost = prices.reduce((x, y) => x + y, totalCost);
         }
 
-        console.log('prices', prices);
-        console.log('total cost', totalCost);
+        // console.log('prices', prices);
+        // console.log('total cost', totalCost);
 
         return totalCost.toFixed(2);
     }
