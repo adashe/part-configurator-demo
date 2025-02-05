@@ -144,16 +144,16 @@ const displayHpuNumber = (data) => {
     };
 
     const valveHTML = `
-    <div class="dropdown">
-        <div class="trigger">VALVES</div>
-        <div class="content">        
-            <ul>
-                <li>Description: valve description</li>
-            </ul>
-            <button class="button gray edit" id="edit-valves">EDIT VALVES</button>
+        <div class="dropdown">
+            <div class="trigger">VALVES</div>
+            <div class="content">        
+                <ul>
+                    <li>Description: valve description</li>
+                </ul>
+                <button class="button gray edit" id="edit-valves">VIEW AND EDIT VALVES</button>
+            </div>
         </div>
-    </div>
-`;
+    `;
 
     const costHTML = `<h4>ESTIMATED COST: $${totalCost}</h4>`;
 
@@ -431,7 +431,7 @@ const displayHeatExchangerTable = (data) => {
 // Display popup to edit valve, flow control, and check valve
 const displayValvePopup = () => {
 
-    prefillValveForm();
+    prefillValveSettings();
 
     valvePopupWrapper.style.display = 'block';
 

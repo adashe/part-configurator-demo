@@ -28,7 +28,7 @@ const resetValveInputs = () => {
 };
 
 // Prefill popup if user has already submitted port size, num stat, sol volt in HPU form
-const prefillValveForm = () => {
+const prefillValveSettings = () => {
 
     // Reset popup when closed and reopened
     vNumberStationsDiv.innerHTML = '';
@@ -51,25 +51,14 @@ const prefillValveForm = () => {
     if(hpuInputs.solVolt){
         vSolenoidVoltage.value = hpuInputs.solVolt;
         valveInputs.solVolt = vSolenoidVoltage.value;
-        generateAllValveDropdowns();
+        generateAllValveDropdowns()
     }
-
-    // DOES NOT WORK BC ASYNC valve generation???? TO FIX
-    // if(hpuInputs.valves && hpuInputs.valves.length > 0){
-    //     console.log('valves', hpuInputs.valves);
-
-    //     hpuInputs.valves.forEach((valve, index) => {
-    //         console.log('index', index);
-    //         console.log('valve', valve);
-            
-    //         let dropdownID = `#valveSelection${index}`
-    //         let valveDropdown = document.querySelector(dropdownID);
-    //         valveDropdown.value = valve;
-    //     });
-    // }
 
 };
 
+// Prefill valve selection
+// TO FIX
+    
 
 // Generate and show number of stations dropdown when port size is selected or changed
 vPortSize.addEventListener('change', e => {
@@ -162,11 +151,15 @@ const vGenerateSolVoltDropdown = () => {
 // Create individual valve dropdown
 const vGenerateValveDropdown = (data, i) => {
 
+    // i represents stations 0-6
+
     let html = `
                 <label for="valveSelection${i}">Valve ${i}:</label>
                 <select name="valveSelection${i}" id="valveSelection${i}" class="valveSelection">
-                    <option value="none" id="valveOption${i}">None Selected</option>
+                    <option value="none">None Selected</option>
                 `
+
+    // index represents each valve in the database
 
     data.forEach((valve, index) => {
         html += `<option value=${index}>${valve.code}</option>`;
@@ -264,43 +257,58 @@ let stations = {
 valvePopupForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    stations.station0 = {
-        valveSelection0,
-        flowControl0,
-        checkValve0
-    }
+    console.log(valvePopupForm.values);
 
-    stations.station1 = {
-        valveSelection1,
-        flowControl1,
-        checkValve1
-    }
+    // for(i = 0; i < 5; i++){
+    //     let templateST = `station${i}`;
+    //     let templateVS = `valveSelection${i}`;
+    //     let templateFC = `flowControl${i}`;
+    //     let templateCV = `checkValve${i}`;
 
-    stations.station2 = {
-        valveSelection2,
-        flowControl2,
-        checkValve2
-    }
+    //     console.log(templateVS.value);
 
-    stations.station3 = {
-        valveSelection3,
-        flowControl3,
-        checkValve3
-    }
+    // }
 
-    stations.station4 = {
-        valveSelection4,
-        flowControl4,
-        checkValve4
-    }
+    // if(valveSelection0){
 
-    stations.station5 = {
-        valveSelection5,
-        flowControl5,
-        checkValve5
-    }
+    // }
+    // stations.station0 = {
+    //     valveSelection0,
+    //     flowControl0,
+    //     checkValve0
+    // }
 
-    valvePopupWrapper.style.display = 'none';
+    // stations.station1 = {
+    //     valveSelection1,
+    //     flowControl1,
+    //     checkValve1
+    // }
+
+    // stations.station2 = {
+    //     valveSelection2,
+    //     flowControl2,
+    //     checkValve2
+    // }
+
+    // stations.station3 = {
+    //     valveSelection3,
+    //     flowControl3,
+    //     checkValve3
+    // }
+
+    // stations.station4 = {
+    //     valveSelection4,
+    //     flowControl4,
+    //     checkValve4
+    // }
+
+    // stations.station5 = {
+    //     valveSelection5,
+    //     flowControl5,
+    //     checkValve5
+    // }
+
+    // valvePopupWrapper.style.display = 'none';
 
 });
 
