@@ -194,7 +194,7 @@ button.gray{
 
 /* VALVE POPUP STYLES */
 .valve-popup-wrapper{
-    /* display: none; */
+    display: none;
     background: rgba(0,0,0,0.5);
     position: fixed;
     top: 0;

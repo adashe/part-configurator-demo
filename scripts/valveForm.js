@@ -165,8 +165,7 @@ const vGenerateValveDropdown = (data, i) => {
                     <option value="null">No valve</option>
                 `;
 
-    // index represents the element from the database
-    data.forEach((valve, index) => {
+    data.forEach(valve => {
         html += `<option value=${valve.code}>${valve.code}</option>`;
     });
 
@@ -199,7 +198,7 @@ const vGenerateFlowControlDropdown = (data, i) => {
                     <option value="null">No flow control</option>
                 `;
 
-    data.forEach((flowControl, index) => {
+    data.forEach(flowControl => {
         html += `<option value=${flowControl.code}>${flowControl.code}</option>`;
     });
 
@@ -218,7 +217,7 @@ const vGenerateCheckValveDropdown = (data, i) => {
                     <option value="null">No check valve</option>
                 `;
 
-    data.forEach((checkValve, index) => {
+    data.forEach(checkValve => {
         html += `<option value=${checkValve.code}>${checkValve.code}</option>`;
     });
 
