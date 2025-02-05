@@ -147,9 +147,6 @@ const displayHpuNumber = (data) => {
         <div class="dropdown">
             <div class="trigger">VALVES</div>
             <div class="content">        
-                <ul>
-                    <li>Description: valve description</li>
-                </ul>
                 <button class="button gray edit" id="edit-valves">VIEW AND EDIT VALVES</button>
             </div>
         </div>

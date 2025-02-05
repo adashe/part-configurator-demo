@@ -29,7 +29,7 @@ const resetValveInputs = () => {
 };
 
 // Prefill popup if user has already submitted port size, num stat, sol volt in HPU form
-const prefillValveSettings = () => {
+async function prefillValveSettings(){
 
     // Reset popup when closed and reopened
     vNumberStationsDiv.innerHTML = '';
@@ -41,25 +41,30 @@ const prefillValveSettings = () => {
         vPortSize.value = hpuInputs.portSize;
         valveInputs.portSize = vPortSize.value;
         vGenerateNumberStationsDropdown();
-    }
+    };
 
     if(hpuInputs.numStat){
         vNumberStations.value = hpuInputs.numStat;
         valveInputs.numStat = vNumberStations.value;
         vGenerateSolVoltDropdown();
-    }
+    };
 
     if(hpuInputs.solVolt){
         vSolenoidVoltage.value = hpuInputs.solVolt;
         valveInputs.solVolt = vSolenoidVoltage.value;
-        generateAllValveDropdowns()
-    }
+        await generateAllValveDropdowns()
+    };
+
+    if(hpuInputs.valves && hpuInputs.valves.length > 0){
+        hpuInputs.valves.forEach((valve, i) => {
+            let elementID = `vValveSelection${i}`;
+            let element = document.getElementById(elementID);
+            element.value = valve;
+        });
+    };
 
 };
 
-// Prefill valve selection
-// TO FIX
-    
 
 // Generate and show number of stations dropdown when port size is selected or changed
 vPortSize.addEventListener('change', e => {
@@ -150,23 +155,23 @@ const vGenerateSolVoltDropdown = () => {
 
 
 // Create individual valve dropdown
-let valveHtml = '';
+const vGenerateValveDropdown = (data, i) => {
 
-const vGenerateValveDropdown = (data) => {
-
-    valveHtml = `
-                <label for="valveSelection">Valve:</label>
-                <select name="valveSelection" class="valveSelection">
-                    <option value="none">None Selected</option>
+    // i represents the station
+    html = `
+                <label for="vValveSelection${i}"></label>
+                <select name="vValveSelection${i}" id="vValveSelection${i}" class="vValveSelection">
+                    <option value="" selected>Select valve...</option>
                 `;
 
+    // index represents the element from the database
     data.forEach((valve, index) => {
-        valveHtml += `<option value=${index}>${valve.code}</option>`;
+        html += `<option value=${index}>${valve.code}</option>`;
     });
 
-    valveHtml += `</select>`;
+    html += `</select>`;
 
-    return valveHtml;
+    return html;
 }
 
 
@@ -184,74 +189,65 @@ const vGenerateValveDropdown = (data) => {
 
 
 // Create individual flow control dropdown
-let flowControlHtml = '';
+const vGenerateFlowControlDropdown = (data, i) => {
 
-const vGenerateFlowControlDropdown = (data) => {
-
-    flowControlHtml = `
-                <label for="flowControl">Flow Control:</label>
-                <select name="flowControl" class="flowControl">
-                    <option value="none">None Selected</option>
+    let html = `
+                <label for="flowControl${i}"></label>
+                <select name="flowControl${i}" id="flowControl${i}" class="flowControl">
+                    <option value="" selected>Select flow control...</option>
                 `;
 
     data.forEach((flowControl, index) => {
-        flowControlHtml += `<option value=${index}>${flowControl.code}</option>`;
+        html += `<option value=${index}>${flowControl.code}</option>`;
     });
 
-    flowControlHtml += `</select>`;
+    html += `</select>`;
 
-    return flowControlHtml;
+    return html;
 };
 
 // Create individual check valve dropdown
-let checkValveHtml = '';
+const vGenerateCheckValveDropdown = (data, i) => {
 
-const vGenerateCheckValveDropdown = (data) => {
-
-    checkValveHtml = `
-                <label for="checkValve">Check Valve:</label>
-                <select name="checkValve" class="checkValve">
-                    <option value="none">None Selected</option>
+    let html = `
+                <label for="checkValve${i}"></label>
+                <select name="checkValve${i}" id="checkValve${i}" class="checkValve">
+                    <option value="" selected>Select check valve...</option>
                 `;
 
     data.forEach((checkValve, index) => {
-        checkValveHtml += `<option value=${index}>${checkValve.code}</option>`;
+        html += `<option value=${index}>${checkValve.code}</option>`;
     });
 
-    checkValveHtml += `</select>`;
+    html += `</select>`;
 
-    return checkValveHtml;
+    return html;
 };
 
 // Generate valve options dropdowns for each number of stations containing selected solVolt data
-const generateAllValveDropdowns = () => {
+async function generateAllValveDropdowns(){
 
     if(valveInputs.solVolt == 'null'){
         valvePopupContent.innerHTML = '';
     
     } else {
 
-        hpuNum.getFilteredValveData(valveInputs.portSize, valveInputs.solVolt)
-            .then(data => vGenerateValveDropdown(data))
-            .then(
-                hpuNum.getFilteredFlowControlData(valveInputs.portSize)
-                    .then(data => vGenerateFlowControlDropdown(data))
-                    .then(
-                        hpuNum.getCheckValveData()
-                            .then(data => vGenerateCheckValveDropdown(data))
-                            // .then(displayValveRows())       // does not display when called here #FIX
-                    )
-            );
-    };
+        let valveData = await hpuNum.getFilteredValveData(valveInputs.portSize, valveInputs.solVolt);
+        let flowControlData = await hpuNum.getFilteredFlowControlData(valveInputs.portSize);
+        let checkValveData = await hpuNum.getCheckValveData();
 
-};
+        for(i = 0; i < valveInputs.numStat; i++){
 
-// Combine and display valve rows
-const displayValveRows = () => {
+            let valveHtml = vGenerateValveDropdown(valveData, i);
+            let flowControlHtml = vGenerateFlowControlDropdown(flowControlData, i);
+            let checkValveHtml = vGenerateCheckValveDropdown(checkValveData, i);
 
-    for(i = 0; i < valveInputs.numStat; i++){
-        let valveRowHTML = `<div id="station${i}">${valveHtml}${flowControlHtml}${checkValveHtml}</div>`
-        valvePopupContent.innerHTML += valveRowHTML;
+            let stationHtml = `<div id="station${i}">Station ${i}: ${valveHtml}${flowControlHtml}${checkValveHtml}</div>`
+
+            valvePopupContent.innerHTML += stationHtml;
+
+        };
+
     };
 
 };
