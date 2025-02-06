@@ -43,6 +43,8 @@ ul{
     margin: 5px auto;
 }
 #container{
+    display: flex;
+    flex-direction: column;
     background: white;
     width: 430px;
     margin: 20px auto;
