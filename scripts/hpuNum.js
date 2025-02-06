@@ -15,7 +15,6 @@ const displayHpuNumber = (data) => {
     const motor = data.motor;
     const manifold = data.manifold;
     const heatExchanger = data.heatExchanger;
-    // const valves = data.valves;
     const totalCost = hpuNum.calcCost();
 
     // Determine cost based on V or H reservoir
@@ -425,7 +424,7 @@ const displayHeatExchangerTable = (data) => {
     });
 };
 
-// Display popup to edit valve, flow control, and check valve
+// Display popup to edit valves, flow controls, and check valves
 const displayValvePopup = () => {
 
     prefillValveSettings();

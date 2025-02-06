@@ -75,7 +75,6 @@ valvePortSize.addEventListener('change', e => {
     generateValveNumberStationsDropdown();
     valveSolVoltDiv.innerHTML = '';
     valvePopupContent.innerHTML = '';
-    // hpuValveOptsForm.reset();
 });
 
 
