@@ -15,13 +15,13 @@ const hpuNum = new HPUNumber();
 
 
 // DISPLAY AND HIDE FORM ELEMENTS
-const displaySysParamsForm = () => {
+const displayHpuSysParamsForm = () => {
     hpuSysParamsForm.style.display = 'block';
     hpuManifoldForm.style.display = 'none';
     hpuValveForm.style.display = 'none';
 };
 
-const displayManifoldForm = () => {
+const displayHpuManifoldForm = () => {
     hpuSysParamsForm.style.display = 'none';
     hpuManifoldForm.style.display = 'block';
     hpuValveForm.style.display = 'none';
@@ -46,7 +46,7 @@ hpuRestartButtons.forEach((button) => {
         hpuManifoldForm.reset();
         hpuValveForm.reset();
 
-        displaySysParamsForm();
+        displayHpuSysParamsForm();
         displayComponentDiv();
 
         console.log('RESTARTED', hpuInputs);
@@ -57,7 +57,7 @@ hpuRestartButtons.forEach((button) => {
 hpuSysParamsButtons.forEach((button) => {
     button.addEventListener('click', e => {
         e.preventDefault();
-        displaySysParamsForm();
+        displayHpuSysParamsForm();
     });
 });
 
@@ -65,7 +65,7 @@ hpuSysParamsButtons.forEach((button) => {
 hpuManifoldButtons.forEach((button) => {
     button.addEventListener('click', e => {
         e.preventDefault();
-        displayManifoldForm();
+        displayHpuManifoldForm();
     });
 });
 
@@ -110,7 +110,7 @@ hpuSysParamsForm.addEventListener('submit', e => {
     hpuInputs.appType = hpuSysParamsForm.applicationType.value;
     hpuInputs.heatExchType = hpuSysParamsForm.heatExchType.value;
 
-    displayManifoldForm();
+    displayHpuManifoldForm();
 });
 
 // Process manifold options form inputs

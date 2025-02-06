@@ -1,6 +1,6 @@
-const vPortSize = document.querySelector('#vPortSize');
-const vNumberStationsDiv = document.querySelector('#v-number-stations-div');
-const vSolVoltDiv = document.querySelector('#v-sol-volt-div');
+const valvePortSize = document.querySelector('#valvePortSize');
+const valveNumberStationsDiv = document.querySelector('#valve-number-stations-div');
+const valveSolVoltDiv = document.querySelector('#valve-sol-volt-div');
 
 const valvePopupContent = document.querySelector('.valve-popup-content');
 const valvePopupForm = document.querySelector('#valve-popup-form');
@@ -32,26 +32,26 @@ const resetValveInputs = () => {
 async function prefillValveSettings(){
 
     // Reset popup when closed and reopened
-    vNumberStationsDiv.innerHTML = '';
-    vSolVoltDiv.innerHTML = '';
+    valveNumberStationsDiv.innerHTML = '';
+    valveSolVoltDiv.innerHTML = '';
     valvePopupContent.innerHTML = '';
 
     // Check for values in hpuInputs array and prefill each dropdown if present
     if(hpuInputs.portSize){
-        vPortSize.value = hpuInputs.portSize;
-        valveInputs.portSize = vPortSize.value;
-        vGenerateNumberStationsDropdown();
+        valvePortSize.value = hpuInputs.portSize;
+        valveInputs.portSize = valvePortSize.value;
+        generateValveNumberStationsDropdown();
     };
 
     if(hpuInputs.numStat){
-        vNumberStations.value = hpuInputs.numStat;
-        valveInputs.numStat = vNumberStations.value;
-        vGenerateSolVoltDropdown();
+        valveNumberStations.value = hpuInputs.numStat;
+        valveInputs.numStat = valveNumberStations.value;
+        generateValveSolVoltDropdown();
     };
 
     if(hpuInputs.solVolt){
-        vSolenoidVoltage.value = hpuInputs.solVolt;
-        valveInputs.solVolt = vSolenoidVoltage.value;
+        valveSolenoidVoltage.value = hpuInputs.solVolt;
+        valveInputs.solVolt = valveSolenoidVoltage.value;
         await generateAllValveDropdowns()
     };
 
@@ -67,23 +67,23 @@ async function prefillValveSettings(){
 
 
 // Generate and show number of stations dropdown when port size is selected or changed
-vPortSize.addEventListener('change', e => {
+valvePortSize.addEventListener('change', e => {
     e.preventDefault();
 
-    valveInputs.portSize = vPortSize.value;
+    valveInputs.portSize = valvePortSize.value;
 
-    vGenerateNumberStationsDropdown();
-    vSolVoltDiv.innerHTML = '';
+    generateValveNumberStationsDropdown();
+    valveSolVoltDiv.innerHTML = '';
     valvePopupContent.innerHTML = '';
     // hpuValveOptsForm.reset();
 });
 
 
 // Create numberStations dropdown based on port size selection
-const vGenerateNumberStationsDropdown = () => {
+const generateValveNumberStationsDropdown = () => {
     const htmlD03 = `
-        <label for="vNumberStations">Number of Stations:</label>
-            <select name="vNumberStations" id="vNumberStations" required>
+        <label for="valveNumberStations">Number of Stations:</label>
+            <select name="valveNumberStations" id="valveNumberStations" required>
                 <option value="" disabled selected hidden>...</option>
                 <option value="0">0</option>
                 <option value="1">1</option>
@@ -95,57 +95,57 @@ const vGenerateNumberStationsDropdown = () => {
             </select>`
 
     const htmlD05 = `
-            <label for="vNumberStations">Number of Stations:</label>
-                <select name="vNumberStations" id="vNumberStations" required>
+            <label for="valveNumberStations">Number of Stations:</label>
+                <select name="valveNumberStations" id="valveNumberStations" required>
                     <option value="" disabled selected hidden>...</option>
                     <option value="0">0</option>
                     <option value="1">1</option>
                 </select>`
 
     if(valveInputs.portSize == 'D03'){
-        vNumberStationsDiv.innerHTML = htmlD03;
+        valveNumberStationsDiv.innerHTML = htmlD03;
     } else if (valveInputs.portSize == 'D05'){
-        vNumberStationsDiv.innerHTML = htmlD05;
+        valveNumberStationsDiv.innerHTML = htmlD05;
     } else {
-        vNumberStationsDiv.innerHTML = 'NO STATIONS';
+        valveNumberStationsDiv.innerHTML = 'NO STATIONS';
     };
 
 
     // Event listener to reset valve dropdowns and solVolt dropdown if number of stations is changed
-    const vNumberStations = document.querySelector('#vNumberStations');
+    const valveNumberStations = document.querySelector('#valveNumberStations');
     
-    vNumberStations.addEventListener('change', e => {
+    valveNumberStations.addEventListener('change', e => {
         e.preventDefault();
 
-        valveInputs.numStat = vNumberStations.value;
+        valveInputs.numStat = valveNumberStations.value;
         valvePopupContent.innerHTML = '';
-        vGenerateSolVoltDropdown();
+        generateValveSolVoltDropdown();
     
     });
 };
 
 // Generate sol volt dropdown
-const vGenerateSolVoltDropdown = () => {
+const generateValveSolVoltDropdown = () => {
     const html = `                        
-        <label for="vSolenoidVoltage">Solenoid Voltage:</label>
-        <select name="vSolenoidVoltage" id="vSolenoidVoltage">
+        <label for="valveSolenoidVoltage">Solenoid Voltage:</label>
+        <select name="valveSolenoidVoltage" id="valveSolenoidVoltage">
             <option value="none">None Selected</option>
             <option value="110VAC">110VAC</option>
             <option value="24VDC">24VDC</option>
         </select>
     `;
 
-    vSolVoltDiv.innerHTML = html;
+    valveSolVoltDiv.innerHTML = html;
 
     // Event listener to create valve selectors based on numSt and solVolt
-    const vSolenoidVoltage = document.querySelector('#vSolenoidVoltage');
+    const valveSolenoidVoltage = document.querySelector('#valveSolenoidVoltage');
 
-    vSolenoidVoltage.addEventListener('change', e => {
+    valveSolenoidVoltage.addEventListener('change', e => {
         e.preventDefault();
 
         valvePopupContent.innerHTML = '';
 
-        valveInputs.solVolt = vSolenoidVoltage.value;
+        valveInputs.solVolt = valveSolenoidVoltage.value;
 
         // Generate valve options dropdowns for each number of stations containing selected solVolt data
         generateAllValveDropdowns();
@@ -155,7 +155,7 @@ const vGenerateSolVoltDropdown = () => {
 
 
 // Create individual valve dropdown
-const vGenerateValveDropdown = (data, i) => {
+const generateValveDropdown = (data, i) => {
 
     // i represents the station
     html = `
@@ -189,7 +189,7 @@ const vGenerateValveDropdown = (data, i) => {
 
 
 // Create individual flow control dropdown
-const vGenerateFlowControlDropdown = (data, i) => {
+const generateFlowControlDropdown = (data, i) => {
 
     let html = `
                 <label for="flowControl${i}"></label>
@@ -208,7 +208,7 @@ const vGenerateFlowControlDropdown = (data, i) => {
 };
 
 // Create individual check valve dropdown
-const vGenerateCheckValveDropdown = (data, i) => {
+const generateCheckValveDropdown = (data, i) => {
 
     let html = `
                 <label for="checkValve${i}"></label>
@@ -240,9 +240,9 @@ async function generateAllValveDropdowns(){
 
         for(i = 0; i < valveInputs.numStat; i++){
 
-            let valveHtml = vGenerateValveDropdown(valveData, i);
-            let flowControlHtml = vGenerateFlowControlDropdown(flowControlData, i);
-            let checkValveHtml = vGenerateCheckValveDropdown(checkValveData, i);
+            let valveHtml = generateValveDropdown(valveData, i);
+            let flowControlHtml = generateFlowControlDropdown(flowControlData, i);
+            let checkValveHtml = generateCheckValveDropdown(checkValveData, i);
 
             let stationHtml = `<div id="station${i}">Station ${i}: ${valveHtml}${flowControlHtml}${checkValveHtml}</div>`
 
