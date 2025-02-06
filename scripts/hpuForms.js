@@ -195,28 +195,6 @@ const addValvesToHpuInputs = () => {
 
     return hpuInputs.valves;
 
-    // hpuInputs.valves = [];
-
-    // if(hpuValveOptsForm.hpuValveSelection0 && hpuValveOptsForm.hpuValveSelection0.value != 'none'){
-    //     hpuInputs.valves.push(hpuValveOptsForm.hpuValveSelection0.value);
-    // };
-    // if(hpuValveOptsForm.hpuValveSelection1 && hpuValveOptsForm.hpuValveSelection1.value != 'none'){
-    //     hpuInputs.valves.push(hpuValveOptsForm.hpuValveSelection1.value);
-    // };
-    // if(hpuValveOptsForm.hpuValveSelection2 && hpuValveOptsForm.hpuValveSelection2.value != 'none'){
-    //     hpuInputs.valves.push(hpuValveOptsForm.hpuValveSelection2.value);
-    // };
-    // if(hpuValveOptsForm.hpuValveSelection3 && hpuValveOptsForm.hpuValveSelection3.value != 'none'){
-    //     hpuInputs.valves.push(hpuValveOptsForm.hpuValveSelection3.value);
-    // };
-    // if(hpuValveOptsForm.hpuValveSelection4 && hpuValveOptsForm.hpuValveSelection4.value != 'none'){
-    //     hpuInputs.valves.push(hpuValveOptsForm.hpuValveSelection4.value);
-    // };
-    // if(hpuValveOptsForm.hpuValveSelection5 && hpuValveOptsForm.hpuValveSelection5.value != 'none'){
-    //     hpuInputs.valves.push(hpuValveOptsForm.hpuValveSelection5.value);
-    // };
-
-    // return hpuInputs.valves;
 }
 
 // Add valves to HPU number
