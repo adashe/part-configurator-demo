@@ -156,7 +156,7 @@ solenoidVoltage.addEventListener('change', e => {
     } else {
         for(let i = 0; i < numValves; i++){
             hpuNum.getFilteredValveData(size, voltage)
-                .then(data => generateValveDropdown(data, i))
+                .then(data => generateHpuValveDropdown(data, i))
                 .catch(err => console.log(err.message));
         } 
     };
@@ -164,15 +164,15 @@ solenoidVoltage.addEventListener('change', e => {
 });
 
 // Create individual valve selectors
-const generateValveDropdown = (data, i) => {
+const generateHpuValveDropdown = (data, i) => {
 
     let html = `<div>
-                    <label for="valveSelection${i}">Valve ${i}:</label>
-                    <select name="valveSelection${i}" id="valveSelection${i}" class="valveSelection">
+                    <label for="hpuValveSelection${i}">Valve ${i}:</label>
+                    <select name="hpuValveSelection${i}" id="hpuValveSelection${i}" class="hpuValveSelection">
                         <option value="none">None Selected</option>`
 
-    data.forEach((valve, index) => {
-        html += `<option value=${index}>${valve.code}</option>`;
+    data.forEach(valve => {
+        html += `<option value=${valve.code}>${valve.code}</option>`;
     });
 
     html += `</select></div>`;
@@ -182,28 +182,41 @@ const generateValveDropdown = (data, i) => {
 
 // Check for valid valve inputs and add to hpuInputs object
 const addValvesToHpuInputs = () => {
+
     hpuInputs.valves = [];
 
-    if(hpuValveOptsForm.valveSelection0 && hpuValveOptsForm.valveSelection0.value != 'none'){
-        hpuInputs.valves.push(hpuValveOptsForm.valveSelection0.value);
-    };
-    if(hpuValveOptsForm.valveSelection1 && hpuValveOptsForm.valveSelection1.value != 'none'){
-        hpuInputs.valves.push(hpuValveOptsForm.valveSelection1.value);
-    };
-    if(hpuValveOptsForm.valveSelection2 && hpuValveOptsForm.valveSelection2.value != 'none'){
-        hpuInputs.valves.push(hpuValveOptsForm.valveSelection2.value);
-    };
-    if(hpuValveOptsForm.valveSelection3 && hpuValveOptsForm.valveSelection3.value != 'none'){
-        hpuInputs.valves.push(hpuValveOptsForm.valveSelection3.value);
-    };
-    if(hpuValveOptsForm.valveSelection4 && hpuValveOptsForm.valveSelection4.value != 'none'){
-        hpuInputs.valves.push(hpuValveOptsForm.valveSelection4.value);
-    };
-    if(hpuValveOptsForm.valveSelection5 && hpuValveOptsForm.valveSelection5.value != 'none'){
-        hpuInputs.valves.push(hpuValveOptsForm.valveSelection5.value);
+    for(i = 0; i < hpuInputs.numStat; i++){
+        let selection = `hpuValveSelection${i}`;
+
+        if(hpuValveOptsForm[selection]){
+            hpuInputs.valves.push(hpuValveOptsForm[selection].value)
+        };
     };
 
     return hpuInputs.valves;
+
+    // hpuInputs.valves = [];
+
+    // if(hpuValveOptsForm.hpuValveSelection0 && hpuValveOptsForm.hpuValveSelection0.value != 'none'){
+    //     hpuInputs.valves.push(hpuValveOptsForm.hpuValveSelection0.value);
+    // };
+    // if(hpuValveOptsForm.hpuValveSelection1 && hpuValveOptsForm.hpuValveSelection1.value != 'none'){
+    //     hpuInputs.valves.push(hpuValveOptsForm.hpuValveSelection1.value);
+    // };
+    // if(hpuValveOptsForm.hpuValveSelection2 && hpuValveOptsForm.hpuValveSelection2.value != 'none'){
+    //     hpuInputs.valves.push(hpuValveOptsForm.hpuValveSelection2.value);
+    // };
+    // if(hpuValveOptsForm.hpuValveSelection3 && hpuValveOptsForm.hpuValveSelection3.value != 'none'){
+    //     hpuInputs.valves.push(hpuValveOptsForm.hpuValveSelection3.value);
+    // };
+    // if(hpuValveOptsForm.hpuValveSelection4 && hpuValveOptsForm.hpuValveSelection4.value != 'none'){
+    //     hpuInputs.valves.push(hpuValveOptsForm.hpuValveSelection4.value);
+    // };
+    // if(hpuValveOptsForm.hpuValveSelection5 && hpuValveOptsForm.hpuValveSelection5.value != 'none'){
+    //     hpuInputs.valves.push(hpuValveOptsForm.hpuValveSelection5.value);
+    // };
+
+    // return hpuInputs.valves;
 }
 
 // Add valves to HPU number

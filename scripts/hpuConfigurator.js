@@ -246,7 +246,7 @@ class HPUNumber{
         let numL = 0;
 
         this.valves.forEach(valve => {
-            if(valve.code.includes('L')){
+            if(valve.includes('L')){
                 numL ++;
             }
             return numL;
@@ -387,9 +387,8 @@ class HPUNumber{
         return this;
     }
 
-    async updateValves(idx){
-        const data = await this.getValveData();
-        this.valves.push(data[idx]);
+    async updateValves(valveCode){
+        this.valves.push(valveCode);
 
         return this;
     }
