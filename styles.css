@@ -46,7 +46,7 @@ ul{
     display: flex;
     flex-direction: column;
     background: white;
-    width: 430px;
+    max-width: 430px;
     margin: 20px auto;
     padding: 20px;
     border: none;
