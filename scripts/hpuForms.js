@@ -1,15 +1,15 @@
 const hpuSysParamsForm = document.querySelector('#hpu-sys-params-form');
-const hpuManifoldOptsForm = document.querySelector('#hpu-manifold-options-form');
-const hpuValveOptsForm = document.querySelector('#hpu-valve-options-form');
+const hpuManifoldForm = document.querySelector('#hpu-manifold-form');
+const hpuValveForm = document.querySelector('#hpu-valve-form');
 
 const hpuRestartButtons = document.querySelectorAll('.hpu-restart');
-const sysParamsButtons = document.querySelectorAll('.sys-params-btn');
-const manifoldOptsButtons = document.querySelectorAll('.mani-opts-btn');
+const hpuSysParamsButtons = document.querySelectorAll('.hpu-sys-params-btn');
+const hpuManifoldButtons = document.querySelectorAll('.hpu-mani-btn');
 
-const portSize = document.querySelector('#portSize');
-const numberStationsDiv = document.querySelector('#number-stations-div');
-const solenoidVoltage = document.querySelector('#solenoidVoltage');
-const valveSelectionDiv = document.querySelector('#valve-selection-div');
+const hpuPortSize = document.querySelector('#hpuPortSize');
+const hpuNumStatDiv = document.querySelector('#hpu-number-stations-div');
+const hpuSolenoidVoltage = document.querySelector('#hpuSolenoidVoltage');
+const hpuValveDiv = document.querySelector('#hpu-valve-div');
 
 const hpuNum = new HPUNumber();
 
@@ -17,20 +17,20 @@ const hpuNum = new HPUNumber();
 // DISPLAY AND HIDE FORM ELEMENTS
 const displaySysParamsForm = () => {
     hpuSysParamsForm.style.display = 'block';
-    hpuManifoldOptsForm.style.display = 'none';
-    hpuValveOptsForm.style.display = 'none';
+    hpuManifoldForm.style.display = 'none';
+    hpuValveForm.style.display = 'none';
 };
 
-const displayManifoldOptsForm = () => {
+const displayManifoldForm = () => {
     hpuSysParamsForm.style.display = 'none';
-    hpuManifoldOptsForm.style.display = 'block';
-    hpuValveOptsForm.style.display = 'none';
+    hpuManifoldForm.style.display = 'block';
+    hpuValveForm.style.display = 'none';
 };
 
-const displayValveOptsForm = () => {
+const displayHpuValveForm = () => {
     hpuSysParamsForm.style.display = 'none';
-    hpuManifoldOptsForm.style.display = 'none';
-    hpuValveOptsForm.style.display = 'block';
+    hpuManifoldForm.style.display = 'none';
+    hpuValveForm.style.display = 'block';
 };
 
 
@@ -43,8 +43,8 @@ hpuRestartButtons.forEach((button) => {
         resetHpuInputs();
 
         hpuSysParamsForm.reset();
-        hpuManifoldOptsForm.reset();
-        hpuValveOptsForm.reset();
+        hpuManifoldForm.reset();
+        hpuValveForm.reset();
 
         displaySysParamsForm();
         displayComponentDiv();
@@ -54,7 +54,7 @@ hpuRestartButtons.forEach((button) => {
 });
 
 // Buttons to display system parameters form
-sysParamsButtons.forEach((button) => {
+hpuSysParamsButtons.forEach((button) => {
     button.addEventListener('click', e => {
         e.preventDefault();
         displaySysParamsForm();
@@ -62,10 +62,10 @@ sysParamsButtons.forEach((button) => {
 });
 
 // Buttons to display manifold options form
-manifoldOptsButtons.forEach((button) => {
+hpuManifoldButtons.forEach((button) => {
     button.addEventListener('click', e => {
         e.preventDefault();
-        displayManifoldOptsForm();
+        displayManifoldForm();
     });
 });
 
@@ -110,48 +110,42 @@ hpuSysParamsForm.addEventListener('submit', e => {
     hpuInputs.appType = hpuSysParamsForm.applicationType.value;
     hpuInputs.heatExchType = hpuSysParamsForm.heatExchType.value;
 
-    // console.log(hpuInputs);
-
-    displayManifoldOptsForm();
+    displayManifoldForm();
 });
 
 // Process manifold options form inputs
-hpuManifoldOptsForm.addEventListener('submit', e => {
+hpuManifoldForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    hpuInputs.numStat = hpuManifoldOptsForm.numberStations.value;
-    hpuInputs.portSize = hpuManifoldOptsForm.portSize.value;
+    hpuInputs.numStat = hpuManifoldForm.hpuNumberStations.value;
+    hpuInputs.portSize = hpuManifoldForm.hpuPortSize.value;
 
-    // console.log(hpuInputs);
-
-    displayValveOptsForm();
+    displayHpuValveForm();
     
 });
 
 // Process valve options form inputs
-hpuValveOptsForm.addEventListener('submit', e => {
+hpuValveForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    hpuInputs.solVolt = hpuValveOptsForm.solenoidVoltage.value;
+    hpuInputs.solVolt = hpuValveForm.hpuSolenoidVoltage.value;
     addValvesToHpuInputs();
-
-    // console.log(hpuInputs);
 
 });
 
 // Generate valve selectors based on numSt and solVolt
-solenoidVoltage.addEventListener('change', e => {
+hpuSolenoidVoltage.addEventListener('change', e => {
     e.preventDefault();
 
-    valveSelectionDiv.innerHTML = '';
+    hpuValveDiv.innerHTML = '';
 
     let numValves = hpuInputs.numStat;
     let size = hpuInputs.portSize;
-    let voltage = solenoidVoltage.value;
+    let voltage = hpuSolenoidVoltage.value;
 
     // Generate valve dropdowns for each number of stations containing selected solVolt data
     if(voltage == 'null'){
-        valveSelectionDiv.innerHTML = '';
+        hpuValveDiv.innerHTML = '';
 
     } else {
         for(let i = 0; i < numValves; i++){
@@ -167,9 +161,9 @@ solenoidVoltage.addEventListener('change', e => {
 const generateHpuValveDropdown = (data, i) => {
 
     let html = `<div>
-                    <label for="hpuValveSelection${i}">Valve ${i}:</label>
-                    <select name="hpuValveSelection${i}" id="hpuValveSelection${i}" class="hpuValveSelection">
-                        <option value="none">None Selected</option>`
+                    <label for="hpuValve${i}">Valve ${i}:</label>
+                    <select name="hpuValve${i}" id="hpuValve${i}" class="hpuValve">
+                        <option value="">None Selected</option>`
 
     data.forEach(valve => {
         html += `<option value=${valve.code}>${valve.code}</option>`;
@@ -177,7 +171,7 @@ const generateHpuValveDropdown = (data, i) => {
 
     html += `</select></div>`;
 
-    valveSelectionDiv.innerHTML += html;
+    hpuValveDiv.innerHTML += html;
 };
 
 // Check for valid valve inputs and add to hpuInputs object
@@ -186,10 +180,10 @@ const addValvesToHpuInputs = () => {
     hpuInputs.valves = [];
 
     for(i = 0; i < hpuInputs.numStat; i++){
-        let selection = `hpuValveSelection${i}`;
+        let selection = `hpuValve${i}`;
 
-        if(hpuValveOptsForm[selection]){
-            hpuInputs.valves.push(hpuValveOptsForm[selection].value)
+        if(hpuValveForm[selection]){
+            hpuInputs.valves.push(hpuValveForm[selection].value)
         };
     };
 
@@ -205,10 +199,10 @@ const addValvesToHpuNum = () => {
 };
 
 // Limit number of stations available based on port size selection
-const generateNumberStationsDropdown = () => {
+const generateHpuNumberStationsDropdown = () => {
     const htmlD03 = `
-        <label for="numberStations">Number of Stations:</label>
-            <select name="numberStations" id="numberStations" required>
+        <label for="hpuNumberStations">Number of Stations:</label>
+            <select name="hpuNumberStations" id="hpuNumberStations" required>
                 <option value="" disabled selected hidden>...</option>
                 <option value="0">0</option>
                 <option value="1">1</option>
@@ -220,43 +214,43 @@ const generateNumberStationsDropdown = () => {
             </select>`
 
     const htmlD05 = `
-            <label for="numberStations">Number of Stations:</label>
-                <select name="numberStations" id="numberStations" required>
+            <label for="hpuNumberStations">Number of Stations:</label>
+                <select name="hpuNumberStations" id="hpuNumberStations" required>
                     <option value="" disabled selected hidden>...</option>
                     <option value="0">0</option>
                     <option value="1">1</option>
                 </select>`
 
-    if(portSize.value == 'D03'){
-        numberStationsDiv.innerHTML = htmlD03;
-    } else if (portSize.value == 'D05'){
-        numberStationsDiv.innerHTML = htmlD05;
+    if(hpuPortSize.value == 'D03'){
+        hpuNumStatDiv.innerHTML = htmlD03;
+    } else if (hpuPortSize.value == 'D05'){
+        hpuNumStatDiv.innerHTML = htmlD05;
     } else {
-        numberStationsDiv.innerHTML = '';
+        hpuNumStatDiv.innerHTML = '';
     };
 
-    const numberStations = document.querySelector('#numberStations');
+    const hpuNumberStations = document.querySelector('#hpuNumberStations');
 
     // Add event listener to reset valve options form if number of stations is changed
-    numberStations.addEventListener('change', e => {
+    hpuNumberStations.addEventListener('change', e => {
         e.preventDefault();
-        valveSelectionDiv.innerHTML = '';
-        hpuValveOptsForm.reset();
+        hpuValveDiv.innerHTML = '';
+        hpuValveForm.reset();
     
     });
 };
 
 // Reset number of stations and valve options form if port size is changed
-portSize.addEventListener('change', e => {
+hpuPortSize.addEventListener('change', e => {
     e.preventDefault();
-    generateNumberStationsDropdown();
-    valveSelectionDiv.innerHTML = '';
-    hpuValveOptsForm.reset();
+    generateHpuNumberStationsDropdown();
+    hpuValveDiv.innerHTML = '';
+    hpuValveForm.reset();
 });
 
 
 // SUBMIT HPU INPUT DATA AND GENERATE HPU NUMBER
-hpuValveOptsForm.addEventListener('submit', e => {
+hpuValveForm.addEventListener('submit', e => {
 
     // Add valves in HPU form inputs to hpuNum for use in heat exchanger calculation
     addValvesToHpuNum();

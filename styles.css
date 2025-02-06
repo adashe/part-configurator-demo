@@ -73,11 +73,11 @@ form#component-form{
 form#hpu-sys-params-form{
     text-align: right;
 }
-form#hpu-manifold-options-form{
+form#hpu-manifold-form{
     display: none;
     text-align: right;
 }
-form#hpu-valve-options-form{
+form#hpu-valve-form{
     display: none;
     text-align: right;
 }

@@ -57,7 +57,7 @@ async function prefillValveSettings(){
 
     if(hpuInputs.valves && hpuInputs.valves.length > 0){
         hpuInputs.valves.forEach((valve, i) => {
-            let elementID = `vValveSelection${i}`;
+            let elementID = `valve${i}`;
             let element = document.getElementById(elementID);
             element.value = valve;
         });
@@ -159,8 +159,8 @@ const vGenerateValveDropdown = (data, i) => {
 
     // i represents the station
     html = `
-                <label for="vValveSelection${i}"></label>
-                <select name="vValveSelection${i}" id="vValveSelection${i}" class="vValveSelection" required>
+                <label for="valve${i}"></label>
+                <select name="valve${i}" id="valve${i}" class="valve" required>
                     <option value="" disabled selected hidden>Select valve...</option>
                     <option value="null">No valve</option>
                 `;
@@ -266,7 +266,7 @@ valvePopupForm.addEventListener('submit', e => {
 
     // create a stations object for each submitted set of values
     for(i = 0; i < valveInputs.numStat; i++){
-        let valveID = `vValveSelection${i}`;
+        let valveID = `valve${i}`;
         let flowControlID = `flowControl${i}`;
         let checkValveID = `checkValve${i}`;
 
