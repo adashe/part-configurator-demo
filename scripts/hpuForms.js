@@ -113,7 +113,7 @@ hpuSysParamsForm.addEventListener('submit', e => {
     displayHpuManifoldForm();
 });
 
-// Process manifold options form inputs
+// Process manifold form inputs
 hpuManifoldForm.addEventListener('submit', e => {
     e.preventDefault();
 
@@ -124,7 +124,7 @@ hpuManifoldForm.addEventListener('submit', e => {
     
 });
 
-// Process valve options form inputs
+// Process valve form inputs
 hpuValveForm.addEventListener('submit', e => {
     e.preventDefault();
 

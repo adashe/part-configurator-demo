@@ -155,7 +155,15 @@ const displayHpuNumber = (data) => {
 
     partNumDets.innerHTML = reservoirHTML + pumpHTML + motorHTML + manifoldHTML + heatExchangerHTML + valveHTML + costHTML;
 
-    // Add event handlers for dropdown functionality
+
+    addEventHandlersToDropdowns();
+    addEventHandlerstoEditBtns();
+    displayPartNumDiv();
+
+};
+
+// Add event handlers to dropdowns
+const addEventHandlersToDropdowns = () => {
     const dropdowns = document.querySelectorAll('.dropdown');
 
     dropdowns.forEach(dropdown => {
@@ -169,15 +177,17 @@ const displayHpuNumber = (data) => {
             content.classList.toggle('active');
         });
     });
+};
 
-    // Add event handlers to edit buttons
+// Add event handlers to edit buttons
+const addEventHandlerstoEditBtns = () => {
     const editReservoirButton = document.querySelector('#edit-reservoir');
     const editPumpButton = document.querySelector('#edit-pump');
     const editMotorButton = document.querySelector('#edit-motor');
     const editManifoldButton = document.querySelector('#edit-manifold');
     const editHeatExchangerButton = document.querySelector('#edit-heat-exchanger');
     const editValveButton = document.querySelector('#edit-valves');
-
+    
     editReservoirButton.addEventListener('click', e => {
         e.preventDefault();
     
@@ -187,7 +197,7 @@ const displayHpuNumber = (data) => {
     
         tableWrapper.style.display = 'block';
     });
-
+    
     editPumpButton.addEventListener('click', e => {
         e.preventDefault();
     
@@ -197,7 +207,7 @@ const displayHpuNumber = (data) => {
     
         tableWrapper.style.display = 'block';
     });
-
+    
     editMotorButton.addEventListener('click', e => {
         e.preventDefault();
     
@@ -207,7 +217,7 @@ const displayHpuNumber = (data) => {
     
         tableWrapper.style.display = 'block';
     });
-
+    
     editManifoldButton.addEventListener('click', e => {
         e.preventDefault();
     
@@ -217,7 +227,7 @@ const displayHpuNumber = (data) => {
     
         tableWrapper.style.display = 'block';
     });
-
+    
     editHeatExchangerButton.addEventListener('click', e => {
         e.preventDefault();
     
@@ -227,18 +237,15 @@ const displayHpuNumber = (data) => {
     
         tableWrapper.style.display = 'block';
     });
-
+    
     editValveButton.addEventListener('click', e => {
         e.preventDefault();
-
+    
         displayValvePopup();
-
+    
     });
-
-    // Display part number div
-    displayPartNumDiv();
-
 };
+
 
 // Display table with reservoir data and update HPU number with selected reservoir
 const displayReservoirTable = (data) => {
