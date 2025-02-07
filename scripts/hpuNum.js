@@ -63,7 +63,6 @@ const displayHpuNumber = (data) => {
                     <li>Heat Dis: ${reservoir.heatDis}</li>
                     <li>Price: $${reservoirCost}</li>
                 </ul>
-                
             </div>
         </div>
     `;
@@ -180,6 +179,7 @@ const addEventHandlersToDropdowns = () => {
 
 // Inactive buttons HTML
 {/* <button class="button gray edit" id="edit-reservoir">EDIT RESERVOIR</button> */}
+{/* <button class="button gray edit" id="edit-reservoir">EDIT RESERVOIR</button> */}
 {/* <button class="button gray edit" id="edit-pump">EDIT PUMP</button> */}
 {/* <button class="button gray edit" id="edit-motor">EDIT MOTOR</button> */}
 {/* <button class="button gray edit" id="edit-manifold">EDIT MANIFOLD</button> */}
@@ -188,7 +188,7 @@ const addEventHandlersToDropdowns = () => {
 
 // Add event handlers to edit buttons
 // const addEventHandlerstoEditBtns = () => {
-    // const editReservoirButton = document.querySelector('#edit-reservoir');
+//     const editReservoirButton = document.querySelector('#edit-reservoir');
     // const editPumpButton = document.querySelector('#edit-pump');
     // const editMotorButton = document.querySelector('#edit-motor');
     // const editManifoldButton = document.querySelector('#edit-manifold');
@@ -275,19 +275,8 @@ const displayReservoirTable = (data) => {
         tableBody.innerHTML += rowHTML;
     });
 
-    const tableRows = document.querySelectorAll('tr');
+    addEventListenerToTableRows();
 
-    tableRows.forEach(tableRow => {
-        tableRow.addEventListener('click', e => {
-            e.preventDefault();
-
-            hpuAssem.updateReservoir(tableRow.id)
-                .then(data => displayHpuNumber(data))
-                .catch(err => console.log(err.message));
-
-            tableWrapper.style.display = 'none';
-        });
-    });
 };
 
 // Display table with pump data and update HPU number with selected pump
@@ -312,19 +301,8 @@ const displayPumpTable = (data) => {
         tableBody.innerHTML += rowHTML;
     });
 
-    const tableRows = document.querySelectorAll('tr');
+    addEventListenerToTableRows();
 
-    tableRows.forEach(tableRow => {
-        tableRow.addEventListener('click', e => {
-            e.preventDefault();
-
-            hpuAssem.updatePump(tableRow.id)
-                .then(data => displayHpuNumber(data))
-                .catch(err => console.log(err.message));
-                
-            tableWrapper.style.display = 'none';
-        });
-    });
 };
 
 // Display table with motor data and update HPU number with selected motor
@@ -349,19 +327,8 @@ const displayMotorTable = (data) => {
         tableBody.innerHTML += rowHTML;
     });
 
-    const tableRows = document.querySelectorAll('tr');
+    addEventListenerToTableRows();
 
-    tableRows.forEach(tableRow => {
-        tableRow.addEventListener('click', e => {
-            e.preventDefault();
-
-            hpuAssem.updateMotor(tableRow.id)
-                .then(data => displayHpuNumber(data))
-                .catch(err => console.log(err.message));
-                
-            tableWrapper.style.display = 'none';
-        });
-    });
 };
 
 // Display table with manifold data and update HPU number with selected manifold
@@ -386,19 +353,8 @@ const displayManifoldTable = (data) => {
         tableBody.innerHTML += rowHTML;
     });
 
-    const tableRows = document.querySelectorAll('tr');
+    addEventListenerToTableRows();
 
-    tableRows.forEach(tableRow => {
-        tableRow.addEventListener('click', e => {
-            e.preventDefault();
-
-            hpuAssem.updateManifold(tableRow.id)
-                .then(data => displayHpuNumber(data))
-                .catch(err => console.log(err.message));
-                
-            tableWrapper.style.display = 'none';
-        });
-    });
 };
 
 // Display table with heat exchanger data and update HPU number with selected heat exchanger
@@ -423,17 +379,22 @@ const displayHeatExchangerTable = (data) => {
         tableBody.innerHTML += rowHTML;
     });
 
+    addEventListenerToTableRows();
+
+};
+
+const addEventListenerToTableRows = () => {
     const tableRows = document.querySelectorAll('tr');
 
     tableRows.forEach(tableRow => {
         tableRow.addEventListener('click', e => {
             e.preventDefault();
 
-            hpuAssem.updateHeatExchanger(tableRow.id)
+            hpuAssem.updateReservoir(tableRow.id)
                 .then(data => displayHpuNumber(data))
                 .catch(err => console.log(err.message));
-                
+
             tableWrapper.style.display = 'none';
         });
     });
-};
+}

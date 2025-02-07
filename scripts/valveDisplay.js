@@ -3,18 +3,19 @@ const valveDets = document.querySelector('#valve-dets');
 
 const displayValveDets = (valveAssem) => {
 
-    console.log(valveAssem.station0.valve);
-
     let valvePrice = 0;
+
+    valveDets.innerHTML = `<h3>YOUR VALVE SELECTIONS</h3>`;
+
+    // If num stat is 0, display No Valves message #FIX
 
     for(i = 0; i < hpuInputs.numStat; i++){
         let station = `station${i}`;
         let valve = valveAssem[station].valve;
-        let flowControl = valveAssem[station].valve;
-        let checkValve = valveAssem[station].valve;
+        let flowControl = valveAssem[station].flowControl;
+        let checkValve = valveAssem[station].checkValve;
 
-        console.log(station, valve, flowControl, checkValve);
-
+        // Update price with the cost of each stations' components
         valvePrice += valve.cost + flowControl.cost + checkValve.cost;
 
         const valveHTML = `
@@ -22,9 +23,9 @@ const displayValveDets = (valveAssem) => {
                 <div class="trigger">STATION ${i}</div>
                 <div class="content">
                     <ul>
-                        <li>Valve: ${valve.code} Price: $${valve.cost}</li>
-                        <li>Flow Control: ${flowControl.code} Price: ${flowControl.cost}</li>
-                        <li>Check Valve: ${checkValve.code} Price: ${checkValve.cost}</li>
+                        <li>Valve Code: ${valve.code} Price: $${valve.cost}</li>
+                        <li>Flow Control Code: ${flowControl.code} Price: $${flowControl.cost}</li>
+                        <li>Check Valve Code: ${checkValve.code} Price: $${checkValve.cost}</li>
                     </ul>        
                     
                 </div>
