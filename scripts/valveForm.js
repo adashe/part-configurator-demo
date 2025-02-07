@@ -233,9 +233,9 @@ async function generateAllValveDropdowns(){
     
     } else {
 
-        let valveData = await hpuNum.getFilteredValveData(valveInputs.portSize, valveInputs.solVolt);
-        let flowControlData = await hpuNum.getFilteredFlowControlData(valveInputs.portSize);
-        let checkValveData = await hpuNum.getCheckValveData();
+        let valveData = await valveAssembly.getFilteredValveData(valveInputs.portSize, valveInputs.solVolt);
+        let flowControlData = await valveAssembly.getFilteredFlowControlData(valveInputs.portSize);
+        let checkValveData = await valveAssembly.getCheckValveData();
 
         for(i = 0; i < valveInputs.numStat; i++){
 

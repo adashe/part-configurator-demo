@@ -11,7 +11,8 @@ const hpuNumStatDiv = document.querySelector('#hpu-number-stations-div');
 const hpuSolenoidVoltage = document.querySelector('#hpuSolenoidVoltage');
 const hpuValveDiv = document.querySelector('#hpu-valve-div');
 
-const hpuNum = new HPUNumber();
+const hpuAssembly = new HpuAssembly();
+const valveAssembly = new ValveAssembly();
 
 
 // DISPLAY AND HIDE FORM ELEMENTS
@@ -149,7 +150,7 @@ hpuSolenoidVoltage.addEventListener('change', e => {
 
     } else {
         for(let i = 0; i < numValves; i++){
-            hpuNum.getFilteredValveData(size, voltage)
+            valveAssembly.getFilteredValveData(size, voltage)
                 .then(data => generateHpuValveDropdown(data, i))
                 .catch(err => console.log(err.message));
         } 
@@ -194,7 +195,7 @@ const addValvesToHpuInputs = () => {
 // Add valves to HPU number
 const addValvesToHpuNum = () => {
     hpuInputs.valves.forEach(valve => {
-        hpuNum.updateValves(valve);
+        hpuAssembly.updateValves(valve);
     });
 };
 
@@ -256,7 +257,7 @@ hpuValveForm.addEventListener('submit', e => {
     addValvesToHpuNum();
 
     // Calculate hpuNum using form input values
-    hpuNum.calcHpuNum(
+    hpuAssembly.calcHpuNum(
         hpuInputs.maxPres, 
         hpuInputs.maxFlow, 
         hpuInputs.appType, 

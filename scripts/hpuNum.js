@@ -15,7 +15,7 @@ const displayHpuNumber = (data) => {
     const motor = data.motor;
     const manifold = data.manifold;
     const heatExchanger = data.heatExchanger;
-    const totalCost = hpuNum.calcCost();
+    const totalCost = hpuAssembly.calcCost();
 
     // Determine cost based on V or H reservoir
     let reservoirCost = null;
@@ -151,7 +151,7 @@ const displayHpuNumber = (data) => {
         </div>
     `;
 
-    const costHTML = `<h4>ESTIMATED COST: $${totalCost}</h4>`;
+    const costHTML = `<h4>ESTIMATED PRICE: $${totalCost}</h4>`;
 
     partNumDets.innerHTML = reservoirHTML + pumpHTML + motorHTML + manifoldHTML + heatExchangerHTML + valveHTML + costHTML;
 
@@ -191,7 +191,7 @@ const addEventHandlerstoEditBtns = () => {
     editReservoirButton.addEventListener('click', e => {
         e.preventDefault();
     
-        hpuNum.getReservoirData()
+        hpuAssembly.getReservoirData()
             .then(data => displayReservoirTable(data))
             .catch(err => console.log(err.message));
     
@@ -201,7 +201,7 @@ const addEventHandlerstoEditBtns = () => {
     editPumpButton.addEventListener('click', e => {
         e.preventDefault();
     
-        hpuNum.getPumpData()
+        hpuAssembly.getPumpData()
             .then(data => displayPumpTable(data))
             .catch(err => console.log(err.message));
     
@@ -211,7 +211,7 @@ const addEventHandlerstoEditBtns = () => {
     editMotorButton.addEventListener('click', e => {
         e.preventDefault();
     
-        hpuNum.getMotorData()
+        hpuAssembly.getMotorData()
             .then(data => displayMotorTable(data))
             .catch(err => console.log(err.message));
     
@@ -221,7 +221,7 @@ const addEventHandlerstoEditBtns = () => {
     editManifoldButton.addEventListener('click', e => {
         e.preventDefault();
     
-        hpuNum.getManifoldData()
+        hpuAssembly.getManifoldData()
             .then(data => displayManifoldTable(data))
             .catch(err => console.log(err.message));
     
@@ -231,7 +231,7 @@ const addEventHandlerstoEditBtns = () => {
     editHeatExchangerButton.addEventListener('click', e => {
         e.preventDefault();
     
-        hpuNum.getHeatExchangerData()
+        hpuAssembly.getHeatExchangerData()
             .then(data => displayHeatExchangerTable(data))
             .catch(err => console.log(err.message));
     
@@ -274,7 +274,7 @@ const displayReservoirTable = (data) => {
         tableRow.addEventListener('click', e => {
             e.preventDefault();
 
-            hpuNum.updateReservoir(tableRow.id)
+            hpuAssembly.updateReservoir(tableRow.id)
                 .then(data => displayHpuNumber(data))
                 .catch(err => console.log(err.message));
 
@@ -311,7 +311,7 @@ const displayPumpTable = (data) => {
         tableRow.addEventListener('click', e => {
             e.preventDefault();
 
-            hpuNum.updatePump(tableRow.id)
+            hpuAssembly.updatePump(tableRow.id)
                 .then(data => displayHpuNumber(data))
                 .catch(err => console.log(err.message));
                 
@@ -348,7 +348,7 @@ const displayMotorTable = (data) => {
         tableRow.addEventListener('click', e => {
             e.preventDefault();
 
-            hpuNum.updateMotor(tableRow.id)
+            hpuAssembly.updateMotor(tableRow.id)
                 .then(data => displayHpuNumber(data))
                 .catch(err => console.log(err.message));
                 
@@ -385,7 +385,7 @@ const displayManifoldTable = (data) => {
         tableRow.addEventListener('click', e => {
             e.preventDefault();
 
-            hpuNum.updateManifold(tableRow.id)
+            hpuAssembly.updateManifold(tableRow.id)
                 .then(data => displayHpuNumber(data))
                 .catch(err => console.log(err.message));
                 
@@ -422,7 +422,7 @@ const displayHeatExchangerTable = (data) => {
         tableRow.addEventListener('click', e => {
             e.preventDefault();
 
-            hpuNum.updateHeatExchanger(tableRow.id)
+            hpuAssembly.updateHeatExchanger(tableRow.id)
                 .then(data => displayHpuNumber(data))
                 .catch(err => console.log(err.message));
                 

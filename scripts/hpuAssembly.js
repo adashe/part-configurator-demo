@@ -1,5 +1,5 @@
 
-class HPUNumber{
+class HpuAssembly{
     constructor(){
         this.reservoir = null;
         this.pump = null;
@@ -42,46 +42,6 @@ class HPUNumber{
         const uri = "data/heatExchangerData.json";
         const response = await fetch(uri);
         const data = await response.json();
-        return data;
-    }
-
-    async getValveData(){
-        const uri = "data/valveData.json";
-        const response = await fetch(uri);
-        const data = await response.json();
-
-        return data;
-    }
-
-    async getFilteredValveData(size, voltage){
-        const data = await this.getValveData();
-
-        let result = data.filter(valve => valve.valvePattern == size && valve.voltage == voltage);
-
-        return result;
-    }
-
-    async getFlowControlData(){
-        const uri = "data/flowControlData.json";
-        const response = await fetch(uri);
-        const data = await response.json();
-
-        return data;
-    }
-
-    async getFilteredFlowControlData(size){
-        const data = await this.getFlowControlData();
-
-        let result = data.filter(valve => valve.valvePattern == size);
-
-        return result;
-    }
-
-    async getCheckValveData(){
-        const uri = "data/checkValveData.json";
-        const response = await fetch(uri);
-        const data = await response.json();
-
         return data;
     }
 
