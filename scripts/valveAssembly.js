@@ -1,6 +1,35 @@
 class ValveAssembly{
     constructor(){
-        this.assembly = null;
+        this.station0 = {
+            valve: null,
+            flowControl: null,
+            checkValve: null
+        };
+        this.station1 = {
+            valve: null,
+            flowControl: null,
+            checkValve: null
+        };
+        this.station2 = {
+            valve: null,
+            flowControl: null,
+            checkValve: null
+        };
+        this.station3 = {
+            valve: null,
+            flowControl: null,
+            checkValve: null
+        };
+        this.station4 = {
+            valve: null,
+            flowControl: null,
+            checkValve: null
+        };
+        this.station5 = {
+            valve: null,
+            flowControl: null,
+            checkValve: null
+        };
     }
 
     // GET DATA FROM JSON //
@@ -44,24 +73,71 @@ class ValveAssembly{
         return data;
     }
 
+    // UPDATE DATA FOR AN INDIVIDUAL STATION OBJECT
     async updateStation(stationName, valveCode, flowControlCode = null, checkValveCode = null){
-        const valveData = await getValveData();
-        const flowControlData = await getFlowControlData();
-        const checkValveData = await getCheckValveData();
+        const valveData = await this.getValveData();
+        const flowControlData = await this.getFlowControlData();
+        const checkValveData = await this.getCheckValveData();
 
-        let valve = valveData.filter(valve => valve.code == valveCode);
-        let flowControl = flowControlData.filter(flowControl => flowControl.code == flowControlCode);
-        let checkValve = checkValveData.filter(checkValve => checkValve.code == checkValveCode);
+        let valveArr = valveData.filter(valve => valve.code == valveCode);
+        let flowControlArr = flowControlData.filter(flowControl => flowControl.code == flowControlCode);
+        let checkValveArr = checkValveData.filter(checkValve => checkValve.code == checkValveCode);
 
-        this.stations[stationName] = {
-            valve,
-            flowControl,
-            checkValve
+        this[stationName] = {
+            valve: valveArr[0],
+            flowControl: flowControlArr[0],
+            checkValve: checkValveArr[0]
         };
 
         return this;
+    } 
+
+    // RETURN NUMBER OF VALVES WITH L IN THE VALVE CODE TO USE IN HPU CALC
+    countLValves(){
+
+        let count = 0;
+
+        const stationsArr = [
+            this.station0, 
+            this.station1, 
+            this.station2, 
+            this.station3, 
+            this.station4, 
+            this.station5
+        ];
+
+        stationsArr.forEach(station => {
+            if(station.valve && station.valve.code && station.valve.code.includes('L')){
+                count ++;
+            }
+        });
+
+        return count;
+
     }
 
-    async 
+    countFlowControl(){
+        let count = 0;
+
+        const stationsArr = [
+            this.station0, 
+            this.station1, 
+            this.station2, 
+            this.station3, 
+            this.station4, 
+            this.station5
+        ];
+
+        stationsArr.forEach(station => {
+            if(station.flowControl){
+                count ++;
+            }
+        });
+
+        console.log('num flow control', count);
+
+        return count;
+
+    }
     
 }

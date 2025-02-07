@@ -15,7 +15,7 @@ const displayHpuNumber = (data) => {
     const motor = data.motor;
     const manifold = data.manifold;
     const heatExchanger = data.heatExchanger;
-    const totalCost = hpuAssembly.calcCost();
+    const totalCost = hpuAssem.calcCost();
 
     // Determine cost based on V or H reservoir
     let reservoirCost = null;
@@ -191,7 +191,7 @@ const addEventHandlerstoEditBtns = () => {
     editReservoirButton.addEventListener('click', e => {
         e.preventDefault();
     
-        hpuAssembly.getReservoirData()
+        hpuAssem.getReservoirData()
             .then(data => displayReservoirTable(data))
             .catch(err => console.log(err.message));
     
@@ -201,7 +201,7 @@ const addEventHandlerstoEditBtns = () => {
     editPumpButton.addEventListener('click', e => {
         e.preventDefault();
     
-        hpuAssembly.getPumpData()
+        hpuAssem.getPumpData()
             .then(data => displayPumpTable(data))
             .catch(err => console.log(err.message));
     
@@ -211,7 +211,7 @@ const addEventHandlerstoEditBtns = () => {
     editMotorButton.addEventListener('click', e => {
         e.preventDefault();
     
-        hpuAssembly.getMotorData()
+        hpuAssem.getMotorData()
             .then(data => displayMotorTable(data))
             .catch(err => console.log(err.message));
     
@@ -221,7 +221,7 @@ const addEventHandlerstoEditBtns = () => {
     editManifoldButton.addEventListener('click', e => {
         e.preventDefault();
     
-        hpuAssembly.getManifoldData()
+        hpuAssem.getManifoldData()
             .then(data => displayManifoldTable(data))
             .catch(err => console.log(err.message));
     
@@ -231,7 +231,7 @@ const addEventHandlerstoEditBtns = () => {
     editHeatExchangerButton.addEventListener('click', e => {
         e.preventDefault();
     
-        hpuAssembly.getHeatExchangerData()
+        hpuAssem.getHeatExchangerData()
             .then(data => displayHeatExchangerTable(data))
             .catch(err => console.log(err.message));
     
@@ -274,7 +274,7 @@ const displayReservoirTable = (data) => {
         tableRow.addEventListener('click', e => {
             e.preventDefault();
 
-            hpuAssembly.updateReservoir(tableRow.id)
+            hpuAssem.updateReservoir(tableRow.id)
                 .then(data => displayHpuNumber(data))
                 .catch(err => console.log(err.message));
 
@@ -311,7 +311,7 @@ const displayPumpTable = (data) => {
         tableRow.addEventListener('click', e => {
             e.preventDefault();
 
-            hpuAssembly.updatePump(tableRow.id)
+            hpuAssem.updatePump(tableRow.id)
                 .then(data => displayHpuNumber(data))
                 .catch(err => console.log(err.message));
                 
@@ -348,7 +348,7 @@ const displayMotorTable = (data) => {
         tableRow.addEventListener('click', e => {
             e.preventDefault();
 
-            hpuAssembly.updateMotor(tableRow.id)
+            hpuAssem.updateMotor(tableRow.id)
                 .then(data => displayHpuNumber(data))
                 .catch(err => console.log(err.message));
                 
@@ -385,7 +385,7 @@ const displayManifoldTable = (data) => {
         tableRow.addEventListener('click', e => {
             e.preventDefault();
 
-            hpuAssembly.updateManifold(tableRow.id)
+            hpuAssem.updateManifold(tableRow.id)
                 .then(data => displayHpuNumber(data))
                 .catch(err => console.log(err.message));
                 
@@ -422,7 +422,7 @@ const displayHeatExchangerTable = (data) => {
         tableRow.addEventListener('click', e => {
             e.preventDefault();
 
-            hpuAssembly.updateHeatExchanger(tableRow.id)
+            hpuAssem.updateHeatExchanger(tableRow.id)
                 .then(data => displayHpuNumber(data))
                 .catch(err => console.log(err.message));
                 

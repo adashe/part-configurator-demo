@@ -6,7 +6,7 @@ class HpuAssembly{
         this.motor = null;
         this.manifold = null;
         this.heatExchanger = null;
-        this.valves = [];
+        // this.valves = [];
     }
 
     // GET DATA FROM JSON //
@@ -188,7 +188,7 @@ class HpuAssembly{
         return this.manifold;
     }
 
-    async calcHeatExchanger(maxPres, maxFl, htExType, lenFlowCtrl){
+    async calcHeatExchanger(maxPres, maxFl, htExType, numLValves, lenFlowCtrl){
         const data = await this.getHeatExchangerData();
 
         // calculation //
@@ -203,18 +203,7 @@ class HpuAssembly{
         // Calculate adder 1
         // L valves = num valves with L spool (contains L in code)
         // ADDER 1 = #Lspools * L spool multiplier (above)
-        let numL = 0;
-
-        this.valves.forEach(valve => {
-            if(valve.includes('L')){
-                numL ++;
-            }
-            return numL;
-        })
-
-        // console.log('NUM L VALVES', numL);
-
-        const adder1 = numL * -.1;
+        const adder1 = numLValves * -.1;
 
         // Calculate adder 2
         // ADDER 2 = if max pressure > 2000, use 5%, if max pressure > 1000 use 2%, if neither use 0%
@@ -300,13 +289,13 @@ class HpuAssembly{
         return totalCost.toFixed(2);
     }
 
-    async calcHpuNum(maxPres, maxFl, appType, htExType, numSt, portSz, lenFlowCtrl, ){
+    async calcHpuNum(maxPres, maxFl, appType, htExType, numSt, portSz, numLValves, lenFlowCtrl, ){
 
         await this.calcPump(maxPres, maxFl, appType);
         await this.calcMotor(maxPres, maxFl);
         await this.calcReservoir(maxFl);
         await this.calcManifold(numSt, portSz);
-        await this.calcHeatExchanger(maxPres, maxFl, htExType, lenFlowCtrl);
+        await this.calcHeatExchanger(maxPres, maxFl, htExType, numLValves, lenFlowCtrl);
 
         return this;
     }
@@ -347,9 +336,9 @@ class HpuAssembly{
         return this;
     }
 
-    async updateValves(valveCode){
-        this.valves.push(valveCode);
+    // async updateValves(valveCode){
+    //     this.valves.push(valveCode);
 
-        return this;
-    }
+    //     return this;
+    // }
 }

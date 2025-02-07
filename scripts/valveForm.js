@@ -233,9 +233,9 @@ async function generateAllValveDropdowns(){
     
     } else {
 
-        let valveData = await valveAssembly.getFilteredValveData(valveInputs.portSize, valveInputs.solVolt);
-        let flowControlData = await valveAssembly.getFilteredFlowControlData(valveInputs.portSize);
-        let checkValveData = await valveAssembly.getCheckValveData();
+        let valveData = await valveAssem.getFilteredValveData(valveInputs.portSize, valveInputs.solVolt);
+        let flowControlData = await valveAssem.getFilteredFlowControlData(valveInputs.portSize);
+        let checkValveData = await valveAssem.getCheckValveData();
 
         for(i = 0; i < valveInputs.numStat; i++){
 
@@ -253,18 +253,12 @@ async function generateAllValveDropdowns(){
 
 };
 
-
-// Save submitted valve form inputs in stations object
-let stations = {};
-
 valvePopupForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    // reset values when form is resubmitted
-    stations = {};
-
     // create a stations object for each submitted set of values
     for(i = 0; i < valveInputs.numStat; i++){
+        let stationName = `station${i}`;
         let valveID = `valve${i}`;
         let flowControlID = `flowControl${i}`;
         let checkValveID = `checkValve${i}`;
@@ -273,15 +267,9 @@ valvePopupForm.addEventListener('submit', e => {
         let flowControl = document.getElementById(flowControlID);
         let checkValve = document.getElementById(checkValveID);
 
-        stations[i] = {
-            valve: valve.value,
-            flowControl: flowControl.value,
-            checkValve: checkValve.value
-        };
+        valveAssem.updateStation(stationName, valve.value, flowControl.value, checkValve.value);
     };
 
     valvePopupWrapper.style.display = 'none';
-
-    return stations;
 
 });
