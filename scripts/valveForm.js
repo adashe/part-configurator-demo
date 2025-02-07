@@ -46,7 +46,7 @@ const resetValveInputs = () => {
     };
 };
 
-// Prefill popup if user has already submitted port size, num stat, sol volt in HPU form
+// Prefill popup if user has already submitted port size, num stat in HPU form
 async function prefillValveSettingsFromHPUInputs(){
 
     // Reset popup when closed and reopened
@@ -100,9 +100,7 @@ async function prefillValvePopupFromValveAssembly(){
                 element.value = valveAssem[station].checkValve.code;
             };
 
-        }
-
-
+        };
 
     };
 };

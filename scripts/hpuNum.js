@@ -23,7 +23,7 @@ const displayHpuNumber = (data) => {
     const heatExchanger = data.heatExchanger;
     const totalCost = hpuAssem.calcCost();
 
-    // Determine cost based on V or H reservoir
+    // Determine individual item cost based on V or H reservoir
     let reservoirCost = null;
     let pumpCost = null;
     let motorCost = null;
@@ -61,9 +61,9 @@ const displayHpuNumber = (data) => {
                 <ul>
                     <li>Capacity: ${reservoir.capacity}</li>
                     <li>Heat Dis: ${reservoir.heatDis}</li>
-                    <li>Cost: $${reservoirCost}</li>
+                    <li>Price: $${reservoirCost}</li>
                 </ul>
-                <button class="button gray edit" id="edit-reservoir">EDIT RESERVOIR</button>
+                
             </div>
         </div>
     `;
@@ -77,9 +77,9 @@ const displayHpuNumber = (data) => {
                     <li>Description: ${pump.description}</li>
                     <li>Dissipation: ${pump.dispCID}</li>
                     <li>Mount Type: ${pump.mountType}</li> 
-                    <li>Cost: $${pumpCost}</li>
+                    <li>Price: $${pumpCost}</li>
                 </ul>
-                <button class="button gray edit" id="edit-pump">EDIT PUMP</button>
+                
             </div>
         </div>
         `;
@@ -92,9 +92,9 @@ const displayHpuNumber = (data) => {
                     <li>Part Number: ${motor.partNum}</li>
                     <li>Description: ${motor.description}</li>
                     <li>Output HP: ${motor.outputHP}</li>
-                    <li>Cost: $${motorCost}</li>
+                    <li>Price: $${motorCost}</li>
                 </ul>
-                <button class="button gray edit" id="edit-motor">EDIT MOTOR</button>
+                
             </div>
         </div>
     `;
@@ -107,9 +107,9 @@ const displayHpuNumber = (data) => {
                     <li>Description: ${manifold.description}</li>
                     <li>Valve Pattern: ${manifold.valvePattern}</li>
                     <li>Number of Stations: ${manifold.numStations}</li>
-                    <li>Cost: $${manifoldCost}</li>
+                    <li>Price: $${manifoldCost}</li>
                 </ul>
-                <button class="button gray edit" id="edit-manifold">EDIT MANIFOLD</button>
+                
             </div>
         </div>
     `;
@@ -124,9 +124,9 @@ const displayHpuNumber = (data) => {
                 <div class="content">        
                     <ul>
                         <li>Description: ${heatExchanger.description}</li>
-                        <li>Cost: $${heatExchangerCost}</li>
+                        <li>Price: $${heatExchangerCost}</li>
                     </ul>
-                    <button class="button gray edit" id="edit-heat-exchanger">EDIT HEAT EXCHANGER</button>
+                    
                 </div>
             </div>
         `;
@@ -140,30 +140,23 @@ const displayHpuNumber = (data) => {
                         <li>Type: ${heatExchanger.type}</li>
                         <li>Max Flow: ${heatExchanger.maxFlow}</li>
                         <li>Heat Dis: ${heatExchanger.heatDis}</li>
-                        <li>Cost: $${heatExchangerCost}</li>
+                        <li>Price: $${heatExchangerCost}</li>
                     </ul>
-                    <button class="button gray edit" id="edit-heat-exchanger">EDIT HEAT EXCHANGER</button>
+                    
                 </div>
             </div>
         `;
     };
 
-    const valveHTML = `
-        <div class="dropdown">
-            <div class="trigger">VALVES</div>
-            <div class="content">        
-                <button class="button gray edit" id="edit-valves">VIEW AND EDIT VALVES</button>
-            </div>
-        </div>
-    `;
+    const hpuCostHTML = `<h4>ESTIMATED HPU PRICE: $${totalCost}</h4>`;
 
-    const costHTML = `<h4>ESTIMATED PRICE: $${totalCost}</h4>`;
+    partNumDets.innerHTML = reservoirHTML + pumpHTML + motorHTML + manifoldHTML + heatExchangerHTML + hpuCostHTML;
 
-    partNumDets.innerHTML = reservoirHTML + pumpHTML + motorHTML + manifoldHTML + heatExchangerHTML + valveHTML + costHTML;
-
+    // Add valve subsection below the HPU section
+    displayValveDets(valveAssem);
 
     addEventHandlersToDropdowns();
-    addEventHandlerstoEditBtns();
+    // addEventHandlerstoEditBtns();
     displayPartNumDiv();
 
 };
@@ -185,73 +178,80 @@ const addEventHandlersToDropdowns = () => {
     });
 };
 
+// Inactive buttons HTML
+{/* <button class="button gray edit" id="edit-reservoir">EDIT RESERVOIR</button> */}
+{/* <button class="button gray edit" id="edit-pump">EDIT PUMP</button> */}
+{/* <button class="button gray edit" id="edit-motor">EDIT MOTOR</button> */}
+{/* <button class="button gray edit" id="edit-manifold">EDIT MANIFOLD</button> */}
+{/* <button class="button gray edit" id="edit-heat-exchanger">EDIT HEAT EXCHANGER</button> */}
+{/* <button class="button gray edit" id="edit-heat-exchanger">EDIT HEAT EXCHANGER</button> */}
 
 // Add event handlers to edit buttons
-const addEventHandlerstoEditBtns = () => {
-    const editReservoirButton = document.querySelector('#edit-reservoir');
-    const editPumpButton = document.querySelector('#edit-pump');
-    const editMotorButton = document.querySelector('#edit-motor');
-    const editManifoldButton = document.querySelector('#edit-manifold');
-    const editHeatExchangerButton = document.querySelector('#edit-heat-exchanger');
-    const editValveButton = document.querySelector('#edit-valves');
+// const addEventHandlerstoEditBtns = () => {
+    // const editReservoirButton = document.querySelector('#edit-reservoir');
+    // const editPumpButton = document.querySelector('#edit-pump');
+    // const editMotorButton = document.querySelector('#edit-motor');
+    // const editManifoldButton = document.querySelector('#edit-manifold');
+    // const editHeatExchangerButton = document.querySelector('#edit-heat-exchanger');
+    // const editValveButton = document.querySelector('#edit-valves');
     
-    editReservoirButton.addEventListener('click', e => {
-        e.preventDefault();
+    // editReservoirButton.addEventListener('click', e => {
+    //     e.preventDefault();
     
-        hpuAssem.getReservoirData()
-            .then(data => displayReservoirTable(data))
-            .catch(err => console.log(err.message));
+    //     hpuAssem.getReservoirData()
+    //         .then(data => displayReservoirTable(data))
+    //         .catch(err => console.log(err.message));
     
-        tableWrapper.style.display = 'block';
-    });
+    //     tableWrapper.style.display = 'block';
+    // });
     
-    editPumpButton.addEventListener('click', e => {
-        e.preventDefault();
+    // editPumpButton.addEventListener('click', e => {
+    //     e.preventDefault();
     
-        hpuAssem.getPumpData()
-            .then(data => displayPumpTable(data))
-            .catch(err => console.log(err.message));
+    //     hpuAssem.getPumpData()
+    //         .then(data => displayPumpTable(data))
+    //         .catch(err => console.log(err.message));
     
-        tableWrapper.style.display = 'block';
-    });
+    //     tableWrapper.style.display = 'block';
+    // });
     
-    editMotorButton.addEventListener('click', e => {
-        e.preventDefault();
+    // editMotorButton.addEventListener('click', e => {
+    //     e.preventDefault();
     
-        hpuAssem.getMotorData()
-            .then(data => displayMotorTable(data))
-            .catch(err => console.log(err.message));
+    //     hpuAssem.getMotorData()
+    //         .then(data => displayMotorTable(data))
+    //         .catch(err => console.log(err.message));
     
-        tableWrapper.style.display = 'block';
-    });
+    //     tableWrapper.style.display = 'block';
+    // });
     
-    editManifoldButton.addEventListener('click', e => {
-        e.preventDefault();
+    // editManifoldButton.addEventListener('click', e => {
+    //     e.preventDefault();
     
-        hpuAssem.getManifoldData()
-            .then(data => displayManifoldTable(data))
-            .catch(err => console.log(err.message));
+    //     hpuAssem.getManifoldData()
+    //         .then(data => displayManifoldTable(data))
+    //         .catch(err => console.log(err.message));
     
-        tableWrapper.style.display = 'block';
-    });
+    //     tableWrapper.style.display = 'block';
+    // });
     
-    editHeatExchangerButton.addEventListener('click', e => {
-        e.preventDefault();
+    // editHeatExchangerButton.addEventListener('click', e => {
+    //     e.preventDefault();
     
-        hpuAssem.getHeatExchangerData()
-            .then(data => displayHeatExchangerTable(data))
-            .catch(err => console.log(err.message));
+    //     hpuAssem.getHeatExchangerData()
+    //         .then(data => displayHeatExchangerTable(data))
+    //         .catch(err => console.log(err.message));
     
-        tableWrapper.style.display = 'block';
-    });
+    //     tableWrapper.style.display = 'block';
+    // });
     
-    editValveButton.addEventListener('click', e => {
-        e.preventDefault();
+    // editValveButton.addEventListener('click', e => {
+    //     e.preventDefault();
     
-        displayValvePopup();
+    //     displayValvePopup();
     
-    });
-};
+    // });
+// };
 
 
 // Display table with reservoir data and update HPU number with selected reservoir
