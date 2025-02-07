@@ -26,8 +26,7 @@ const displayValveDets = (valveAssem) => {
                         <li>Valve Code: ${valve.code} Price: $${valve.cost}</li>
                         <li>Flow Control Code: ${flowControl.code} Price: $${flowControl.cost}</li>
                         <li>Check Valve Code: ${checkValve.code} Price: $${checkValve.cost}</li>
-                    </ul>        
-                    
+                    </ul>
                 </div>
             </div>
         `;
@@ -35,7 +34,7 @@ const displayValveDets = (valveAssem) => {
         valveDets.innerHTML += valveHTML;
     };
 
-    const valveEditBtn = `<button class="button gray edit" id="edit-valves">VIEW AND EDIT VALVES</button>`
+    const valveEditBtn = `<button class="button gray edit" id="edit-valves">EDIT VALVES</button>`
     const valveCostHTML = `<h4>ESTIMATED VALVE PRICE: $${valvePrice.toFixed(2)}</h4>`
 
     valveDets.innerHTML += valveEditBtn + valveCostHTML;

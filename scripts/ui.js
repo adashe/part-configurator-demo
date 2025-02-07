@@ -9,6 +9,7 @@ const partNumDiv = document.querySelector('#part-num-div');
 const emailDiv = document.querySelector('#email-div');
 const emailConfDiv = document.querySelector('#email-conf-div');
 
+
 // Display selected form div
 componentForm.addEventListener('submit', e => {
     e.preventDefault();
