@@ -2,7 +2,6 @@ const hpuSysParamsForm = document.querySelector('#hpu-sys-params-form');
 const hpuManifoldForm = document.querySelector('#hpu-manifold-form');
 const hpuValveForm = document.querySelector('#hpu-valve-form');
 
-const hpuRestartButtons = document.querySelectorAll('.hpu-restart');
 const hpuSysParamsButtons = document.querySelectorAll('.hpu-sys-params-btn');
 const hpuManifoldButtons = document.querySelectorAll('.hpu-mani-btn');
 const hpuValvesPopupButtons = document.querySelectorAll('.hpu-valves-btn');
@@ -35,24 +34,6 @@ const displayHpuValveForm = () => {
 
 
 // BUTTONS
-// Restart buttons
-hpuRestartButtons.forEach((button) => {
-    button.addEventListener('click', e => {
-        e.preventDefault();
-
-        resetHpuInputs();
-
-        hpuSysParamsForm.reset();
-        hpuManifoldForm.reset();
-        hpuValveForm.reset();
-
-        displayHpuSysParamsForm();
-        displayComponentDiv();
-
-        console.log('RESTARTED', hpuInputs);
-    });
-});
-
 // Buttons to display system parameters form
 hpuSysParamsButtons.forEach((button) => {
     button.addEventListener('click', e => {
@@ -121,7 +102,6 @@ hpuManifoldForm.addEventListener('submit', e => {
     hpuInputs.portSize = hpuManifoldForm.hpuPortSize.value;
 
     displayHpuValveForm();
-    
 });
 
 // Limit number of stations available based on port size selection

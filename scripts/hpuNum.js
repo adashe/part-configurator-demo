@@ -1,12 +1,18 @@
 const partNumDisplay = document.querySelectorAll('.part-num-disp');
 const partNumDets = document.querySelector('#part-num-dets');
 
+const tableWrapper = document.querySelector('.table-wrapper');
+const tableCloseButton = document.querySelector('.table-close');
+
 const tableH2 = document.querySelector('#table-h2');
 const tableHead = document.querySelector('thead');
 const tableBody = document.querySelector('tbody');
 
-const valvePopupWrapper = document.querySelector('.valve-popup-wrapper');
-
+// Table close button
+tableCloseButton.addEventListener('click', e => {
+    e.preventDefault();
+    tableWrapper.style.display = 'none';
+});
 
 // Display configured HPU part number and details
 const displayHpuNumber = (data) => {
@@ -178,6 +184,7 @@ const addEventHandlersToDropdowns = () => {
         });
     });
 };
+
 
 // Add event handlers to edit buttons
 const addEventHandlerstoEditBtns = () => {
@@ -429,13 +436,4 @@ const displayHeatExchangerTable = (data) => {
             tableWrapper.style.display = 'none';
         });
     });
-};
-
-// Display popup to edit valves, flow controls, and check valves
-const displayValvePopup = () => {
-
-    prefillValveSettings();
-
-    valvePopupWrapper.style.display = 'block';
-
 };

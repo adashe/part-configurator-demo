@@ -30,6 +30,43 @@ class ValveAssembly{
             flowControl: null,
             checkValve: null
         };
+        this.voltage = null;
+    }
+
+    reset(){
+        this.station0 = {
+            valve: null,
+            flowControl: null,
+            checkValve: null
+        };
+        this.station1 = {
+            valve: null,
+            flowControl: null,
+            checkValve: null
+        };
+        this.station2 = {
+            valve: null,
+            flowControl: null,
+            checkValve: null
+        };
+        this.station3 = {
+            valve: null,
+            flowControl: null,
+            checkValve: null
+        };
+        this.station4 = {
+            valve: null,
+            flowControl: null,
+            checkValve: null
+        };
+        this.station5 = {
+            valve: null,
+            flowControl: null,
+            checkValve: null
+        };
+        this.voltage = null;
+
+        return this
     }
 
     // GET DATA FROM JSON //
@@ -90,9 +127,9 @@ class ValveAssembly{
         };
 
         return this;
-    } 
+    }
 
-    // RETURN NUMBER OF VALVES WITH L IN THE VALVE CODE TO USE IN HPU CALC
+    // COUNT VALVES WITH L IN THE VALVE CODE TO USE IN HPU CALC
     countLValves(){
 
         let count = 0;
@@ -116,6 +153,7 @@ class ValveAssembly{
 
     }
 
+    // COUNT FLOW CONTROLS TO USE IN HPU CALC
     countFlowControl(){
         let count = 0;
 
@@ -133,8 +171,6 @@ class ValveAssembly{
                 count ++;
             }
         });
-
-        console.log('num flow control', count);
 
         return count;
 

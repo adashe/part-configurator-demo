@@ -6,7 +6,16 @@ class HpuAssembly{
         this.motor = null;
         this.manifold = null;
         this.heatExchanger = null;
-        // this.valves = [];
+    }
+
+    reset(){
+        this.reservoir = null;
+        this.pump = null;
+        this.motor = null;
+        this.manifold = null;
+        this.heatExchanger = null;
+
+        return this;
     }
 
     // GET DATA FROM JSON //
@@ -335,10 +344,4 @@ class HpuAssembly{
 
         return this;
     }
-
-    // async updateValves(valveCode){
-    //     this.valves.push(valveCode);
-
-    //     return this;
-    // }
 }

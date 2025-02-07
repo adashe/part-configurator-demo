@@ -2,9 +2,27 @@ const valvePortSize = document.querySelector('#valvePortSize');
 const valveNumberStationsDiv = document.querySelector('#valve-number-stations-div');
 const valveSolVoltDiv = document.querySelector('#valve-sol-volt-div');
 
+const valvePopupWrapper = document.querySelector('.valve-popup-wrapper');
+const valvePopupCloseButton = document.querySelector('.valve-popup-close');
 const valvePopupContent = document.querySelector('.valve-popup-content');
 const valvePopupForm = document.querySelector('#valve-popup-form');
 
+
+// Display popup to edit valves, flow controls, and check valves
+const displayValvePopup = () => {
+
+    prefillValveSettingsFromHPUInputs();
+    prefillValvePopupFromValveAssembly();
+
+    valvePopupWrapper.style.display = 'block';
+
+};
+
+// Valve popup close button
+valvePopupCloseButton.addEventListener('click', e => {
+    e.preventDefault();
+    valvePopupWrapper.style.display = 'none';
+});
 
 // Initiate null values for valve inputs
 let valveInputs = {
@@ -29,7 +47,7 @@ const resetValveInputs = () => {
 };
 
 // Prefill popup if user has already submitted port size, num stat, sol volt in HPU form
-async function prefillValveSettings(){
+async function prefillValveSettingsFromHPUInputs(){
 
     // Reset popup when closed and reopened
     valveNumberStationsDiv.innerHTML = '';
@@ -49,20 +67,44 @@ async function prefillValveSettings(){
         generateValveSolVoltDropdown();
     };
 
-    if(hpuInputs.solVolt){
-        valveSolenoidVoltage.value = hpuInputs.solVolt;
+};
+
+// Prefill popup with valve assembly
+async function prefillValvePopupFromValveAssembly(){
+
+    if(valveAssem.voltage){
+        valveSolenoidVoltage.value = valveAssem.voltage;
         valveInputs.solVolt = valveSolenoidVoltage.value;
         await generateAllValveDropdowns()
-    };
+    }
 
-    if(hpuInputs.valves && hpuInputs.valves.length > 0){
-        hpuInputs.valves.forEach((valve, i) => {
-            let elementID = `valve${i}`;
-            let element = document.getElementById(elementID);
-            element.value = valve;
-        });
-    };
+    for(i = 0; i < valveInputs.numStat; i++){
+        let station = `station${i}`;
 
+        if(valveAssem[station]){
+            if(valveAssem[station].valve && valveAssem[station].valve.code){
+                let elementID = `valve${i}`;
+                let element = document.getElementById(elementID);
+                element.value = valveAssem[station].valve.code;
+            };
+    
+            if(valveAssem[station].flowControl && valveAssem[station].flowControl.code){
+                let elementID = `flowControl${i}`;
+                let element = document.getElementById(elementID);
+                element.value = valveAssem[station].flowControl.code;
+            };
+    
+            if(valveAssem[station].checkValve && valveAssem[station].checkValve.code){
+                let elementID = `checkValve${i}`;
+                let element = document.getElementById(elementID);
+                element.value = valveAssem[station].checkValve.code;
+            };
+
+        }
+
+
+
+    };
 };
 
 
@@ -255,6 +297,9 @@ async function generateAllValveDropdowns(){
 
 valvePopupForm.addEventListener('submit', e => {
     e.preventDefault();
+
+    // Update voltage attribute based on the solenoid voltage selection
+    valveAssem.voltage = valveInputs.solVolt;
 
     // create a stations object for each submitted set of values
     for(i = 0; i < valveInputs.numStat; i++){
