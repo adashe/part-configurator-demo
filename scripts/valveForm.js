@@ -1,6 +1,5 @@
-const valvePortSize = document.querySelector('#valvePortSize');
-const valveNumberStationsDiv = document.querySelector('#valve-number-stations-div');
 const valveSolVoltDiv = document.querySelector('#valve-sol-volt-div');
+const solenoidVoltage = document.querySelector('#SolenoidVoltage');
 
 const valvePopupWrapper = document.querySelector('.valve-popup-wrapper');
 const valvePopupCloseButton = document.querySelector('.valve-popup-close');
@@ -50,21 +49,15 @@ const resetValveInputs = () => {
 async function prefillValveSettingsFromHPUInputs(){
 
     // Reset popup when closed and reopened
-    valveNumberStationsDiv.innerHTML = '';
-    valveSolVoltDiv.innerHTML = '';
     valvePopupContent.innerHTML = '';
 
     // Check for values in hpuInputs array and prefill each dropdown if present
     if(hpuInputs.portSize){
-        valvePortSize.value = hpuInputs.portSize;
-        valveInputs.portSize = valvePortSize.value;
-        generateValveNumberStationsDropdown();
+        valveInputs.portSize = hpuInputs.portSize;
     };
 
     if(hpuInputs.numStat){
-        valveNumberStations.value = hpuInputs.numStat;
-        valveInputs.numStat = valveNumberStations.value;
-        generateValveSolVoltDropdown();
+        valveInputs.numStat = hpuInputs.numStat;
     };
 
 };
@@ -73,8 +66,8 @@ async function prefillValveSettingsFromHPUInputs(){
 async function prefillValvePopupFromValveAssembly(){
 
     if(valveAssem.voltage){
-        valveSolenoidVoltage.value = valveAssem.voltage;
-        valveInputs.solVolt = valveSolenoidVoltage.value;
+        solenoidVoltage.value = valveAssem.voltage;
+        valveInputs.solVolt = solenoidVoltage.value;
         await generateAllValveDropdowns()
     }
 
@@ -105,93 +98,21 @@ async function prefillValvePopupFromValveAssembly(){
     };
 };
 
-
-// Generate and show number of stations dropdown when port size is selected or changed
-valvePortSize.addEventListener('change', e => {
+// Event listener to create valve selectors based on numSt and solVolt
+solenoidVoltage.addEventListener('change', e => {
     e.preventDefault();
 
-    valveInputs.portSize = valvePortSize.value;
+    console.log('change!');
+    console.log(valveInputs);
 
-    generateValveNumberStationsDropdown();
-    valveSolVoltDiv.innerHTML = '';
     valvePopupContent.innerHTML = '';
+
+    valveInputs.solVolt = solenoidVoltage.value;
+
+    // Generate valve options dropdowns for each number of stations containing selected solVolt data
+    generateAllValveDropdowns();
+
 });
-
-
-// Create numberStations dropdown based on port size selection
-const generateValveNumberStationsDropdown = () => {
-    const htmlD03 = `
-        <label for="valveNumberStations">Number of Stations:</label>
-            <select name="valveNumberStations" id="valveNumberStations" required>
-                <option value="" disabled selected hidden>...</option>
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-            </select>`
-
-    const htmlD05 = `
-            <label for="valveNumberStations">Number of Stations:</label>
-                <select name="valveNumberStations" id="valveNumberStations" required>
-                    <option value="" disabled selected hidden>...</option>
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                </select>`
-
-    if(valveInputs.portSize == 'D03'){
-        valveNumberStationsDiv.innerHTML = htmlD03;
-    } else if (valveInputs.portSize == 'D05'){
-        valveNumberStationsDiv.innerHTML = htmlD05;
-    } else {
-        valveNumberStationsDiv.innerHTML = 'NO STATIONS';
-    };
-
-
-    // Event listener to reset valve dropdowns and solVolt dropdown if number of stations is changed
-    const valveNumberStations = document.querySelector('#valveNumberStations');
-    
-    valveNumberStations.addEventListener('change', e => {
-        e.preventDefault();
-
-        valveInputs.numStat = valveNumberStations.value;
-        valvePopupContent.innerHTML = '';
-        generateValveSolVoltDropdown();
-    
-    });
-};
-
-// Generate sol volt dropdown
-const generateValveSolVoltDropdown = () => {
-    const html = `                        
-        <label for="valveSolenoidVoltage">Solenoid Voltage:</label>
-        <select name="valveSolenoidVoltage" id="valveSolenoidVoltage">
-            <option value="none">None Selected</option>
-            <option value="110VAC">110VAC</option>
-            <option value="24VDC">24VDC</option>
-        </select>
-    `;
-
-    valveSolVoltDiv.innerHTML = html;
-
-    // Event listener to create valve selectors based on numSt and solVolt
-    const valveSolenoidVoltage = document.querySelector('#valveSolenoidVoltage');
-
-    valveSolenoidVoltage.addEventListener('change', e => {
-        e.preventDefault();
-
-        valvePopupContent.innerHTML = '';
-
-        valveInputs.solVolt = valveSolenoidVoltage.value;
-
-        // Generate valve options dropdowns for each number of stations containing selected solVolt data
-        generateAllValveDropdowns();
-
-    });
-};
-
 
 // Create individual valve dropdown
 const generateValveDropdown = (data, i) => {

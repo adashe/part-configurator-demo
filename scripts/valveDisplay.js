@@ -14,7 +14,7 @@ const displayValveDets = (valveAssem) => {
     // Create placeholder dropdowns if no valves were selected during HPU configuration
     }else if(valveAssem.station0.valve == null){
 
-        valveDets.innerHTML = `<h2>YOUR VALVE SELECTIONS</h2>`;
+        valveDets.innerHTML = `<h3>YOUR VALVE SELECTIONS</h3>`;
 
         for(i = 0; i < hpuInputs.numStat; i++){
             let valveHTML = `
