@@ -111,7 +111,7 @@ class ValveAssembly{
     }
 
     // UPDATE DATA FOR AN INDIVIDUAL STATION OBJECT
-    async updateStation(stationName, valveCode, flowControlCode = null, checkValveCode = null){
+    async updateStation(stationName, valveCode, flowControlCode = 0, checkValveCode = 0){
         const valveData = await this.getValveData();
         const flowControlData = await this.getFlowControlData();
         const checkValveData = await this.getCheckValveData();

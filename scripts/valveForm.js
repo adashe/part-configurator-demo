@@ -201,7 +201,7 @@ const generateValveDropdown = (data, i) => {
                 <label for="valve${i}"></label>
                 <select name="valve${i}" id="valve${i}" class="valve" required>
                     <option value="" disabled selected hidden>Select valve...</option>
-                    <option value="null">No valve</option>
+                    <option value="0">No valve</option>
                 `;
 
     data.forEach(valve => {
@@ -234,7 +234,7 @@ const generateFlowControlDropdown = (data, i) => {
                 <label for="flowControl${i}"></label>
                 <select name="flowControl${i}" id="flowControl${i}" class="flowControl" required>
                     <option value="" disabled selected hidden>Select flow control...</option>
-                    <option value="null">No flow control</option>
+                    <option value="0">No flow control</option>
                 `;
 
     data.forEach(flowControl => {
@@ -253,11 +253,14 @@ const generateCheckValveDropdown = (data, i) => {
                 <label for="checkValve${i}"></label>
                 <select name="checkValve${i}" id="checkValve${i}" class="checkValve" required>
                     <option value="" disabled selected hidden>Select check valve...</option>
-                    <option value="null">No check valve</option>
                 `;
 
     data.forEach(checkValve => {
-        html += `<option value=${checkValve.code}>${checkValve.code}</option>`;
+        if(checkValve.code == 0){
+            html += `<option value="0">No check valve</option>`
+        } else {
+            html += `<option value=${checkValve.code}>${checkValve.code}</option>`;
+        }
     });
 
     html += `</select>`;
@@ -311,6 +314,10 @@ valvePopupForm.addEventListener('submit', e => {
         let checkValve = document.getElementById(checkValveID);
 
         valveAssem.updateStation(stationName, valve.value, flowControl.value, checkValve.value);
+    };
+
+    if(partNumDiv.style.display == 'block'){
+        calculateAndDisplayHpuNum();
     };
 
     valvePopupWrapper.style.display = 'none';

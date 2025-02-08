@@ -157,6 +157,32 @@ hpuPortSize.addEventListener('change', e => {
 hpuValveForm.addEventListener('submit', e => {
     e.preventDefault();
 
+    // // Calculate number of valves with 'L' codes
+    // const numLValves = valveAssem.countLValves();
+
+    // // Calculate number of flow controls
+    // const numFlowControl = valveAssem.countFlowControl();
+
+    // // Calculate hpuNum using form input values
+    // hpuAssem.calcHpuNum(
+    //     hpuInputs.maxPres, 
+    //     hpuInputs.maxFlow, 
+    //     hpuInputs.appType, 
+    //     hpuInputs.heatExchType,
+    //     hpuInputs.numStat, 
+    //     hpuInputs.portSize,
+    //     numLValves, 
+    //     numFlowControl, 
+    //     )
+    //     .then(data => displayHpuNumber(data))
+    //     .catch(err => console.log(err.message));
+
+    calculateAndDisplayHpuNum();
+
+});
+
+const calculateAndDisplayHpuNum = () => {
+    
     // Calculate number of valves with 'L' codes
     const numLValves = valveAssem.countLValves();
 
@@ -176,5 +202,4 @@ hpuValveForm.addEventListener('submit', e => {
         )
         .then(data => displayHpuNumber(data))
         .catch(err => console.log(err.message));
-
-});
+};
