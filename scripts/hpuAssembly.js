@@ -213,6 +213,9 @@ class HpuAssembly{
         // ADDER 1 = #Lspools * L spool multiplier (above)
         const adder1 = numLValves * -.1;
 
+        console.log('l valves', numLValves);
+        console.log('len flow control', lenFlowCtrl);
+
         // Calculate adder 2
         // ADDER 2 = if max pressure > 2000, use 5%, if max pressure > 1000 use 2%, if neither use 0%
         let adder2 = 0;

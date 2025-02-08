@@ -28,9 +28,6 @@ let valveInputs = {
     numStat: null,
     portSize: null,
     solVolt: null,
-    valves: [],
-    flowCtrl: [],
-    checkValves: []
 };
 
 // Reset valve inputs
@@ -39,9 +36,6 @@ const resetValveInputs = () => {
         numStat: null,
         portSize: null,
         solVolt: null,
-        valves: [],
-        flowCtrl: [],
-        checkValves: []
     };
 };
 
@@ -92,18 +86,13 @@ async function prefillValvePopupFromValveAssembly(){
                 let element = document.getElementById(elementID);
                 element.value = valveAssem[station].checkValve.code;
             };
-
         };
-
     };
 };
 
 // Event listener to create valve selectors based on numSt and solVolt
 solenoidVoltage.addEventListener('change', e => {
     e.preventDefault();
-
-    console.log('change!');
-    console.log(valveInputs);
 
     valvePopupContent.innerHTML = '';
 
@@ -220,6 +209,16 @@ async function generateAllValveDropdowns(){
 valvePopupForm.addEventListener('submit', e => {
     e.preventDefault();
 
+    addValveInputsToValveAssembly();
+
+    calculateAndDisplayHpuNum();
+
+    valvePopupWrapper.style.display = 'none';
+
+});
+
+const addValveInputsToValveAssembly = () => {
+
     // Update voltage attribute based on the solenoid voltage selection
     valveAssem.voltage = valveInputs.solVolt;
 
@@ -236,11 +235,13 @@ valvePopupForm.addEventListener('submit', e => {
 
         valveAssem.updateStation(stationName, valve.value, flowControl.value, checkValve.value);
     };
+};
 
+// Check if the HPU number is configured, and update based on new valve inputs if so
+const updateHpuDisplay = () => {
+    
     if(partNumDiv.style.display == 'block'){
         calculateAndDisplayHpuNum();
     };
-
-    valvePopupWrapper.style.display = 'none';
-
-});
+    
+};

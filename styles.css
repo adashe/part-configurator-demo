@@ -132,6 +132,13 @@ button.gray{
     background-color: #c2c0c0;
     cursor: pointer;
 }
+button.yellow{
+    background-color: #f7b500;
+}
+button.yellow:hover{
+    background-color: #e7aa05;
+    cursor: pointer;
+}
 .edit{
     width: 150px;
     margin: 5px auto;
@@ -229,7 +236,6 @@ button.gray{
     justify-content: space-around;
 }
 #valve-settings-div div{
-    width: 200px;
     margin: 10px;
     padding: 10px;
 }

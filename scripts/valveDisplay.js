@@ -4,6 +4,8 @@ const valveDets = document.querySelector('#valve-dets');
 const displayValveDets = (valveAssem) => {
 
     let valvePrice = 0;
+    const valveH3 = `<h2>YOUR VALVE SELECTIONS</h2>`;
+    const valveEditBtnHTML = `<button class="button gray edit" id="edit-valves">EDIT VALVES</button>`
 
 
     // End function if no stations are available
@@ -14,7 +16,7 @@ const displayValveDets = (valveAssem) => {
     // Create placeholder dropdowns if no valves were selected during HPU configuration
     }else if(valveAssem.station0.valve == null){
 
-        valveDets.innerHTML = `<h3>YOUR VALVE SELECTIONS</h3>`;
+        valveDets.innerHTML = valveH3 + valveEditBtnHTML;
 
         for(i = 0; i < hpuInputs.numStat; i++){
             let valveHTML = `
@@ -36,7 +38,7 @@ const displayValveDets = (valveAssem) => {
     // Create dropdowns for completed valve assemblies
     }else{
 
-        valveDets.innerHTML = `<h2>YOUR VALVE SELECTIONS</h2>`;
+        valveDets.innerHTML = valveH3 + valveEditBtnHTML;
 
         for(i = 0; i < hpuInputs.numStat; i++){
             let station = `station${i}`;
@@ -64,10 +66,10 @@ const displayValveDets = (valveAssem) => {
         };
     };
 
-    const valveEditBtn = `<button class="button gray edit" id="edit-valves">EDIT VALVES</button>`
+    
     const valveCostHTML = `<h4>ESTIMATED VALVE PRICE: $${valvePrice.toFixed(2)}</h4>`
     
-    valveDets.innerHTML += valveEditBtn + valveCostHTML;
+    valveDets.innerHTML += valveCostHTML;
     
     // Add event handler to valve edit button to open valve popup
     const editValveButton = document.querySelector('#edit-valves');

@@ -167,8 +167,9 @@ class ValveAssembly{
         ];
 
         stationsArr.forEach(station => {
-            if(station.flowControl){
+            if(station.flowControl != null && station.flowControl.code != '0'){
                 count ++;
+                console.log('in valve flow control count:', count, station.flowControl);
             }
         });
 
