@@ -173,7 +173,7 @@ button.yellow:hover{
     display: none;
 }
 
-/* PART NUM DROPDOWN STYLES */
+/* HPU DROPDOWN STYLES */
 .dropdown .trigger{
     border-bottom: 1px solid #ddd;
     padding: 10px;
@@ -196,6 +196,32 @@ button.yellow:hover{
     display: none;
 }
 .dropdown .content.active{
+    display: block;
+}
+
+/* VALVE DROPDOWN STLES */
+.valve-dropdown .trigger{
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+}
+.valve-dropdown .trigger::after{
+    content: ">";
+    display: inline-block;
+    position: absolute;
+    right: 15px;
+    transform: rotate(90deg) scale(0.5, 1);
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+.valve-dropdown .trigger.active::after{
+    transform: rotate(-90deg) scale(0.5, 1);
+}
+.valve-dropdown .content{
+    display: none;
+}
+.valve-dropdown .content.active{
     display: block;
 }
 

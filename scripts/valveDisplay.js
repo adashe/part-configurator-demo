@@ -1,7 +1,7 @@
 const valveDets = document.querySelector('#valve-dets');
 
 
-const displayValveDets = (valveAssem) => {
+const buildValveDisplay = (valveAssem) => {
 
     let valvePrice = 0;
     const valveH3 = `<h2>YOUR VALVE SELECTIONS</h2>`;
@@ -20,7 +20,7 @@ const displayValveDets = (valveAssem) => {
 
         for(i = 0; i < hpuInputs.numStat; i++){
             let valveHTML = `
-                <div class="dropdown">
+                <div class="valve-dropdown">
                     <div class="trigger">STATION ${i}</div>
                     <div class="content">
                         <ul>
@@ -50,7 +50,7 @@ const displayValveDets = (valveAssem) => {
             valvePrice += valve.cost + flowControl.cost + checkValve.cost;
     
             let valveHTML = `
-                <div class="dropdown">
+                <div class="valve-dropdown">
                     <div class="trigger">STATION ${i}</div>
                     <div class="content">
                         <ul>
@@ -81,4 +81,23 @@ const displayValveDets = (valveAssem) => {
 
     });
 
+    addEventHandlersToValveDropdowns();
+
+};
+
+ // Add event handlers to dropdowns
+const addEventHandlersToValveDropdowns = () => {
+    const dropdowns = document.querySelectorAll('.valve-dropdown');
+
+    dropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector('.trigger');
+        const content = dropdown.querySelector('.content');
+    
+        trigger.addEventListener('click', e => {
+            e.preventDefault();
+
+            trigger.classList.toggle('active');
+            content.classList.toggle('active');
+        });
+    });
 };

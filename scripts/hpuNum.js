@@ -5,8 +5,8 @@ const tableWrapper = document.querySelector('.table-wrapper');
 const tableCloseButton = document.querySelector('.table-close');
 
 
-// Display configured HPU part number and details
-const displayHpuNumber = (data) => {
+// Build configured HPU part number and details
+const buildHpuNumberDisplay = (data) => {
     const reservoir = data.reservoir;
     const pump = data.pump;
     const motor = data.motor;
@@ -142,11 +142,7 @@ const displayHpuNumber = (data) => {
 
     partNumDets.innerHTML = reservoirHTML + pumpHTML + motorHTML + manifoldHTML + heatExchangerHTML + hpuCostHTML;
 
-    // Add valve subsection below the HPU section
-    displayValveDets(valveAssem);
-
     addEventHandlersToDropdowns();
-    displayPartNumDiv();
 
 };
 

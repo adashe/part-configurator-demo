@@ -126,7 +126,7 @@ class ValveAssembly{
             checkValve: checkValveArr[0]
         };
 
-        return this;
+        return this[stationName];
     }
 
     // COUNT VALVES WITH L IN THE VALVE CODE TO USE IN HPU CALC
@@ -169,7 +169,6 @@ class ValveAssembly{
         stationsArr.forEach(station => {
             if(station.flowControl != null && station.flowControl.code != '0'){
                 count ++;
-                console.log('in valve flow control count:', count, station.flowControl);
             }
         });
 

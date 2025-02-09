@@ -209,21 +209,30 @@ async function generateAllValveDropdowns(){
 valvePopupForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    addValveInputsToValveAssembly();
-
-    calculateAndDisplayHpuNum();
+    addValveInputsToValveAssembly()
+        .then(reUpdateHpuDiv())
+        .catch(err => console.log(err.message));
 
     valvePopupWrapper.style.display = 'none';
 
 });
 
-const addValveInputsToValveAssembly = () => {
+async function addValveInputsToValveAssembly(){
 
     // Update voltage attribute based on the solenoid voltage selection
     valveAssem.voltage = valveInputs.solVolt;
 
-    // create a stations object for each submitted set of values
+    counter = []
+
     for(i = 0; i < valveInputs.numStat; i++){
+        counter.push(i);
+    };
+
+    console.log('counter', counter);
+
+    // create a stations object for each submitted set of values
+    for(i of counter){
+        console.log(i);
         let stationName = `station${i}`;
         let valveID = `valve${i}`;
         let flowControlID = `flowControl${i}`;
@@ -233,15 +242,8 @@ const addValveInputsToValveAssembly = () => {
         let flowControl = document.getElementById(flowControlID);
         let checkValve = document.getElementById(checkValveID);
 
-        valveAssem.updateStation(stationName, valve.value, flowControl.value, checkValve.value);
+        await valveAssem.updateStation(stationName, valve.value, flowControl.value, checkValve.value);
     };
 };
 
-// Check if the HPU number is configured, and update based on new valve inputs if so
-const updateHpuDisplay = () => {
-    
-    if(partNumDiv.style.display == 'block'){
-        calculateAndDisplayHpuNum();
-    };
-    
-};
+

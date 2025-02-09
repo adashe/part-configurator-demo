@@ -153,15 +153,16 @@ hpuPortSize.addEventListener('change', e => {
 });
 
 
-// SUBMIT HPU INPUT DATA AND GENERATE HPU NUMBER
+// SUBMIT HPU INPUT DATA, GENERATE HPU NUMBER, and SHOW PART NUM DIV
 hpuValveForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    calculateAndDisplayHpuNum();
+    updateHpuDiv();
 
 });
 
-const calculateAndDisplayHpuNum = () => {
+// Calcultate HPU number
+async function calculateHpuNum(){
 
     // Calculate number of valves with 'L' codes
     let numLValves = valveAssem.countLValves();
@@ -170,7 +171,7 @@ const calculateAndDisplayHpuNum = () => {
     let numFlowControl = valveAssem.countFlowControl();
 
     // Calculate hpuNum using form input values
-    hpuAssem.calcHpuNum(
+    let data = await hpuAssem.calcHpuNum(
         hpuInputs.maxPres, 
         hpuInputs.maxFlow, 
         hpuInputs.appType, 
@@ -179,7 +180,25 @@ const calculateAndDisplayHpuNum = () => {
         hpuInputs.portSize,
         numLValves, 
         numFlowControl, 
-        )
-        .then(data => displayHpuNumber(data))
-        .catch(err => console.log(err.message));
+        );
+
+    return data
 };
+
+// Update and display HPU div with HPU number and valve details
+const updateHpuDiv = () => {
+    
+    calculateHpuNum()
+        .then(data => buildHpuNumberDisplay(data))
+        .then(buildValveDisplay(valveAssem))
+        .then(displayPartNumDiv())
+        .catch(err => console.log(err.message));
+    
+};
+
+// Update HPU number display, for when the valve assembly is updated from the HPU page
+const reUpdateHpuDiv = () => {
+    if(partNumDiv.style.display == 'block'){
+        updateHpuDiv();
+    }
+}

@@ -241,6 +241,8 @@ class HpuAssembly{
         // value = needed dissipation - reservoir dissipation 
         const reqDis = minHtDis - this.reservoir.heatDis;
 
+        console.log('req dis', reqDis)
+
         // console.log('reqDis:', reqDis);
 
         // if value is negative, you don't need a heat exchanger ==> select 0 from table
