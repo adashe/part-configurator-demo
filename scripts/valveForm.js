@@ -196,8 +196,7 @@ async function generateAllValveDropdowns(){
 valvePopupForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    addValveInputsToValveAssembly();
-    console.log('in event listener', valveAssem);
+    updateValvesAndHPU();
 
     valvePopupWrapper.style.display = 'none';
 
@@ -245,5 +244,15 @@ async function addValveInputsToValveAssembly(){
     console.log('FLOW CONTROL', valveAssem.numFlwCtrl);
 
 };
+
+async function updateValvesAndHPU(){
+
+    await addValveInputsToValveAssembly();
+
+    if(partNumDiv.style.display == 'block'){
+        await updateHpuDiv();
+        console.log('update!');
+    };
+}
 
 
