@@ -222,16 +222,16 @@ async function addValveInputsToValveAssembly(){
     // Update voltage attribute based on the solenoid voltage selection
     valveAssem.voltage = valveInputs.solVolt;
 
-    counter = []
+    let counter = []
 
     for(i = 0; i < valveInputs.numStat; i++){
         counter.push(i);
     };
 
-    console.log('counter', counter);
+    let promises = [];
 
     // create a stations object for each submitted set of values
-    for(i of counter){
+    for await (i of counter){
         console.log(i);
         let stationName = `station${i}`;
         let valveID = `valve${i}`;
@@ -242,8 +242,12 @@ async function addValveInputsToValveAssembly(){
         let flowControl = document.getElementById(flowControlID);
         let checkValve = document.getElementById(checkValveID);
 
-        await valveAssem.updateStation(stationName, valve.value, flowControl.value, checkValve.value);
+        let promise = valveAssem.updateStation(stationName, valve.value, flowControl.value, checkValve.value);
+    
+        promises.push(promise);
     };
+
+    Promise.all(promises);
 };
 
 
