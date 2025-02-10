@@ -31,6 +31,8 @@ class ValveAssembly{
             checkValve: null
         };
         this.voltage = null;
+        this.numLvalves = 0;
+        this.numFlwCtrl = 0;
     }
 
     reset(){
@@ -149,7 +151,7 @@ class ValveAssembly{
             }
         });
 
-        return count;
+        this.numLvalves = count;
 
     }
 
@@ -172,7 +174,7 @@ class ValveAssembly{
             }
         });
 
-        return count;
+        this.numFlwCtrl = count;
 
     }
     

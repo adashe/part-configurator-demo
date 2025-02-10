@@ -161,46 +161,27 @@ hpuValveForm.addEventListener('submit', e => {
 
 });
 
-// Calcultate HPU number
-async function calculateHpuNum(){
+async function updateHpuDiv(){
 
-    // Calculate number of valves with 'L' codes
-    let numLValves = valveAssem.countLValves();
-
-    // Calculate number of flow controls
-    let numFlowControl = valveAssem.countFlowControl();
-
-    // Calculate hpuNum using form input values
-    let data = await hpuAssem.calcHpuNum(
+    await hpuAssem.calcHpuNum(
         hpuInputs.maxPres, 
         hpuInputs.maxFlow, 
         hpuInputs.appType, 
         hpuInputs.heatExchType,
         hpuInputs.numStat, 
         hpuInputs.portSize,
-        numLValves, 
-        numFlowControl, 
+        valveAssem.numLvalves, 
+        valveAssem.numFlwCtrl,
         );
 
-    return data
-};
+    console.log('hpu built', hpuAssem);
 
-// Update and display HPU div with HPU number and valve details
-// const updateHpuDiv = () => {
+    buildHpuNumberDisplay(hpuAssem);
+    buildValveDisplay(valveAssem);
+    console.log('page built');
     
-//     calculateHpuNum()
-//         .then(data => buildHpuNumberDisplay(data))
-//         .then(buildValveDisplay())
-//         .then(displayPartNumDiv())
-//         .catch(err => console.log(err.message));
-    
-// };
-
-async function updateHpuDiv(){
-
-    let data = await calculateHpuNum();
-    buildHpuNumberDisplay(data);
-    buildValveDisplay();
     displayPartNumDiv();
+    console.log('page div shown');
 
 };
+

@@ -121,20 +121,7 @@ const generateValveDropdown = (data, i) => {
     html += `</select>`;
 
     return html;
-}
-
-
-// NOT WORKING. WHERE DOES THIS GO?? #FIX
-// const createValveOptionEventListeners = () => {
-
-//     const selects = document.querySelectorAll('.valveSelection');
-
-//     selects.forEach(select => {
-//         select.addEventListener('mouseover', e => {
-//             console.log('ouch!');
-//         });
-//     });
-// };
+};
 
 
 // Create individual flow control dropdown
@@ -210,19 +197,13 @@ valvePopupForm.addEventListener('submit', e => {
     e.preventDefault();
 
     addValveInputsToValveAssembly();
-
-    if(partNumDiv.style.display == 'block'){
-        updateHpuDiv();
-    };
+    console.log('in event listener', valveAssem);
 
     valvePopupWrapper.style.display = 'none';
 
 });
 
 async function addValveInputsToValveAssembly(){
-
-    // Update voltage attribute based on the solenoid voltage selection
-    valveAssem.voltage = valveInputs.solVolt;
 
     let counter = []
 
@@ -249,7 +230,20 @@ async function addValveInputsToValveAssembly(){
         promises.push(promise);
     };
 
-    Promise.all(promises);
+    await Promise.all(promises);
+    console.log('in async function: valves added', valveAssem);
+
+    // Update voltage attribute based on the solenoid voltage selection
+    valveAssem.voltage = valveInputs.solVolt;
+
+    // Update number of L valves (for hpu calc)
+    valveAssem.countLValves();
+    console.log('L VALVES', valveAssem.numLvalves);
+
+    // Update number of flow controls (for hpu calc)
+    valveAssem.countFlowControl();
+    console.log('FLOW CONTROL', valveAssem.numFlwCtrl);
+
 };
 
 

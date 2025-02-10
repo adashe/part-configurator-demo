@@ -1,7 +1,7 @@
 const valveDets = document.querySelector('#valve-dets');
 
 
-const buildValveDisplay = () => {
+const buildValveDisplay = (valveAssem) => {
 
     let valvePrice = 0;
     const valveH3 = `<h2>YOUR VALVE SELECTIONS</h2>`;
