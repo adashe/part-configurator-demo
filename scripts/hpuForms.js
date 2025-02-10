@@ -195,10 +195,3 @@ const updateHpuDiv = () => {
         .catch(err => console.log(err.message));
     
 };
-
-// Update HPU number display, for when the valve assembly is updated from the HPU page
-const reUpdateHpuDiv = () => {
-    if(partNumDiv.style.display == 'block'){
-        updateHpuDiv();
-    }
-}

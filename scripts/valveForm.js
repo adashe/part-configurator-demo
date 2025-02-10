@@ -40,7 +40,7 @@ const resetValveInputs = () => {
 };
 
 // Prefill popup if user has already submitted port size, num stat in HPU form
-async function prefillValveSettingsFromHPUInputs(){
+const prefillValveSettingsFromHPUInputs = () => {
 
     // Reset popup when closed and reopened
     valvePopupContent.innerHTML = '';
@@ -209,9 +209,11 @@ async function generateAllValveDropdowns(){
 valvePopupForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    addValveInputsToValveAssembly()
-        .then(reUpdateHpuDiv())
-        .catch(err => console.log(err.message));
+    addValveInputsToValveAssembly();
+
+    if(partNumDiv.style.display == 'block'){
+        updateHpuDiv();
+    };
 
     valvePopupWrapper.style.display = 'none';
 

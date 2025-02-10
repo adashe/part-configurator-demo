@@ -182,7 +182,7 @@
         "img": "assets/placeholder100x100.svg"
     },
     {
-        "code": "SAMPLE-D05-110VAC",
+        "code": "EX-D05-110VAC",
         "p21Model": null,
         "description": "SAMPLE D05 110VAC",
         "cost": 0,
@@ -196,7 +196,7 @@
         "img": "assets/placeholder100x100.svg"
     },
     {
-        "code": "SAMPLE-D05-24VDC",
+        "code": "EX-D05-24VDC",
         "p21Model": null,
         "description": "SAMPLED05 24VDC",
         "cost": 0,
