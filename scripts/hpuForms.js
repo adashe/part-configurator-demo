@@ -186,12 +186,21 @@ async function calculateHpuNum(){
 };
 
 // Update and display HPU div with HPU number and valve details
-const updateHpuDiv = () => {
+// const updateHpuDiv = () => {
     
-    calculateHpuNum()
-        .then(data => buildHpuNumberDisplay(data))
-        .then(buildValveDisplay(valveAssem))
-        .then(displayPartNumDiv())
-        .catch(err => console.log(err.message));
+//     calculateHpuNum()
+//         .then(data => buildHpuNumberDisplay(data))
+//         .then(buildValveDisplay())
+//         .then(displayPartNumDiv())
+//         .catch(err => console.log(err.message));
     
+// };
+
+async function updateHpuDiv(){
+
+    let data = await calculateHpuNum();
+    buildHpuNumberDisplay(data);
+    buildValveDisplay();
+    displayPartNumDiv();
+
 };

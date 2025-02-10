@@ -234,7 +234,7 @@ async function addValveInputsToValveAssembly(){
 
     // create a stations object for each submitted set of values
     for await (i of counter){
-        console.log(i);
+        console.log('counter', i);
         let stationName = `station${i}`;
         let valveID = `valve${i}`;
         let flowControlID = `flowControl${i}`;
