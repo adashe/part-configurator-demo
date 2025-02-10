@@ -3,8 +3,8 @@
         "code": "30",
         "p21Model": "LAD03P012S/S",
         "description": "MANIFOLD D03 SAE PARALLEL 1 STA. W/RELIEF",
-        "hCost": 0,
-        "vCost": 0,
+        "hCost": 0.00,
+        "vCost": 0.00,
         "valvePattern": "D03",
         "material": "AL 6061-T6",
         "numStations": 0
@@ -73,8 +73,8 @@
         "code": "50",
         "p21Model": "LAD05P01S/S",
         "description": "MANIFOLD D05 SAE PARALLEL 1 STA. W/RELIEF ",
-        "hCost": 0,
-        "vCost": 0,
+        "hCost": 0.00,
+        "vCost": 0.00,
         "valvePattern": "D05",
         "material": "AL 6061-T6",
         "numStations": 1
