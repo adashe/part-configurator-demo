@@ -69,7 +69,6 @@ const buildHpuNumberDisplay = (data) => {
                     <li>Mount Type: ${pump.mountType}</li> 
                     <li>Price: $${pumpCost}</li>
                 </ul>
-                
             </div>
         </div>
         `;
@@ -84,7 +83,6 @@ const buildHpuNumberDisplay = (data) => {
                     <li>Output HP: ${motor.outputHP}</li>
                     <li>Price: $${motorCost}</li>
                 </ul>
-                
             </div>
         </div>
     `;
@@ -99,7 +97,6 @@ const buildHpuNumberDisplay = (data) => {
                     <li>Number of Stations: ${manifold.numStations}</li>
                     <li>Price: $${manifoldCost}</li>
                 </ul>
-                
             </div>
         </div>
     `;
@@ -113,10 +110,9 @@ const buildHpuNumberDisplay = (data) => {
                 <div class="trigger">HEAT EXCHANGER ${heatExchanger.code}</div>
                 <div class="content">        
                     <ul>
-                        <li>Description: ${heatExchanger.description}</li>
+                        <li>Description: Heat exchanger not required</li>
                         <li>Price: $${heatExchangerCost}</li>
-                    </ul>
-                    
+                    </ul> 
                 </div>
             </div>
         `;
@@ -132,7 +128,6 @@ const buildHpuNumberDisplay = (data) => {
                         <li>Heat Dis: ${heatExchanger.heatDis}</li>
                         <li>Price: $${heatExchangerCost}</li>
                     </ul>
-                    
                 </div>
             </div>
         `;
