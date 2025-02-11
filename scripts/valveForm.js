@@ -124,20 +124,6 @@ const generateValveDropdown = (data, i) => {
     return html;
 };
 
-const addEventListenerToValveDropdowns = () => {
-    const valveSelects = document.querySelectorAll('.valve');
-
-    valveSelects.forEach(select => {
-        select.addEventListener('mouseover', e => {
-            let children = e.target.children;
-
-            for(child of children){
-                console.log(child.value);
-            };
-        });
-    });
-};
-
 // Create individual flow control dropdown
 const generateFlowControlDropdown = (data, i) => {
 
@@ -202,8 +188,6 @@ async function generateAllValveDropdowns(){
             valvePopupContent.innerHTML += stationHtml;
 
         };
-
-        // addEventListenerToValveDropdowns();
 
     };
 

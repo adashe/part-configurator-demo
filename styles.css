@@ -133,7 +133,7 @@ button.gray{
     cursor: pointer;
 }
 button.yellow{
-    background-color: #f7b500;
+    background-color: #f6cb54;
 }
 button.yellow:hover{
     background-color: #e7aa05;
@@ -279,6 +279,42 @@ button.yellow:hover{
 }
 #valve-popup-content{
     text-align: left;
+}
+
+/* VALVE IMAGES STYLES */
+.valve-img-wrapper{
+    display: none;
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+.valve-img-div{
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 20px;
+    background: white;
+    position: relative;
+    border: none;
+    border-radius: 5px;
+}
+.valve-img-div h2{
+    color: #72d1d4;
+}
+.valve-img-close{
+    position: absolute;
+    font-size: 20px;
+    top: 5px;
+    right: 15px;
+    cursor: pointer;
+}
+img{
+    width: 260px;
 }
 
 /* ERROR POPUP STYLES */

@@ -11,7 +11,7 @@
         "springPosition": null,
         "center": null,
         "voltage": "110VAC",
-        "img": "assets/placeholder100x100.svg"
+        "img": null
     },
     {
         "code": "V-33A-110",
@@ -25,7 +25,7 @@
         "springPosition": "CENTER",
         "center": "CLOSED",
         "voltage": "110VAC",
-        "img": "assets/placeholder100x100.svg"
+        "img": "assets/placeholder110VAC.webp"
     },
     {
         "code": "V-33L-110",
@@ -39,7 +39,7 @@
         "springPosition": "CENTER",
         "center": "P-T",
         "voltage": "110VAC",
-        "img": "assets/placeholder100x100.svg"
+        "img": "assets/placeholder110VAC.webp"
     },
     {
         "code": "V-33F-110",
@@ -53,7 +53,7 @@
         "springPosition": "CENTER",
         "center": "A&B TO T",
         "voltage": "110VAC",
-        "img": "assets/placeholder100x100.svg"
+        "img": "assets/placeholder110VAC.webp"
     },
     {
         "code": "V-33B-110",
@@ -67,7 +67,7 @@
         "springPosition": "CENTER",
         "center": "ALL OPEN",
         "voltage": "110VAC",
-        "img": "assets/placeholder100x100.svg"
+        "img": "assets/placeholder110VAC.webp"
     },
     {
         "code": "V-31A-110",
@@ -81,7 +81,7 @@
         "springPosition": "OFFSET",
         "center": "CLOSED",
         "voltage": "110VAC",
-        "img": "assets/placeholder100x100.svg"
+        "img": "assets/placeholder110VAC.webp"
     },
     {
         "code": "V-31B-110",
@@ -95,7 +95,7 @@
         "springPosition": "OFFSET",
         "center": "OPEN",
         "voltage": "110VAC",
-        "img": "assets/placeholder100x100.svg"
+        "img": "assets/placeholder110VAC.webp"
     },
     {
         "code": "V-33A-24",
@@ -109,7 +109,7 @@
         "springPosition": "CENTER",
         "center": "CLOSED",
         "voltage": "24VDC",
-        "img": "assets/placeholder100x100.svg"
+        "img": "assets/placeholder24VDC.avif"
     },
     {
         "code": "V-33L-24",
@@ -123,7 +123,7 @@
         "springPosition": "CENTER",
         "center": "P-T",
         "voltage": "24VDC",
-        "img": "assets/placeholder100x100.svg"
+        "img": "assets/placeholder24VDC.avif"
     },
     {
         "code": "V-33F-24",
@@ -137,7 +137,7 @@
         "springPosition": "CENTER",
         "center": "A&B TO T",
         "voltage": "24VDC",
-        "img": "assets/placeholder100x100.svg"
+        "img": "assets/placeholder24VDC.avif"
     },
     {
         "code": "V-33B-24",
@@ -151,7 +151,7 @@
         "springPosition": "CENTER",
         "center": "OPEN",
         "voltage": "24VDC",
-        "img": "assets/placeholder100x100.svg"
+        "img": "assets/placeholder24VDC.avif"
     },
     {
         "code": "V-31A-24",
@@ -165,7 +165,7 @@
         "springPosition": "OFFSET",
         "center": "CLOSED",
         "voltage": "24VDC",
-        "img": "assets/placeholder100x100.svg"
+        "img": "assets/placeholder24VDC.avif"
     },
     {
         "code": "V-31B-24",
@@ -179,7 +179,7 @@
         "springPosition": "OFFSET",
         "center": "OPEN",
         "voltage": "24VDC",
-        "img": "assets/placeholder100x100.svg"
+        "img": "assets/placeholder24VDC.avif"
     },
     {
         "code": "EX-D05-110VAC",
@@ -193,7 +193,7 @@
         "springPosition": null,
         "center": null,
         "voltage": "110VAC",
-        "img": "assets/placeholder100x100.svg"
+        "img": "assets/placeholder24VDC.avif"
     },
     {
         "code": "EX-D05-24VDC",
@@ -207,6 +207,6 @@
         "springPosition": null,
         "center": null,
         "voltage": "24VDC",
-        "img": "assets/placeholder100x100.svg"
+        "img": "assets/placeholder24VDC.avif"
     }
 ]
