@@ -6,7 +6,6 @@ const valveImgForm = document.querySelector('#valve-img-form');
 
 valveImageButton.addEventListener('click', e => {
     e.preventDefault();
-
     displayValveImg();
 })
 

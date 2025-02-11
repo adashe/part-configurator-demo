@@ -21,6 +21,7 @@ const displayValvePopup = () => {
 valvePopupCloseButton.addEventListener('click', e => {
     e.preventDefault();
     solenoidVoltage.value = '';
+    resetValveInputs();
     valvePopupWrapper.style.display = 'none';
 });
 
