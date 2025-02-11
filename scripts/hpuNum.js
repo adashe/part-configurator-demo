@@ -12,7 +12,7 @@ const buildHpuNumberDisplay = (data) => {
     const motor = data.motor;
     const manifold = data.manifold;
     const heatExchanger = data.heatExchanger;
-    const totalCost = hpuAssem.calcCost();
+    const totalCost = data.totalCost;
 
     // Determine individual item cost based on V or H reservoir
     let reservoirCost = null;

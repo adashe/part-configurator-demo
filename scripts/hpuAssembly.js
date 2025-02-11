@@ -5,6 +5,7 @@ class HpuAssembly{
         this.motor = null;
         this.manifold = null;
         this.heatExchanger = null;
+        this.totalCost = 0;
     }
 
     reset(){
@@ -13,6 +14,7 @@ class HpuAssembly{
         this.motor = null;
         this.manifold = null;
         this.heatExchanger = null;
+        this.totalCost = 0;
 
         return this;
     }
@@ -69,7 +71,7 @@ class HpuAssembly{
         }
 
         const minCap = this.pump.gpm1750;
-        // console.log('minCap:', minCap);
+        console.log('minCap:', minCap);
 
         let result = data.filter(reservoir => reservoir.capacity >= minCap);
 
@@ -98,14 +100,14 @@ class HpuAssembly{
         const rotationSpeed = 1750;
         const minDis = 231 * maxFl / rotationSpeed;
 
-        // console.log('minDis:', minDis);
+        console.log('minDis:', minDis);
 
         let result = [];
 
         if(maxPres >= 1500 || appType == 'pressure-holding'){
-            result = data.filter(pump => pump.type == "gear" && pump.dispCID >= minDis);
+            result = data.filter(pump => pump.type == "piston" && pump.dispCID >= minDis);
         } else {
-            result = data.filter(pump => pump.type == 'piston' && pump.dispCID >= minDis);
+            result = data.filter(pump => pump.type == 'gear' && pump.dispCID >= minDis);
         };
 
         if(result.length == 0){
@@ -135,8 +137,8 @@ class HpuAssembly{
         }
 
         // minHIP includes 10% fudge factor 
-        const minHP = (maxPres * maxFl / 1714 * 0.85) - .1;
-        // console.log('minHP:', minHP);
+        const minHP = ((maxPres * maxFl) / (1714 * 0.85)) - .1;
+        console.log('minHP:', minHP);
 
         let result = [];
 
@@ -196,7 +198,7 @@ class HpuAssembly{
         return this.manifold;
     }
 
-    async calcHeatExchanger(maxPres, maxFl, htExType, numLValves, lenFlowCtrl){
+    async calcHeatExchanger(maxPres, maxFl, htExType, numLValves, numFlowCtrl){
         const data = await this.getHeatExchangerData();
 
         // calculation //
@@ -213,8 +215,8 @@ class HpuAssembly{
         // ADDER 1 = #Lspools * L spool multiplier (above)
         const adder1 = numLValves * -.1;
 
-        console.log('l valves', numLValves);
-        console.log('len flow control', lenFlowCtrl);
+        console.log('num l valves', numLValves);
+        console.log('num flow control', numFlowCtrl);
 
         // Calculate adder 2
         // ADDER 2 = if max pressure > 2000, use 5%, if max pressure > 1000 use 2%, if neither use 0%
@@ -230,18 +232,18 @@ class HpuAssembly{
 
         // Calculate adder 3
         // ADDER 3 = total num flow controls * flow control adder value (above)
-        const adder3 = lenFlowCtrl * .02;
+        const adder3 = numFlowCtrl * .02;
 
         // needed dissipation = minHP (from motor calc) * (base multiplier + ADDER1 + ADDER2 + ADDER3) 
         const minHP = (maxPres * maxFl / 1714 * 0.85);
         const baseMult = .15;
         const minHtDis = minHP * (baseMult + adder1 + adder2 + adder3);
+        console.log('min ht dis', minHtDis);
 
         // reservoir heat dissipation (reservoir table)
         // value = needed dissipation - reservoir dissipation 
         const reqDis = minHtDis - this.reservoir.heatDis;
-
-        console.log('req dis', reqDis)
+        console.log('req dis (min ht dis - reservoir ht dis)', reqDis)
 
         // console.log('reqDis:', reqDis);
 
@@ -281,7 +283,7 @@ class HpuAssembly{
 
     calcCost(){
         let prices = [];
-        let totalCost = 0;
+        let cost = 0;
 
         if(this.reservoir.code.includes('H')){
             prices = [this.pump.hCost, this.motor.hCost, this.manifold.hCost, this.heatExchanger.hCost];
@@ -293,22 +295,25 @@ class HpuAssembly{
             console.log('Invalid configuration.');
             displayErrorMsg('Invalid vertical or horizontal configuration.');
         } else {
-            totalCost = prices.reduce((x, y) => x + y, totalCost);
+            cost = prices.reduce((x, y) => x + y, cost);
         }
 
         // console.log('prices', prices);
         // console.log('total cost', totalCost);
 
-        return totalCost.toFixed(2);
+        this.totalCost = cost.toFixed(2);
+
+        return this.totalCost;
     }
 
-    async calcHpuNum(maxPres, maxFl, appType, htExType, numSt, portSz, numLValves, lenFlowCtrl, ){
+    async calcHpuNum(maxPres, maxFl, appType, htExType, numSt, portSz, numLValves, numFlowCtrl, ){
 
         await this.calcPump(maxPres, maxFl, appType);
         await this.calcMotor(maxPres, maxFl);
         await this.calcReservoir(maxFl);
         await this.calcManifold(numSt, portSz);
-        await this.calcHeatExchanger(maxPres, maxFl, htExType, numLValves, lenFlowCtrl);
+        await this.calcHeatExchanger(maxPres, maxFl, htExType, numLValves, numFlowCtrl);
+        this.calcCost();
 
         return this;
     }

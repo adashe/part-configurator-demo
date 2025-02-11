@@ -20,6 +20,7 @@ const displayValvePopup = () => {
 // Valve popup close button
 valvePopupCloseButton.addEventListener('click', e => {
     e.preventDefault();
+    solenoidVoltage.value = '';
     valvePopupWrapper.style.display = 'none';
 });
 
@@ -230,18 +231,15 @@ async function addValveInputsToValveAssembly(){
     };
 
     await Promise.all(promises);
-    console.log('in async function: valves added', valveAssem);
 
     // Update voltage attribute based on the solenoid voltage selection
     valveAssem.voltage = valveInputs.solVolt;
 
     // Update number of L valves (for hpu calc)
     valveAssem.countLValves();
-    console.log('L VALVES', valveAssem.numLvalves);
 
     // Update number of flow controls (for hpu calc)
     valveAssem.countFlowControl();
-    console.log('FLOW CONTROL', valveAssem.numFlwCtrl);
 
 };
 
@@ -251,7 +249,6 @@ async function updateValvesAndHPU(){
 
     if(partNumDiv.style.display == 'block'){
         await updateHpuDiv();
-        console.log('update!');
     };
 }
 

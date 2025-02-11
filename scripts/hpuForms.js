@@ -86,8 +86,8 @@ const resetHpuInputs = () => {
 hpuSysParamsForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    hpuInputs.maxPres = hpuSysParamsForm.maxPressure.value;
-    hpuInputs.maxFlow = hpuSysParamsForm.maxFlow.value;
+    hpuInputs.maxPres = parseInt(hpuSysParamsForm.maxPressure.value);
+    hpuInputs.maxFlow = parseInt(hpuSysParamsForm.maxFlow.value);
     hpuInputs.appType = hpuSysParamsForm.applicationType.value;
     hpuInputs.heatExchType = hpuSysParamsForm.heatExchType.value;
 
@@ -140,8 +140,7 @@ const generateHpuNumberStationsDropdown = () => {
     // Add event listener to reset valve options form if number of stations is changed
     hpuNumberStations.addEventListener('change', e => {
         e.preventDefault();
-        hpuValveForm.reset();
-    
+        solenoidVoltage.value = '';
     });
 };
 
@@ -149,7 +148,6 @@ const generateHpuNumberStationsDropdown = () => {
 hpuPortSize.addEventListener('change', e => {
     e.preventDefault();
     generateHpuNumberStationsDropdown();
-    hpuValveForm.reset();
 });
 
 
@@ -174,14 +172,9 @@ async function updateHpuDiv(){
         valveAssem.numFlwCtrl,
         );
 
-    console.log('hpu built', hpuAssem);
-
     buildHpuNumberDisplay(hpuAssem);
     buildValveDisplay(valveAssem);
-    console.log('page built');
-    
     displayPartNumDiv();
-    console.log('page div shown');
 
 };
 
