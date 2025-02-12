@@ -5,7 +5,7 @@ class HpuAssembly{
         this.motor = null;
         this.manifold = null;
         this.heatExchanger = null;
-        this.totalCost = 0;
+        this.totalCost = null;
     }
 
     reset(){
@@ -14,7 +14,7 @@ class HpuAssembly{
         this.motor = null;
         this.manifold = null;
         this.heatExchanger = null;
-        this.totalCost = 0;
+        this.totalCost = null;
 
         return this;
     }
@@ -70,7 +70,7 @@ class HpuAssembly{
             return this.reservoir;
         }
 
-        const minCap = this.pump.gpm1750;
+        const minCap = this.pump.gpm1750 * 2.5;
         console.log('minCap:', minCap);
 
         let result = data.filter(reservoir => reservoir.capacity >= minCap);
@@ -201,6 +201,11 @@ class HpuAssembly{
     async calcHeatExchanger(maxPres, maxFl, htExType, numLValves, numFlowCtrl){
         const data = await this.getHeatExchangerData();
 
+        if(htExType == 'none'){
+            this.heatExchanger = data[0];
+            return;
+        };
+
         // calculation //
 
         // constants
@@ -217,27 +222,33 @@ class HpuAssembly{
 
         console.log('num l valves', numLValves);
         console.log('num flow control', numFlowCtrl);
+        console.log('adder 1', adder1);
 
         // Calculate adder 2
         // ADDER 2 = if max pressure > 2000, use 5%, if max pressure > 1000 use 2%, if neither use 0%
         let adder2 = 0;
 
-        if(maxPres > 2000){
+        if(maxPres >= 2000){
             adder2 = .05;
-        } else if (maxPres > 1000){
+        } else if (maxPres >= 1000){
             adder2 = .02;
         } else {
             adder2 = 0;
         }
 
+        console.log('adder 2', adder2);
+
         // Calculate adder 3
         // ADDER 3 = total num flow controls * flow control adder value (above)
         const adder3 = numFlowCtrl * .02;
+        console.log('adder 3', adder3);
 
         // needed dissipation = minHP (from motor calc) * (base multiplier + ADDER1 + ADDER2 + ADDER3) 
-        const minHP = (maxPres * maxFl / 1714 * 0.85);
+        const minHP = ((maxPres * maxFl) / (1714 * 0.85));
+        console.log('min HP in HE', minHP);
         const baseMult = .15;
-        const minHtDis = minHP * (baseMult + adder1 + adder2 + adder3);
+        const allAdders = baseMult + adder1 + adder2 + adder3;
+        const minHtDis = minHP * allAdders;
         console.log('min ht dis', minHtDis);
 
         // reservoir heat dissipation (reservoir table)
@@ -286,22 +297,22 @@ class HpuAssembly{
         let cost = 0;
 
         if(this.reservoir.code.includes('H')){
-            prices = [this.pump.hCost, this.motor.hCost, this.manifold.hCost, this.heatExchanger.hCost];
+            prices = [this.reservoir.hCost, this.pump.hCost, this.motor.hCost, this.manifold.hCost, this.heatExchanger.hCost];
         } else if (this.reservoir.code.includes('V')){
-            prices = [this.pump.vCost, this.motor.vCost, this.manifold.vCost, this.heatExchanger.vCost];
+            prices = [this.reservoir.vCost, this.pump.vCost, this.motor.vCost, this.manifold.vCost, this.heatExchanger.vCost];
         };
 
         if(prices.includes(null)){
             console.log('Invalid configuration.');
             displayErrorMsg('Invalid vertical or horizontal configuration.');
+            this.totalCost = null;
         } else {
             cost = prices.reduce((x, y) => x + y, cost);
-        }
+            this.totalCost = cost.toFixed(2);
+        };
 
         // console.log('prices', prices);
         // console.log('total cost', totalCost);
-
-        this.totalCost = cost.toFixed(2);
 
         return this.totalCost;
     }

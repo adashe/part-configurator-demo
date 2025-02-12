@@ -2,35 +2,35 @@
     {
         "code": "30H",
         "capacity": 30,
-        "heatDis": 0.81,
+        "heatDis": 0.64,
         "hCost": 991.04,
         "vCost": null
     },
     {
         "code": "50H",
         "capacity": 50,
-        "heatDis": 1.5,
+        "heatDis": 1.2,
         "hCost": 1302.83,
         "vCost": null
     },
     {
         "code": "80H",
         "capacity": 80,
-        "heatDis": 2,
+        "heatDis": 1.6,
         "hCost": 1729.17,
         "vCost": null
     },
     {
         "code": "10V",
         "capacity": 10,
-        "heatDis": 0.54,
+        "heatDis": 0.43,
         "hCost": null,
         "vCost": 878.51
     },
     {
         "code": "20V",
         "capacity": 20,
-        "heatDis": 0.7,
+        "heatDis": 0.56,
         "hCost": null,
         "vCost": 953.64
     }

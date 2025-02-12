@@ -110,7 +110,7 @@ const buildHpuNumberDisplay = (data) => {
                 <div class="trigger">HEAT EXCHANGER ${heatExchanger.code}</div>
                 <div class="content">        
                     <ul>
-                        <li>Description: Heat exchanger not required</li>
+                        <li>Description: No heat exchanger</li>
                         <li>Price: $${heatExchangerCost}</li>
                     </ul> 
                 </div>

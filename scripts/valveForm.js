@@ -117,7 +117,7 @@ const generateValveDropdown = (data, i) => {
                 `;
 
     data.forEach(valve => {
-        html += `<option value=${valve.code}>${valve.code}</option>`;
+        html += `<option value=${valve.code}>${valve.description}</option>`;
     });
 
     html += `</select>`;
@@ -136,7 +136,7 @@ const generateFlowControlDropdown = (data, i) => {
                 `;
 
     data.forEach(flowControl => {
-        html += `<option value=${flowControl.code}>${flowControl.code}</option>`;
+        html += `<option value=${flowControl.code}>${flowControl.description}</option>`;
     });
 
     html += `</select>`;
@@ -157,7 +157,7 @@ const generateCheckValveDropdown = (data, i) => {
         if(checkValve.code == 0){
             html += `<option value="0">No check valve</option>`
         } else {
-            html += `<option value=${checkValve.code}>${checkValve.code}</option>`;
+            html += `<option value=${checkValve.code}>${checkValve.description}</option>`;
         }
     });
 
@@ -215,7 +215,6 @@ async function addValveInputsToValveAssembly(){
 
     // create a stations object for each submitted set of values
     for await (i of counter){
-        console.log('counter', i);
         let stationName = `station${i}`;
         let valveID = `valve${i}`;
         let flowControlID = `flowControl${i}`;

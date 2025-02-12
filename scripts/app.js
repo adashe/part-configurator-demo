@@ -31,7 +31,7 @@ detailsButtons.forEach((button) => {
     button.addEventListener('click', e => {
         e.preventDefault();
         displayPartNumDiv();
-    })
+    });
 });
 
 // Reset page to component form buttons

@@ -172,9 +172,11 @@ async function updateHpuDiv(){
         valveAssem.numFlwCtrl,
         );
 
-    buildHpuNumberDisplay(hpuAssem);
-    buildValveDisplay(valveAssem);
-    displayPartNumDiv();
+    if(hpuAssem.totalCost != null){
+        buildHpuNumberDisplay(hpuAssem);
+        buildValveDisplay(valveAssem);
+        displayPartNumDiv();    
+    };
 
 };
 
