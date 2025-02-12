@@ -21,12 +21,12 @@ const buildValveDisplay = (valveAssem) => {
         for(i = 0; i < hpuInputs.numStat; i++){
             let valveHTML = `
                 <div class="valve-dropdown">
-                    <div class="trigger">STATION ${i}</div>
+                    <div class="trigger">STATION ${i + 1}: None Selected</div>
                     <div class="content">
                         <ul>
-                            <li>Valve Code: None Selected</li>
-                            <li>Flow Control Code: None Selected</li>
-                            <li>Check Valve Code: None Selected</li>
+                            <li>Valve: None Selected</li>
+                            <li>Flow Control: None Selected</li>
+                            <li>Check Valve: None Selected</li>
                         </ul>
                     </div>
                 </div>
@@ -51,12 +51,24 @@ const buildValveDisplay = (valveAssem) => {
     
             let valveHTML = `
                 <div class="valve-dropdown">
-                    <div class="trigger">STATION ${i}</div>
+                    <div class="trigger">STATION ${i + 1}: ${valve.code}-${flowControl.code}-${checkValve.code}</div>
                     <div class="content">
                         <ul>
-                            <li>Valve Code: ${valve.code} Price: $${valve.cost}</li>
-                            <li>Flow Control Code: ${flowControl.code} Price: $${flowControl.cost}</li>
-                            <li>Check Valve Code: ${checkValve.code} Price: $${checkValve.cost}</li>
+                            <li>Valve: ${valve.code}</li>
+                                <ul>
+                                    <li>Description: ${valve.description}</li>
+                                    <li>Price: $${valve.cost.toFixed(2)}</li>
+                                </ul>
+                            <li>Flow Control: ${flowControl.code}</li>
+                                <ul>
+                                    <li>Description: ${flowControl.description}</li>
+                                    <li>Price: $${flowControl.cost.toFixed(2)}</li>
+                                </ul>
+                            <li>Check Valve: ${checkValve.code}</li>
+                                <ul>
+                                    <li>Description: ${checkValve.description}</li>
+                                    <li>Price: $${checkValve.cost.toFixed(2)}</li>
+                                </ul>
                         </ul>
                     </div>
                 </div>
@@ -67,7 +79,7 @@ const buildValveDisplay = (valveAssem) => {
     };
 
     
-    const valveCostHTML = `<h4>ESTIMATED VALVE PRICE: $${valvePrice.toFixed(2)}</h4>`
+    const valveCostHTML = `<h4>VALVES LIST PRICE: $${valvePrice.toFixed(2)}</h4>`
     
     valveDets.innerHTML += valveCostHTML;
     

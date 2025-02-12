@@ -23,17 +23,17 @@ const buildHpuNumberDisplay = (data) => {
 
     const filterCost = () => {
         if(reservoir.code.includes('H')){
-            reservoirCost = reservoir.hCost;
-            pumpCost = pump.hCost;
-            motorCost = motor.hCost;
-            manifoldCost = manifold.hCost;
-            heatExchangerCost = heatExchanger.hCost;
+            reservoirCost = reservoir.hCost.toFixed(2);
+            pumpCost = pump.hCost.toFixed(2);
+            motorCost = motor.hCost.toFixed(2);
+            manifoldCost = manifold.hCost.toFixed(2);
+            heatExchangerCost = heatExchanger.hCost.toFixed(2);
         } else if (reservoir.code.includes('V')){
-            reservoirCost = reservoir.vCost;
-            pumpCost = pump.vCost;
-            motorCost = motor.vCost;
-            manifoldCost = manifold.vCost;
-            heatExchangerCost = heatExchanger.vCost;
+            reservoirCost = reservoir.vCost.toFixed(2);
+            pumpCost = pump.vCost.toFixed(2);
+            motorCost = motor.vCost.toFixed(2);
+            manifoldCost = manifold.vCost.toFixed(2);
+            heatExchangerCost = heatExchanger.vCost.toFixed(2);
         };
     };
 
@@ -47,11 +47,11 @@ const buildHpuNumberDisplay = (data) => {
     // Display part number details on part number page
     const reservoirHTML = `
         <div class="dropdown">
-            <div class="trigger">RESERVOIR ${reservoir.code}</div>
+            <div class="trigger">RESERVOIR: ${reservoir.code}</div>
             <div class="content">        
                 <ul>
                     <li>Capacity: ${reservoir.capacity}</li>
-                    <li>Heat Dis: ${reservoir.heatDis}</li>
+                    <li>Heat Dissipation: ${reservoir.heatDis}</li>
                     <li>Price: $${reservoirCost}</li>
                 </ul>
             </div>
@@ -60,7 +60,7 @@ const buildHpuNumberDisplay = (data) => {
 
     const pumpHTML = `        
         <div class="dropdown">
-            <div class="trigger">PUMP ${pump.code}</div>
+            <div class="trigger">PUMP: ${pump.code}</div>
             <div class="content">        
                 <ul>
                     <li>Part Number: ${pump.partNum}</li>
@@ -75,7 +75,7 @@ const buildHpuNumberDisplay = (data) => {
 
     const motorHTML = `
         <div class="dropdown">
-            <div class="trigger">MOTOR ${motor.code}</div>
+            <div class="trigger">MOTOR: ${motor.code}</div>
             <div class="content">        
                 <ul>
                     <li>Part Number: ${motor.partNum}</li>
@@ -89,7 +89,7 @@ const buildHpuNumberDisplay = (data) => {
 
     const manifoldHTML = `
         <div class="dropdown">
-            <div class="trigger">MANIFOLD ${manifold.code}</div>
+            <div class="trigger">MANIFOLD: ${manifold.code}</div>
             <div class="content">        
                 <ul>
                     <li>Description: ${manifold.description}</li>
@@ -107,7 +107,7 @@ const buildHpuNumberDisplay = (data) => {
     if(heatExchanger.code == 0){
          heatExchangerHTML = `
             <div class="dropdown">
-                <div class="trigger">HEAT EXCHANGER ${heatExchanger.code}</div>
+                <div class="trigger">HEAT EXCHANGER: ${heatExchanger.code}</div>
                 <div class="content">        
                     <ul>
                         <li>Description: No heat exchanger</li>
@@ -119,13 +119,13 @@ const buildHpuNumberDisplay = (data) => {
     } else {
         heatExchangerHTML = `
             <div class="dropdown">
-                <div class="trigger">HEAT EXCHANGER ${heatExchanger.code}</div>
+                <div class="trigger">HEAT EXCHANGER: ${heatExchanger.code}</div>
                 <div class="content">        
                     <ul>
                         <li>Description: ${heatExchanger.description}</li>
                         <li>Type: ${heatExchanger.type}</li>
                         <li>Max Flow: ${heatExchanger.maxFlow}</li>
-                        <li>Heat Dis: ${heatExchanger.heatDis}</li>
+                        <li>Heat Dissipation: ${heatExchanger.heatDis}</li>
                         <li>Price: $${heatExchangerCost}</li>
                     </ul>
                 </div>
@@ -133,7 +133,7 @@ const buildHpuNumberDisplay = (data) => {
         `;
     };
 
-    const hpuCostHTML = `<h4>ESTIMATED HPU PRICE: $${totalCost}</h4>`;
+    const hpuCostHTML = `<h4>HPU LIST PRICE: $${totalCost}</h4>`;
 
     partNumDets.innerHTML = reservoirHTML + pumpHTML + motorHTML + manifoldHTML + heatExchangerHTML + hpuCostHTML;
 

@@ -184,7 +184,7 @@ async function generateAllValveDropdowns(){
             let flowControlHtml = generateFlowControlDropdown(flowControlData, i);
             let checkValveHtml = generateCheckValveDropdown(checkValveData, i);
 
-            let stationHtml = `<div id="station${i}">Station ${i}: ${valveHtml}${flowControlHtml}${checkValveHtml}</div>`
+            let stationHtml = `<div id="station${i}">Station ${i + 1}: ${valveHtml}${flowControlHtml}${checkValveHtml}</div>`
 
             valvePopupContent.innerHTML += stationHtml;
 

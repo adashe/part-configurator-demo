@@ -2,7 +2,7 @@
     {
         "code": "0",
         "p21Model": null,
-        "description": null,
+        "description": "NO VALVE",
         "cost": 0.00,
         "valvePattern": null,
         "numSolenoids": 0,
