@@ -58,6 +58,7 @@ li h5{
     flex-direction: column;
     background: white;
     max-width: 430px;
+    min-width: 250px;
     margin: 20px auto;
     padding: 20px;
     border: none;
@@ -156,10 +157,10 @@ button.yellow:hover{
 }
 .edit{
     width: 100px;
-    margin: 5px auto;
+    margin: 5px;
     padding: 5px;
     background-color: #d4d4d4;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 /* DIV STYLES */
@@ -277,6 +278,7 @@ button.yellow:hover{
 #valve-settings-div{
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 #valve-settings-div div{
     margin: 10px;
