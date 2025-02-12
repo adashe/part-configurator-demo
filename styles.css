@@ -15,7 +15,7 @@ h2{
     color: #434343;
     margin: 10px;
 }
-h2#suncoast{
+h2.suncoast{
     color: #72d1d4;
     margin-top: 30px;
 }
@@ -55,6 +55,7 @@ li h5{
 }
 #container{
     display: flex;
+    /* display: none; */
     flex-direction: column;
     background: white;
     max-width: 430px;
@@ -70,6 +71,39 @@ li h5{
     margin: 10px;
     padding: 10px;
 }
+
+/* PDF STYLES */
+#container-pdf{
+    display: none;
+    background: white;
+    width: 800px;
+    height: 2000px;
+    margin: 20px auto;
+    padding: 80px;
+}
+h3.contact {
+    text-align: left;
+    margin: auto 60px;
+}
+#container-pdf h3{
+    text-align: left;
+    margin: auto 30px;
+}
+#container-pdf h4{
+    text-align: left;
+    margin: auto 30px;
+    font-size: 20px;
+    color: #434343;
+    border: 2px solid;
+    padding: 10px;
+}
+#container-pdf ul{
+    margin: 5px auto;
+    list-style-type: none;
+    padding-left: 30px;
+    padding-bottom: 10px;
+}
+
 
 /* FORM STYLES */
 form{

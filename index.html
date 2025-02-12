@@ -12,7 +12,7 @@
 <body>
 
     <div id="container">
-        <h2 id="suncoast">SUN COAST CONTROLS</h2>
+        <h2 class="suncoast">SUN COAST CONTROLS</h2>
         <h1>Part Configurator</h1>
 
         <!-- COMPONENT DIV -->
@@ -137,7 +137,7 @@
             <div id="valve-dets"></div>
 
             <button class="button" id="email">EMAIL TO SUN COAST</button>
-            <button class="button" id="pdf">SAVE AS PDF</button>
+            <button class="button pdf">SAVE AS PDF</button>
             <button class="button gray restart">RESTART</button>
         </div>
 
@@ -244,6 +244,20 @@
         </div>
     </div>
 
+    <!-- PDF DIV -->
+    <div id="container-pdf">
+        <h2 class="suncoast">SUN COAST CONTROLS</h2>
+        <h1>Part Configurator</h1>
+        <div id="pdf-contact-div"></div>
+
+        <h2 class="part-num-disp">N-########</h2>
+
+        <h2>HPU COMPONENTS</h2>
+        <ul id="pdf-hpu-dets"></ul>
+        <h2>VALVE COMPONENTS</h2>
+        <ul id="pdf-valve-dets"></ul>
+    </div>
+
 
     <script src="scripts/hpuAssembly.js"></script>
     <script src="scripts/valveAssembly.js"></script>
@@ -253,6 +267,7 @@
     <script src="scripts/valveImages.js"></script>
     <script src="scripts/hpuNum.js"></script>
     <script src="scripts/valveDisplay.js"></script>
+    <script src="scripts/pdf.js"></script>
 
     <script src="scripts/app.js"></script>
     <script src="scripts/ui.js"></script>
