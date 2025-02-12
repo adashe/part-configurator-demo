@@ -155,12 +155,20 @@ button.yellow:hover{
     background-color: #e7aa05;
     cursor: pointer;
 }
-.edit{
-    width: 100px;
+button.edit{
+    background-color: white;
+    text-align: left;
+    width: 100%;
     margin: 5px;
     padding: 5px;
-    background-color: #d4d4d4;
-    font-size: 14px;
+    font-size: 16px;
+    color: #72d1d4;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+}
+button.gray.edit:hover{
+    background-color: white;
+    color: #67bfc2;
 }
 
 /* DIV STYLES */

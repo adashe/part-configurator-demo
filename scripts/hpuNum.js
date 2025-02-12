@@ -71,7 +71,7 @@ const buildHpuNumberDisplay = (data) => {
                 </ul>
             </div>
         </div>
-        `;
+    `;
 
     const motorHTML = `
         <div class="dropdown">
