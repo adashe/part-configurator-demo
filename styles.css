@@ -45,7 +45,13 @@ ul{
 }
 li{
     font-size: 14px;
-    color: #797979;
+    color: #818181;
+}
+li h5{
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 #container{
     display: flex;
@@ -94,7 +100,7 @@ form#email-form{
 /* FORM INPUT STYLES */
 input{
     display: inline-block;
-    width: 180px;
+    width: 155px;
     margin: 10px auto;
     padding: 10px;
     font-family: "Source Sans 3", serif;
@@ -127,6 +133,8 @@ label{
     border: none;
     background-color: #72d1d4;
     border-radius: 5px;
+    color: #434343;
+    font-weight: 500;
 }
 .button:hover{
     background-color: #67bfc2;
@@ -147,7 +155,7 @@ button.yellow:hover{
     cursor: pointer;
 }
 .edit{
-    width: 150px;
+    width: 100px;
     margin: 5px auto;
     padding: 5px;
     background-color: #d4d4d4;
@@ -186,6 +194,7 @@ button.yellow:hover{
     padding: 10px;
     position: relative;
     cursor: pointer;
+    font-weight: 500;
 }
 .dropdown .trigger::after{
     content: ">";
@@ -212,6 +221,7 @@ button.yellow:hover{
     padding: 10px;
     position: relative;
     cursor: pointer;
+    font-weight: 500;
 }
 .valve-dropdown .trigger::after{
     content: ">";

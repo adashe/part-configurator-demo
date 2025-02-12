@@ -16,7 +16,7 @@ const buildValveDisplay = (valveAssem) => {
     // Create placeholder dropdowns if no valves were selected during HPU configuration
     }else if(valveAssem.station0.valve == null){
 
-        valveDets.innerHTML = valveH3 + valveEditBtnHTML;
+        valveDets.innerHTML = valveH3;
 
         for(i = 0; i < hpuInputs.numStat; i++){
             let valveHTML = `
@@ -38,7 +38,7 @@ const buildValveDisplay = (valveAssem) => {
     // Create dropdowns for completed valve assemblies
     }else{
 
-        valveDets.innerHTML = valveH3 + valveEditBtnHTML;
+        valveDets.innerHTML = valveH3;
 
         for(i = 0; i < hpuInputs.numStat; i++){
             let station = `station${i}`;
@@ -55,19 +55,19 @@ const buildValveDisplay = (valveAssem) => {
                     <div class="content">
 
                         <ul>
-                            <li>Valve: ${valve.code}</li>
+                            <li><h5>VALVE: ${valve.code}</h5></li>
                             <li>Description: ${valve.description}</li>
                             <li>Price: $${valve.cost.toFixed(2)}</li>
                         </ul>
                     
                         <ul>
-                            <li>Flow Control: ${flowControl.code}</li>
+                            <li><h5>FLOW CONTROL: ${flowControl.code}</h5></li>
                             <li>Description: ${flowControl.description}</li>
                             <li>Price: $${flowControl.cost.toFixed(2)}</li>
                         </ul>
                     
                         <ul>
-                            <li>Check Valve: ${checkValve.code}</li>
+                            <li><h5>CHECK VALVE: ${checkValve.code}</h5></li>
                             <li>Description: ${checkValve.description}</li>
                             <li>Price: $${checkValve.cost.toFixed(2)}</li>
                         </ul>
@@ -83,7 +83,7 @@ const buildValveDisplay = (valveAssem) => {
     
     const valveCostHTML = `<h4>VALVES LIST PRICE: $${valvePrice.toFixed(2)}</h4>`
     
-    valveDets.innerHTML += valveCostHTML;
+    valveDets.innerHTML += valveEditBtnHTML + valveCostHTML;
     
     // Add event handler to valve edit button to open valve popup
     const editValveButton = document.querySelector('#edit-valves');
