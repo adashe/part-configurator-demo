@@ -159,16 +159,16 @@ button.edit{
     background-color: white;
     text-align: left;
     width: 100%;
-    margin: 5px;
-    padding: 5px;
+    margin: 0;
+    padding: 10px;
     font-size: 16px;
-    color: #72d1d4;
+    color: #67bfc2;
     border-bottom: 1px solid #ddd;
     border-radius: 0;
 }
 button.gray.edit:hover{
     background-color: white;
-    color: #67bfc2;
+    color: #72d1d4;
 }
 
 /* DIV STYLES */
