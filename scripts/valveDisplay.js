@@ -53,23 +53,25 @@ const buildValveDisplay = (valveAssem) => {
                 <div class="valve-dropdown">
                     <div class="trigger">STATION ${i + 1}: ${valve.code}-${flowControl.code}-${checkValve.code}</div>
                     <div class="content">
+
                         <ul>
                             <li>Valve: ${valve.code}</li>
-                                <ul>
-                                    <li>Description: ${valve.description}</li>
-                                    <li>Price: $${valve.cost.toFixed(2)}</li>
-                                </ul>
-                            <li>Flow Control: ${flowControl.code}</li>
-                                <ul>
-                                    <li>Description: ${flowControl.description}</li>
-                                    <li>Price: $${flowControl.cost.toFixed(2)}</li>
-                                </ul>
-                            <li>Check Valve: ${checkValve.code}</li>
-                                <ul>
-                                    <li>Description: ${checkValve.description}</li>
-                                    <li>Price: $${checkValve.cost.toFixed(2)}</li>
-                                </ul>
+                            <li>Description: ${valve.description}</li>
+                            <li>Price: $${valve.cost.toFixed(2)}</li>
                         </ul>
+                    
+                        <ul>
+                            <li>Flow Control: ${flowControl.code}</li>
+                            <li>Description: ${flowControl.description}</li>
+                            <li>Price: $${flowControl.cost.toFixed(2)}</li>
+                        </ul>
+                    
+                        <ul>
+                            <li>Check Valve: ${checkValve.code}</li>
+                            <li>Description: ${checkValve.description}</li>
+                            <li>Price: $${checkValve.cost.toFixed(2)}</li>
+                        </ul>
+
                     </div>
                 </div>
             `;
