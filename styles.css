@@ -84,7 +84,7 @@ li h5{
     padding: 10px;
 }
 #container-pdf .part-num-disp{
-    margin: 30px 200px;
+    margin: 30px 240px;
 }
 #container-pdf h3{
     text-align: left;
@@ -113,7 +113,6 @@ li h5{
     width: 180px;
 }
 
-
 /* FORM STYLES */
 form{
     margin: 10px;
@@ -136,7 +135,7 @@ form#hpu-valve-form{
     display: none;
     text-align: right;
 }
-form#email-form{
+form#contact-form{
     text-align: right;
     margin: 10px 20px;
 }

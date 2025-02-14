@@ -36,6 +36,8 @@ const fillContactDets = () => {
     html = `            
             <h3 class="contact" id="pdf-contact-name">CONTACT NAME: ${contactInputs.contactName}</h3>
             <h3 class="contact" id="pdf-company-name">COMPANY NAME: ${contactInputs.companyName}</h3>
+            <h3 class="contact" id="pdf-email">EMAIL: ${contactInputs.email}</h3>
+            <h3 class="contact" id="pdf-phone">PHONE: ${contactInputs.phone}</h3>
             <h3 class="contact" id="pdf-date">DATE: ${monthName} ${day}, ${year}</h3>
     `;
 

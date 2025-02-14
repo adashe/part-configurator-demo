@@ -3,7 +3,8 @@ const contactForm = document.querySelector('#contact-form');
 let contactInputs = {
     contactName: null,
     companyName: null,
-    email: null
+    email: null,
+    phone: null
 };
 
 contactForm.addEventListener('submit', e => {
@@ -12,7 +13,8 @@ contactForm.addEventListener('submit', e => {
     contactInputs = {
         contactName: contactForm.contactName.value,
         companyName: contactForm.companyName.value,
-        email: contactForm.email.value
+        email: contactForm.email.value,
+        phone: contactForm.phone.value
     };
 
     generatePDF();
