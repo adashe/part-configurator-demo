@@ -5,6 +5,9 @@ const pdfContactDiv = document.querySelector('#pdf-contact-div');
 const pdfHpuDiv = document.querySelector('#pdf-hpu-div');
 const pdfValveDiv = document.querySelector('#pdf-valve-div');
 
+const pdfEmailButton = document.querySelector('.pdf-email');
+const pdfPrintButton = document.querySelector('.pdf-print');
+
 
 const displayPdfContainer = () => {
     pdfContainer.style.display = 'block';
@@ -15,6 +18,32 @@ const displayAppContainer = () => {
     pdfContainer.style.display = 'none';
     appContainer.style.display = 'flex';
 };
+
+pdfEmailButton.addEventListener('click', e => {
+    e.preventDefault();
+
+    const emailAddress = 'test@example.com';
+    const emailSubject = 'Sun Coast Part Number Configurator: Number N-###';
+    const bodyText = 'Sun Coast Part Configurator.\nN-####';
+    const mailtoLink = createMailtoLink(emailAddress, emailSubject, bodyText);
+
+    window.location.href = mailtoLink;
+
+});
+
+const createMailtoLink = (email, subject, bodyText) => {
+    const subjectEncoded = encodeURIComponent(subject);
+    const bodyEncoded = encodeURIComponent(bodyText);
+    const mailtoLink = `mailto:${email}?subject=${subjectEncoded}&body=${bodyEncoded}`;
+    return mailtoLink;
+};
+
+pdfPrintButton.addEventListener('click', e => {
+    e.preventDefault();
+
+    window.print();
+    
+});
 
 const generatePDF = () => {
     fillContactDets();
