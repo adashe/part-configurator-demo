@@ -112,6 +112,16 @@ li h5{
 #pdf-nav button{
     width: 180px;
 }
+@media print {
+    #container-pdf{
+        width: 100%;
+        margin: 10px;
+    }
+
+    .no-print {
+      display: none !important;
+    }
+  }
 
 /* FORM STYLES */
 form{
