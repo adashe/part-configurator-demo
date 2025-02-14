@@ -90,13 +90,17 @@ li h5{
     text-align: left;
     margin: 5px;
 }
+#container-pdf .pdf-cost{
+    margin: 20px auto;
+    padding: 10px auto;
+}
 #container-pdf h4{
     display: inline;
     text-align: left;
-    font-size: 20px;
+    font-size: 18px;
     color: #434343;
     border: 2px solid;
-    padding: 10px;
+    padding: 10px 40px;
 }
 #container-pdf ul{
     list-style-type: none;

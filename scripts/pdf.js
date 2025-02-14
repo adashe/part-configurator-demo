@@ -152,7 +152,7 @@ const fillHpuDets = () => {
         `;
     };
 
-    const hpuCostHTML = `<div><h4>HPU LIST PRICE: $${hpuAssem.totalCost}</h4></div>`;
+    const hpuCostHTML = `<div class="pdf-cost"><h4>HPU LIST PRICE: $${hpuAssem.totalCost}</h4></div>`;
 
     pdfHpuDiv.innerHTML = hpuHeaderHTML + reservoirHTML + pumpHTML + motorHTML + manifoldHTML + heatExchangerHTML + hpuCostHTML;
 
@@ -227,7 +227,7 @@ const fillValveDets = () => {
             pdfValveDiv.innerHTML += valveHTML;
         };
 
-        const valveCostHTML = `<div><h4>VALVES LIST PRICE: $${valvePrice.toFixed(2)}</h4></div>`
+        const valveCostHTML = `<div class="pdf-cost"><h4>VALVES LIST PRICE: $${valvePrice.toFixed(2)}</h4></div>`
 
         pdfValveDiv.innerHTML += valveCostHTML;
 
