@@ -136,28 +136,27 @@
 
             <div id="valve-dets"></div>
 
-            <button class="button" id="email">EMAIL TO SUN COAST</button>
-            <button class="button pdf">SAVE AS PDF</button>
+            <button class="button contact">SUBMIT TO SUN COAST AS PDF</button>
             <button class="button gray restart">RESTART</button>
         </div>
 
         <!-- EMAIL DIV -->
-        <div id="email-div" class="page-div">
+        <div id="contact-div" class="page-div">
             <h2>
                 SUBMIT TO SUN COAST
             </h2>
 
             <h2 class="part-num-disp"></h2>
 
-            <form id="email-form">
+            <form id="contact-form">
                 <div>
-                    <label for="contact-name">Contact Name:</label>
-                    <input type="text" id="contact-name" name="contact-name" required>
+                    <label for="contactName">Contact Name:</label>
+                    <input type="text" id="contactName" name="contactName" required>
                 </div>
 
                 <div>
-                    <label for="company-name">Company Name:</label>
-                    <input type="text" id="company-name" name="company-name" required>
+                    <label for="companyName">Company Name:</label>
+                    <input type="text" id="companyName" name="companyName" required>
                 </div>
 
                 <div>
@@ -166,7 +165,7 @@
                 </div>
 
 
-                <input id="send-email" class="button" type="submit" value="SEND EMAIL">
+                <input id="generate-pdf" class="button" type="submit" value="GENERATE PDF">
                 <button class="button gray details">RETURN TO PART DETAILS</button>
                 <button class="button gray restart">RESTART</button>
             </form>
@@ -246,14 +245,20 @@
 
     <!-- PDF DIV -->
     <div id="container-pdf">
+        <div id="pdf-nav">
+            <button class="button gray restart">RESTART</button>
+            <button class="button gray details">RETURN TO PART DETAILS</button>
+            <button class="button gray save-print-pdf">PRINT OR SAVE AS PDF</button>
+            <button class="button gray email-pdf">SEND PDF AS EMAIL</button>
+        </div>
+
         <h2 class="suncoast">SUN COAST CONTROLS</h2>
         <h1>Part Configurator</h1>
-        <h2 class="part-num-disp">N-########</h2>
+        <h2 class="part-num-disp"></h2>
 
         <div id="pdf-contact-div"></div>
         <div id="pdf-hpu-div"></div>
         <div id="pdf-valve-div"></div>
-
     </div>
 
 
@@ -265,6 +270,7 @@
     <script src="scripts/valveImages.js"></script>
     <script src="scripts/hpuNum.js"></script>
     <script src="scripts/valveDisplay.js"></script>
+    <script src="scripts/contactForm.js"></script>
     <script src="scripts/pdf.js"></script>
 
     <script src="scripts/app.js"></script>

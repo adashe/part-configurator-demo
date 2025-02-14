@@ -4,8 +4,8 @@ const hmiForm = document.querySelector('#hmi-form');
 
 const restartButtons = document.querySelectorAll('.restart');
 const detailsButtons = document.querySelectorAll('.details');
-const emailButton = document.querySelector('#email');
-const sendEmailButton = document.querySelector('#send-email');
+const contactButtons = document.querySelectorAll('.contact');
+const pdfButtons = document.querySelectorAll('.pdf');
 
 const errorPopupWrapper = document.querySelector('.error-popup-wrapper');
 const errorPopupCloseButton = document.querySelector('.error-popup-close');
@@ -30,6 +30,7 @@ hmiForm.addEventListener('submit', e => {
 detailsButtons.forEach((button) => {
     button.addEventListener('click', e => {
         e.preventDefault();
+        displayAppContainer();
         displayPartNumDiv();
     });
 });
@@ -54,14 +55,11 @@ const displayErrorMsg = (msg) => {
     errorPopupWrapper.style.display = 'block';
 };
 
-// Email page button 
-emailButton.addEventListener('click', e => {
-    e.preventDefault();
-    displayEmailDiv();
-});
+// Display contact form
+contactButtons.forEach(button => {
+    button.addEventListener('click', e => {
+        e.preventDefault();
 
-// Submit email and show submission confirmation
-sendEmailButton.addEventListener('click', e => {
-    e.preventDefault();
-    displayEmailConfDiv();
+        displayContactDiv();
+    });
 });

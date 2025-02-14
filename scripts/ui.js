@@ -6,7 +6,7 @@ const hpuDiv = document.querySelector('#hpu-div');
 const mspDiv = document.querySelector('#msp-div');
 const hmiDiv = document.querySelector('#hmi-div');
 const partNumDiv = document.querySelector('#part-num-div');
-const emailDiv = document.querySelector('#email-div');
+const contactDiv = document.querySelector('#contact-div');
 const emailConfDiv = document.querySelector('#email-conf-div');
 
 
@@ -19,7 +19,7 @@ componentForm.addEventListener('submit', e => {
         mspDiv.style.display = 'none';
         hmiDiv.style.display = 'none';
         partNumDiv.style.display = 'none';
-        emailDiv.style.display = 'none';
+        contactDiv.style.display = 'none';
         emailConfDiv.style.display = 'none';
     } else if (componentType.value === 'msp'){
         componentDiv.style.display = 'none';
@@ -27,7 +27,7 @@ componentForm.addEventListener('submit', e => {
         mspDiv.style.display = 'block';
         hmiDiv.style.display = 'none';
         partNumDiv.style.display = 'none';
-        emailDiv.style.display = 'none';
+        contactDiv.style.display = 'none';
         emailConfDiv.style.display = 'none';
     } else if (componentType.value === 'hmi'){
         componentDiv.style.display = 'none';
@@ -35,7 +35,7 @@ componentForm.addEventListener('submit', e => {
         mspDiv.style.display = 'none';
         hmiDiv.style.display = 'block';
         partNumDiv.style.display = 'none';
-        emailDiv.style.display = 'none';
+        contactDiv.style.display = 'none';
         emailConfDiv.style.display = 'none';
     }
 });
@@ -47,7 +47,7 @@ const displayComponentDiv = () => {
     mspDiv.style.display = 'none';
     hmiDiv.style.display = 'none';
     partNumDiv.style.display = 'none';
-    emailDiv.style.display = 'none';
+    contactDiv.style.display = 'none';
     emailConfDiv.style.display = 'none';
 };
 
@@ -58,18 +58,18 @@ const displayPartNumDiv = () => {
     mspDiv.style.display = 'none';
     hmiDiv.style.display = 'none';
     partNumDiv.style.display = 'block';
-    emailDiv.style.display = 'none';
+    contactDiv.style.display = 'none';
     emailConfDiv.style.display = 'none';
 };
 
 // Display email div
-const displayEmailDiv = () => {
+const displayContactDiv = () => {
     componentDiv.style.display = 'none';
     hpuDiv.style.display = 'none';
     mspDiv.style.display = 'none';
     hmiDiv.style.display = 'none';
     partNumDiv.style.display = 'none';
-    emailDiv.style.display = 'block';
+    contactDiv.style.display = 'block';
     emailConfDiv.style.display = 'none';
 };
 
@@ -80,6 +80,6 @@ const displayEmailConfDiv = () => {
     mspDiv.style.display = 'none';
     hmiDiv.style.display = 'none';
     partNumDiv.style.display = 'none';
-    emailDiv.style.display = 'none';
+    contactDiv.style.display = 'none';
     emailConfDiv.style.display = 'block';
 };

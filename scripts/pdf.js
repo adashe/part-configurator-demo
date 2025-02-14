@@ -1,20 +1,10 @@
 const appContainer = document.querySelector('#container');
 const pdfContainer = document.querySelector('#container-pdf');
 
-const pdfButton = document.querySelector('.pdf');
-
 const pdfContactDiv = document.querySelector('#pdf-contact-div');
 const pdfHpuDiv = document.querySelector('#pdf-hpu-div');
 const pdfValveDiv = document.querySelector('#pdf-valve-div');
 
-
-pdfButton.addEventListener('click', e => {
-    e.preventDefault();
-
-    generatePDF();
-    displayPdfContainer();
-
-});
 
 const displayPdfContainer = () => {
     pdfContainer.style.display = 'block';
@@ -30,11 +20,6 @@ const generatePDF = () => {
     fillContactDets();
     fillHpuDets();
     fillValveDets();
-};
-
-let contactInputs = {
-    contactName: 'Andrea Dashe',
-    companyName: 'West Coast Controls Manufacturing'
 };
 
 const fillContactDets = () => {

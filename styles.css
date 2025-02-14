@@ -105,6 +105,13 @@ li h5{
 #container-pdf ul{
     list-style-type: none;
 }
+#pdf-nav{
+    display: flex;
+    justify-content: space-around;
+}
+#pdf-nav button{
+    width: 180px;
+}
 
 
 /* FORM STYLES */
@@ -226,7 +233,7 @@ button.gray.edit:hover{
 #edit-div{
     display: none;
 }
-#email-div{
+#contact-div{
     display: none;
 }
 #email-conf-div{
