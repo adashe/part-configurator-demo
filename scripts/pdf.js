@@ -4,8 +4,8 @@ const pdfContainer = document.querySelector('#container-pdf');
 const pdfButton = document.querySelector('.pdf');
 
 const pdfContactDiv = document.querySelector('#pdf-contact-div');
-const pdfHpuDets = document.querySelector('#pdf-hpu-dets');
-const pdfValveDets = document.querySelector('#pdf-valve-dets');
+const pdfHpuDiv = document.querySelector('#pdf-hpu-div');
+const pdfValveDiv = document.querySelector('#pdf-valve-div');
 
 
 pdfButton.addEventListener('click', e => {
@@ -60,14 +60,41 @@ const fillContactDets = () => {
 
 const fillHpuDets = () => {
 
-    pdfHpuDets.innerHTML = '';
+    // Determine individual item cost based on V or H reservoir
+    let reservoirCost = null;
+    let pumpCost = null;
+    let motorCost = null;
+    let manifoldCost = null;
+    let heatExchangerCost = null;
+
+    const filterCost = () => {
+        if(hpuAssem.reservoir.code.includes('H')){
+            reservoirCost = hpuAssem.reservoir.hCost.toFixed(2);
+            pumpCost = hpuAssem.pump.hCost.toFixed(2);
+            motorCost = hpuAssem.motor.hCost.toFixed(2);
+            manifoldCost = hpuAssem.manifold.hCost.toFixed(2);
+            heatExchangerCost = hpuAssem.heatExchanger.hCost.toFixed(2);
+        } else if (hpuAssem.reservoir.code.includes('V')){
+            reservoirCost = hpuAssem.reservoir.vCost.toFixed(2);
+            pumpCost = hpuAssem.pump.vCost.toFixed(2);
+            motorCost = hpuAssem.motor.vCost.toFixed(2);
+            manifoldCost = hpuAssem.manifold.vCost.toFixed(2);
+            heatExchangerCost = hpuAssem.heatExchanger.vCost.toFixed(2);
+        };
+    };
+
+    filterCost();
+
+    pdfHpuDiv.innerHTML = '';
+        
+    const hpuHeaderHTML = `<h2>HPU COMPONENTS</h2>`;
 
     const reservoirHTML = `
         <h3>RESERVOIR: ${hpuAssem.reservoir.code}</h3>
         <ul>
             <li>Capacity: ${hpuAssem.reservoir.capacity}</li>
             <li>Heat Dissipation: ${hpuAssem.reservoir.heatDis}</li>
-            <li>Price: $</li>
+            <li>Price: $${reservoirCost}</li>
         </ul>
     `;
 
@@ -78,7 +105,7 @@ const fillHpuDets = () => {
             <li>Description: ${hpuAssem.pump.description}</li>
             <li>Dissipation: ${hpuAssem.pump.dispCID}</li>
             <li>Mount Type: ${hpuAssem.pump.mountType}</li> 
-            <li>Price: $</li>
+            <li>Price: $${pumpCost}</li>
         </ul> 
     `;
 
@@ -88,7 +115,7 @@ const fillHpuDets = () => {
             <li>Part Number: ${hpuAssem.motor.partNum}</li>
             <li>Description: ${hpuAssem.motor.description}</li>
             <li>Output HP: ${hpuAssem.motor.outputHP}</li>
-            <li>Price: $</li>
+            <li>Price: $${motorCost}</li>
         </ul>
     `;
 
@@ -98,7 +125,7 @@ const fillHpuDets = () => {
             <li>Description: ${hpuAssem.manifold.description}</li>
             <li>Valve Pattern: ${hpuAssem.manifold.valvePattern}</li>
             <li>Number of Stations: ${hpuAssem.manifold.numStations}</li>
-            <li>Price: $</li>
+            <li>Price: $${manifoldCost}</li>
         </ul>
     `;
 
@@ -109,7 +136,7 @@ const fillHpuDets = () => {
             <h3>HEAT EXCHANGER: ${hpuAssem.heatExchanger.code}</h3>
             <ul>
                 <li>Description: No heat exchanger</li>
-                <li>Price: $</li>
+                <li>Price: $${heatExchangerCost}</li>
             </ul> 
         `;
     } else {
@@ -120,20 +147,21 @@ const fillHpuDets = () => {
                 <li>Type: ${hpuAssem.heatExchanger.type}</li>
                 <li>Max Flow: ${hpuAssem.heatExchanger.maxFlow}</li>
                 <li>Heat Dissipation: ${hpuAssem.heatExchanger.heatDis}</li>
-                <li>Price: $</li>
+                <li>Price: $${heatExchangerCost}</li>
             </ul>
         `;
     };
 
-    const hpuCostHTML = `<h4>HPU LIST PRICE: $${hpuAssem.totalCost}</h4>`;
+    const hpuCostHTML = `<div><h4>HPU LIST PRICE: $${hpuAssem.totalCost}</h4></div>`;
 
-    pdfHpuDets.innerHTML = reservoirHTML + pumpHTML + motorHTML + manifoldHTML + heatExchangerHTML + hpuCostHTML;
+    pdfHpuDiv.innerHTML = hpuHeaderHTML + reservoirHTML + pumpHTML + motorHTML + manifoldHTML + heatExchangerHTML + hpuCostHTML;
 
 };
 
 const fillValveDets = () => {
 
-    pdfValveDets.innerHTML = '';
+    pdfValveDiv.innerHTML = '';
+    const valveHeaderHTML = `<h2>VALVE COMPONENTS</h2>`;
     let valvePrice = 0;
 
     if(valveAssem.voltage == null){
@@ -142,15 +170,17 @@ const fillValveDets = () => {
 
     }else if(valveAssem.station0.valve == null){
 
+        pdfValveDiv.innerHTML += valveHeaderHTML;
+
         for(i = 0; i < hpuInputs.numStat; i++){
 
             let valveHTML = `
                 <h3>STATION ${i + 1}: None Selected</h3>
-                    <ul>
-                        <li>Valve: None Selected</li>
-                        <li>Flow Control: None Selected</li>
-                        <li>Check Valve: None Selected</li>
-                    </ul>
+                <ul>
+                    <li>Valve: None Selected</li>
+                    <li>Flow Control: None Selected</li>
+                    <li>Check Valve: None Selected</li>
+                </ul>
             `;
 
             pdfValveDets.innerHTML += valveHTML
@@ -158,6 +188,8 @@ const fillValveDets = () => {
         };
 
     }else{
+
+        pdfValveDiv.innerHTML += valveHeaderHTML;
 
         for(i = 0; i < hpuInputs.numStat; i++){
 
@@ -172,32 +204,32 @@ const fillValveDets = () => {
             let valveHTML = `
                 <h3>STATION ${i + 1}: ${valve.code}-${flowControl.code}-${checkValve.code}</h3>
 
-                    <ul>
-                        <li><h5>VALVE: ${valve.code}</h5></li>
-                        <li>Description: ${valve.description}</li>
-                        <li>Price: $${valve.cost.toFixed(2)}</li>
-                    </ul>
-                
-                    <ul>
-                        <li><h5>FLOW CONTROL: ${flowControl.code}</h5></li>
-                        <li>Description: ${flowControl.description}</li>
-                        <li>Price: $${flowControl.cost.toFixed(2)}</li>
-                    </ul>
-                
-                    <ul>
-                        <li><h5>CHECK VALVE: ${checkValve.code}</h5></li>
-                        <li>Description: ${checkValve.description}</li>
-                        <li>Price: $${checkValve.cost.toFixed(2)}</li>
-                    </ul>
+                <ul>
+                    <li><h5>VALVE: ${valve.code}</h5></li>
+                    <li>Description: ${valve.description}</li>
+                    <li>Price: $${valve.cost.toFixed(2)}</li>
+                </ul>
+            
+                <ul>
+                    <li><h5>FLOW CONTROL: ${flowControl.code}</h5></li>
+                    <li>Description: ${flowControl.description}</li>
+                    <li>Price: $${flowControl.cost.toFixed(2)}</li>
+                </ul>
+            
+                <ul>
+                    <li><h5>CHECK VALVE: ${checkValve.code}</h5></li>
+                    <li>Description: ${checkValve.description}</li>
+                    <li>Price: $${checkValve.cost.toFixed(2)}</li>
+                </ul>
 
             `;
     
-            pdfValveDets.innerHTML += valveHTML;
+            pdfValveDiv.innerHTML += valveHTML;
         };
 
-        const valveCostHTML = `<h4>VALVES LIST PRICE: $${valvePrice.toFixed(2)}</h4>`
+        const valveCostHTML = `<div><h4>VALVES LIST PRICE: $${valvePrice.toFixed(2)}</h4></div>`
 
-        pdfValveDets.innerHTML += valveCostHTML;
+        pdfValveDiv.innerHTML += valveCostHTML;
 
     };
 };

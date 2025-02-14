@@ -55,7 +55,6 @@ li h5{
 }
 #container{
     display: flex;
-    /* display: none; */
     flex-direction: column;
     background: white;
     max-width: 430px;
@@ -77,31 +76,30 @@ li h5{
     display: none;
     background: white;
     width: 800px;
-    height: 2000px;
-    margin: 20px auto;
-    padding: 80px;
+    margin: 10px auto;
+    padding: 40px;
 }
-h3.contact {
-    text-align: left;
-    margin: auto 60px;
+#container-pdf div{
+    margin: 10px;
+    padding: 10px;
+}
+#container-pdf .part-num-disp{
+    margin: 30px 200px;
 }
 #container-pdf h3{
     text-align: left;
-    margin: auto 30px;
+    margin: 5px;
 }
 #container-pdf h4{
+    display: inline;
     text-align: left;
-    margin: auto 30px;
     font-size: 20px;
     color: #434343;
     border: 2px solid;
     padding: 10px;
 }
 #container-pdf ul{
-    margin: 5px auto;
     list-style-type: none;
-    padding-left: 30px;
-    padding-bottom: 10px;
 }
 
 
