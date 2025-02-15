@@ -50,8 +50,8 @@ const buildHpuNumberDisplay = (data) => {
             <div class="trigger">RESERVOIR: ${reservoir.code}</div>
             <div class="content">        
                 <ul>
-                    <li>Capacity: ${reservoir.capacity}</li>
-                    <li>Heat Dissipation: ${reservoir.heatDis}</li>
+                    <li>Capacity: ${reservoir.capacity} gal.</li>
+                    <li>Heat Dissipation: ${reservoir.heatDis} HP</li>
                     <li>Price: $${reservoirCost}</li>
                 </ul>
             </div>
@@ -65,7 +65,7 @@ const buildHpuNumberDisplay = (data) => {
                 <ul>
                     <li>Part Number: ${pump.partNum}</li>
                     <li>Description: ${pump.description}</li>
-                    <li>Dissipation: ${pump.dispCID}</li>
+                    <li>Displacement: ${pump.dispCID} in^3/r</li>
                     <li>Mount Type: ${pump.mountType}</li> 
                     <li>Price: $${pumpCost}</li>
                 </ul>
@@ -80,7 +80,7 @@ const buildHpuNumberDisplay = (data) => {
                 <ul>
                     <li>Part Number: ${motor.partNum}</li>
                     <li>Description: ${motor.description}</li>
-                    <li>Output HP: ${motor.outputHP}</li>
+                    <li>Output: ${motor.outputHP} HP</li>
                     <li>Price: $${motorCost}</li>
                 </ul>
             </div>
@@ -124,8 +124,8 @@ const buildHpuNumberDisplay = (data) => {
                     <ul>
                         <li>Description: ${heatExchanger.description}</li>
                         <li>Type: ${heatExchanger.type}</li>
-                        <li>Max Flow: ${heatExchanger.maxFlow}</li>
-                        <li>Heat Dissipation: ${heatExchanger.heatDis}</li>
+                        <li>Max Flow: ${heatExchanger.maxFlow} gpm</li>
+                        <li>Heat Dissipation: ${heatExchanger.heatDis} HP</li>
                         <li>Price: $${heatExchangerCost}</li>
                     </ul>
                 </div>

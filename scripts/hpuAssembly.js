@@ -82,7 +82,7 @@ class HpuAssembly{
             this.reservoir = result.reduce((prev, curr) => (prev.capacity < curr.capacity) ? prev : curr);
         };
 
-        // console.log('reservoir', this.reservoir);
+        console.log('reservoir', this.reservoir);
 
         return this.reservoir;
     }
@@ -117,7 +117,7 @@ class HpuAssembly{
             this.pump = result.reduce((prev, curr) => (prev.dispCID < curr.dispCID) ? prev : curr);
         };
 
-        // console.log('pump', this.pump);
+        console.log('pump', this.pump);
 
         return this.pump;
     }
@@ -158,7 +158,7 @@ class HpuAssembly{
             this.motor = result.reduce((prev, curr) => (prev.outputHP < curr.outputHP) ? prev : curr);
         };
 
-        // console.log('motor', this.motor);
+        console.log('motor', this.motor);
 
         return this.motor;
     }
@@ -193,7 +193,7 @@ class HpuAssembly{
             console.log('Cannot calculate manifold without port size');
         };
 
-        // console.log('manifold', this.manifold);
+        console.log('manifold', this.manifold);
 
         return this.manifold;
     }
@@ -287,7 +287,7 @@ class HpuAssembly{
 
         // final calculation of needed dissipation cannot be less than 0
 
-        // console.log('heat exchanger', this.heatExchanger);
+        console.log('heat exchanger', this.heatExchanger);
 
         return this.heatExchanger;
     }
