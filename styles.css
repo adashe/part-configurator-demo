@@ -247,6 +247,17 @@ button.edit:hover{
     font-style: italic;
     display: inherit;
 }
+#edit-hpu-inputs{
+    display: block;
+    color: #67bfc2;
+    font-style: italic;
+    display: inherit;
+}
+#edit-hpu-inputs:hover{
+    color: #72d1d4;
+    cursor: pointer;
+    text-decoration: underline;
+}
 
 /* DIV STYLES */
 #component-div{

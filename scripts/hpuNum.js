@@ -51,7 +51,7 @@ const buildHpuNumberDisplay = (data) => {
     // Display inputs on part number page
     const inputsHTML = `
         <div class="dropdown">
-            <div class="trigger">CONFIGURATOR INPUTS</div>
+            <div class="trigger">HPU CONFIGURATOR INPUTS</div>
             <div class="content">        
                 <ul>
                     <li>Max Pressure: ${hpuInputs.maxPres} psi</li>
@@ -60,6 +60,7 @@ const buildHpuNumberDisplay = (data) => {
                     <li>Heat Exchanger Type: ${hpuInputs.heatExchType}</li>
                     <li>Number of Stations: ${hpuInputs.numStat}</li>
                     <li>Port Size: ${hpuInputs.portSize}</li>
+                    <li id="edit-hpu-inputs">Edit HPU inputs</li>
                 </ul>
             </div>
         </div>
@@ -88,7 +89,7 @@ const buildHpuNumberDisplay = (data) => {
                 <ul>
                     <li>Part Number: ${pump.partNum}</li>
                     <li>Description: ${pump.description}</li>
-                    <li>Displacement: ${pump.dispCID} in^3/r</li>
+                    <li>Displacement: ${pump.dispCID} in<sup>3</sup>/r</li>
                     <li>Mount Type: ${pump.mountType}</li> 
                     <li>Price: $${pumpCost}</li>
                     <li class="li-edit" id="edit-pump">Edit pump</li>
@@ -169,6 +170,7 @@ const buildHpuNumberDisplay = (data) => {
 
     addEventHandlerToAdvancedOptionsBtn();
     addEventHandlersToDropdowns();
+    addEventHandlerToEditInputsBtn();
     addEventHandlerstoEditBtns();
 
 };
@@ -201,7 +203,18 @@ const addEventHandlerToAdvancedOptionsBtn = () => {
         });
     });
 
-}
+};
+
+const addEventHandlerToEditInputsBtn = () => {
+    const editHpuInputsButton = document.querySelector('#edit-hpu-inputs');
+
+    editHpuInputsButton.addEventListener('click', e => {
+        e.preventDefault();
+
+        displayHpuSysParamsForm();
+    });
+};
+
 
 // Add event handlers to edit buttons
 const addEventHandlerstoEditBtns = () => {
