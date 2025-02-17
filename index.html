@@ -41,7 +41,7 @@
 
                 <div>
                     <label for="maxPressure">Max Pressure (psi):</label>
-                    <input type="number" id="maxPressure" placeholder="ex. 2000" required>
+                    <input type="number" id="maxPressure" placeholder="ex. 2000" max="3000" required>
                 </div>
 
                 <div>
@@ -60,6 +60,14 @@
                 </div>
 
                 <div>
+                    <label for="reservoirOrientation">Reservoir Orientation:</label>
+                    <select name="reservoirOrientation" id="reservoirOrientation" required>
+                        <option value="horizontal" selected>Horizontal</option>
+                        <option value="vertical">Vertical</option>
+                    </select>
+                </div>
+
+                <div>
                     <label for="heatExchType">Heat Exchanger Type:</label>
                     <select name="heatExchType" id="heatExchType" required>
                         <option value="" disabled selected hidden>...</option>
@@ -70,7 +78,7 @@
                 </div>
 
                 <input class="button" type="submit" value="CONTINUE">
-                <button class="button gray restart">RESTART</button>
+                <button class="button gray restart">RESTART CONFIGURATOR</button>
             </form>
 
             <form id="hpu-manifold-form">
@@ -89,16 +97,16 @@
 
                 <input class="button" type="submit" value="CONTINUE">
                 <button class="button gray hpu-sys-params-btn">PREVIOUS</button>
-                <button class="button gray restart">RESTART</button>
+                <button class="button gray restart">RESTART CONFIGURATOR</button>
             </form>
 
             <form id="hpu-valve-form">
                 <h3>Valve Options</h3>
                 <p>Valve selections are not required for HPU configuration, but are recommended for accuracy.</p>               
-                <button class="button yellow hpu-valves-btn">VIEW AND EDIT VALVES</button>
+                <button class="button yellow hpu-valves-btn" id="hpu-edit-valves-btn">EDIT VALVES</button>
                 <input class="button" type="submit" value="GENERATE PART NUMBER">
                 <button class="button gray hpu-mani-btn">PREVIOUS</button>  
-                <button class="button gray restart">RESTART</button> 
+                <button class="button gray restart">RESTART CONFIGURATOR</button> 
             </form>
             
 
@@ -112,7 +120,7 @@
 
             <form id="msp-form">
                 <input class="button" type="submit" value="SUBMIT">
-                <button class="button gray restart">RESTART</button>
+                <button class="button gray restart">RESTART CONFIGURATOR</button>
             </form>
         </div>
     
@@ -124,7 +132,7 @@
 
             <form id="hmi-form">        
                 <input class="button" type="submit" value="SUBMIT">
-                <button class="button gray restart">RESTART</button>
+                <button class="button gray restart">RESTART CONFIGURATOR</button>
             </form>
         </div>
     
@@ -137,7 +145,8 @@
             <div id="valve-dets"></div>
 
             <button class="button contact">SUBMIT TO SUN COAST AS PDF</button>
-            <button class="button gray restart">RESTART</button>
+            <button class="button gray hpu-sys-params-btn">EDIT INPUTS</button>
+            <button class="button gray restart">RESTART CONFIGURATOR</button>
         </div>
 
         <!-- EMAIL DIV -->
@@ -172,7 +181,7 @@
 
                 <input id="generate-pdf" class="button" type="submit" value="GENERATE PDF">
                 <button class="button gray details">RETURN TO PART DETAILS</button>
-                <button class="button gray restart">RESTART</button>
+                <button class="button gray restart">RESTART CONFIGURATOR</button>
             </form>
 
         </div>
@@ -183,7 +192,7 @@
                 Email sent!
             </h2>
             <p>Your part number has been sent and a Sun Coast representative will reach out soon.</p>
-            <button class="restart button">RESTART</button>
+            <button class="restart button">RESTART CONFIGURATOR</button>
             <button class="button gray details">RETURN TO PART DETAILS</button>
         </div>
 
@@ -244,14 +253,14 @@
             <div class="error-popup-content">
                 <p>Error!</p>
             </div>
-            <button class="button gray restart">RESTART</button>
+            <button class="button gray restart">RESTART CONFIGURATOR</button>
         </div>
     </div>
 
     <!-- PDF DIV -->
     <div id="container-pdf">
         <div class="no-print" id="pdf-nav">
-            <button class="button gray restart">RESTART</button>
+            <button class="button gray restart">RESTART CONFIGURATOR</button>
             <button class="button gray details">RETURN TO PART DETAILS</button>
             <button class="button gray pdf-print">PRINT OR SAVE AS PDF</button>
             <button class="button gray pdf-email">SEND PDF AS EMAIL</button>

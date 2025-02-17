@@ -5,6 +5,7 @@ const hpuValveForm = document.querySelector('#hpu-valve-form');
 const hpuSysParamsButtons = document.querySelectorAll('.hpu-sys-params-btn');
 const hpuManifoldButtons = document.querySelectorAll('.hpu-mani-btn');
 const hpuValvesPopupButtons = document.querySelectorAll('.hpu-valves-btn');
+const hpuEditValvesButton = document.querySelector('#hpu-edit-valves-btn'); 
 
 const hpuPortSize = document.querySelector('#hpuPortSize');
 const hpuNumStatDiv = document.querySelector('#hpu-number-stations-div');
@@ -15,6 +16,9 @@ const valveAssem = new ValveAssembly();
 
 // DISPLAY AND HIDE FORM ELEMENTS
 const displayHpuSysParamsForm = () => {
+    hpuDiv.style.display = 'block';
+    partNumDiv.style.display = 'none';
+
     hpuSysParamsForm.style.display = 'block';
     hpuManifoldForm.style.display = 'none';
     hpuValveForm.style.display = 'none';
@@ -65,6 +69,7 @@ let hpuInputs = {
     maxPres: null,
     maxFlow: null,
     appType: null,
+    resOrient: null,
     heatExchType: null,
     numStat: null,
     portSize: null,
@@ -76,6 +81,7 @@ const resetHpuInputs = () => {
         maxPres: null,
         maxFlow: null,
         appType: null,
+        resOrient: null,
         heatExchType: null,
         numStat: null,
         portSize: null,
@@ -89,6 +95,7 @@ hpuSysParamsForm.addEventListener('submit', e => {
     hpuInputs.maxPres = parseInt(hpuSysParamsForm.maxPressure.value);
     hpuInputs.maxFlow = parseInt(hpuSysParamsForm.maxFlow.value);
     hpuInputs.appType = hpuSysParamsForm.applicationType.value;
+    hpuInputs.resOrient = hpuSysParamsForm.reservoirOrientation.value;
     hpuInputs.heatExchType = hpuSysParamsForm.heatExchType.value;
 
     displayHpuManifoldForm();
@@ -135,12 +142,22 @@ const generateHpuNumberStationsDropdown = () => {
         hpuNumStatDiv.innerHTML = '';
     };
 
-    const hpuNumberStations = document.querySelector('#hpuNumberStations');
 
     // Add event listener to reset valve options form if number of stations is changed
+    const hpuNumberStations = document.querySelector('#hpuNumberStations');
+
     hpuNumberStations.addEventListener('change', e => {
         e.preventDefault();
         solenoidVoltage.value = '';
+
+        // Disable valve popup access if 0 stations selected
+        if(hpuNumberStations.value == 0){
+            hpuEditValvesButton.innerHTML = 'EDIT VALVES <br> <i>Disabled - No stations available</i>';
+            hpuEditValvesButton.disabled = true;
+        } else if (hpuNumberStations.value > 0){
+            hpuEditValvesButton.innerHTML = 'EDIT VALVES';
+            hpuEditValvesButton.disabled = false;
+        };
     });
 };
 
@@ -165,6 +182,7 @@ async function updateHpuDiv(){
         hpuInputs.maxPres, 
         hpuInputs.maxFlow, 
         hpuInputs.appType, 
+        hpuInputs.resOrient,
         hpuInputs.heatExchType,
         hpuInputs.numStat, 
         hpuInputs.portSize,

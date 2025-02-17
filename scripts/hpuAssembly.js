@@ -57,7 +57,7 @@ class HpuAssembly{
 
 
     // CALCULATE PART NUMBER //
-    async calcReservoir(maxFl){
+    async calcReservoir(resOrient){
         const data = await this.getReservoirData();
 
         // calculation //
@@ -70,12 +70,24 @@ class HpuAssembly{
             return this.reservoir;
         }
 
-        const minCap = this.pump.gpm1750 * 2.5;
-        console.log('minCap:', minCap);
+        let filteredData;
+        let minCap;
 
-        let result = data.filter(reservoir => reservoir.capacity >= minCap);
+        if(resOrient == 'horizontal'){
+            filteredData = data.filter(reservoir => reservoir.code.includes('H'));
+            minCap = this.pump.gpm1750 * 2.5;
+            console.log('H minCap:', minCap);
+        } else if (resOrient == 'vertical'){
+            filteredData = data.filter(reservoir => reservoir.code.includes('V'))
+            minCap = this.pump.gpm1750 * 3;
+            console.log('V minCap:', minCap);
+        };
 
-        if(result.length == 0){
+        let result = filteredData.filter(reservoir => reservoir.capacity >= minCap);
+
+        if(result.length == 0 && resOrient == 'vertical'){
+            displayErrorMsg('No valid vertical reservoir results - try horizontal reservoir')
+        } else if(result.length == 0){
             console.log('No valid reservoir results.');
             displayErrorMsg('No valid reservoir results.');
         } else {
@@ -317,11 +329,11 @@ class HpuAssembly{
         return this.totalCost;
     }
 
-    async calcHpuNum(maxPres, maxFl, appType, htExType, numSt, portSz, numLValves, numFlowCtrl, ){
+    async calcHpuNum(maxPres, maxFl, appType, resOrient, htExType, numSt, portSz, numLValves, numFlowCtrl, ){
 
         await this.calcPump(maxPres, maxFl, appType);
         await this.calcMotor(maxPres, maxFl);
-        await this.calcReservoir(maxFl);
+        await this.calcReservoir(resOrient);
         await this.calcManifold(numSt, portSz);
         await this.calcHeatExchanger(maxPres, maxFl, htExType, numLValves, numFlowCtrl);
         this.calcCost();

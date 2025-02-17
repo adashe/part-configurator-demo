@@ -44,6 +44,24 @@ const buildHpuNumberDisplay = (data) => {
         element.innerHTML = `N-${reservoir.code}-${pump.code}-${motor.code}-${manifold.code}-${heatExchanger.code}`;
     });
 
+    // Display inputs on part number page
+    const inputsHTML = `
+        <div class="dropdown">
+            <div class="trigger">CONFIGURATOR INPUTS</div>
+            <div class="content">        
+                <ul>
+                    <li>Max Pressure: ${hpuInputs.maxPres} psi</li>
+                    <li>Max Flow: ${hpuInputs.maxFlow} gpm</li>
+                    <li>Application Type: ${hpuInputs.appType}</li>
+                    <li>Heat Exchanger Type: ${hpuInputs.heatExchType}</li>
+                    <li>Number of Stations: ${hpuInputs.numStat}</li>
+                    <li>Port Size: ${hpuInputs.portSize}</li>
+                </ul>
+            </div>
+        </div>
+    `;
+
+
     // Display part number details on part number page
     const reservoirHTML = `
         <div class="dropdown">
@@ -135,7 +153,7 @@ const buildHpuNumberDisplay = (data) => {
 
     const hpuCostHTML = `<h4>HPU LIST PRICE: $${totalCost}</h4>`;
 
-    partNumDets.innerHTML = reservoirHTML + pumpHTML + motorHTML + manifoldHTML + heatExchangerHTML + hpuCostHTML;
+    partNumDets.innerHTML = inputsHTML + reservoirHTML + pumpHTML + motorHTML + manifoldHTML + heatExchangerHTML + hpuCostHTML;
 
     addEventHandlersToDropdowns();
 
