@@ -303,6 +303,39 @@ button.gray.edit:hover{
     display: block;
 }
 
+/* LOGIN POPUP STYLES */
+.login-popup-wrapper{
+    display: none;
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.login-popup-div{
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 120px auto;
+    padding: 20px;
+    background: white;
+    position: relative;
+    border: none;
+    border-radius: 5px;
+}
+.login-popup-div h2{
+    color: #72d1d4;
+}
+.login-popup-close{
+    position: absolute;
+    font-size: 20px;
+    top: 5px;
+    right: 15px;
+    cursor: pointer;
+}
+
+
 /* VALVE POPUP STYLES */
 .valve-popup-wrapper{
     display: none;
