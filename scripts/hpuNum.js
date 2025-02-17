@@ -161,12 +161,7 @@ const buildHpuNumberDisplay = (data) => {
         `;
     };
 
-    let advancedHTML = '';
-    if(advancedToggle == true){
-        advancedHTML = `<p class="active" id="advanced-opts">Advanced Options</p>`;
-    } else if(advancedToggle == false){
-        advancedHTML = `<p id="advanced-opts">Advanced Options</p>`;
-    }
+    let advancedHTML = `<p id="advanced-opts">Advanced Options</p>`;
 
     const hpuCostHTML = `<h4>HPU LIST PRICE: $${totalCost}</h4>`;
 
