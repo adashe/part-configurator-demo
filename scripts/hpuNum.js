@@ -51,7 +51,7 @@ const buildHpuNumberDisplay = (data) => {
     // Display inputs on part number page
     const inputsHTML = `
         <div class="dropdown">
-            <div class="trigger">HPU CONFIGURATOR INPUTS</div>
+            <div class="trigger">HPU INPUTS</div>
             <div class="content">        
                 <ul>
                     <li>Max Pressure: ${hpuInputs.maxPres} psi</li>
@@ -60,11 +60,12 @@ const buildHpuNumberDisplay = (data) => {
                     <li>Heat Exchanger Type: ${hpuInputs.heatExchType}</li>
                     <li>Number of Stations: ${hpuInputs.numStat}</li>
                     <li>Port Size: ${hpuInputs.portSize}</li>
-                    <li id="edit-hpu-inputs">Edit HPU inputs</li>
                 </ul>
             </div>
         </div>
     `;
+
+    const editHpuInputsHTML = `<p id="edit-hpu-inputs">Edit HPU inputs</p>`
 
 
     // Display part number details on part number page
@@ -166,7 +167,7 @@ const buildHpuNumberDisplay = (data) => {
 
     const hpuCostHTML = `<h4>HPU LIST PRICE: $${totalCost}</h4>`;
 
-    partNumDets.innerHTML = advancedHTML + inputsHTML + reservoirHTML + pumpHTML + motorHTML + manifoldHTML + heatExchangerHTML + hpuCostHTML;
+    partNumDets.innerHTML = advancedHTML + reservoirHTML + pumpHTML + motorHTML + manifoldHTML + heatExchangerHTML + inputsHTML + editHpuInputsHTML + hpuCostHTML;
 
     addEventHandlerToAdvancedOptionsBtn();
     addEventHandlersToDropdowns();

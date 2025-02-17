@@ -248,12 +248,27 @@ button.edit:hover{
     display: inherit;
 }
 #edit-hpu-inputs{
+    margin: 0;
+    padding: 10px;
+    display: block;
+    text-align: left;
+    color: #67bfc2;
+    font-style: italic;
+}
+#edit-hpu-inputs:hover {
+    color: #72d1d4;
+    cursor: pointer;
+    text-decoration: underline;
+}
+#edit-valves{
+    margin: 0;
+    padding: 10px;
+    text-align: left;
     display: block;
     color: #67bfc2;
     font-style: italic;
-    display: inherit;
 }
-#edit-hpu-inputs:hover{
+#edit-valves:hover{
     color: #72d1d4;
     cursor: pointer;
     text-decoration: underline;

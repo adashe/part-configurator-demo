@@ -1,8 +1,8 @@
 const loginPopup = document.querySelector('.login-popup-wrapper');
 const loginForm = document.querySelector('#login-form');
 
-const admin = new User(username='admin', password='gilgamesh');
-const dist = new User(username='dist', password='odysseus');
+const admin = new User(username='admin', password='banana-pancakes');
+const dist = new User(username='dist', password='suncoast-dist-4130');
 
 let currentUser = null;
 
