@@ -175,7 +175,7 @@
 
                 <div>
                     <label for="phone">Phone:</label>
-                    <input type="tel" id="phone" name="phone" placeholder="1-555-555-555" required>
+                    <input type="tel" id="phone" name="phone" autocomplete="on" placeholder="1-555-555-555" required>
                 </div>
 
 
@@ -207,7 +207,7 @@
             <div class="login-popup-content">
                 <form id="login-form">
                     <div>
-                        <input type="text" id="username" placeholder="username" required>
+                        <input type="text" id="username" autocomplete="on" placeholder="username" required>
                         <input type="password" id="password" placeholder="password" required>
                         <input id="login-btn" class="button" type="submit" value="LOGIN">
                     </div>
@@ -216,6 +216,19 @@
         </div>
     </div>
 
+    <!-- TABLE POPUP DIV -->
+    <div class="table-wrapper">
+        <div class="table-div">
+            <div class="table-close">x</div>
+            <div class="table-content">
+                <table>
+                    <h2 id="table-h2"></h2>
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
     <!-- VALVE FORM POPUP DIV -->
     <div class="valve-popup-wrapper">

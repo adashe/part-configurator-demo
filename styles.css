@@ -218,9 +218,34 @@ button.edit{
     border-bottom: 1px solid #ddd;
     border-radius: 0;
 }
-button.gray.edit:hover{
+button.edit:hover{
     background-color: white;
     color: #72d1d4;
+}
+#advanced-opts{
+    text-align: right;
+    font-size: 12px;
+    color: #67bfc2;
+}
+#advanced-opts:hover{
+    color: #72d1d4;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.li-edit{
+    display: none;
+    color: hotpink;
+}
+.li-edit:hover{
+    color: #72d1d4;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.li-edit.active{
+    display: block;
+    color: #67bfc2;
+    font-style: italic;
+    display: inherit;
 }
 
 /* DIV STYLES */
@@ -427,6 +452,58 @@ button.gray.edit:hover{
 }
 img{
     width: 260px;
+}
+
+/* POPUP TABLE STYLES */
+.table-wrapper{
+    display: none;
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+.table-div{
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 150px auto;
+    padding: 20px;
+    background: white;
+    position: relative;
+    border: none;
+    border-radius: 5px;
+}
+.table-close{
+    position: absolute;
+    font-size: 20px;
+    top: 5px;
+    right: 15px;
+    cursor: pointer;
+}
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #d4d4d4;
+  }
+th,
+td {
+padding: 5px;
+text-align: center;
+}
+tbody tr:nth-child(odd) {
+background-color: white;
+
+}
+tbody tr:nth-child(even) {
+background-color: #efefef;
+}
+tbody tr:hover{
+background-color: #72d1d4;
+cursor: pointer;
 }
 
 /* ERROR POPUP STYLES */

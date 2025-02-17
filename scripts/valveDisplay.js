@@ -5,7 +5,7 @@ const buildValveDisplay = (valveAssem) => {
 
     let valvePrice = 0;
     const valveH3 = `<h2>YOUR VALVE SELECTIONS</h2>`;
-    const valveEditBtnHTML = `<button class="button gray edit" id="edit-valves">EDIT VALVES</button>`
+    const valveEditBtnHTML = `<button class="button edit" id="edit-valves">EDIT VALVES</button>`
 
 
     // End function if no stations are available
