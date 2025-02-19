@@ -364,11 +364,17 @@ p.assem-price{
 .login-popup-div h2{
     color: #72d1d4;
 }
-#user-status{
-    text-align: right;
+#login-div{
+    display: flex;
+    justify-content: space-between;
     color: #72d1d4;
     font-size: 12px;
     margin: 0;
+}
+#logout:hover{
+    color: #72d1d4;
+    cursor: pointer;
+    text-decoration: underline;
 }
 #login-error{
     color: #67bfc2;

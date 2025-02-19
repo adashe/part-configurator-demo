@@ -3,6 +3,7 @@ const loginForm = document.querySelector('#login-form');
 const loginErrorMsg = document.querySelector('#login-error');
 
 const userStatus = document.querySelector('#user-status');
+const logoutBtn = document.querySelector('#logout');
 
 const currentUser = new User();
 
@@ -27,3 +28,7 @@ async function loginUser(un, pw){
         userStatus.innerHTML = `Signed in as: ${currentUser.username}`;
     };
 };
+
+logoutBtn.addEventListener('click', e => {
+    window.location.reload();
+})

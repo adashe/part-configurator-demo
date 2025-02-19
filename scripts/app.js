@@ -40,7 +40,25 @@ detailsButtons.forEach((button) => {
 restartButtons.forEach((button) => {
     button.addEventListener('click', e => {
         e.preventDefault();
-        window.location.reload();
+
+        if(!currentUser.username){
+            window.location.reload();
+        } else if (currentUser.username){
+
+            resetHpuInputs();
+            hpuAssem.reset();
+
+            resetValveInputs();
+            valveAssem.reset();
+
+            hpuSysParamsForm.reset();
+            hpuManifoldForm.reset();
+            hpuValveForm.reset();
+            valvePopupForm.reset();
+
+            displayComponentDiv();
+        }
+
     });
 });
 
