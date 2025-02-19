@@ -1,12 +1,12 @@
 [
     {
         "username": "admin",
-        "password": "trafalgar",
+        "password": "nimitz",
         "userType": "admin"
     },
     {
         "username": "dist",
-        "password": "waterloo",
+        "password": "halsey",
         "userType": "dist"
     }
 ]
