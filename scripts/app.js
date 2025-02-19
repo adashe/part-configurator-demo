@@ -41,23 +41,7 @@ restartButtons.forEach((button) => {
     button.addEventListener('click', e => {
         e.preventDefault();
 
-        if(!currentUser.username){
-            window.location.reload();
-        } else if (currentUser.username){
-
-            resetHpuInputs();
-            hpuAssem.reset();
-
-            resetValveInputs();
-            valveAssem.reset();
-
-            hpuSysParamsForm.reset();
-            hpuManifoldForm.reset();
-            hpuValveForm.reset();
-            valvePopupForm.reset();
-
-            displayComponentDiv();
-        }
+        window.location.reload();
 
     });
 });
