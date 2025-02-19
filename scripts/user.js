@@ -1,15 +1,28 @@
 class User{
     constructor(){
-        username = null,
-        password = null,
-        loggedIn = false;
+        this.username = null,
+        this.userType = null
     }
 
-    login(un, pw){
-        if(un === this.username && pw === this.password){
-            loggedIn = true;
+    async getUserData(){
+        const uri = "data/userData.json";
+        const response = await fetch(uri);
+        const data = await response.json();
+        return data;
+    }
+
+    async login(un, pw){
+        const data = await this.getUserData();
+
+        let result = data.filter(user => user.username === un && user.password === pw)
+
+        if(result.length == 0){
+            return this;
         } else {
-            displayErrorMsg("Invalid username or password");
+            this.username = result[0].username;
+            this.userType = result[0].userType;
         }
+
+        return this;
     }
 }

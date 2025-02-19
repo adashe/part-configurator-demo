@@ -1,0 +1,12 @@
+[
+    {
+        "username": "admin",
+        "password": "gilgamesh",
+        "userType": "admin"
+    },
+    {
+        "username": "dist",
+        "password": "gilgamesh",
+        "userType": "dist"
+    }
+]

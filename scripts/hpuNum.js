@@ -163,13 +163,10 @@ const buildHpuNumberDisplay = (data) => {
         `;
     };
 
-    let advancedHTML = `<p id="advanced-opts">Advanced Options</p>`;
-
     const editHpuInputsHTML = `<p class="edit-inputs" id="edit-hpu-inputs">Edit HPU inputs</p>`
     const hpuCostHTML = `<p class="assem-price">HPU LIST PRICE: $${totalCost}</p>`;
 
-    partNumDets.innerHTML = advancedHTML 
-        + editHpuInputsHTML 
+    partNumDets.innerHTML = editHpuInputsHTML 
         + reservoirHTML 
         + pumpHTML 
         + motorHTML 
@@ -179,7 +176,7 @@ const buildHpuNumberDisplay = (data) => {
         + hpuCostHTML
         ;
 
-    addEventHandlerToAdvancedOptionsBtn();
+    toggleAdminSettings();
     addEventHandlersToDropdowns();
     addEventHandlerToEditInputsBtn();
     addEventHandlerstoEditBtns();
@@ -205,16 +202,14 @@ const addEventHandlersToDropdowns = () => {
     });
 };
 
-const addEventHandlerToAdvancedOptionsBtn = () => {
-    const advancedOptsButton = document.querySelector('#advanced-opts');
+const toggleAdminSettings = () => {
     const liEdits = document.querySelectorAll('.li-edit');
 
-    advancedOptsButton.addEventListener('click', e => {
-
+    if(currentUser.userType === 'admin'){
         liEdits.forEach(li => {
             li.classList.toggle('active');
         });
-    });
+    }
 
 };
 

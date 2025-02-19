@@ -12,6 +12,7 @@
 <body>
 
     <div id="container">
+        <p id="user-status">Login</p>
         <h2 class="suncoast">SUN COAST CONTROLS</h2>
         <h1>Part Configurator</h1>
 
@@ -147,7 +148,7 @@
 
             <div id="total-cost-disp"></div>
 
-            <button class="button contact">SUBMIT TO SUN COAST AS PDF</button>
+            <button class="button contact">EMAIL OR SAVE AS PDF</button>
             <button class="button gray restart">RESTART CONFIGURATOR</button>
         </div>
 
@@ -204,13 +205,13 @@
     <!-- LOGIN POPUP DIV -->
     <div class="login-popup-wrapper">
         <div class="login-popup-div">
-            <div class="login-popup-close">x</div>
             <h2>User Login</h2>
             <div class="login-popup-content">
                 <form id="login-form">
                     <div>
                         <input type="text" id="username" autocomplete="on" placeholder="username" required>
                         <input type="password" id="password" placeholder="password" required>
+                        <div id="login-error"></div>
                         <input id="login-btn" class="button" type="submit" value="LOGIN">
                     </div>
                 </form>
@@ -298,7 +299,7 @@
             <button class="button gray restart">RESTART CONFIGURATOR</button>
             <button class="button gray details">RETURN TO PART DETAILS</button>
             <button class="button gray pdf-print">PRINT OR SAVE AS PDF</button>
-            <button class="button gray pdf-email">SEND PDF AS EMAIL</button>
+            <button class="button gray pdf-email">SUBMIT AS EMAIL</button>
         </div>
 
         <h2 class="suncoast">SUN COAST CONTROLS</h2>
@@ -313,6 +314,9 @@
         <div id="pdf-valve-div"></div>
     </div>
 
+
+    <script src="scripts/user.js"></script>
+    <script src="scripts/loginForm.js"></script>
 
     <script src="scripts/hpuAssembly.js"></script>
     <script src="scripts/valveAssembly.js"></script>

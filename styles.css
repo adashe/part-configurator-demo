@@ -341,10 +341,9 @@ p.assem-price{
     display: block;
 }
 
-/* LOGIN POPUP STYLES */
+/* LOGIN STYLES */
 .login-popup-wrapper{
-    display: none;
-    background: rgba(0,0,0,0.5);
+    background: #d4d4d4;
     position: fixed;
     top: 0;
     left: 0;
@@ -365,12 +364,15 @@ p.assem-price{
 .login-popup-div h2{
     color: #72d1d4;
 }
-.login-popup-close{
-    position: absolute;
-    font-size: 20px;
-    top: 5px;
-    right: 15px;
-    cursor: pointer;
+#user-status{
+    text-align: right;
+    color: #72d1d4;
+    font-size: 12px;
+    margin: 0;
+}
+#login-error{
+    color: #67bfc2;
+    font-style: italic;
 }
 
 
