@@ -22,9 +22,12 @@ const displayAppContainer = () => {
 pdfEmailButton.addEventListener('click', e => {
     e.preventDefault();
 
+    const hpuNum = `\n\nHPU NUMBER: N-${hpuAssem.reservoir.code}-${hpuAssem.pump.code}-${hpuAssem.motor.code}-${hpuAssem.manifold.code}-${hpuAssem.heatExchanger.code}`;
+    const valveNums = genValveText();
+
     const emailAddress = 'test@example.com';
-    const emailSubject = 'Sun Coast Part Number Configurator: Number N-###';
-    const bodyText = 'Sun Coast Part Configurator.\nN-####';
+    const emailSubject = `Sun Coast Part Number Configurator: ${hpuNum}`;
+    const bodyText = `Sun Coast Part Configurator ${hpuNum}${valveNums}`;
     const mailtoLink = createMailtoLink(emailAddress, emailSubject, bodyText);
 
     window.location.href = mailtoLink;
@@ -37,6 +40,27 @@ const createMailtoLink = (email, subject, bodyText) => {
     const mailtoLink = `mailto:${email}?subject=${subjectEncoded}&body=${bodyEncoded}`;
     return mailtoLink;
 };
+
+// Generate valve body text
+const genValveText = () => {
+    let html = '';
+
+    if(valveAssem.station0.valve == null){
+        return html;
+    }else{
+        html += `\n\nVALVE STATIONS:`
+        for(i = 0; i < hpuInputs.numStat; i++){
+            let station = `station${i}`;
+            let valve = valveAssem[station].valve;
+            let flowControl = valveAssem[station].flowControl;
+            let checkValve = valveAssem[station].checkValve;
+    
+            html += `\nSTATION ${i + 1}: ${valve.code}-${flowControl.code}-${checkValve.code}`;
+        };
+    }
+
+    return html;
+}
 
 pdfPrintButton.addEventListener('click', e => {
     e.preventDefault();

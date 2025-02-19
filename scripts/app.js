@@ -8,7 +8,8 @@ const contactButtons = document.querySelectorAll('.contact');
 const pdfButtons = document.querySelectorAll('.pdf');
 
 const errorPopupWrapper = document.querySelector('.error-popup-wrapper');
-const errorPopupCloseButton = document.querySelector('.error-popup-close');
+const errorPopupCloseX = document.querySelector('.error-popup-close-x');
+const errorPopupCloseButton = document.querySelector('.error-popup-close-btn');
 const errorPopupContent = document.querySelector('.error-popup-content');
 
 
@@ -44,6 +45,11 @@ restartButtons.forEach((button) => {
 });
 
 // Error popup close button
+errorPopupCloseX.addEventListener('click', e => {
+    e.preventDefault();
+    errorPopupWrapper.style.display = 'none';
+});
+
 errorPopupCloseButton.addEventListener('click', e => {
     e.preventDefault();
     errorPopupWrapper.style.display = 'none';

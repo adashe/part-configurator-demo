@@ -46,7 +46,7 @@
 
                 <div>
                     <label for="maxFlow">Max Flow (gpm):</label>
-                    <input type="number" id="maxFlow" placeholder="ex. 8" required>
+                    <input type="number" id="maxFlow" placeholder="ex. 8" max="21" required>
                 </div>
 
                 <div>
@@ -279,12 +279,12 @@
     <!-- ERROR POPUP DIV -->
     <div class="error-popup-wrapper">
         <div class="error-popup-div">
-            <div class="error-popup-close">x</div>
+            <div class="error-popup-close-x">x</div>
             <h2>Configuration Error</h2>
             <div class="error-popup-content">
                 <p>Error!</p>
             </div>
-            <button class="button gray restart">RESTART CONFIGURATOR</button>
+            <button class="button gray error-popup-close-btn">CLOSE</button>
         </div>
     </div>
 
