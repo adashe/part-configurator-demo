@@ -1,6 +1,8 @@
 const partNumDisplay = document.querySelectorAll('.part-num-disp');
 const partNumDets = document.querySelector('#part-num-dets');
 
+const totalCostDisplay = document.querySelector('#total-cost-disp');
+
 const tableWrapper = document.querySelector('.table-wrapper');
 const tableCloseButton = document.querySelector('.table-close');
 
@@ -64,8 +66,6 @@ const buildHpuNumberDisplay = (data) => {
             </div>
         </div>
     `;
-
-    const editHpuInputsHTML = `<p id="edit-hpu-inputs">Edit HPU inputs</p>`
 
 
     // Display part number details on part number page
@@ -165,14 +165,26 @@ const buildHpuNumberDisplay = (data) => {
 
     let advancedHTML = `<p id="advanced-opts">Advanced Options</p>`;
 
-    const hpuCostHTML = `<h4>HPU LIST PRICE: $${totalCost}</h4>`;
+    const editHpuInputsHTML = `<p class="edit-inputs" id="edit-hpu-inputs">Edit HPU inputs</p>`
+    const hpuCostHTML = `<p class="assem-price">HPU LIST PRICE: $${totalCost}</p>`;
 
-    partNumDets.innerHTML = advancedHTML + reservoirHTML + pumpHTML + motorHTML + manifoldHTML + heatExchangerHTML + inputsHTML + editHpuInputsHTML + hpuCostHTML;
+    partNumDets.innerHTML = advancedHTML 
+        + editHpuInputsHTML 
+        + reservoirHTML 
+        + pumpHTML 
+        + motorHTML 
+        + manifoldHTML 
+        + heatExchangerHTML 
+        + inputsHTML 
+        + hpuCostHTML
+        ;
 
     addEventHandlerToAdvancedOptionsBtn();
     addEventHandlersToDropdowns();
     addEventHandlerToEditInputsBtn();
     addEventHandlerstoEditBtns();
+
+    buildTotalCostDisplay();
 
 };
 
@@ -466,3 +478,18 @@ const displayHeatExchangerTable = (data) => {
     });
 
 };
+
+const buildTotalCostDisplay = () => {
+
+    const total = calcTotalCost();
+
+    totalCostDisplay.innerHTML = `<h4 class="total-price">TOTAL LIST PRICE: $${total.toFixed(2)}</h4>`
+
+};
+
+const calcTotalCost = () => {
+    const hpuCost = parseFloat(hpuAssem.calcCost());
+    const valveCost = parseFloat(valveAssem.calcCost()); 
+
+    return hpuCost + valveCost;
+}

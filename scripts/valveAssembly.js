@@ -177,5 +177,27 @@ class ValveAssembly{
         this.numFlwCtrl = count;
 
     }
+
+    calcCost(){
+        let cost = 0;
+
+        const stationsArr = [
+            this.station0, 
+            this.station1, 
+            this.station2, 
+            this.station3, 
+            this.station4, 
+            this.station5
+        ];
+
+        stationsArr.forEach(station => {
+            if(station.valve != null){
+                cost += station.valve.cost + station.flowControl.cost + station.checkValve.cost
+            };
+        });
+
+        return cost;
+
+    }
     
 }

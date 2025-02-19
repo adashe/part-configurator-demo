@@ -1,6 +1,7 @@
 const appContainer = document.querySelector('#container');
 const pdfContainer = document.querySelector('#container-pdf');
 
+const pdfTotalListPriceDiv = document.querySelector('#pdf-total-list-price-div');
 const pdfContactDiv = document.querySelector('#pdf-contact-div');
 const pdfHpuDiv = document.querySelector('#pdf-hpu-div');
 const pdfValveDiv = document.querySelector('#pdf-valve-div');
@@ -22,12 +23,14 @@ const displayAppContainer = () => {
 pdfEmailButton.addEventListener('click', e => {
     e.preventDefault();
 
-    const hpuNum = `\n\nHPU NUMBER: N-${hpuAssem.reservoir.code}-${hpuAssem.pump.code}-${hpuAssem.motor.code}-${hpuAssem.manifold.code}-${hpuAssem.heatExchanger.code}`;
-    const valveNums = genValveText();
+    const hpuNum = `HPU NUMBER: N-${hpuAssem.reservoir.code}-${hpuAssem.pump.code}-${hpuAssem.motor.code}-${hpuAssem.manifold.code}-${hpuAssem.heatExchanger.code}`
+    const hpuBody = genHpuBody();
+    const valveBody = genValveBody();
+    const totalCostBody = genTotalCostBody();
 
     const emailAddress = 'test@example.com';
     const emailSubject = `Sun Coast Part Number Configurator: ${hpuNum}`;
-    const bodyText = `Sun Coast Part Configurator ${hpuNum}${valveNums}`;
+    const bodyText = `Sun Coast Part Configurator ${hpuBody}${valveBody}${totalCostBody}`;
     const mailtoLink = createMailtoLink(emailAddress, emailSubject, bodyText);
 
     window.location.href = mailtoLink;
@@ -41,8 +44,22 @@ const createMailtoLink = (email, subject, bodyText) => {
     return mailtoLink;
 };
 
+// Generate hpu body text
+const genHpuBody = () => {
+    let html = `\n\nHPU NUMBER: N-${hpuAssem.reservoir.code}-${hpuAssem.pump.code}-${hpuAssem.motor.code}-${hpuAssem.manifold.code}-${hpuAssem.heatExchanger.code}`;
+
+    // Build hpu cost html
+    const cost = parseFloat(hpuAssem.calcCost());
+    costHtml = `\nHPU Assembly List Price: $${cost.toFixed(2)}`;
+
+    html += costHtml;
+
+    return html;
+
+}
+
 // Generate valve body text
-const genValveText = () => {
+const genValveBody = () => {
     let html = '';
 
     if(valveAssem.station0.valve == null){
@@ -55,12 +72,27 @@ const genValveText = () => {
             let flowControl = valveAssem[station].flowControl;
             let checkValve = valveAssem[station].checkValve;
     
-            html += `\nSTATION ${i + 1}: ${valve.code}-${flowControl.code}-${checkValve.code}`;
+            html += `\nStation ${i + 1}: ${valve.code}-${flowControl.code}-${checkValve.code}`;
         };
     }
 
+    // Build valve cost html
+    const cost = parseFloat(valveAssem.calcCost());
+    costHtml = `\nValve Assembly List Price: $${cost.toFixed(2)}`;
+
+    html += costHtml;
+
     return html;
 }
+
+const genTotalCostBody = () => {
+
+    const total = calcTotalCost();
+
+    html = `\n\nTOTAL LIST PRICE: $${total.toFixed(2)}`;
+
+    return html;
+};
 
 pdfPrintButton.addEventListener('click', e => {
     e.preventDefault();
@@ -73,6 +105,7 @@ const generatePDF = () => {
     fillContactDets();
     fillHpuDets();
     fillValveDets();
+    fillTotalCostDets();
 };
 
 const fillContactDets = () => {
@@ -272,4 +305,12 @@ const fillValveDets = () => {
         pdfValveDiv.innerHTML += valveCostHTML;
 
     };
+};
+
+const fillTotalCostDets = () => {
+
+    const total = calcTotalCost();
+
+    pdfTotalListPriceDiv.innerHTML = `<div class="pdf-total-list"><h4>TOTAL LIST PRICE: ${total.toFixed(2)}</h4></div>`;
+
 };

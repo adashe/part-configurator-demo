@@ -3,20 +3,21 @@ const valveDets = document.querySelector('#valve-dets');
 
 const buildValveDisplay = (valveAssem) => {
 
-    let valvePrice = 0;
-    const valveH3 = `<h2>YOUR VALVE SELECTIONS</h2>`;
-    const valveEditBtnHTML = `<p id="edit-valves">Edit valves</p>`
+    const valveH2 = `<h2>YOUR VALVE SELECTIONS</h2>`;
+    const valveEditBtnHTML = `<p class="edit-inputs" id="edit-valves">Edit valves</p>`
 
 
     // End function if no stations are available
     if(hpuInputs.numStat == 0){
 
+            valveDets.innerHTML = "";
+            
             return;
 
     // Create placeholder dropdowns if no valves were selected during HPU configuration
     }else if(valveAssem.station0.valve == null){
 
-        valveDets.innerHTML = valveH3;
+        valveDets.innerHTML = valveH2 + valveEditBtnHTML;
 
         for(i = 0; i < hpuInputs.numStat; i++){
             let valveHTML = `
@@ -38,16 +39,13 @@ const buildValveDisplay = (valveAssem) => {
     // Create dropdowns for completed valve assemblies
     }else{
 
-        valveDets.innerHTML = valveH3;
+        valveDets.innerHTML = valveH2 + valveEditBtnHTML;
 
         for(i = 0; i < hpuInputs.numStat; i++){
             let station = `station${i}`;
             let valve = valveAssem[station].valve;
             let flowControl = valveAssem[station].flowControl;
             let checkValve = valveAssem[station].checkValve;
-    
-            // Update price with the cost of each stations' components
-            valvePrice += valve.cost + flowControl.cost + checkValve.cost;
     
             let valveHTML = `
                 <div class="valve-dropdown">
@@ -80,10 +78,10 @@ const buildValveDisplay = (valveAssem) => {
         };
     };
 
+    const stationCost = valveAssem.calcCost(); 
+    const stationCostHTML = `<p class="assem-price">VALVES LIST PRICE: $${stationCost.toFixed(2)}</p>`
     
-    const valveCostHTML = `<h4>VALVES LIST PRICE: $${valvePrice.toFixed(2)}</h4>`
-    
-    valveDets.innerHTML += valveEditBtnHTML + valveCostHTML;
+    valveDets.innerHTML += stationCostHTML;
     
     // Add event handler to valve edit button to open valve popup
     const editValveButton = document.querySelector('#edit-valves');
@@ -96,6 +94,7 @@ const buildValveDisplay = (valveAssem) => {
     });
 
     addEventHandlersToValveDropdowns();
+    buildTotalCostDisplay();
 
 };
 

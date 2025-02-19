@@ -30,8 +30,12 @@ h3{
     color: #434343;
     margin: 20px auto auto auto;
 }
-h4{
+.total-price{
     text-align: center;
+    font-size: 16px;
+    padding: 10px;
+    border: 2px solid #f7b500;
+    margin: 20px 60px;
     color: #f7b500;
 }
 p{
@@ -93,6 +97,11 @@ li h5{
 #container-pdf .pdf-cost{
     margin: 20px auto;
     padding: 10px auto;
+}
+#container-pdf .pdf-total-list{
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }
 #container-pdf h4{
     display: inline;
@@ -207,21 +216,6 @@ button.yellow:hover{
     background-color: #e7aa05;
     cursor: pointer;
 }
-button.edit{
-    background-color: white;
-    text-align: left;
-    width: 100%;
-    margin: 0;
-    padding: 10px;
-    font-size: 16px;
-    color: #67bfc2;
-    border-bottom: 1px solid #ddd;
-    border-radius: 0;
-}
-button.edit:hover{
-    background-color: white;
-    color: #72d1d4;
-}
 #advanced-opts{
     text-align: right;
     font-size: 12px;
@@ -234,7 +228,6 @@ button.edit:hover{
 }
 .li-edit{
     display: none;
-    color: hotpink;
 }
 .li-edit:hover{
     color: #72d1d4;
@@ -247,28 +240,22 @@ button.edit:hover{
     font-style: italic;
     display: inherit;
 }
-#edit-hpu-inputs{
-    margin: 0;
+p.assem-price{
     padding: 10px;
-    display: block;
+    margin: 0 auto 20px auto;
+    font-size: 16px;
     text-align: left;
+    font-weight: 500;
+    color: #67bfc2;
+}
+.edit-inputs{
+    margin: 0;
+    font-size: 12px;
+    text-align: right;
     color: #67bfc2;
     font-style: italic;
 }
-#edit-hpu-inputs:hover {
-    color: #72d1d4;
-    cursor: pointer;
-    text-decoration: underline;
-}
-#edit-valves{
-    margin: 0;
-    padding: 10px;
-    text-align: left;
-    display: block;
-    color: #67bfc2;
-    font-style: italic;
-}
-#edit-valves:hover{
+.edit-inputs:hover {
     color: #72d1d4;
     cursor: pointer;
     text-decoration: underline;
@@ -556,7 +543,7 @@ cursor: pointer;
 .error-popup-div h2{
     color: #72d1d4;
 }
-.error-popup-close-x{
+.error-popup-close{
     position: absolute;
     font-size: 20px;
     top: 5px;

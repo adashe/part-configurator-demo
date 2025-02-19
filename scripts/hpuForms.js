@@ -143,12 +143,14 @@ const generateHpuNumberStationsDropdown = () => {
     };
 
 
-    // Add event listener to reset valve options form if number of stations is changed
+    // Add event listener to reset valve options form and valve assembly if number of stations is changed
     const hpuNumberStations = document.querySelector('#hpuNumberStations');
 
     hpuNumberStations.addEventListener('change', e => {
         e.preventDefault();
         solenoidVoltage.value = '';
+        valveAssem.reset();
+        resetValveInputs();
 
         // Disable valve popup access if 0 stations selected
         if(hpuNumberStations.value == 0){

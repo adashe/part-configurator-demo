@@ -76,11 +76,11 @@ class HpuAssembly{
         if(resOrient == 'horizontal'){
             filteredData = data.filter(reservoir => reservoir.code.includes('H'));
             minCap = this.pump.gpm1750 * 2.5;
-            console.log('H minCap:', minCap);
+            // console.log('H minCap:', minCap);
         } else if (resOrient == 'vertical'){
             filteredData = data.filter(reservoir => reservoir.code.includes('V'))
             minCap = this.pump.gpm1750 * 3;
-            console.log('V minCap:', minCap);
+            // console.log('V minCap:', minCap);
         };
 
         let result = filteredData.filter(reservoir => reservoir.capacity >= minCap);
@@ -94,7 +94,7 @@ class HpuAssembly{
             this.reservoir = result.reduce((prev, curr) => (prev.capacity < curr.capacity) ? prev : curr);
         };
 
-        console.log('reservoir', this.reservoir);
+        // console.log('reservoir', this.reservoir);
 
         return this.reservoir;
     }
@@ -112,7 +112,7 @@ class HpuAssembly{
         const rotationSpeed = 1750;
         const minDis = 231 * maxFl / rotationSpeed;
 
-        console.log('minDis:', minDis);
+        // console.log('minDis:', minDis);
 
         let result = [];
 
@@ -129,7 +129,7 @@ class HpuAssembly{
             this.pump = result.reduce((prev, curr) => (prev.dispCID < curr.dispCID) ? prev : curr);
         };
 
-        console.log('pump', this.pump);
+        // console.log('pump', this.pump);
 
         return this.pump;
     }
@@ -150,7 +150,7 @@ class HpuAssembly{
 
         // minHIP includes 10% fudge factor 
         const minHP = ((maxPres * maxFl) / (1714 * 0.85)) - .1;
-        console.log('minHP:', minHP);
+        // console.log('minHP:', minHP);
 
         let result = [];
 
@@ -170,7 +170,7 @@ class HpuAssembly{
             this.motor = result.reduce((prev, curr) => (prev.outputHP < curr.outputHP) ? prev : curr);
         };
 
-        console.log('motor', this.motor);
+        // console.log('motor', this.motor);
 
         return this.motor;
     }
@@ -205,7 +205,7 @@ class HpuAssembly{
             console.log('Cannot calculate manifold without port size');
         };
 
-        console.log('manifold', this.manifold);
+        // console.log('manifold', this.manifold);
 
         return this.manifold;
     }
@@ -232,9 +232,9 @@ class HpuAssembly{
         // ADDER 1 = #Lspools * L spool multiplier (above)
         const adder1 = numLValves * -.1;
 
-        console.log('num l valves', numLValves);
-        console.log('num flow control', numFlowCtrl);
-        console.log('adder 1', adder1);
+        // console.log('num l valves', numLValves);
+        // console.log('num flow control', numFlowCtrl);
+        // console.log('adder 1', adder1);
 
         // Calculate adder 2
         // ADDER 2 = if max pressure > 2000, use 5%, if max pressure > 1000 use 2%, if neither use 0%
@@ -248,25 +248,25 @@ class HpuAssembly{
             adder2 = 0;
         }
 
-        console.log('adder 2', adder2);
+        // console.log('adder 2', adder2);
 
         // Calculate adder 3
         // ADDER 3 = total num flow controls * flow control adder value (above)
         const adder3 = numFlowCtrl * .02;
-        console.log('adder 3', adder3);
+        // console.log('adder 3', adder3);
 
         // needed dissipation = minHP (from motor calc) * (base multiplier + ADDER1 + ADDER2 + ADDER3) 
         const minHP = ((maxPres * maxFl) / (1714 * 0.85));
-        console.log('min HP in HE', minHP);
+        // console.log('min HP in HE', minHP);
         const baseMult = .15;
         const allAdders = baseMult + adder1 + adder2 + adder3;
         const minHtDis = minHP * allAdders;
-        console.log('min ht dis', minHtDis);
+        // console.log('min ht dis', minHtDis);
 
         // reservoir heat dissipation (reservoir table)
         // value = needed dissipation - reservoir dissipation 
         const reqDis = minHtDis - this.reservoir.heatDis;
-        console.log('req dis (min ht dis - reservoir ht dis)', reqDis)
+        // console.log('req dis (min ht dis - reservoir ht dis)', reqDis)
 
         // console.log('reqDis:', reqDis);
 
@@ -299,7 +299,7 @@ class HpuAssembly{
 
         // final calculation of needed dissipation cannot be less than 0
 
-        console.log('heat exchanger', this.heatExchanger);
+        // console.log('heat exchanger', this.heatExchanger);
 
         return this.heatExchanger;
     }
@@ -324,7 +324,7 @@ class HpuAssembly{
         };
 
         // console.log('prices', prices);
-        // console.log('total cost', totalCost);
+        // console.log('hpu cost', this.totalCost, typeof this.totalCost);
 
         return this.totalCost;
     }
