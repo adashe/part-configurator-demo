@@ -72,22 +72,30 @@ class HpuAssembly{
 
         let filteredData;
         let minCap;
+        let result;
 
-        if(resOrient == 'horizontal'){
-            filteredData = data.filter(reservoir => reservoir.code.includes('H'));
-            minCap = this.pump.gpm1750 * 2.5;
-            // console.log('H minCap:', minCap);
-        } else if (resOrient == 'vertical'){
+        if(resOrient == 'vertical'){
             filteredData = data.filter(reservoir => reservoir.code.includes('V'))
             minCap = this.pump.gpm1750 * 3;
             // console.log('V minCap:', minCap);
+            result = filteredData.filter(reservoir => reservoir.capacity >= minCap);
+
+            // Return vertical reservoir, or replace with horizontal reservoir if no valid vertical reservoir results
+            if(result.length == 0){
+                displayErrorMsg('No valid vertical reservoir results.\nReplaced with horizontal reservoir');
+            } else {
+                this.reservoir = result.reduce((prev, curr) => (prev.capacity < curr.capacity) ? prev : curr);
+                return this.reservoir;
+            };
         };
 
-        let result = filteredData.filter(reservoir => reservoir.capacity >= minCap);
+        // Calculate horizontal reservoir
+        filteredData = data.filter(reservoir => reservoir.code.includes('H'));
+        minCap = this.pump.gpm1750 * 2.5;
+        // console.log('H minCap:', minCap);
+        result = filteredData.filter(reservoir => reservoir.capacity >= minCap);
 
-        if(result.length == 0 && resOrient == 'vertical'){
-            displayErrorMsg('No valid vertical reservoir results - try horizontal reservoir')
-        } else if(result.length == 0){
+        if(result.length == 0){
             console.log('No valid reservoir results.');
             displayErrorMsg('No valid reservoir results.');
         } else {

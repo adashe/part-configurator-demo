@@ -7,10 +7,7 @@ const logoutBtn = document.querySelector('#logout');
 
 const currentUser = new User();
 
-// Login if user is in session
-let savedUser = null;
-let parsedUser = null;
-
+// Login if user is in session storage
 try{
     loginFromSessionStorage();
 } catch (error){
@@ -18,8 +15,11 @@ try{
 }
 
 async function loginFromSessionStorage(){
+    let savedUser = null;
+    let parsedUser = null;
+
     savedUser = sessionStorage.getItem("currentUser");
-    let parsedUser = JSON.parse(savedUser);
+    parsedUser = JSON.parse(savedUser);
 
     if(parsedUser){
         loginUser(parsedUser.username, parsedUser.password);

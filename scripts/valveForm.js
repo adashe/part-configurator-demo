@@ -1,3 +1,4 @@
+const valvePortSizeDiv = document.querySelector('#valve-port-size-div');
 const valveSolVoltDiv = document.querySelector('#valve-sol-volt-div');
 const solenoidVoltage = document.querySelector('#SolenoidVoltage');
 
@@ -50,6 +51,7 @@ const prefillValveSettingsFromHPUInputs = () => {
     // Check for values in hpuInputs array and prefill each dropdown if present
     if(hpuInputs.portSize){
         valveInputs.portSize = hpuInputs.portSize;
+        valvePortSizeDiv.innerHTML = `Port Size: ${valveInputs.portSize}`;
     };
 
     if(hpuInputs.numStat){
@@ -113,7 +115,7 @@ const generateValveDropdown = (data, i) => {
                 <label for="valve${i}"></label>
                 <select name="valve${i}" id="valve${i}" class="valve" required>
                     <option value="" disabled selected hidden>Select valve...</option>
-                    <option value="0">No valve</option>
+                    <option value="0">No valve (includes coverplate)</option>
                 `;
 
     data.forEach(valve => {
