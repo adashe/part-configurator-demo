@@ -4,8 +4,8 @@
         "type": null,
         "p21Model": null,
         "description": "NO HEAT EXCHANGER",
-        "hCost": 146.33,
-        "vCost": 176.54,
+        "hCost": 0,
+        "vCost": 0,
         "maxFlow": null,
         "heatDis": null
     },

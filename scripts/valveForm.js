@@ -83,12 +83,14 @@ async function prefillValvePopupFromValveAssembly(){
                 let elementID = `flowControl${i}`;
                 let element = document.getElementById(elementID);
                 element.value = valveAssem[station].flowControl.code;
+                element.removeAttribute('disabled');
             };
     
             if(valveAssem[station].checkValve && valveAssem[station].checkValve.code){
                 let elementID = `checkValve${i}`;
                 let element = document.getElementById(elementID);
                 element.value = valveAssem[station].checkValve.code;
+                element.removeAttribute('disabled');
             };
         };
     };
@@ -132,7 +134,7 @@ const generateFlowControlDropdown = (data, i) => {
 
     let html = `
                 <label for="flowControl${i}"></label>
-                <select name="flowControl${i}" id="flowControl${i}" class="flowControl" required>
+                <select name="flowControl${i}" id="flowControl${i}" class="flowControl" required disabled>
                     <option value="" disabled selected hidden>Select flow control...</option>
                     <option value="0">No flow control</option>
                 `;
@@ -151,7 +153,7 @@ const generateCheckValveDropdown = (data, i) => {
 
     let html = `
                 <label for="checkValve${i}"></label>
-                <select name="checkValve${i}" id="checkValve${i}" class="checkValve" required>
+                <select name="checkValve${i}" id="checkValve${i}" class="checkValve" required disabled>
                     <option value="" disabled selected hidden>Select check valve...</option>
                 `;
 
@@ -194,6 +196,37 @@ async function generateAllValveDropdowns(){
 
     };
 
+    // Add event listener to enable flow control and check valve dropdowns when valve is selected
+    addEventListenerToEnableDropdowns();
+
+};
+
+const addEventListenerToEnableDropdowns = () => {
+    const valveDropdowns = document.querySelectorAll('.valve');
+
+    valveDropdowns.forEach((dropdown, i) => {
+        const flCtrlID = `flowControl${i}`;
+        const chValveID = `checkValve${i}`;
+
+        const flCtl = document.getElementById(flCtrlID);
+        const chValve = document.getElementById(chValveID);
+
+        dropdown.addEventListener('change', e => {
+            e.preventDefault();
+
+            if(e.target.value != 0){
+                flCtl.removeAttribute('disabled');
+                chValve.removeAttribute('disabled');
+            } else if (e.target.value == 0){
+                flCtl.value = "";
+                chValve.value = "";
+                
+                flCtl.setAttribute("disabled", true);
+                chValve.setAttribute("disabled", true);
+            };
+        });
+    });
+
 };
 
 valvePopupForm.addEventListener('submit', e => {
@@ -226,7 +259,18 @@ async function addValveInputsToValveAssembly(){
         let flowControl = document.getElementById(flowControlID);
         let checkValve = document.getElementById(checkValveID);
 
-        let promise = valveAssem.updateStation(stationName, valve.value, flowControl.value, checkValve.value);
+        // Assign value of 0 to null (disabled) flow control and check valve options
+        let flowControlValue = flowControl.value;
+        if(!flowControl.value){
+            flowControlValue = 0
+        };
+
+        let checkValveValue = checkValve.value;
+        if(!checkValve.value){
+            checkValveValue = 0
+        };
+
+        let promise = valveAssem.updateStation(stationName, valve.value, flowControlValue, checkValveValue);
     
         promises.push(promise);
     };

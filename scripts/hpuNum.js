@@ -145,7 +145,6 @@ const buildHpuNumberDisplay = (data) => {
                 <div class="content">        
                     <ul>
                         <li>Description: No heat exchanger</li>
-                        <li>Price: $${heatExchangerCost}</li>
                         <li class="li-edit" id="edit-heat-exchanger">Edit heat exchanger</li>
                     </ul> 
                 </div>
