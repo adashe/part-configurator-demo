@@ -2,7 +2,7 @@ const valveSolVoltDiv = document.querySelector('#valve-sol-volt-div');
 const solenoidVoltage = document.querySelector('#SolenoidVoltage');
 
 const valvePopupWrapper = document.querySelector('.valve-popup-wrapper');
-const valvePopupCloseButton = document.querySelector('.valve-popup-close');
+const valvePopupCloseButtonX = document.querySelector('.valve-popup-close-x');
 const valvePopupContent = document.querySelector('.valve-popup-content');
 const valvePopupForm = document.querySelector('#valve-popup-form');
 
@@ -18,7 +18,7 @@ const displayValvePopup = () => {
 };
 
 // Valve popup close button
-valvePopupCloseButton.addEventListener('click', e => {
+valvePopupCloseButtonX.addEventListener('click', e => {
     e.preventDefault();
     solenoidVoltage.value = '';
     resetValveInputs();

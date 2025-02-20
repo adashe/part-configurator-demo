@@ -4,11 +4,17 @@ const partNumDets = document.querySelector('#part-num-dets');
 const totalCostDisplay = document.querySelector('#total-cost-disp');
 
 const tableWrapper = document.querySelector('.table-wrapper');
-const tableCloseButton = document.querySelector('.table-close');
+const tableCloseButtonX = document.querySelector('.table-close-x');
 
 const tableH2 = document.querySelector('#table-h2');
 const tableHead = document.querySelector('thead');
 const tableBody = document.querySelector('tbody');
+
+// Table close button
+tableCloseButtonX.addEventListener('click', e => {
+    e.preventDefault();
+    tableWrapper.style.display = 'none';
+});
 
 
 // Build configured HPU part number and details

@@ -407,7 +407,7 @@ p.assem-price{
 .valve-popup-div h2{
     color: #72d1d4;
 }
-.valve-popup-close{
+.valve-popup-close-x{
     position: absolute;
     font-size: 20px;
     top: 5px;
@@ -464,7 +464,7 @@ p.assem-price{
 .valve-img-div h2{
     color: #72d1d4;
 }
-.valve-img-close{
+.valve-img-close-x{
     position: absolute;
     font-size: 20px;
     top: 5px;
@@ -497,7 +497,7 @@ img{
     border: none;
     border-radius: 5px;
 }
-.table-close{
+.table-close-x{
     position: absolute;
     font-size: 20px;
     top: 5px;
@@ -551,7 +551,7 @@ cursor: pointer;
 .error-popup-div h2{
     color: #72d1d4;
 }
-.error-popup-close{
+.error-popup-close-x{
     position: absolute;
     font-size: 20px;
     top: 5px;

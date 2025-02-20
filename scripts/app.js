@@ -42,7 +42,6 @@ restartButtons.forEach((button) => {
         e.preventDefault();
 
         window.location.reload();
-
     });
 });
 

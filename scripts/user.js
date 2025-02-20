@@ -1,7 +1,8 @@
 class User{
     constructor(){
         this.username = null,
-        this.userType = null
+        this.userType = null,
+        this.password = null
     }
 
     async getUserData(){
@@ -21,6 +22,7 @@ class User{
         } else {
             this.username = result[0].username;
             this.userType = result[0].userType;
+            this.password = result[0].password;
         }
 
         return this;

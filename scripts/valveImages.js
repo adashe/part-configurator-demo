@@ -1,6 +1,6 @@
 const valveImageButton = document.querySelector('.valve-img-btn')
 const valveImgWrapper = document.querySelector('.valve-img-wrapper');
-const valveImgCloseButton = document.querySelector('.valve-img-close');
+const valveImgCloseButtonX = document.querySelector('.valve-img-close-x');
 const valveImgContent = document.querySelector('.valve-img-content');
 const valveImgForm = document.querySelector('#valve-img-form');
 
@@ -16,7 +16,7 @@ async function displayValveImg(){
 };
 
 // Valve popup close button
-valveImgCloseButton.addEventListener('click', e => {
+valveImgCloseButtonX.addEventListener('click', e => {
     e.preventDefault();
     valveImgContent.innerHTML = '';
     valveImgWrapper.style.display = 'none';
