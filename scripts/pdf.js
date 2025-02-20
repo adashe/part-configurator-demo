@@ -23,7 +23,7 @@ const displayAppContainer = () => {
 pdfEmailButton.addEventListener('click', e => {
     e.preventDefault();
 
-    const hpuNum = `HPU NUMBER: N-${hpuAssem.reservoir.code}-${hpuAssem.pump.code}-${hpuAssem.motor.code}-${hpuAssem.manifold.code}-${hpuAssem.heatExchanger.code}`
+    const hpuNum = `N-${hpuAssem.reservoir.code}-${hpuAssem.pump.code}-${hpuAssem.motor.code}-${hpuAssem.manifold.code}-${hpuAssem.heatExchanger.code}`
     const hpuBody = genHpuBody();
     const valveBody = genValveBody();
     const totalCostBody = genTotalCostBody();

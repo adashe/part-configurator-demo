@@ -49,7 +49,7 @@ async function loginUser(un, pw){
     } else if(currentUser.username){
         sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
         loginPopup.style.display = 'none';
-        userStatus.innerHTML = `Signed in as: ${currentUser.username}`;
+        userStatus.innerHTML = `Signed in as: ${currentUser.username.toUpperCase()}`;
     };
 };
 
