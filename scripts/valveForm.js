@@ -77,20 +77,23 @@ async function prefillValvePopupFromValveAssembly(){
                 let elementID = `valve${i}`;
                 let element = document.getElementById(elementID);
                 element.value = valveAssem[station].valve.code;
-            };
-    
-            if(valveAssem[station].flowControl && valveAssem[station].flowControl.code){
-                let elementID = `flowControl${i}`;
-                let element = document.getElementById(elementID);
-                element.value = valveAssem[station].flowControl.code;
-                element.removeAttribute('disabled');
-            };
-    
-            if(valveAssem[station].checkValve && valveAssem[station].checkValve.code){
-                let elementID = `checkValve${i}`;
-                let element = document.getElementById(elementID);
-                element.value = valveAssem[station].checkValve.code;
-                element.removeAttribute('disabled');
+
+                // Prefill flow control and check valve only if valve is selected
+                if(valveAssem[station].valve.code != 0){
+                    if(valveAssem[station].flowControl && valveAssem[station].flowControl.code){
+                        let elementID = `flowControl${i}`;
+                        let element = document.getElementById(elementID);
+                        element.value = valveAssem[station].flowControl.code;
+                        element.removeAttribute('disabled');
+                    };
+            
+                    if(valveAssem[station].checkValve && valveAssem[station].checkValve.code){
+                        let elementID = `checkValve${i}`;
+                        let element = document.getElementById(elementID);
+                        element.value = valveAssem[station].checkValve.code;
+                        element.removeAttribute('disabled');
+                    };
+                };
             };
         };
     };
@@ -220,7 +223,7 @@ const addEventListenerToEnableDropdowns = () => {
             } else if (e.target.value == 0){
                 flCtl.value = "";
                 chValve.value = "";
-                
+
                 flCtl.setAttribute("disabled", true);
                 chValve.setAttribute("disabled", true);
             };
