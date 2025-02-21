@@ -532,19 +532,23 @@ table {
   }
 th,
 td {
-padding: 5px;
-text-align: center;
+    padding: 5px;
+    text-align: center;
+}
+td{
+    font-size: 14px;
+    color: #818181;
 }
 tbody tr:nth-child(odd) {
-background-color: white;
+    background-color: white;
 
 }
 tbody tr:nth-child(even) {
-background-color: #efefef;
+    background-color: #efefef;
 }
 tbody tr:hover{
-background-color: #72d1d4;
-cursor: pointer;
+    background-color: #72d1d4;
+    cursor: pointer;
 }
 
 /* ERROR POPUP STYLES */
