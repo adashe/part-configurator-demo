@@ -78,10 +78,11 @@ li h5{
 /* PDF STYLES */
 #container-pdf{
     display: none;
-    background: white;
     width: 800px;
     margin: 10px auto;
-    padding: 40px;
+}
+#pdf-page{
+    background: white;
 }
 #container-pdf div{
     margin: 10px;
