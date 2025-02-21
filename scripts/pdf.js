@@ -6,7 +6,7 @@ const pdfContactDiv = document.querySelector('#pdf-contact-div');
 const pdfHpuDiv = document.querySelector('#pdf-hpu-div');
 const pdfValveDiv = document.querySelector('#pdf-valve-div');
 
-const pdfEmailButton = document.querySelector('.pdf-email');
+const pdfEmailButtons = document.querySelectorAll('.pdf-email');
 const pdfPrintButton = document.querySelector('.pdf-print');
 
 
@@ -20,22 +20,25 @@ const displayAppContainer = () => {
     appContainer.style.display = 'flex';
 };
 
-pdfEmailButton.addEventListener('click', e => {
-    e.preventDefault();
-
-    const hpuNum = `N-${hpuAssem.reservoir.code}-${hpuAssem.pump.code}-${hpuAssem.motor.code}-${hpuAssem.manifold.code}-${hpuAssem.heatExchanger.code}`
-    const hpuBody = genHpuBody();
-    const valveBody = genValveBody();
-    const totalCostBody = genTotalCostBody();
-
-    const emailAddress = 'test@example.com';
-    const emailSubject = `Sun Coast Part Number Configurator: ${hpuNum}`;
-    const bodyText = `Sun Coast Part Configurator ${hpuBody}${valveBody}${totalCostBody}`;
-    const mailtoLink = createMailtoLink(emailAddress, emailSubject, bodyText);
-
-    window.location.href = mailtoLink;
-
+pdfEmailButtons.forEach(button => {
+    button.addEventListener('click', e => {
+        e.preventDefault();
+    
+        const hpuNum = `N-${hpuAssem.reservoir.code}-${hpuAssem.pump.code}-${hpuAssem.motor.code}-${hpuAssem.manifold.code}-${hpuAssem.heatExchanger.code}`
+        const hpuBody = genHpuBody();
+        const valveBody = genValveBody();
+        const totalCostBody = genTotalCostBody();
+    
+        const emailAddress = 'test@example.com';
+        const emailSubject = `Sun Coast Part Number Configurator: ${hpuNum}`;
+        const bodyText = `Sun Coast Part Configurator ${hpuBody}${valveBody}${totalCostBody}`;
+        const mailtoLink = createMailtoLink(emailAddress, emailSubject, bodyText);
+    
+        window.location.href = mailtoLink;
+    
+    });
 });
+
 
 const createMailtoLink = (email, subject, bodyText) => {
     const subjectEncoded = encodeURIComponent(subject);

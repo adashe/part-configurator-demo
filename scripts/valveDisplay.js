@@ -3,7 +3,7 @@ const valveDets = document.querySelector('#valve-dets');
 
 const buildValveDisplay = (valveAssem) => {
 
-    const valveH2 = `<h2>YOUR VALVE SELECTIONS</h2>`;
+    const valveH2 = `<h2>VALVE SELECTIONS</h2>`;
     const valveEditBtnHTML = `<p class="edit-inputs" id="edit-valves">Edit valves</p>`
 
 
