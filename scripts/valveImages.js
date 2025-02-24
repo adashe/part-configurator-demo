@@ -34,7 +34,7 @@ async function generateValveImages(){
         valveData.forEach(valve => {
             html += `
                 <img src="${valve.img}" alt="${valve.code}" />
-                <p>${valve.code}</p>
+                <p class="caption">${valve.code}</p>
             `;
         });
     

@@ -473,8 +473,8 @@ button.valve-img-btn{
 .valve-img-div{
     text-align: center;
     width: 100%;
-    max-width: 400px;
-    margin: 80px auto;
+    max-width: 800px;
+    margin: 20px auto;
     padding: 20px;
     background: white;
     position: relative;
@@ -492,7 +492,11 @@ button.valve-img-btn{
     cursor: pointer;
 }
 img{
-    width: 260px;
+    width: 780px;
+}
+.caption{
+    margin-top: 4px;
+    margin-bottom: 30px;
 }
 
 /* POPUP TABLE STYLES */

@@ -16,7 +16,7 @@
     {
         "code": "V-33A-110",
         "p21Model": "VS6M-3A-A-D110K1",
-        "description": "D03 110VAC DIN  BLOCKED CENTER",
+        "description": "D03 110VAC DIN BLOCKED CENTER",
         "cost": 355.56,
         "valvePattern": "D03",
         "numSolenoids": 2,
@@ -25,7 +25,7 @@
         "springPosition": "CENTER",
         "center": "CLOSED",
         "voltage": "110VAC",
-        "img": "assets/placeholder110VAC.webp"
+        "img": "assets/3A.png"
     },
     {
         "code": "V-33L-110",
@@ -39,7 +39,7 @@
         "springPosition": "CENTER",
         "center": "P-T",
         "voltage": "110VAC",
-        "img": "assets/placeholder110VAC.webp"
+        "img": "assets/3L.png"
     },
     {
         "code": "V-33F-110",
@@ -53,7 +53,7 @@
         "springPosition": "CENTER",
         "center": "A&B TO T",
         "voltage": "110VAC",
-        "img": "assets/placeholder110VAC.webp"
+        "img": "assets/3F.png"
     },
     {
         "code": "V-33B-110",
@@ -67,7 +67,7 @@
         "springPosition": "CENTER",
         "center": "ALL OPEN",
         "voltage": "110VAC",
-        "img": "assets/placeholder110VAC.webp"
+        "img": "assets/3B.png"
     },
     {
         "code": "V-31A-110",
@@ -81,7 +81,7 @@
         "springPosition": "OFFSET",
         "center": "CLOSED",
         "voltage": "110VAC",
-        "img": "assets/placeholder110VAC.webp"
+        "img": "assets/1A.png"
     },
     {
         "code": "V-31B-110",
@@ -95,7 +95,7 @@
         "springPosition": "OFFSET",
         "center": "OPEN",
         "voltage": "110VAC",
-        "img": "assets/placeholder110VAC.webp"
+        "img": "assets/1B.png"
     },
     {
         "code": "V-33A-24",
@@ -109,7 +109,7 @@
         "springPosition": "CENTER",
         "center": "CLOSED",
         "voltage": "24VDC",
-        "img": "assets/placeholder24VDC.avif"
+        "img": "assets/3A.png"
     },
     {
         "code": "V-33L-24",
@@ -123,7 +123,7 @@
         "springPosition": "CENTER",
         "center": "P-T",
         "voltage": "24VDC",
-        "img": "assets/placeholder24VDC.avif"
+        "img": "assets/3L.png"
     },
     {
         "code": "V-33F-24",
@@ -137,7 +137,7 @@
         "springPosition": "CENTER",
         "center": "A&B TO T",
         "voltage": "24VDC",
-        "img": "assets/placeholder24VDC.avif"
+        "img": "assets/3F.png"
     },
     {
         "code": "V-33B-24",
@@ -151,7 +151,7 @@
         "springPosition": "CENTER",
         "center": "OPEN",
         "voltage": "24VDC",
-        "img": "assets/placeholder24VDC.avif"
+        "img": "assets/3B.png"
     },
     {
         "code": "V-31A-24",
@@ -165,7 +165,7 @@
         "springPosition": "OFFSET",
         "center": "CLOSED",
         "voltage": "24VDC",
-        "img": "assets/placeholder24VDC.avif"
+        "img": "assets/1A.png"
     },
     {
         "code": "V-31B-24",
@@ -179,7 +179,7 @@
         "springPosition": "OFFSET",
         "center": "OPEN",
         "voltage": "24VDC",
-        "img": "assets/placeholder24VDC.avif"
+        "img": "assets/1B.png"
     },
     {
         "code": "EX-D05-110VAC",
