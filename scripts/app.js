@@ -58,12 +58,8 @@ errorPopupCloseButton.addEventListener('click', e => {
 });
 
 // Display error message in error popup
-const displayErrorMsg = (msg, header) => {
+const displayErrorMsg = (msg) => {
     errorPopupContent.innerHTML = `<p>${msg}</p>`;
-
-    if(header){
-        errorPopupHeader.innerHTML = `<h2>${header}</h2>`;
-    };
 
     errorPopupWrapper.style.display = 'block';
 };

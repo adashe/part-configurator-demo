@@ -14,7 +14,6 @@ valveImageButton.addEventListener('click', e => {
 // Display popup with valve images
 async function displayValveImg(){
     await generateValveImages();
-    valveImgWrapper.style.display = 'block';
 };
 
 // Valve popup close buttons
@@ -50,8 +49,11 @@ async function generateValveImages(){
     
         html += `</div>`;
 
-    }
+        valveImgContent.innerHTML = html;
 
-    valveImgContent.innerHTML = html;
+        valveImgWrapper.style.display = 'block';
+        valveImgWrapper.scrollTop = 0;
+
+    };
 
 };
