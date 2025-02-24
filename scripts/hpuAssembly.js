@@ -82,7 +82,7 @@ class HpuAssembly{
 
             // Return vertical reservoir, or replace with horizontal reservoir if no valid vertical reservoir results
             if(result.length == 0){
-                displayErrorMsg('No valid vertical reservoir results.\nReplaced with horizontal reservoir');
+                displayErrorMsg('No valid vertical reservoir results.\nReplaced with horizontal reservoir.');
             } else {
                 this.reservoir = result.reduce((prev, curr) => (prev.capacity < curr.capacity) ? prev : curr);
                 return this.reservoir;

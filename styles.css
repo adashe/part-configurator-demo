@@ -470,7 +470,7 @@ button.valve-img-btn{
     height: 100%;
     overflow: auto;
 }
-.valve-img-div{
+#valve-img-div{
     text-align: center;
     width: 100%;
     max-width: 800px;
@@ -569,7 +569,7 @@ tbody tr:hover{
     text-align: center;
     width: 100%;
     max-width: 400px;
-    margin: 120px auto;
+    margin: 140px auto;
     padding: 20px;
     background: white;
     position: relative;

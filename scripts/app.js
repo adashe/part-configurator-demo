@@ -10,6 +10,7 @@ const pdfButtons = document.querySelectorAll('.pdf');
 const errorPopupWrapper = document.querySelector('.error-popup-wrapper');
 const errorPopupCloseX = document.querySelector('.error-popup-close-x');
 const errorPopupCloseButton = document.querySelector('.error-popup-close-btn');
+const errorPopupHeader = document.querySelector('.error-popup-header');
 const errorPopupContent = document.querySelector('.error-popup-content');
 
 
@@ -57,8 +58,13 @@ errorPopupCloseButton.addEventListener('click', e => {
 });
 
 // Display error message in error popup
-const displayErrorMsg = (msg) => {
+const displayErrorMsg = (msg, header) => {
     errorPopupContent.innerHTML = `<p>${msg}</p>`;
+
+    if(header){
+        errorPopupHeader.innerHTML = `<h2>${header}</h2>`;
+    };
+
     errorPopupWrapper.style.display = 'block';
 };
 
