@@ -144,6 +144,9 @@ form{
 form#component-form{
     text-align: center;
 }
+form#msp-form{
+    text-align: right;
+}
 form#hpu-sys-params-form{
     text-align: right;
 }
