@@ -204,6 +204,7 @@ async function generateAllValveDropdowns(){
 
 };
 
+// Event listener to enable flow control and check valve dropdowns when the valve selection is changed from null / no valve
 const addEventListenerToEnableDropdowns = () => {
     const valveDropdowns = document.querySelectorAll('.valve');
 
@@ -241,6 +242,7 @@ valvePopupForm.addEventListener('submit', e => {
 
 });
 
+// Build valve assembly object from valve form inputs 
 async function addValveInputsToValveAssembly(){
 
     let counter = []
@@ -291,6 +293,7 @@ async function addValveInputsToValveAssembly(){
 
 };
 
+// Update valve and HPU number display when edits are made from the display page, including updating the heat exchanger if necessary
 async function updateValvesAndHPU(){
 
     await addValveInputsToValveAssembly();

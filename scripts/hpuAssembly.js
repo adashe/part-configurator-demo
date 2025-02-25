@@ -82,7 +82,10 @@ class HpuAssembly{
 
             // Return vertical reservoir, or replace with horizontal reservoir if no valid vertical reservoir results
             if(result.length == 0){
-                displayErrorMsg('No valid vertical reservoir results.\nReplaced with horizontal reservoir.');
+                // Show error message only when number is initially generated, not after admin edits are made
+                if(partNumDiv.style.display != 'block'){
+                    displayErrorMsg('No valid vertical reservoir results.<br>Replaced with horizontal reservoir.');
+                }
             } else {
                 this.reservoir = result.reduce((prev, curr) => (prev.capacity < curr.capacity) ? prev : curr);
                 return this.reservoir;
@@ -158,27 +161,31 @@ class HpuAssembly{
 
         // minHIP includes 10% fudge factor 
         const minHP = ((maxPres * maxFl) / (1714 * 0.85)) - .1;
-        // console.log('minHP:', minHP);
+        console.log('minHP:', minHP);
 
         let result = [];
 
+        // If the pump mount type is SAE A, first look for valid results in the SAE A motors
         if(this.pump.mountType == 'SAE A'){
             result = data.filter(motor => motor.type == "MF" && motor.outputHP >= minHP);
-        } else if (this.pump.mountType == 'SAE B'){
+        } 
+        
+        // If the pump mount type is still 0 (not SAE A, or no valid SAE A results), look for valid results in SAE B motors
+        if (result.length == 0){
             result = data.filter(motor => motor.type == "MTC" && motor.outputHP >= minHP);
-        } else {
-            console.log('Cannot calculate motor without pump mount type');
-        };
+        }
 
+        // If no valid results are found among SAE A nor SAE B motors, display error message
         if(result.length == 0){
             this.motor = null;
             console.log('No valid motor results.');
+            console.log('result', result);
             displayErrorMsg('No valid motor results.');
         } else {
             this.motor = result.reduce((prev, curr) => (prev.outputHP < curr.outputHP) ? prev : curr);
         };
 
-        // console.log('motor', this.motor);
+        console.log('motor', this.motor);
 
         return this.motor;
     }
