@@ -163,7 +163,7 @@ const fillHpuDets = () => {
 
     pdfHpuDiv.innerHTML = '';
         
-    const hpuHeaderHTML = `<h2>HPU COMPONENTS</h2>`;
+    const hpuHeaderHTML = `<h2>HPU SELECTION: N-${hpuAssem.reservoir.code}-${hpuAssem.pump.code}-${hpuAssem.motor.code}-${hpuAssem.manifold.code}-${hpuAssem.heatExchanger.code}</h2>`;
 
     const reservoirHTML = `
         <h3>RESERVOIR: ${hpuAssem.reservoir.code}</h3>
@@ -237,7 +237,7 @@ const fillHpuDets = () => {
 const fillValveDets = () => {
 
     pdfValveDiv.innerHTML = '';
-    const valveHeaderHTML = `<h2>VALVE COMPONENTS</h2>`;
+    const valveHeaderHTML = `<h2>VALVE SELECTIONS</h2>`;
     let valvePrice = 0;
 
     if(valveAssem.voltage == null){

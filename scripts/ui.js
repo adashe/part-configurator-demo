@@ -1,5 +1,6 @@
-const componentForm = document.querySelector('#component-form');
-const componentType = document.querySelector('#component-type');
+const hpuStart = document.querySelector('.hpu-start');
+const msStart = document.querySelector('.ms-start');
+const hmiStart = document.querySelector('.gw-start');
 
 const componentDiv = document.querySelector('#component-div');
 const hpuDiv = document.querySelector('#hpu-div');
@@ -9,35 +10,40 @@ const partNumDiv = document.querySelector('#part-num-div');
 const contactDiv = document.querySelector('#contact-div');
 const emailConfDiv = document.querySelector('#email-conf-div');
 
-
-// Display selected form div
-componentForm.addEventListener('submit', e => {
+hpuStart.addEventListener('click', e => {
     e.preventDefault();
-    if (componentType.value === 'hpu'){
-        componentDiv.style.display = 'none';
-        hpuDiv.style.display = 'block';
-        mspDiv.style.display = 'none';
-        hmiDiv.style.display = 'none';
-        partNumDiv.style.display = 'none';
-        contactDiv.style.display = 'none';
-        emailConfDiv.style.display = 'none';
-    } else if (componentType.value === 'msp'){
-        componentDiv.style.display = 'none';
-        hpuDiv.style.display = 'none';
-        mspDiv.style.display = 'block';
-        hmiDiv.style.display = 'none';
-        partNumDiv.style.display = 'none';
-        contactDiv.style.display = 'none';
-        emailConfDiv.style.display = 'none';
-    } else if (componentType.value === 'hmi'){
-        componentDiv.style.display = 'none';
-        hpuDiv.style.display = 'none';
-        mspDiv.style.display = 'none';
-        hmiDiv.style.display = 'block';
-        partNumDiv.style.display = 'none';
-        contactDiv.style.display = 'none';
-        emailConfDiv.style.display = 'none';
-    }
+
+    componentDiv.style.display = 'none';
+    hpuDiv.style.display = 'block';
+    mspDiv.style.display = 'none';
+    hmiDiv.style.display = 'none';
+    partNumDiv.style.display = 'none';
+    contactDiv.style.display = 'none';
+    emailConfDiv.style.display = 'none';
+});
+
+msStart.addEventListener('click', e => {
+    e.preventDefault();
+
+    componentDiv.style.display = 'none';
+    hpuDiv.style.display = 'none';
+    mspDiv.style.display = 'block';
+    hmiDiv.style.display = 'none';
+    partNumDiv.style.display = 'none';
+    contactDiv.style.display = 'none';
+    emailConfDiv.style.display = 'none';
+});
+
+hmiStart.addEventListener('click', e => {
+    e.preventDefault();
+
+    componentDiv.style.display = 'none';
+    hpuDiv.style.display = 'none';
+    mspDiv.style.display = 'none';
+    hmiDiv.style.display = 'block';
+    partNumDiv.style.display = 'none';
+    contactDiv.style.display = 'none';
+    emailConfDiv.style.display = 'none';
 });
 
 // Display component div

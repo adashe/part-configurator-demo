@@ -13,8 +13,8 @@
 
     <div id="container">
         <div id="login-div">
-            <div id="user-status">Login</div>
-            <div id="logout">Logout</div>
+            <div id="user-status">LOGIN</div>
+            <div id="logout">LOGOUT</div>
         </div>
 
         <h2 class="suncoast">SUN COAST CONTROLS</h2>
@@ -22,17 +22,11 @@
 
         <!-- COMPONENT DIV -->
         <div id="component-div" class="page-div">
-            <form id="component-form">
-                <label for="component-type">Select a component:</label>
-                <select name="component-type" id="component-type">
-                    <option value="hpu">Hydraulic Power Unit</option>
-                    <option value="msp">Motor Starter Panel</option>
-                    <option value="hmi">HMI Global Watch</option>
-                </select>
-        
-                <input class="button" type="submit" value="SELECT">
-    
-            </form>
+
+            <h2 id="select-configurator">Select configurator:</h2>
+            <button class="button hpu-start">HYDRAULIC POWER UNIT</button>
+            <button class="button ms-start">MOTOR STARTER</button>
+            <button class="button gw-start">HMI GLOBAL WATCH</button>
         </div>
     
         <!-- HPU DIV -->
@@ -393,13 +387,11 @@
             <h2 class="suncoast">SUN COAST CONTROLS</h2>
             <h1>Part Configurator</h1>
     
-            <div id="pdf-contact-div"></div>
-    
-            <h2 class="part-num-disp"></h2>
-            <div id="pdf-total-list-price-div"></div>
-    
+            <div id="pdf-contact-div"></div>            
             <div id="pdf-hpu-div"></div>
             <div id="pdf-valve-div"></div>
+            <div id="pdf-total-list-price-div"></div>
+
         </div>
     </div>
 
