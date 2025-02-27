@@ -1,12 +1,12 @@
 [
     {
-        "username": "dev-admin",
-        "password": "nimitz",
+        "username": "admin",
+        "password": "dev-nimitz",
         "userType": "admin"
     },
     {
-        "username": "dev-dist",
-        "password": "halsey",
+        "username": "dist",
+        "password": "dev-halsey",
         "userType": "dist"
     }
 ]
