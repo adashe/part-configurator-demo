@@ -1,11 +1,11 @@
 [
     {
-        "username": "admin",
+        "username": "dev-admin",
         "password": "nimitz",
         "userType": "admin"
     },
     {
-        "username": "dist",
+        "username": "dev-dist",
         "password": "halsey",
         "userType": "dist"
     }
