@@ -164,14 +164,24 @@ class HpuAssembly{
         // console.log('minHP:', minHP);
 
         let result = [];
-
-        // If the pump mount type is SAE A, first look for valid results in the SAE A motors
+        
         if(this.pump.mountType == 'SAE A'){
-            result = data.filter(motor => motor.type == "MF" && motor.outputHP >= minHP);
+            if(minHP <= 2){
+                // If the pump mount type is SAE A but it is low min HP, select from small SAE B motors
+                result = data.filter(motor => motor.type == "MTC" && motor.SAEAadapterCost && motor.outputHP >= minHP);
+            } else {
+                // If the pump mount type is SAE A and with min HP higher than 3, look for valid results in the SAE A motors
+                result = data.filter(motor => motor.type == "MF" && motor.outputHP >= minHP);
+            }
+            
+            // If no valid results among low HP SAE B or SAE A, look for results among SAE B motors with SAE A adapter options
+            if (result.length == 0){
+                result = data.filter(motor => motor.type == "MTC" && motor.SAEAadapterCost && motor.outputHP >= minHP);
+            };
         } 
         
-        // If the pump mount type is still 0 (not SAE A, or no valid SAE A results), look for valid results in SAE B motors
-        if (result.length == 0){
+        // If the pump mount type is SAE B, look for valid results in SAE B motors
+        if(this.pump.mountType == 'SAE B'){
             result = data.filter(motor => motor.type == "MTC" && motor.outputHP >= minHP);
         }
 
@@ -179,7 +189,6 @@ class HpuAssembly{
         if(result.length == 0){
             this.motor = null;
             console.log('No valid motor results.');
-            // console.log('result', result);
             displayErrorMsg('No valid motor results.');
         } else {
             this.motor = result.reduce((prev, curr) => (prev.outputHP < curr.outputHP) ? prev : curr);
@@ -328,6 +337,15 @@ class HpuAssembly{
         } else if (this.reservoir.code.includes('V')){
             prices = [this.reservoir.vCost, this.pump.vCost, this.motor.vCost, this.manifold.vCost, this.heatExchanger.vCost];
         };
+
+        // Add cost of adapters to SAE-B motors
+        if(this.pump.mountType == 'SAE A' && this.motor.type == 'MTC'){
+            prices.push(this.motor.SAEAadapterCost);
+            // console.log('adding adapter A cost', this.motor.SAEAadapterCost);
+        } else if(this.pump.mountType == 'SAE B'){
+            prices.push(this.motor.SAEBadapterCost);
+            // console.log('adding adapter B cost', this.motor.SAEBadapterCost);
+        }
 
         if(prices.includes(null)){
             console.log('Invalid configuration.');

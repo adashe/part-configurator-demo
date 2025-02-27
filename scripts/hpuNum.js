@@ -29,7 +29,7 @@ const buildHpuNumberDisplay = (data) => {
     // Determine individual item cost based on V or H reservoir
     let reservoirCost = null;
     let pumpCost = null;
-    let motorCost = null;
+    let protoMotorCost = null;
     let manifoldCost = null;
     let heatExchangerCost = null;
 
@@ -37,19 +37,31 @@ const buildHpuNumberDisplay = (data) => {
         if(reservoir.code.includes('H')){
             reservoirCost = reservoir.hCost.toFixed(2);
             pumpCost = pump.hCost.toFixed(2);
-            motorCost = motor.hCost.toFixed(2);
+            protoMotorCost = motor.hCost.toFixed(2);
             manifoldCost = manifold.hCost.toFixed(2);
             heatExchangerCost = heatExchanger.hCost.toFixed(2);
         } else if (reservoir.code.includes('V')){
             reservoirCost = reservoir.vCost.toFixed(2);
             pumpCost = pump.vCost.toFixed(2);
-            motorCost = motor.vCost.toFixed(2);
+            protoMotorCost = motor.vCost.toFixed(2);
             manifoldCost = manifold.vCost.toFixed(2);
             heatExchangerCost = heatExchanger.vCost.toFixed(2);
         };
     };
 
     filterCost();
+
+    // Add adapter cost to SAE B motor types
+    let motorCost = null; 
+
+    if(pump.mountType == 'SAE A' && motor.type == 'MF'){
+        motorCost = protoMotorCost;
+    } else if(pump.mountType == 'SAE A' && motor.type == 'MTC'){
+        motorCost = (parseFloat(protoMotorCost) + motor.SAEAadapterCost).toFixed(2);
+    } else if(pump.mountType == 'SAE B'){
+        motorCost = (parseFloat(protoMotorCost) + motor.SAEBadapterCost).toFixed(2);
+    }
+
 
     // Display part number at top of part number, edit, and email pages
     partNumDisplay.forEach((element) => {

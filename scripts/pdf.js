@@ -139,7 +139,7 @@ const fillHpuDets = () => {
     // Determine individual item cost based on V or H reservoir
     let reservoirCost = null;
     let pumpCost = null;
-    let motorCost = null;
+    let protoMotorCost = null;
     let manifoldCost = null;
     let heatExchangerCost = null;
 
@@ -147,19 +147,30 @@ const fillHpuDets = () => {
         if(hpuAssem.reservoir.code.includes('H')){
             reservoirCost = hpuAssem.reservoir.hCost.toFixed(2);
             pumpCost = hpuAssem.pump.hCost.toFixed(2);
-            motorCost = hpuAssem.motor.hCost.toFixed(2);
+            protoMotorCost = hpuAssem.motor.hCost.toFixed(2);
             manifoldCost = hpuAssem.manifold.hCost.toFixed(2);
             heatExchangerCost = hpuAssem.heatExchanger.hCost.toFixed(2);
         } else if (hpuAssem.reservoir.code.includes('V')){
             reservoirCost = hpuAssem.reservoir.vCost.toFixed(2);
             pumpCost = hpuAssem.pump.vCost.toFixed(2);
-            motorCost = hpuAssem.motor.vCost.toFixed(2);
+            protoMotorCost = hpuAssem.motor.vCost.toFixed(2);
             manifoldCost = hpuAssem.manifold.vCost.toFixed(2);
             heatExchangerCost = hpuAssem.heatExchanger.vCost.toFixed(2);
         };
     };
 
     filterCost();
+
+    // Add adapter cost to SAE B motor types
+    let motorCost = null; 
+
+    if(hpuAssem.pump.mountType == 'SAE A' && hpuAssem.motor.type == 'MF'){
+        motorCost = protoMotorCost;
+    } else if(hpuAssem.pump.mountType == 'SAE A' && hpuAssem.motor.type == 'MTC'){
+        motorCost = (parseFloat(protoMotorCost) + hpuAssem.motor.SAEAadapterCost).toFixed(2);
+    } else if(hpuAssem.pump.mountType == 'SAE B'){
+        motorCost = (parseFloat(protoMotorCost) + hpuAssem.motor.SAEBadapterCost).toFixed(2);
+    };
 
     pdfHpuDiv.innerHTML = '';
         
