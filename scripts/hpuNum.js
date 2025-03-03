@@ -68,6 +68,22 @@ const buildHpuNumberDisplay = (data) => {
         element.innerHTML = `N-${reservoir.code}-${pump.code}-${motor.code}-${manifold.code}-${heatExchanger.code}`;
     });
 
+    // Display automatically-included parts on part number page
+    const defaultsHTML = `
+        <div class="dropdown">
+            <div class="trigger">INCLUDED FEATURES</div>
+            <div class="content">        
+                <ul>
+                    <li>Filter</li>
+                    <li>Pressure Gauge</li>
+                    <li>Level Sight Gauge</li>
+                    <li>Drain Plug</li>
+                    <li>Cleanout Covers</li>
+                </ul>
+            </div>
+        </div>
+    `;
+
     // Display inputs on part number page
     const inputsHTML = `
         <div class="dropdown">
@@ -188,7 +204,8 @@ const buildHpuNumberDisplay = (data) => {
         + pumpHTML 
         + motorHTML 
         + manifoldHTML 
-        + heatExchangerHTML 
+        + heatExchangerHTML
+        + defaultsHTML 
         + inputsHTML 
         + hpuCostHTML
         ;
