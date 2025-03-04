@@ -144,9 +144,8 @@ form{
 form#component-form{
     text-align: center;
 }
-form#msp-form{
-    text-align: right;
-}
+
+/* HPU forms */
 form#hpu-sys-params-form{
     text-align: right;
 }
@@ -158,6 +157,17 @@ form#hpu-valve-form{
     display: none;
     text-align: right;
 }
+
+/* MS forms */
+form#ms-voltage-form{
+    text-align: right;
+}
+form#ms-starters-form{
+    display: none;
+    text-align: right;
+}
+
+/* Contact form */
 form#contact-form{
     text-align: right;
     margin: 10px 20px;

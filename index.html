@@ -122,10 +122,10 @@
                 MOTOR STARTER PANEL CONFIGURATOR
             </h2>
 
-            <form id="msp-form">
+            <form id="ms-voltage-form">
                 <div>
-                    <label for="motorStarterVoltage">Voltage: </label>
-                    <select name="motorStarterVoltage" id="motorStarterVoltage" required>
+                    <label for="msVoltage">Voltage: </label>
+                    <select name="msVoltage" id="msVoltage" required>
                         <option value="" disabled selected hidden>...</option>
                         <option value="208V">208V</option>
                         <option value="240V">240V</option>
@@ -134,8 +134,8 @@
                 </div>
 
                 <div>
-                    <label for="numberStarters">Number of starters: </label>
-                    <select name="numberStarters" id="numberStarters" required>
+                    <label for="msNumStarters">Number of starters: </label>
+                    <select name="msNumStarters" id="msNumStarters" required>
                         <option value="" disabled selected hidden>...</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -144,64 +144,70 @@
                     </select>
                 </div>
 
-                <div>
+                <input class="button" type="submit" value="CONTINUE">
+                <button class="button gray restart">RESTART CONFIGURATOR</button>
+            </form>
+            
+            <form id="ms-starters-form">
+                <div class="starterSelectorDiv">
                     <label for="starter1">Starter 1: </label>
-                    <select name="starter1" id="starter1" class="starterDropdown" disabled required>
+                    <select name="starter1" id="starter1" class="starterSelector">
                         <option value="" disabled selected hidden>...</option>
-                        <option value="1">1.5</option>
+                        <option value="1.5">1.5</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
-                        <option value="4">5</option>
-                        <option value="4">7.5</option>
-                        <option value="4">10</option>
-                        <option value="4">15</option>
+                        <option value="5">5</option>
+                        <option value="7.5">7.5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
                     </select>
                 </div>
 
-                <div>
+                <div class="starterSelectorDiv">
                     <label for="starter2">Starter 2: </label>
-                    <select name="starter2" id="starter2" class="starterDropdown" disabled required>
+                    <select name="starter2" id="starter2" class="starterSelector">
                         <option value="" disabled selected hidden>...</option>
-                        <option value="1">1.5</option>
+                        <option value="1.5">1.5</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
-                        <option value="4">5</option>
-                        <option value="4">7.5</option>
-                        <option value="4">10</option>
-                        <option value="4">15</option>
+                        <option value="5">5</option>
+                        <option value="7.5">7.5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
                     </select>
                 </div>
 
-                <div>
+                <div class="starterSelectorDiv">
                     <label for="starter3">Starter 3: </label>
-                    <select name="starter3" id="starter3" class="starterDropdown" disabled required>
+                    <select name="starter3" id="starter3" class="starterSelector">
                         <option value="" disabled selected hidden>...</option>
-                        <option value="1">1.5</option>
+                        <option value="1.5">1.5</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
-                        <option value="4">5</option>
-                        <option value="4">7.5</option>
-                        <option value="4">10</option>
-                        <option value="4">15</option>
+                        <option value="5">5</option>
+                        <option value="7.5">7.5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
                     </select>
                 </div>
 
-                <div>
+                <div class="starterSelectorDiv">
                     <label for="starter4">Starter 4: </label>
-                    <select name="starter4" id="starter4" class="starterDropdown" disabled required>
+                    <select name="starter4" id="starter4" class="starterSelector">
                         <option value="" disabled selected hidden>...</option>
-                        <option value="1">1.5</option>
+                        <option value="1.5">1.5</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
-                        <option value="4">5</option>
-                        <option value="4">7.5</option>
-                        <option value="4">10</option>
-                        <option value="4">15</option>
+                        <option value="5">5</option>
+                        <option value="7.5">7.5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
                     </select>
                 </div>
 
 
-                <input class="button" type="submit" value="SUBMIT">
+                <input class="button" type="submit" value="GENERATE PART NUMBER">
+                <button class="button gray ms-voltage-btn">PREVIOUS</button>  
                 <button class="button gray restart">RESTART CONFIGURATOR</button>
             </form>
         </div>
@@ -399,7 +405,7 @@
     <script src="scripts/user.js"></script>
     <script src="scripts/loginForm.js"></script>
 
-    <script src="scripts/msForm.js"></script>
+    <script src="scripts/msForms.js"></script>
 
     <script src="scripts/hpuAssembly.js"></script>
     <script src="scripts/valveAssembly.js"></script>
