@@ -166,6 +166,18 @@ form#ms-starters-form{
     display: none;
     text-align: right;
 }
+.starter-selector-div{
+    display: flex;
+}
+.leader-checkbox-div{
+    text-align: right;
+}
+.leader-checkbox-div label{
+    font-size: 12px;
+}
+.leader-selector-div{
+    display: none;
+}
 
 /* Contact form */
 form#contact-form{

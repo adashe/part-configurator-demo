@@ -4,8 +4,9 @@ const msStartersForm = document.querySelector('#ms-starters-form');
 const msVoltageBtn = document.querySelector('.ms-voltage-btn');
 
 const msNumStarters = document.querySelector('#msNumStarters');
-const starterSelectorDivs = document.querySelectorAll('.starterSelectorDiv');
-const starterSelectors = document.querySelectorAll('.starterSelector');
+const starterSelectorDivs = document.querySelectorAll('.starter-selector-div');
+const leaderCheckboxes = document.querySelectorAll('.leader-checkbox');
+const starterSelectors = document.querySelectorAll('.starter-selector');
 
 // DISPLAY AND HIDE FORM ELEMENTS
 const displayMsVoltageForm = () => {
@@ -30,7 +31,7 @@ msVoltageBtn.addEventListener('click', e=> {
 });
 
 // FORMS
-// Initiate null vlaues for MS inputs
+// Initiate null values for MS inputs
 let msInputs = {
     voltage: null,
     numStarters: null,
@@ -93,5 +94,22 @@ msNumStarters.addEventListener('change', e => {
     for(i = 0; i < numStart; i++){
         divArray[i].style.display = 'inline-block';
     }
+
+});
+
+// Display and hide leader selectors when the leader checkbox is selected
+leaderCheckboxes.forEach((checkbox, i) => {
+    checkbox.addEventListener('change', e => {
+        e.preventDefault();
+
+        const selectorID = `#leaderSelectorDiv${i + 1}`;
+        const selector = document.querySelector(selectorID);
+        
+        if(checkbox.checked){
+            selector.style.display = 'block';
+        } else {
+            selector.style.display = 'none';
+        }
+    });
 
 });
