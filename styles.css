@@ -133,84 +133,6 @@ li h5{
     }
   }
 
-/* FORM STYLES */
-form{
-    margin: 10px;
-    padding: 10px;
-    display: block;
-    font-family: "Source Sans 3", serif;
-    color: #434343;
-}
-form#component-form{
-    text-align: center;
-}
-
-/* HPU forms */
-form#hpu-sys-params-form{
-    text-align: right;
-}
-form#hpu-manifold-form{
-    display: none;
-    text-align: right;
-}
-form#hpu-valve-form{
-    display: none;
-    text-align: right;
-}
-
-/* MS forms */
-form#ms-voltage-form{
-    text-align: right;
-}
-form#ms-starters-form{
-    display: none;
-    text-align: right;
-}
-.starter-selector-div{
-    display: flex;
-}
-.leader-checkbox-div{
-    text-align: right;
-}
-.leader-checkbox-div label{
-    font-size: 12px;
-}
-.leader-selector-div{
-    display: none;
-}
-
-/* Contact form */
-form#contact-form{
-    text-align: right;
-    margin: 10px 20px;
-}
-
-/* FORM INPUT STYLES */
-input{
-    display: inline-block;
-    width: 155px;
-    margin: 10px auto;
-    padding: 10px;
-    font-family: "Source Sans 3", serif;
-    color: #434343;
-}
-select{
-    display: inline-block;
-    width: 180px;
-    margin: 10px auto;
-    padding: 10px;
-    font-family: "Source Sans 3", serif;
-    color: #434343;
-}
-::placeholder {
-    font-style: italic;
-}
-label{
-    display: inline-block;
-    font-family: "Source Sans 3", serif;
-    color: #434343;
-}
-
 /* BUTTON STYLES */
 .button{
     display: block;
@@ -285,6 +207,109 @@ p.assem-price{
     color: #72d1d4;
     cursor: pointer;
     text-decoration: underline;
+}
+
+/* FORM INPUT STYLES */
+input{
+    display: inline-block;
+    width: 155px;
+    margin: 10px auto;
+    padding: 10px;
+    font-family: "Source Sans 3", serif;
+    color: #434343;
+}
+select{
+    display: inline-block;
+    width: 180px;
+    margin: 10px auto;
+    padding: 10px;
+    font-family: "Source Sans 3", serif;
+    color: #434343;
+}
+::placeholder {
+    font-style: italic;
+}
+label{
+    display: inline-block;
+    font-family: "Source Sans 3", serif;
+    color: #434343;
+}
+
+/* FORM STYLES */
+form{
+    margin: 10px;
+    padding: 10px;
+    display: block;
+    font-family: "Source Sans 3", serif;
+    color: #434343;
+}
+form#component-form{
+    text-align: center;
+}
+
+/* HPU forms */
+form#hpu-sys-params-form{
+    text-align: right;
+}
+form#hpu-manifold-form{
+    display: none;
+    text-align: right;
+}
+form#hpu-valve-form{
+    display: none;
+    text-align: right;
+}
+
+/* MS forms */
+form#ms-voltage-form{
+    text-align: right;
+}
+form#ms-starters-form{
+    display: none;
+}
+.starter-div{
+    display: flex;
+    width: 100%;
+    align-items: left;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px auto;
+}
+.starter-div p{
+    width: 100%;
+    text-align: left;
+    margin: 10px auto 4px;
+    font-weight: 600;
+}
+
+.starter-selector{
+    width: 130px;
+    margin: 4px auto;
+}
+.leader-selector{
+    width: 140px;
+    margin: 4px auto;
+}
+.leader-checkbox-div{
+    width: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.leader-checkbox-div label{
+    font-size: 12px;
+}
+
+
+
+
+
+
+/* Contact form */
+form#contact-form{
+    text-align: right;
+    margin: 10px 20px;
 }
 
 /* DIV STYLES */

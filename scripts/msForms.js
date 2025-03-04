@@ -4,7 +4,7 @@ const msStartersForm = document.querySelector('#ms-starters-form');
 const msVoltageBtn = document.querySelector('.ms-voltage-btn');
 
 const msNumStarters = document.querySelector('#msNumStarters');
-const starterSelectorDivs = document.querySelectorAll('.starter-selector-div');
+const starterSelectorDivs = document.querySelectorAll('.starter-div');
 const leaderCheckboxes = document.querySelectorAll('.leader-checkbox');
 const starterSelectors = document.querySelectorAll('.starter-selector');
 
@@ -92,7 +92,7 @@ msNumStarters.addEventListener('change', e => {
 
     // Enable starter dropdowns based on number of starters selected
     for(i = 0; i < numStart; i++){
-        divArray[i].style.display = 'inline-block';
+        divArray[i].style.display = 'flex';
     }
 
 });
@@ -102,13 +102,14 @@ leaderCheckboxes.forEach((checkbox, i) => {
     checkbox.addEventListener('change', e => {
         e.preventDefault();
 
-        const selectorID = `#leaderSelectorDiv${i + 1}`;
+        const selectorID = `#leader${i + 1}`;
         const selector = document.querySelector(selectorID);
         
         if(checkbox.checked){
-            selector.style.display = 'block';
+            selector.removeAttribute('disabled');
         } else {
-            selector.style.display = 'none';
+            selector.value = '';
+            selector.setAttribute("disabled", true);
         }
     });
 
