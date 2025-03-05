@@ -1,13 +1,26 @@
 // Build configured MS number and details
-const buildMsNumberDisplay = (msAssem) => {
-    const starter1 = msAssem.starter1;
-    const starter2 = msAssem.starter2;
-    const starter3 = msAssem.starter3;
-    const starter4 = msAssem.starter4;
+const buildMsNumberDisplay = (data) => {
+    const motor1 = data.motor1;
+    const motor2 = data.motor2;
+    const motor3 = data.motor3;
+    const motor4 = data.motor4;
 
-    // Display part number at top of part number and contact pages
+    const motorArray = [motor1, motor2, motor3, motor4];
+
+    // Build and display part number at top of part number and contact pages
     partNumDisplay.forEach((element) => {
-        element.innerHTML = `MS-NUMBER`;
+        element.innerHTML = `MS-${motor1.starter.voltage}`;
+
+        motorArray.forEach(motor => {
+            if(motor.starter){
+                element.innerHTML += `-${motor.starter.HP}`
+            };
+
+            if(motor.leader){
+                element.innerHTML += `M${motor.leader}`
+            };
+
+        });
     });
 
     // Build and add editing and cost elements to display
@@ -16,31 +29,44 @@ const buildMsNumberDisplay = (msAssem) => {
 
     partNumDets.innerHTML = editMsInputsHtml;
 
-    // Build dropdowns for each starter
-    const starterArray = [starter1, starter2, starter3, starter4];
+    // Build dropdown for automatically-included parts
+    const defaultsHTML = `
+        <div class="dropdown">
+            <div class="trigger">INCLUDED FEATURES</div>
+            <div class="content">       
+                <ul>
+                    <li>Local E-stop</li>
+                    <li>Remote E-stop Ready</li>
+                    <li>Overload Alarm Ready</li>
+                    <li>Auxiliary Terminals</li>
+                    <li>Standard 120VAC Control</li>
+                </ul>
+            </div>
+        </div>
+    `;
 
-    starterArray.forEach((starter, i) => {
-        let starterHTML = `
+    // Build dropdowns for each starter
+    motorArray.forEach((motor, i) => {
+        let motorHTML = `
                 <div class="dropdown">
-                    <div class="trigger">Starter ${i + 1}</div>
+                    <div class="trigger">MOTOR ${i + 1}</div>
                     <div class="content">
 
                         <ul>
-                            <li><h5>STARTER: 1672</h5></li>
+                            <li><h5>Motor: 1672</h5></li>
                             <li>HP: Twelve</li>
                             <li>Price: $MONEY.00</li>
-                            <li class="li-edit" id="edit-station${i + 1}">Edit station${i + 1}</li>
                         </ul>
 
                     </div>
                 </div>
             `;
 
-        partNumDets.innerHTML += starterHTML;
+        partNumDets.innerHTML += motorHTML;
     });
 
-    // Add price to bottom of display
-    partNumDets.innerHTML += msCostHTML; 
+    // Add default features and price to bottom of display
+    partNumDets.innerHTML += defaultsHTML + msCostHTML; 
 
     addEventHandlersToDropdowns();
     addEventHandlerToEditMsInputs();

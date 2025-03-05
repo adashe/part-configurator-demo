@@ -68,7 +68,7 @@ const buildHpuNumberDisplay = (data) => {
         element.innerHTML = `N-${reservoir.code}-${pump.code}-${motor.code}-${manifold.code}-${heatExchanger.code}`;
     });
 
-    // Display automatically-included parts on part number page
+    // Build dropdown for automatically-included parts
     const defaultsHTML = `
         <div class="dropdown">
             <div class="trigger">INCLUDED FEATURES</div>

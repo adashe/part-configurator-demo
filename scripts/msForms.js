@@ -7,6 +7,7 @@ const msNumStarters = document.querySelector('#msNumStarters');
 const starterSelectorDivs = document.querySelectorAll('.starter-div');
 const leaderCheckboxes = document.querySelectorAll('.leader-checkbox');
 const starterSelectors = document.querySelectorAll('.starter-selector');
+const leaderSelectors = document.querySelectorAll('.leader-selector');
 
 const msAssem = new MsAssembly;
 
@@ -37,20 +38,12 @@ msVoltageBtn.addEventListener('click', e=> {
 let msInputs = {
     voltage: null,
     numStarters: null,
-    starter1: null,
-    starter2: null,
-    starter3: null,
-    starter4: null
 };
 
 const resetMsInputs = () => {
     msInputs = {
         voltage: null,
         numStarters: null,
-        starter1: null,
-        starter2: null,
-        starter3: null,
-        starter4: null
     };
 };
 
@@ -66,27 +59,61 @@ msVoltageForm.addEventListener('submit', e => {
 msStartersForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    addStartersToMsInputs();
     updateMsDisplay();
+    displayPartNumDiv();
     
 });
 
-// Add form inputs to MS inputs object
-const addStartersToMsInputs = () => {
-    starterSelectors.forEach(selector => {
-        const starterID = selector.id;
+// Add starter and leader selections to MS inputs object
+async function addMSInputsToMsAssembly(){
 
-        msInputs[starterID] = selector.value;
-    });
+    // Reset msAssem when new data is submitted
+    msAssem.reset();
 
-    console.log(msInputs);
+    // Use a counter based on how many motors are selected to track motor iterations
+    let counter = [];
+
+    for(i = 0; i < msInputs.numStarters; i++){
+        counter.push(i);
+    };
+
+    let promises = [];
+
+    // Create a motor object for each submitted set of values
+    for await(i of counter){
+        const voltage = msInputs.voltage;
+
+        const starterID = `starter${i + 1}`;
+        const starterIDleader = `starter${i + 1}leader`;
+
+        const motorName = `motor${i + 1}`;
+        const starter = document.getElementById(starterID);
+        const starterLeader = document.getElementById(starterIDleader);
+
+        const hp = starter.value;
+
+        // Filter for null leaders
+        let leaderName = null
+        if(starterLeader.value){
+            leaderName = starterLeader.value;
+        };
+
+        const promise = msAssem.updateMotor(motorName, voltage, hp, leaderName);
+
+        promises.push(promise);
+
+    };
+
+    await Promise.all(promises);
 }
 
 // Update and show part number display with msAssem object
-const updateMsDisplay = () => {
+async function updateMsDisplay(){
+
+    await addMSInputsToMsAssembly();
     buildMsNumberDisplay(msAssem);
-    displayPartNumDiv();
-}
+    
+};
 
 
 // Display and hide starter selector divs based on number of starters selected
@@ -115,7 +142,7 @@ leaderCheckboxes.forEach((checkbox, i) => {
     checkbox.addEventListener('change', e => {
         e.preventDefault();
 
-        const selectorID = `#leader${i + 1}`;
+        const selectorID = `#starter${i + 1}leader`;
         const selector = document.querySelector(selectorID);
         
         if(checkbox.checked){

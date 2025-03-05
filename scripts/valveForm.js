@@ -266,6 +266,7 @@ async function addValveInputsToValveAssembly(){
 
         // Assign value of 0 to null (disabled) flow control and check valve options
         let flowControlValue = flowControl.value;
+        
         if(!flowControl.value){
             flowControlValue = 0
         };

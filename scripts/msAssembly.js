@@ -1,38 +1,38 @@
 class MsAssembly{
     constructor(){
-        this.starter1 = {
-            voltage: null,
+        this.motor1 = {
+            starter: null,
             leader: null
         };
-        this.starter2 = {
-            voltage: null,
+        this.motor2 = {
+            starter: null,
             leader: null
         };
-        this.starter3 = {
-            voltage: null,
+        this.motor3 = {
+            starter: null,
             leader: null
         };
-        this.starter4 = {
-            voltage: null,
+        this.motor4 = {
+            starter: null,
             leader: null
         };
     }
 
     reset(){
-        this.starter1 = {
-            voltage: null,
+        this.motor1 = {
+            starter: null,
             leader: null
         };
-        this.starter2 = {
-            voltage: null,
+        this.motor2 = {
+            starter: null,
             leader: null
         };
-        this.starter3 = {
-            voltage: null,
+        this.motor3 = {
+            starter: null,
             leader: null
         };
-        this.starter4 = {
-            voltage: null,
+        this.motor4 = {
+            starter: null,
             leader: null
         };
     }
@@ -44,6 +44,20 @@ class MsAssembly{
         const data = await response.json();
 
         return data;
+    }
+
+    // UPDATE DATA FOR AN INDIVIDUAL MOTOR OBJECT
+    async updateMotor(motorName, voltage, hp, leaderName){
+        const data = await this.getMotorStarterData();
+
+        let result = data.filter(starter => starter.voltage == voltage && starter.HP == hp);
+
+        this[motorName] = {
+            starter: result[0],
+            leader: leaderName
+        };
+
+        return this[motorName];
     }
 
 }
