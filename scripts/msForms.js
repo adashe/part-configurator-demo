@@ -8,6 +8,8 @@ const starterSelectorDivs = document.querySelectorAll('.starter-div');
 const leaderCheckboxes = document.querySelectorAll('.leader-checkbox');
 const starterSelectors = document.querySelectorAll('.starter-selector');
 
+const msAssem = new MsAssembly;
+
 // DISPLAY AND HIDE FORM ELEMENTS
 const displayMsVoltageForm = () => {
     mspDiv.style.display = 'block';
@@ -64,6 +66,13 @@ msVoltageForm.addEventListener('submit', e => {
 msStartersForm.addEventListener('submit', e => {
     e.preventDefault();
 
+    addStartersToMsInputs();
+    updateMsDisplay();
+    
+});
+
+// Add form inputs to MS inputs object
+const addStartersToMsInputs = () => {
     starterSelectors.forEach(selector => {
         const starterID = selector.id;
 
@@ -71,9 +80,13 @@ msStartersForm.addEventListener('submit', e => {
     });
 
     console.log(msInputs);
+}
 
+// Update and show part number display with msAssem object
+const updateMsDisplay = () => {
+    buildMsNumberDisplay(msAssem);
     displayPartNumDiv();
-});
+}
 
 
 // Display and hide starter selector divs based on number of starters selected

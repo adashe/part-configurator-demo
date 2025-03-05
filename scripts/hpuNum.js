@@ -63,7 +63,7 @@ const buildHpuNumberDisplay = (data) => {
     }
 
 
-    // Display part number at top of part number, edit, and email pages
+    // Display part number at top of part number and contact pages
     partNumDisplay.forEach((element) => {
         element.innerHTML = `N-${reservoir.code}-${pump.code}-${motor.code}-${manifold.code}-${heatExchanger.code}`;
     });
@@ -212,7 +212,7 @@ const buildHpuNumberDisplay = (data) => {
 
     toggleAdminSettings();
     addEventHandlersToDropdowns();
-    addEventHandlerToEditInputsBtn();
+    addEventHandlerToEditHpuInputs();
     addEventHandlerstoEditBtns();
 
     buildTotalCostDisplay();
@@ -247,10 +247,10 @@ const toggleAdminSettings = () => {
 
 };
 
-const addEventHandlerToEditInputsBtn = () => {
-    const editHpuInputsButton = document.querySelector('#edit-hpu-inputs');
+const addEventHandlerToEditHpuInputs = () => {
+    const editHpuInputs = document.querySelector('#edit-hpu-inputs');
 
-    editHpuInputsButton.addEventListener('click', e => {
+    editHpuInputs.addEventListener('click', e => {
         e.preventDefault();
 
         displayHpuSysParamsForm();
