@@ -48,21 +48,18 @@ const buildMsNumberDisplay = (data) => {
     // Build dropdowns for each starter
     motorArray.forEach((motor, i) => {
 
-        const starter = motor.starter;
-
-        if(starter){
-            if(starter.voltage){
-                console.log(starter);
-                let motorHTML = `
+        if(motor.starter){
+            if(motor.starter.voltage){
+                const motorHTML = `
                     <div class="dropdown">
                         <div class="trigger">MOTOR ${i + 1}</div>
                         <div class="content">
     
                             <ul>
-                                <li>Voltage: ${starter.voltage}</li>
-                                <li>HP: ${starter.HP}</li>
-                                <li>FLA: ${starter.FLA}</li>
-                                <li>Price: $${starter.cost.toFixed(2)}</li>
+                                <li>Voltage: ${motor.starter.voltage}</li>
+                                <li>HP: ${motor.starter.HP}</li>
+                                <li>FLA: ${motor.starter.FLA}</li>
+                                <li>Price: $${motor.starter.cost.toFixed(2)}</li>
                             </ul>
     
                         </div>
