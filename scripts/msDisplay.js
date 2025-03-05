@@ -47,22 +47,32 @@ const buildMsNumberDisplay = (data) => {
 
     // Build dropdowns for each starter
     motorArray.forEach((motor, i) => {
-        let motorHTML = `
-                <div class="dropdown">
-                    <div class="trigger">MOTOR ${i + 1}</div>
-                    <div class="content">
 
-                        <ul>
-                            <li><h5>Motor: 1672</h5></li>
-                            <li>HP: Twelve</li>
-                            <li>Price: $MONEY.00</li>
-                        </ul>
+        const starter = motor.starter;
 
+        if(starter){
+            if(starter.voltage){
+                console.log(starter);
+                let motorHTML = `
+                    <div class="dropdown">
+                        <div class="trigger">MOTOR ${i + 1}</div>
+                        <div class="content">
+    
+                            <ul>
+                                <li>Voltage: ${starter.voltage}</li>
+                                <li>HP: ${starter.HP}</li>
+                                <li>FLA: ${starter.FLA}</li>
+                                <li>Price: $${starter.cost.toFixed(2)}</li>
+                            </ul>
+    
+                        </div>
                     </div>
-                </div>
-            `;
+                `;
+    
+                partNumDets.innerHTML += motorHTML;
+            };
+        };
 
-        partNumDets.innerHTML += motorHTML;
     });
 
     // Add default features and price to bottom of display
