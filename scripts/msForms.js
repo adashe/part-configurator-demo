@@ -79,7 +79,7 @@ msStartersForm.addEventListener('submit', e => {
     const currentHp = calcCurrentHp();
 
     if(currentHp > msInputs.maxHp){
-        displayErrorMsg('Total starter HP exceeds maximum for the selected voltage.<br>Please select a combination of starters with total HP below the indicated maximum, or contact Sun Coast directly for a custom quote.')
+        displayErrorMsg('Total starter HP exceeds maximum for the selected voltage.<br><br>Please select a combination of starters with total HP below the indicated maximum.')
     }else{
         updateMsDisplay();
         displayPartNumDiv();
@@ -169,9 +169,11 @@ leaderCheckboxes.forEach((checkbox, i) => {
         
         if(checkbox.checked){
             selector.removeAttribute('disabled');
+            selector.setAttribute("required", true);
         } else {
             selector.value = '';
             selector.setAttribute("disabled", true);
+            selector.removeAttribute('required');
         }
     });
 
@@ -183,7 +185,10 @@ starter1selector.addEventListener('change', e => {
     e.preventDefault();
 
     if(starter1selector.value){
-        starter2selector.removeAttribute('disabled')
+        if(msInputs.numStarters > 1){
+            starter2selector.removeAttribute('disabled')
+            starter2selector.setAttribute('required', true);
+        }
     } else {
         starter2selector.setAttribute('disabled', true);
     }
@@ -194,7 +199,10 @@ starter2selector.addEventListener('change', e => {
     e.preventDefault();
 
     if(starter2selector.value){
-        starter3selector.removeAttribute('disabled')
+        if(msInputs.numStarters > 2){
+            starter3selector.removeAttribute('disabled');
+            starter3selector.setAttribute('required', true);
+        }
     } else {
         starter2selector.setAttribute('disabled', true);
     }
@@ -205,7 +213,10 @@ starter3selector.addEventListener('change', e => {
     e.preventDefault();
 
     if(starter3selector.value){
-        starter4selector.removeAttribute('disabled')
+        if(msInputs.numStarters > 3){
+            starter4selector.removeAttribute('disabled');
+            starter4selector.setAttribute('required', true);
+        }
     } else {
         starter2selector.setAttribute('disabled', true);
     }
