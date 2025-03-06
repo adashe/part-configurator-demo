@@ -301,10 +301,19 @@ form#ms-starters-form{
     font-size: 12px;
 }
 
-
-
-
-
+#ms-hp-msg{
+    display: flex;
+    justify-content: space-around;
+    font-size: 16px;
+    font-style: italic;
+    color: #72d1d4;
+    font-weight: 600;
+    margin: 10px;
+    padding: 10px;
+}
+#ms-curr-hp-msg.alert{
+    color:indianred
+}
 
 /* Contact form */
 form#contact-form{

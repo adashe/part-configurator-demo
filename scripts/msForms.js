@@ -9,6 +9,9 @@ const leaderCheckboxes = document.querySelectorAll('.leader-checkbox');
 const starterSelectors = document.querySelectorAll('.starter-selector');
 const leaderSelectors = document.querySelectorAll('.leader-selector');
 
+const msCurrHpMsg = document.querySelector('#ms-curr-hp-msg');
+const msMaxHpMsg = document.querySelector('#ms-max-hp-msg');
+
 const msAssem = new MsAssembly;
 
 // DISPLAY AND HIDE FORM ELEMENTS
@@ -21,6 +24,8 @@ const displayMsVoltageForm = () => {
 };
 
 const displayMsStartersForm = () => {
+    addMaxHpToStartersForm();
+
     msVoltageForm.style.display = 'none';
     msStartersForm.style.display = 'block';
 };
@@ -37,12 +42,14 @@ msVoltageBtn.addEventListener('click', e=> {
 // Initiate null values for MS inputs
 let msInputs = {
     voltage: null,
+    maxHp: null,
     numStarters: null,
 };
 
 const resetMsInputs = () => {
     msInputs = {
         voltage: null,
+        maxHp: null,
         numStarters: null,
     };
 };
@@ -115,7 +122,6 @@ async function updateMsDisplay(){
     
 };
 
-
 // Display and hide starter selector divs based on number of starters selected
 msNumStarters.addEventListener('change', e => {
     e.preventDefault();
@@ -154,3 +160,52 @@ leaderCheckboxes.forEach((checkbox, i) => {
     });
 
 });
+
+// Update current hp as starters are selected
+starterSelectors.forEach(selector => {
+
+    selector.addEventListener('change', e => {
+        e.preventDefault();
+
+        let currentHp = calcCurrentHp();
+
+        if(currentHp > msInputs.maxHp){
+            msCurrHpMsg.classList.add('alert');
+        }else{
+            msCurrHpMsg.classList.remove('alert');
+        }
+
+        msCurrHpMsg.innerHTML = `Current: ${currentHp} hp`;
+    });
+
+});
+
+// Add maximum hp based on voltage selections
+const addMaxHpToStartersForm = () => {
+    if(msInputs.voltage == '208V'){
+        msInputs.maxHp = 60;
+    }else if(msInputs.voltage == '240V'){
+        msInputs.maxHp = 80;
+    }else if(msInputs.voltage == '480V'){
+        msInputs.maxHp = 120;
+    };
+
+    msMaxHpMsg.innerHTML = `Maximum: ${msInputs.maxHp} hp`;
+};
+
+// Calculate current hp based on selected starters
+const calcCurrentHp = () => {
+    let hp = 0;
+
+    starterSelectors.forEach(selector => {
+
+        if(selector.value){
+            const val = parseFloat(selector.value);
+
+            hp += val;
+        };
+
+    });
+
+    return hp;
+};
