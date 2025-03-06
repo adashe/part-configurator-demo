@@ -60,4 +60,27 @@ class MsAssembly{
         return this[motorName];
     }
 
+    // CALC TOTAL COST
+    calcCost(){
+        let cost = 0;
+
+        const motorsArr = [
+            this.motor1,
+            this.motor2,
+            this.motor3,
+            this.motor4
+        ];
+
+        motorsArr.forEach(motor => {
+            if(motor.starter){
+                if(motor.starter.cost){
+                    cost += motor.starter.cost;
+                }
+            };
+        });
+
+        return cost;
+
+    }
+
 }

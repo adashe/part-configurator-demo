@@ -25,7 +25,6 @@ const buildMsNumberDisplay = (data) => {
 
     // Build and add editing and cost elements to display
     const editMsInputsHtml = `<p class="edit-inputs" id="edit-ms-inputs">Edit MS inputs</p>`;
-    const msCostHTML = `<p class="assem-price">MS LIST PRICE: $1 MILLION DOLLAS</p>`;
 
     partNumDets.innerHTML = editMsInputsHtml;
 
@@ -73,11 +72,13 @@ const buildMsNumberDisplay = (data) => {
     });
 
     // Add default features and price to bottom of display
-    partNumDets.innerHTML += defaultsHTML + msCostHTML; 
-
+    partNumDets.innerHTML += defaultsHTML; 
+    
     addEventHandlersToDropdowns();
     addEventHandlerToEditMsInputs();
     toggleAdminSettings();
+
+    buildTotalMsCostDisplay();
 
 };
 
@@ -91,3 +92,9 @@ const addEventHandlerToEditMsInputs = () => {
     })
 
 };
+
+const buildTotalMsCostDisplay = () => {
+    const total = msAssem.calcCost();
+
+    totalCostDisplay.innerHTML = `<h4 class="total-price">TOTAL LIST PRICE: $${total.toFixed(2)}</h4>`
+}
