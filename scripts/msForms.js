@@ -59,16 +59,22 @@ msVoltageForm.addEventListener('submit', e => {
 
     msInputs.voltage = msVoltageForm.msVoltage.value;
     msInputs.numStarters = msVoltageForm.msNumStarters.value;
-
-    displayMsStartersForm();    
+    
+    displayMsStartersForm(); 
+ 
 });
 
 msStartersForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    updateMsDisplay();
-    displayPartNumDiv();
-    
+    const currentHp = calcCurrentHp();
+
+    if(currentHp > msInputs.maxHp){
+        displayErrorMsg('Total starter HP exceeds maximum for the selected voltage.<br>Please select a combination of starters with lower total HP, or contact Sun Coast directly for a custom quote.')
+    }else{
+        updateMsDisplay();
+        displayPartNumDiv();
+    };
 });
 
 // Add starter and leader selections to MS inputs object
@@ -167,7 +173,7 @@ starterSelectors.forEach(selector => {
     selector.addEventListener('change', e => {
         e.preventDefault();
 
-        let currentHp = calcCurrentHp();
+        const currentHp = calcCurrentHp();
 
         if(currentHp > msInputs.maxHp){
             msCurrHpMsg.classList.add('alert');
