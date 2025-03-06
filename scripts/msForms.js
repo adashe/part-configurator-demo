@@ -5,14 +5,21 @@ const msVoltageBtn = document.querySelector('.ms-voltage-btn');
 
 const msNumStarters = document.querySelector('#msNumStarters');
 const starterSelectorDivs = document.querySelectorAll('.starter-div');
-const leaderCheckboxes = document.querySelectorAll('.leader-checkbox');
 const starterSelectors = document.querySelectorAll('.starter-selector');
+
+const starter1selector = document.querySelector('#starter1');
+const starter2selector = document.querySelector('#starter2');
+const starter3selector = document.querySelector('#starter3');
+const starter4selector = document.querySelector('#starter4');
+
+const leaderCheckboxes = document.querySelectorAll('.leader-checkbox');
 const leaderSelectors = document.querySelectorAll('.leader-selector');
 
 const msCurrHpMsg = document.querySelector('#ms-curr-hp-msg');
 const msMaxHpMsg = document.querySelector('#ms-max-hp-msg');
 
-const msAssem = new MsAssembly;
+const msAssem = new MsAssembly();
+
 
 // DISPLAY AND HIDE FORM ELEMENTS
 const displayMsVoltageForm = () => {
@@ -37,6 +44,7 @@ msVoltageBtn.addEventListener('click', e=> {
 
     displayMsVoltageForm();
 });
+
 
 // FORMS
 // Initiate null values for MS inputs
@@ -64,20 +72,21 @@ msVoltageForm.addEventListener('submit', e => {
  
 });
 
+// On submit, process starter inputs, generate MS part number, and display part number page
 msStartersForm.addEventListener('submit', e => {
     e.preventDefault();
 
     const currentHp = calcCurrentHp();
 
     if(currentHp > msInputs.maxHp){
-        displayErrorMsg('Total starter HP exceeds maximum for the selected voltage.<br>Please select a combination of starters with lower total HP, or contact Sun Coast directly for a custom quote.')
+        displayErrorMsg('Total starter HP exceeds maximum for the selected voltage.<br>Please select a combination of starters with total HP below the indicated maximum, or contact Sun Coast directly for a custom quote.')
     }else{
         updateMsDisplay();
         displayPartNumDiv();
     };
 });
 
-// Add starter and leader selections to MS inputs object
+// Add starter and leader selections to msAssem object
 async function addMSInputsToMsAssembly(){
 
     // Reset msAssem when new data is submitted
@@ -128,6 +137,7 @@ async function updateMsDisplay(){
     
 };
 
+// FORM INTERACTIVITY
 // Display and hide starter selector divs based on number of starters selected
 msNumStarters.addEventListener('change', e => {
     e.preventDefault();
@@ -149,7 +159,7 @@ msNumStarters.addEventListener('change', e => {
 
 });
 
-// Display and hide leader selectors when the leader checkbox is selected
+// Enable / disable leader selectors when the leader checkbox is toggled
 leaderCheckboxes.forEach((checkbox, i) => {
     checkbox.addEventListener('change', e => {
         e.preventDefault();
@@ -167,6 +177,42 @@ leaderCheckboxes.forEach((checkbox, i) => {
 
 });
 
+
+// Sequentially enable / disable starter selectors
+starter1selector.addEventListener('change', e => {
+    e.preventDefault();
+
+    if(starter1selector.value){
+        starter2selector.removeAttribute('disabled')
+    } else {
+        starter2selector.setAttribute('disabled', true);
+    }
+
+});
+
+starter2selector.addEventListener('change', e => {
+    e.preventDefault();
+
+    if(starter2selector.value){
+        starter3selector.removeAttribute('disabled')
+    } else {
+        starter2selector.setAttribute('disabled', true);
+    }
+
+});
+
+starter3selector.addEventListener('change', e => {
+    e.preventDefault();
+
+    if(starter3selector.value){
+        starter4selector.removeAttribute('disabled')
+    } else {
+        starter2selector.setAttribute('disabled', true);
+    }
+
+});
+
+// CALC AND SHOW CURRENT HP AND MAX HP
 // Update current hp as starters are selected
 starterSelectors.forEach(selector => {
 
@@ -186,7 +232,7 @@ starterSelectors.forEach(selector => {
 
 });
 
-// Add maximum hp based on voltage selections
+// Calc and display maximum hp based on voltage selections
 const addMaxHpToStartersForm = () => {
     if(msInputs.voltage == '208V'){
         msInputs.maxHp = 60;
