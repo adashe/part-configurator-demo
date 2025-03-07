@@ -1,6 +1,6 @@
 // Generate hpu email
 const generateHpuEmail = () => {
-    const hpuNum = `N-${hpuAssem.reservoir.code}-${hpuAssem.pump.code}-${hpuAssem.motor.code}-${hpuAssem.manifold.code}-${hpuAssem.heatExchanger.code}`
+    const hpuNum = hpuAssem.buildPartNum();
     const hpuBody = genHpuEmailBody();
     const valveBody = genValveEmailBody();
     const totalCostBody = genHpuTotalCostEmailBody();

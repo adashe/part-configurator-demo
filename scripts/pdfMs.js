@@ -1,5 +1,3 @@
-const pdfMsDiv = document.querySelector('#pdf-ms-div');
-
 // Generate all components for MS pdf
 const generateMsPdf = () => {
     fillMsPdfDets();
@@ -10,7 +8,7 @@ const fillMsPdfDets = () => {
     const motorArray = [msAssem.motor1, msAssem.motor2, msAssem.motor3, msAssem.motor4];
     const partNum = msAssem.buildPartNum();
 
-    pdfMsDiv.innerHTML = '';
+    pdfDetsDiv.innerHTML = '';
 
     const msHeaderHTML = `<h2>MS SELECTION: ${partNum}</h2>`;
 
@@ -48,7 +46,7 @@ const fillMsPdfDets = () => {
         };
     });
 
-    pdfMsDiv.innerHTML = msHeaderHTML + motorsDetsHtml;
+    pdfDetsDiv.innerHTML = msHeaderHTML + motorsDetsHtml;
 };
 
 const fillMsTotalCostPdfDets = () => {

@@ -1,4 +1,4 @@
-const pdfHpuDiv = document.querySelector('#pdf-hpu-div');
+const pdfDetsDiv = document.querySelector('#pdf-dets-div');
 const pdfValveDiv = document.querySelector('#pdf-valve-div');
 const pdfTotalListPriceDiv = document.querySelector('#pdf-total-list-price-div');
 
@@ -47,7 +47,7 @@ const fillHpuPdfDets = () => {
         motorCost = (parseFloat(protoMotorCost) + hpuAssem.motor.SAEBadapterCost).toFixed(2);
     };
 
-    pdfHpuDiv.innerHTML = '';
+    pdfDetsDiv.innerHTML = '';
 
     // Build part number HTML
     const partNum = hpuAssem.buildPartNum();
@@ -119,7 +119,7 @@ const fillHpuPdfDets = () => {
 
     const hpuCostHTML = `<div class="pdf-cost"><h4>HPU LIST PRICE: $${hpuAssem.totalCost}</h4></div>`;
 
-    pdfHpuDiv.innerHTML = hpuHeaderHTML 
+    pdfDetsDiv.innerHTML = hpuHeaderHTML 
         + reservoirHTML 
         + pumpHTML 
         + motorHTML 
