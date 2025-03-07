@@ -315,9 +315,9 @@ msStartersForm.addEventListener('submit', e => {
 
     if(currentHp > msInputs.maxHp){
         // Show error message if current HP exceeds maximum HP
-        let message = 'Total starter HP exceeds the maximum for the selected voltage.';
+        let message = 'Total starter HP exceeds the maximum<br>for the selected voltage.';
         message += '<br><br>';
-        message += 'Please select a combination with total HP below the maximum HP.';
+        message += 'Please select a combination with total HP<br>below the maximum HP.';
         displayErrorMsg(message);
     }else{
         // Generate and show MS part number if inputs are valid
