@@ -13,6 +13,7 @@ const generateMsEmail = () => {
     window.location.href = mailtoLink;
 };
 
+// Generate ms email body text
 const genMsEmailBody = () => {
     const partNum = msAssem.buildPartNum();
 
@@ -21,6 +22,7 @@ const genMsEmailBody = () => {
     return html;
 };
 
+// Generate ms total cost body text
 const genMsTotalCostEmailBody = () => {
 
     const total = parseFloat(msAssem.calcCost());

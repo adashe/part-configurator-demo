@@ -4,6 +4,7 @@ const generateMsPdf = () => {
     fillMsTotalCostPdfDets();
 };
 
+// Build msAssem details html for MS pdf
 const fillMsPdfDets = () => {
     const motorArray = [msAssem.motor1, msAssem.motor2, msAssem.motor3, msAssem.motor4];
     const partNum = msAssem.buildPartNum();
@@ -49,6 +50,7 @@ const fillMsPdfDets = () => {
     pdfDetsDiv.innerHTML = msHeaderHTML + motorsDetsHtml;
 };
 
+// Build msAssem total cost html for ms pdf
 const fillMsTotalCostPdfDets = () => {
 
     const total = msAssem.calcCost();

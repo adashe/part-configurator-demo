@@ -28,7 +28,6 @@ const genHpuEmailBody = () => {
     html += costHtml;
 
     return html;
-
 };
 
 // Generate valve email body text
@@ -47,7 +46,7 @@ const genValveEmailBody = () => {
     
             html += `\nStation ${i + 1}: ${valve.code}-${flowControl.code}-${checkValve.code}`;
         };
-    }
+    };
 
     // Build valve cost html
     const cost = parseFloat(valveAssem.calcCost());

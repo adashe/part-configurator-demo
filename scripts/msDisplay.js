@@ -79,9 +79,9 @@ const buildMsNumberDisplay = (data) => {
     toggleAdminSettings();
 
     buildTotalMsCostDisplay();
-
 };
 
+// Add event handler to the edit ms inputs button
 const addEventHandlerToEditMsInputs = () => {
     const editMsInputs = document.querySelector('#edit-ms-inputs');
 
@@ -89,12 +89,12 @@ const addEventHandlerToEditMsInputs = () => {
         e.preventDefault();
 
         displayMsVoltageForm();
-    })
-
+    });
 };
 
+// Build msAssem total list price html
 const buildTotalMsCostDisplay = () => {
     const total = msAssem.calcCost();
 
     totalCostDisplay.innerHTML = `<h4 class="total-price">TOTAL LIST PRICE: $${total.toFixed(2)}</h4>`
-}
+};
