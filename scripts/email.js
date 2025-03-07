@@ -4,7 +4,8 @@ generateEmailButtons.forEach(button => {
     button.addEventListener('click', e => {
         e.preventDefault();
     
-        generateHpuEmail();
+        // generateHpuEmail();
+        generateMsEmail();
 
     });
 });
