@@ -53,6 +53,18 @@ const fillHpuPdfDets = () => {
     const partNum = hpuAssem.buildPartNum();
     const hpuHeaderHTML = `<h2>HPU SELECTION: ${partNum}</h2>`;
 
+    // Build included features HTML
+    const defaultsHTML = `
+        <h3>INCLUDED FEATURES</h3>
+        <ul>
+            <li>Filter</li>
+            <li>Pressure Gauge</li>
+            <li>Level Sight Gauge</li>
+            <li>Drain Plug</li>
+            <li>Cleanout Covers</li>
+        </ul>
+    `;
+
     // Build part dets HTML
     const reservoirHTML = `
         <h3>RESERVOIR: ${hpuAssem.reservoir.code}</h3>
@@ -125,9 +137,9 @@ const fillHpuPdfDets = () => {
         + motorHTML 
         + manifoldHTML 
         + heatExchangerHTML 
+        + defaultsHTML
         + hpuCostHTML
         ;
-
 };
 
 const fillValvePdfDets = () => {
