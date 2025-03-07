@@ -273,7 +273,6 @@ form#ms-starters-form{
     align-items: left;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 20px auto;
 }
 .starter-div p{
     width: 100%;
@@ -306,9 +305,9 @@ form#ms-starters-form{
     justify-content: space-around;
     font-size: 16px;
     font-style: italic;
-    color: #72d1d4;
+    color: #818181;
     font-weight: 600;
-    margin: 10px;
+    margin: 20px;
     padding: 10px;
 }
 #ms-curr-hp-msg.alert{
