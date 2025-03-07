@@ -1,8 +1,8 @@
 const pdfHpuDiv = document.querySelector('#pdf-hpu-div');
 const pdfValveDiv = document.querySelector('#pdf-valve-div');
-
 const pdfTotalListPriceDiv = document.querySelector('#pdf-total-list-price-div');
 
+// Generate all components for HPU pdf
 const generateHpuPdf = () => {
     fillHpuPdfDets();
     fillValvePdfDets();
@@ -116,7 +116,14 @@ const fillHpuPdfDets = () => {
 
     const hpuCostHTML = `<div class="pdf-cost"><h4>HPU LIST PRICE: $${hpuAssem.totalCost}</h4></div>`;
 
-    pdfHpuDiv.innerHTML = hpuHeaderHTML + reservoirHTML + pumpHTML + motorHTML + manifoldHTML + heatExchangerHTML + hpuCostHTML;
+    pdfHpuDiv.innerHTML = hpuHeaderHTML 
+        + reservoirHTML 
+        + pumpHTML 
+        + motorHTML 
+        + manifoldHTML 
+        + heatExchangerHTML 
+        + hpuCostHTML
+        ;
 
 };
 

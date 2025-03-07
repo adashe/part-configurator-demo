@@ -19,12 +19,12 @@ pdfPrintButton.addEventListener('click', e => {
     e.preventDefault();
 
     window.print();
-    
 });
 
 const generatePDF = () => {
     fillContactPdfDets();
-    generateHpuPdf();
+    // generateHpuPdf();
+    generateMsPdf();
 };
 
 const fillContactPdfDets = () => {
@@ -47,5 +47,4 @@ const fillContactPdfDets = () => {
     `;
 
     pdfContactDiv.innerHTML = html;
-
 };
