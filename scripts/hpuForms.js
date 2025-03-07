@@ -93,7 +93,7 @@ hpuSysParamsForm.addEventListener('submit', e => {
     e.preventDefault();
 
     hpuInputs.maxPres = parseInt(hpuSysParamsForm.maxPressure.value);
-    hpuInputs.maxFlow = parseInt(hpuSysParamsForm.maxFlow.value);
+    hpuInputs.maxFlow = parseFloat(hpuSysParamsForm.maxFlow.value);
     hpuInputs.appType = hpuSysParamsForm.applicationType.value;
     hpuInputs.resOrient = hpuSysParamsForm.reservoirOrientation.value;
     hpuInputs.heatExchType = hpuSysParamsForm.heatExchType.value;
