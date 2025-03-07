@@ -23,16 +23,15 @@ const displayMsVoltageForm = () => {
 };
 
 const displayMsStartersForm = () => {
-
     msVoltageForm.style.display = 'none';
     msStartersForm.style.display = 'block';
 };
 
 
 // BUTTONS
+// Return to voltage from when voltage button is clicked (on starter page)
 msVoltageBtn.addEventListener('click', e=> {
     e.preventDefault();
-
     displayMsVoltageForm();
 });
 
@@ -45,6 +44,7 @@ let msInputs = {
     numStarters: null,
 };
 
+// Reset null values for MS inputs
 const resetMsInputs = () => {
     msInputs = {
         voltage: null,
@@ -53,6 +53,7 @@ const resetMsInputs = () => {
     };
 };
 
+// Proceed to starters form with updated HP values when voltage form is submitted
 msVoltageForm.addEventListener('submit', e => {
     e.preventDefault();
 
@@ -64,6 +65,7 @@ msVoltageForm.addEventListener('submit', e => {
     displayMsStartersForm();
 });
 
+// Generate / reset starter selectors and hp values when the number of starters is changed
 msNumStarters.addEventListener('change', e => {
     e.preventDefault();
 
@@ -80,7 +82,7 @@ const generateAllStarterDivs = () => {
 
     generatedStartersDiv.innerHTML = '';
 
-    // Begin at 1 because starter 1 is already built into index.html
+    // Begin at 1 because starter 1 is unique and already built into index.html
     for(i = 1; i < msInputs.numStarters; i++){
         generateStarterDiv(i + 1);        
     };
@@ -140,8 +142,9 @@ const generateStarterDiv = (idx) => {
     generatedStartersDiv.innerHTML += starterDivHtml;
 };
 
-// Generate leader selector options based on num starters and omitting the follower
+// Generate an individual leader selector
 const generateLeaderSelectors = (idx) => {
+    // idx represents the motor number for which the div is being created
 
     const openingHtml = `
         <div class="leader-selector-div" id="leaderSelectorDiv${idx}">
@@ -158,8 +161,9 @@ const generateLeaderSelectors = (idx) => {
     return html;
 };
 
-// Generate only selectors based on available options
+// Generate leader selector options for an individual leader selector based on available options
 const generateLeaderOptions = (idx) => {
+    // idx represents the motor number for which the div is being created
 
     let html = '<option value="" disabled selected hidden>Select leader...</option>';
 
@@ -179,10 +183,10 @@ const generateLeaderOptions = (idx) => {
     }
 
     return html;
-}
+};
 
 // FORM INTERACTIVITY
-// Add event listener to sequentially enable / disable starter selectors
+// Add event listeners after generating starter divs
 const addEventListenersToStarterDivs = () => {
 
     const starterSelectors = document.querySelectorAll('.starter-selector');
@@ -245,7 +249,6 @@ const addEventListenersToStarterDivs = () => {
     updateMaxHpDisplay();
 };
 
-// CALC AND SHOW CURRENT HP AND MAX HP
 // Calc and display maximum hp based on voltage selections
 const updateMaxHpDisplay = () => {
     if(msInputs.voltage == '208V'){
@@ -259,7 +262,7 @@ const updateMaxHpDisplay = () => {
     msMaxHpMsg.innerHTML = `Maximum: ${msInputs.maxHp} hp`;
 };
 
-// Add event listeners to starter selectors to update current hp as starters are selected
+// Add event listeners to starter selectors to update current hp as starter selections are changed
 const addEventListenersForCurrentHPcalc = () => {
     const starterSelectors = document.querySelectorAll('.starter-selector');
 
@@ -272,7 +275,7 @@ const addEventListenersForCurrentHPcalc = () => {
     });
 };
 
-// Update current hp display
+// Update current hp display and change alert state if current HP exceeds max HP
 const updateCurrentHpDisplay = () => {
     currentHp = calcCurrentHp();
     
@@ -291,14 +294,13 @@ const calcCurrentHp = () => {
 
     let hp = 0;
 
+    // Iterate through each starter selector and add value to hp
     starterSelectors.forEach(selector => {
-
         if(selector.value){
             const val = parseFloat(selector.value);
 
             hp += val;
         };
-
     });
 
     return hp;
@@ -312,17 +314,25 @@ msStartersForm.addEventListener('submit', e => {
     const currentHp = calcCurrentHp();
 
     if(currentHp > msInputs.maxHp){
+        // Show error message if current HP exceeds maximum HP
         let message = 'Total starter HP exceeds the maximum for the selected voltage.';
         message += '<br><br>';
         message += 'Please select a combination with total HP below the maximum HP.';
-
         displayErrorMsg(message);
     }else{
+        // Generate and show MS part number if inputs are valid
         updateMsDisplay();
         displayPartNumDiv();
     };
 });
 
+// Update and show part number display with msAssem object
+async function updateMsDisplay(){
+
+    await addMSInputsToMsAssembly();
+    buildMsNumberDisplay(msAssem);
+
+};
 
 // Add starter and leader selections to msAssem object
 async function addMSInputsToMsAssembly(){
@@ -337,9 +347,9 @@ async function addMSInputsToMsAssembly(){
         counter.push(i);
     };
 
+    // Create a msAssem motor object for each submitted set of values
     let promises = [];
 
-    // Create a motor object for each submitted set of values
     for await(i of counter){
         const voltage = msInputs.voltage;
 
@@ -367,13 +377,5 @@ async function addMSInputsToMsAssembly(){
     };
 
     await Promise.all(promises);
-}
-
-// Update and show part number display with msAssem object
-async function updateMsDisplay(){
-
-    await addMSInputsToMsAssembly();
-    buildMsNumberDisplay(msAssem);
-    
 };
 

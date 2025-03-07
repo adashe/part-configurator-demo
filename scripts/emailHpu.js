@@ -14,7 +14,7 @@ const generateHpuEmail = () => {
     window.location.href = mailtoLink;
 };
 
-// Generate hpu body text
+// Generate hpu email body text
 const genHpuEmailBody = () => {
 
     // Build part num html
@@ -31,7 +31,7 @@ const genHpuEmailBody = () => {
 
 };
 
-// Generate valve body text
+// Generate valve email body text
 const genValveEmailBody = () => {
     let html = '';
 
@@ -58,9 +58,10 @@ const genValveEmailBody = () => {
     return html;
 };
 
+// Generate HPU total cost email body text
 const genHpuTotalCostEmailBody = () => {
 
-    const total = calcTotalCost();
+    const total = calcTotalHpuCost();
 
     html = `\n\nTOTAL LIST PRICE: $${total.toFixed(2)}`;
 

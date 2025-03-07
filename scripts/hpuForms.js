@@ -111,7 +111,7 @@ hpuManifoldForm.addEventListener('submit', e => {
     displayHpuValveForm();
 });
 
-// Limit number of stations available based on port size selection
+// Generate number of stations selector while limiting options based on port size selection
 const generateHpuNumberStationsDropdown = () => {
     const htmlD03 = `
         <label for="hpuNumberStations">Number of Stations:</label>
@@ -142,7 +142,6 @@ const generateHpuNumberStationsDropdown = () => {
         hpuNumStatDiv.innerHTML = '';
     };
 
-
     // Add event listener to reset valve options form and valve assembly if number of stations is changed
     const hpuNumberStations = document.querySelector('#hpuNumberStations');
 
@@ -154,7 +153,7 @@ const generateHpuNumberStationsDropdown = () => {
 
         // Disable valve popup access if 0 stations selected
         if(hpuNumberStations.value == 0){
-            hpuEditValvesButton.innerHTML = 'EDIT VALVES <br> <i>Disabled - No stations available</i>';
+            hpuEditValvesButton.innerHTML = 'EDIT VALVES<br><i>Disabled - No stations available</i>';
             hpuEditValvesButton.disabled = true;
         } else if (hpuNumberStations.value > 0){
             hpuEditValvesButton.innerHTML = 'EDIT VALVES';
@@ -170,14 +169,13 @@ hpuPortSize.addEventListener('change', e => {
 });
 
 
-// SUBMIT HPU INPUT DATA, GENERATE HPU NUMBER, and SHOW PART NUM DIV
+// Process hpu input into hpuAssem when the final hpu form (valve page) is submitted
 hpuValveForm.addEventListener('submit', e => {
     e.preventDefault();
-
     updateHpuDiv();
-
 });
 
+// Process hpu inputs and valveAssem into hpuAssem and display part number page
 async function updateHpuDiv(){
 
     await hpuAssem.calcHpuNum(

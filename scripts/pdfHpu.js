@@ -9,6 +9,7 @@ const generateHpuPdf = () => {
     fillHpuTotalCostPdfDets();
 };
 
+// Build HPU pdf page
 const fillHpuPdfDets = () => {
 
     // Determine individual item cost based on V or H reservoir
@@ -142,6 +143,7 @@ const fillHpuPdfDets = () => {
         ;
 };
 
+// Build valve pdf page
 const fillValvePdfDets = () => {
 
     pdfValveDiv.innerHTML = '';
@@ -214,14 +216,10 @@ const fillValvePdfDets = () => {
         const valveCostHTML = `<div class="pdf-cost"><h4>VALVES LIST PRICE: $${valvePrice.toFixed(2)}</h4></div>`
 
         pdfValveDiv.innerHTML += valveCostHTML;
-
     };
 };
 
 const fillHpuTotalCostPdfDets = () => {
-
-    const total = calcTotalCost();
-
+    const total = calcTotalHpuCost();
     pdfTotalListPriceDiv.innerHTML = `<div class="pdf-total-list"><h4>TOTAL LIST PRICE: ${total.toFixed(2)}</h4></div>`;
-
 };
