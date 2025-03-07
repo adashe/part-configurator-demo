@@ -60,6 +60,7 @@ msVoltageForm.addEventListener('submit', e => {
     msInputs.numStarters = msVoltageForm.msNumStarters.value;
     
     updateMaxHpDisplay();
+    updateCurrentHpDisplay();
     displayMsStartersForm();
 });
 
