@@ -277,10 +277,9 @@ form#ms-starters-form{
 .starter-div p{
     width: 100%;
     text-align: left;
-    margin: 10px auto 4px;
+    margin: 20px auto 4px;
     font-weight: 600;
 }
-
 .starter-selector{
     width: 130px;
     margin: 4px auto;
