@@ -23,8 +23,14 @@ pdfPrintButton.addEventListener('click', e => {
 
 const generatePDF = () => {
     fillContactPdfDets();
-    // generateHpuPdf();
-    generateMsPdf();
+
+    if(currConfigurator == 'hpu'){
+        generateHpuPdf();
+    } else if(currConfigurator == 'ms'){
+        generateMsPdf();
+    } else if(currConfigurator == 'hmi'){
+        console.log('hmi pdf not currently available');
+    };
 };
 
 const fillContactPdfDets = () => {

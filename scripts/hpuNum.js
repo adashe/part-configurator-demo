@@ -64,8 +64,9 @@ const buildHpuNumberDisplay = (data) => {
 
 
     // Display part number at top of part number and contact pages
+    const partNum = data.buildPartNum();
     partNumDisplay.forEach((element) => {
-        element.innerHTML = `N-${reservoir.code}-${pump.code}-${motor.code}-${manifold.code}-${heatExchanger.code}`;
+        element.innerHTML = `${partNum}`;
     });
 
     // Build dropdown for automatically-included parts

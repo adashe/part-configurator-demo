@@ -8,10 +8,11 @@ const generateMsPdf = () => {
 
 const fillMsPdfDets = () => {
     const motorArray = [msAssem.motor1, msAssem.motor2, msAssem.motor3, msAssem.motor4];
+    const partNum = msAssem.buildPartNum();
 
     pdfMsDiv.innerHTML = '';
 
-    const msHeaderHTML = `<h2>MS SELECTION: MS-###</h2>`;
+    const msHeaderHTML = `<h2>MS SELECTION: ${partNum}</h2>`;
 
     // Build dets for automatically-included parts
     const defaultsHTML = `

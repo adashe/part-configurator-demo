@@ -48,9 +48,12 @@ const fillHpuPdfDets = () => {
     };
 
     pdfHpuDiv.innerHTML = '';
-        
-    const hpuHeaderHTML = `<h2>HPU SELECTION: N-${hpuAssem.reservoir.code}-${hpuAssem.pump.code}-${hpuAssem.motor.code}-${hpuAssem.manifold.code}-${hpuAssem.heatExchanger.code}</h2>`;
 
+    // Build part number HTML
+    const partNum = hpuAssem.buildPartNum();
+    const hpuHeaderHTML = `<h2>HPU SELECTION: ${partNum}</h2>`;
+
+    // Build part dets HTML
     const reservoirHTML = `
         <h3>RESERVOIR: ${hpuAssem.reservoir.code}</h3>
         <ul>

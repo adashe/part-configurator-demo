@@ -10,8 +10,12 @@ const partNumDiv = document.querySelector('#part-num-div');
 const contactDiv = document.querySelector('#contact-div');
 const emailConfDiv = document.querySelector('#email-conf-div');
 
+let currConfigurator = null;
+
 hpuStart.addEventListener('click', e => {
     e.preventDefault();
+
+    currConfigurator = 'hpu';
 
     componentDiv.style.display = 'none';
     hpuDiv.style.display = 'block';
@@ -25,6 +29,8 @@ hpuStart.addEventListener('click', e => {
 msStart.addEventListener('click', e => {
     e.preventDefault();
 
+    currConfigurator = 'ms';
+
     componentDiv.style.display = 'none';
     hpuDiv.style.display = 'none';
     mspDiv.style.display = 'block';
@@ -36,6 +42,8 @@ msStart.addEventListener('click', e => {
 
 hmiStart.addEventListener('click', e => {
     e.preventDefault();
+
+    currConfigurator = 'hmi';
 
     componentDiv.style.display = 'none';
     hpuDiv.style.display = 'none';

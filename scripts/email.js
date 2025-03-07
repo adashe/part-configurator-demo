@@ -4,8 +4,13 @@ generateEmailButtons.forEach(button => {
     button.addEventListener('click', e => {
         e.preventDefault();
     
-        // generateHpuEmail();
-        generateMsEmail();
+        if(currConfigurator == 'hpu'){
+            generateHpuEmail();
+        } else if(currConfigurator == 'ms'){
+            generateMsEmail();
+        } else if(currConfigurator == 'hmi'){
+            console.log('hmi email not currently available');
+        };
 
     });
 });

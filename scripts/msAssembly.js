@@ -83,4 +83,12 @@ class MsAssembly{
 
     }
 
+    buildPartNum(){
+        // Returns string
+        
+        const partNum = 'MS-###';
+
+        return partNum;
+    }
+
 }

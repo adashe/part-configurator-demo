@@ -14,7 +14,9 @@ const generateMsEmail = () => {
 };
 
 const genMsEmailBody = () => {
-    let html = `\n\nMS NUMBER: MS-###`;
+    const partNum = msAssem.buildPartNum();
+
+    let html = `\n\nMS NUMBER: ${partNum}`;
 
     return html;
 };

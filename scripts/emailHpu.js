@@ -8,7 +8,7 @@ const generateHpuEmail = () => {
     const emailAddress = 'test@example.com';
     const emailSubject = `Sun Coast Part Number Configurator: ${hpuNum}`;
     const bodyText = `Sun Coast Part Configurator ${hpuBody}${valveBody}${totalCostBody}`;
-    
+
     const mailtoLink = createMailtoLink(emailAddress, emailSubject, bodyText);
 
     window.location.href = mailtoLink;
@@ -16,7 +16,10 @@ const generateHpuEmail = () => {
 
 // Generate hpu body text
 const genHpuEmailBody = () => {
-    let html = `\n\nHPU NUMBER: N-${hpuAssem.reservoir.code}-${hpuAssem.pump.code}-${hpuAssem.motor.code}-${hpuAssem.manifold.code}-${hpuAssem.heatExchanger.code}`;
+
+    // Build part num html
+    const partNum = hpuAssem.buildPartNum();
+    let html = `\n\nHPU NUMBER: ${partNum}`;
 
     // Build hpu cost html
     const cost = parseFloat(hpuAssem.calcCost());

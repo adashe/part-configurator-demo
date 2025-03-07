@@ -1,5 +1,3 @@
-// const hpuForm = document.querySelector('#hpu-form');
-// const mspForm = document.querySelector('#msp-form');
 const hmiForm = document.querySelector('#hmi-form');
 
 const restartButtons = document.querySelectorAll('.restart');
@@ -13,13 +11,6 @@ const errorPopupCloseButton = document.querySelector('.error-popup-close-btn');
 const errorPopupHeader = document.querySelector('.error-popup-header');
 const errorPopupContent = document.querySelector('.error-popup-content');
 
-
-// Process MSP form input
-// mspForm.addEventListener('submit', e => {
-//     e.preventDefault();
-
-//     mspForm.reset();
-// });
 
 // Process HMI form input
 hmiForm.addEventListener('submit', e => {

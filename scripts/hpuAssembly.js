@@ -372,6 +372,16 @@ class HpuAssembly{
         return this;
     }
 
+    buildPartNum(){
+        // Returns string
+
+        let partNum = 'N';
+
+        partNum += `-${this.reservoir.code}-${this.pump.code}-${this.motor.code}-${this.manifold.code}-${this.heatExchanger.code}`;
+
+        return partNum;
+    }
+
     // UPDATE PART NUMBER //
     async updateReservoir(idx){
         const data = await this.getReservoirData();
