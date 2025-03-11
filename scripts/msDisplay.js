@@ -38,7 +38,7 @@ const buildMsNumberDisplay = (data) => {
         </div>
     `;
 
-    // Display ms form inputs on part number page
+    // Display dropdown for ms form inputs
     let hpHTML = ''
 
     msInputs.hpArr.forEach((hp, i) => {
