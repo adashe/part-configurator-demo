@@ -17,6 +17,8 @@ class MsAssembly{
             leader: null
         };
         this.enclosure = null;
+        this.base = null;
+        this.disconnect = null;
     }
 
     reset(){
@@ -37,6 +39,7 @@ class MsAssembly{
             leader: null
         };
         this.enclosure = null;
+        this.base = null;
     }
 
     // GET DATA FROM JSON //
@@ -56,10 +59,26 @@ class MsAssembly{
         return data;
     }
 
+    async getMotorStarterBaseData(){
+        const uri = "data/motorStarterBaseData.json";
+        const response = await fetch(uri);
+        const data = await response.json();
+
+        return data;
+    }
+
+    async getMotorStarterDisconnectData(){
+        const uri = "data/motorStarterDisconnectData.json";
+        const response = await fetch(uri);
+        const data = await response.json();
+
+        return data;
+    }
+
     // UPDATE DATA FOR AN INDIVIDUAL MOTOR OBJECT
     async updateMotor(motorName, voltage, hp, leaderName){
         const data = await this.getMotorStarterData();
-
+    
         let result = data.filter(starter => starter.voltage == voltage && starter.HP >= hp);
         let selected = null;
 
@@ -76,6 +95,17 @@ class MsAssembly{
         };
 
         return this[motorName];
+    }
+
+    // UPDATE BASE
+    async updateBase(voltage){
+        const data = await this.getMotorStarterBaseData()
+
+        let result = data.filter(base => base.voltage == voltage);
+
+        this.base = result[0];
+
+        return this.base
     }
 
     // UPDATE ENCLOSURE
@@ -124,10 +154,44 @@ class MsAssembly{
         return this.enclosure;
     }
 
+    // UPDATE DISCONNECT
+    async updateDisconnect(){
+        const data = await this.getMotorStarterDisconnectData();
+
+        let totalAmp = 0;
+
+        const motorsArr = [
+            this.motor1,
+            this.motor2,
+            this.motor3,
+            this.motor4
+        ];
+
+        motorsArr.forEach(motor => {
+            if(motor.starter){
+                if(motor.starter.FLA){
+                    totalAmp += motor.starter.FLA;
+                };
+            };
+        });
+
+        totalAmp += this.base.amperage;
+
+        let result = data.filter(disconnect => disconnect.FLA >= totalAmp);
+
+        this.disconnect = result.reduce((prev, curr) => (prev.FLA < curr.FLA) ? prev : curr);
+
+        return this.disconnect;
+    }
+
     // CALC TOTAL COST
     calcCost(){
         let cost = 0;
 
+        // Add cost of base, enclosure, and disconnect
+        cost += this.base.cost + this.enclosure.cost + this.disconnect.cost;
+
+        // Add cost of each motor starter
         const motorsArr = [
             this.motor1,
             this.motor2,
@@ -139,7 +203,7 @@ class MsAssembly{
             if(motor.starter){
                 if(motor.starter.cost){
                     cost += motor.starter.cost;
-                }
+                };
             };
         });
 
@@ -156,7 +220,7 @@ class MsAssembly{
             this.motor4
         ];
 
-        let partNum = `MS-${this.motor1.starter.voltage}-${this.enclosure.code}`;
+        let partNum = `MS-${this.base.voltage}-${this.enclosure.code}`;
 
         motorsArr.forEach(motor => {
             if(motor.starter){

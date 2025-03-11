@@ -1,0 +1,17 @@
+[
+    {
+        "voltage": "208V",
+        "cost": 567.41,
+        "amperage": 2.4
+    },
+    {
+        "voltage": "240V",
+        "cost": 564.67,
+        "amperage": 2.08
+    },
+    {
+        "voltage": "480V",
+        "cost": 582.07,
+        "amperage": 1.04
+    }
+]

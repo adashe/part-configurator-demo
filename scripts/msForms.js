@@ -244,17 +244,19 @@ const addEventListenersToStarterDivs = () => {
 msStartersForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    updateMsDisplay();
+    updateMsAssemblyAndDisplay();
     displayPartNumDiv();
 });
 
 // Update and show part number display with msAssem object
-async function updateMsDisplay(){
+async function updateMsAssemblyAndDisplay(){
 
     await addMSInputsToMsAssembly();
     await updateMsEnclosure();
+    await updateMsBase();
+    await updateMsDisconnect();
     buildMsNumberDisplay(msAssem);
-    
+
     console.log(msAssem);
 };
 
@@ -308,4 +310,12 @@ async function addMSInputsToMsAssembly(){
 async function updateMsEnclosure(){
 
     await msAssem.updateEnclosure(msInputs.numStarters);
+};
+
+async function updateMsBase(){
+    await msAssem.updateBase(msInputs.voltage);
+};
+
+async function updateMsDisconnect(){
+    await msAssem.updateDisconnect();
 };
