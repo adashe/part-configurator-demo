@@ -4,6 +4,7 @@ const buildMsNumberDisplay = (data) => {
     const motor2 = data.motor2;
     const motor3 = data.motor3;
     const motor4 = data.motor4;
+    const enclosure = data.enclosure;
 
     const motorArray = [motor1, motor2, motor3, motor4];
 
@@ -11,17 +12,6 @@ const buildMsNumberDisplay = (data) => {
     partNumDisplay.forEach((element) => {
 
         element.innerHTML = msAssem.buildPartNum();
-        // element.innerHTML = `MS-${motor1.starter.voltage}`;
-
-        // motorArray.forEach(motor => {
-        //     if(motor.starter){
-        //         element.innerHTML += `-${motor.starter.HP}`
-        //     };
-
-        //     if(motor.leader){
-        //         element.innerHTML += `M${motor.leader}`
-        //     };
-        // });
     });
 
     // Build and add editing and cost elements to display
@@ -35,6 +25,9 @@ const buildMsNumberDisplay = (data) => {
             <div class="trigger">INCLUDED FEATURES</div>
             <div class="content">       
                 <ul>
+                    <li>Enclosure Material: Polycarbonate</li>
+                    <li>Enclosure Dimensions: ${enclosure.dimensions} in</li>
+                    <li>Disconnect Size: </li>
                     <li>Local E-stop</li>
                     <li>Remote E-stop Ready</li>
                     <li>Overload Alarm Ready</li>
@@ -58,9 +51,6 @@ const buildMsNumberDisplay = (data) => {
             <div class="content">        
                 <ul>
                     ${hpHTML}
-                    <li>Enclosure Material: </li>
-                    <li>Enclosure Dimensions: </li>
-                    <li>Disconnect Size: </li>
                 </ul>
             </div>
         </div>
