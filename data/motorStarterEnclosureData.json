@@ -1,0 +1,26 @@
+[
+    {
+        "code": "16H",
+        "partNumber": "PC1614",
+        "dimensions": "16x14x6",
+        "cost": 559.00
+    },
+    {
+        "code": "18H",
+        "partNumber": "PC1816",
+        "dimensions": "18x16x10",
+        "cost": 690.22
+    },
+    {
+        "code": "20H",
+        "partNumber": "PC2016",
+        "dimensions": "10x16x8",
+        "cost": 911.78
+    },
+    {
+        "code": "24H",
+        "partNumber": "PC2424",
+        "dimensions": "24x24x10",
+        "cost": 1747.26
+    }
+]

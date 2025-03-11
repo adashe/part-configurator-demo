@@ -3,234 +3,273 @@
         "voltage": "208V",
         "HP": 1.5,
         "FLA": 5.7,
-        "cost": 373.19
+        "cost": 373.19,
+        "enclosureY": 16
     },
     {
         "voltage": "208V",
         "HP": 2,
         "FLA": 7.5,
-        "cost": 373.19
+        "cost": 373.19,
+        "enclosureY": 16
     },
     {
         "voltage": "208V",
         "HP": 3,
         "FLA": 10.7,
-        "cost": 385.56
+        "cost": 385.56,
+        "enclosureY": 16
     },
     {
         "voltage": "208V",
         "HP": 5,
         "FLA": 16.7,
-        "cost": 352.30
+        "cost": 352.30,
+        "enclosureY": 16
     },
     {
         "voltage": "208V",
         "HP": 7.5,
         "FLA": 24,
-        "cost": 416.81
+        "cost": 416.81,
+        "enclosureY": 16
     },
     {
         "voltage": "208V",
         "HP": 10,
         "FLA": 31,
-        "cost": 512.59
+        "cost": 512.59,
+        "enclosureY": 20
     },
     {
         "voltage": "208V",
         "HP": 15,
         "FLA": 46,
-        "cost": 624.44
+        "cost": 624.44,
+        "enclosureY": 20
     },
     {
         "voltage": "208V",
         "HP": 20,
         "FLA": 59.4,
-        "cost": 706.56
+        "cost": 706.56,
+        "enclosureY": 20
     },
     {
         "voltage": "208V",
         "HP": 25,
         "FLA": 75,
-        "cost": 935.59
+        "cost": 935.59,
+        "enclosureY": 20
     },
     {
         "voltage": "208V",
         "HP": 30,
         "FLA": 88,
-        "cost": 1393.56
+        "cost": 1393.56,
+        "enclosureY": 24
     },
     {
         "voltage": "208V",
         "HP": 40,
         "FLA": 114,
-        "cost": 1572.56
+        "cost": 1572.56,
+        "enclosureY": 24
     },    
     {
         "voltage": "208V",
         "HP": 50,
         "FLA": 143,
-        "cost": 1914.78
+        "cost": 1914.78,
+        "enclosureY": 24
     },
     {
         "voltage": "240V",
         "HP": 1.5,
         "FLA": 5.2,
-        "cost": 373.19
+        "cost": 373.19,
+        "enclosureY": 16
     },
     {
         "voltage": "240V",
         "HP": 2,
         "FLA": 6.8,
-        "cost": 370.52
+        "cost": 370.52,
+        "enclosureY": 16
     },
     {
         "voltage": "240V",
         "HP": 3,
         "FLA": 9.6,
-        "cost": 349.85
+        "cost": 349.85,
+        "enclosureY": 16
     },
     {
         "voltage": "240V",
         "HP": 5,
         "FLA": 15.2,
-        "cost": 362.44
+        "cost": 362.44,
+        "enclosureY": 16
     },
     {
         "voltage": "240V",
         "HP": 7.5,
         "FLA": 22,
-        "cost": 411.00
+        "cost": 411.00,
+        "enclosureY": 16
     },
     {
         "voltage": "240V",
         "HP": 10,
         "FLA": 28,
-        "cost": 512.59
+        "cost": 512.59,
+        "enclosureY": 20
     },
     {
         "voltage": "240V",
         "HP": 15,
         "FLA": 42,
-        "cost": 624.44
+        "cost": 624.44,
+        "enclosureY": 20
     },
     {
         "voltage": "240V",
         "HP": 20,
         "FLA": 54,
-        "cost": 624.44
+        "cost": 624.44,
+        "enclosureY": 20
     },
     {
         "voltage": "240V",
         "HP": 25,
         "FLA": 68,
-        "cost": 706.56
+        "cost": 706.56,
+        "enclosureY": 20
     },
     {
         "voltage": "240V",
         "HP": 30,
         "FLA": 80,
-        "cost": 935.59
+        "cost": 935.59,
+        "enclosureY": 20
     },
     {
         "voltage": "240V",
         "HP": 40,
         "FLA": 104,
-        "cost": 1393.56
+        "cost": 1393.56,
+        "enclosureY": 24
     },
     {
         "voltage": "240V",
         "HP": 50,
         "FLA": 130,
-        "cost": 1572.56
+        "cost": 1572.56,
+        "enclosureY": 24
     },
     {
         "voltage": "240V",
         "HP": 60,
         "FLA": 154,
-        "cost": 1914.78
+        "cost": 1914.78,
+        "enclosureY": 24
     },
     {
         "voltage": "480V",
         "HP": 1.5,
         "FLA": 2.6,
-        "cost": 370.52
+        "cost": 370.52,
+        "enclosureY": 16
     },
     {
         "voltage": "480V",
         "HP": 2,
         "FLA": 3.4,
-        "cost": 370.52
+        "cost": 370.52,
+        "enclosureY": 16
     },
     {
         "voltage": "480V",
         "HP": 3,
         "FLA": 4.8,
-        "cost": 370.52
+        "cost": 370.52,
+        "enclosureY": 16
     },
     {
         "voltage": "480V",
         "HP": 5,
         "FLA": 7.6,
-        "cost": 373.19
+        "cost": 373.19,
+        "enclosureY": 16
     },
     {
         "voltage": "480V",
         "HP": 7.5,
         "FLA": 11,
-        "cost": 385.56
+        "cost": 385.56,
+        "enclosureY": 16
     },
     {
         "voltage": "480V",
         "HP": 10,
         "FLA": 14,
-        "cost": 352.30
+        "cost": 352.30,
+        "enclosureY": 16
     },
     {
         "voltage": "480V",
         "HP": 15,
         "FLA": 21,
-        "cost": 411.00
+        "cost": 411.00,
+        "enclosureY": 16
     },
     {
         "voltage": "480V",
         "HP": 20,
         "FLA": 27,
-        "cost": 411.00
+        "cost": 411.00,
+        "enclosureY": 16
     },
     {
         "voltage": "480V",
         "HP": 25,
         "FLA": 34,
-        "cost": 617.15
+        "cost": 617.15,
+        "enclosureY": 20
     },
     {
         "voltage": "480V",
         "HP": 30,
         "FLA": 40,
-        "cost": 624.44
+        "cost": 624.44,
+        "enclosureY": 20
     },
     {
         "voltage": "480V",
         "HP": 40,
         "FLA": 52,
-        "cost": 648.93
+        "cost": 648.93,
+        "enclosureY": 20
     },
     {
         "voltage": "480V",
         "HP": 50,
         "FLA": 65,
-        "cost": 706.56
+        "cost": 706.56,
+        "enclosureY": 24
     },
     {
         "voltage": "480V",
         "HP": 60,
         "FLA": 77,
-        "cost": 706.56
+        "cost": 706.56,
+        "enclosureY": 24
     },
     {
         "voltage": "480V",
         "HP": 75,
         "FLA": 96,
-        "cost": 376.26
+        "cost": 376.26,
+        "enclosureY": 24
     }
 ]

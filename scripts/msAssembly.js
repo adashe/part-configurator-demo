@@ -16,6 +16,7 @@ class MsAssembly{
             starter: null,
             leader: null
         };
+        this.enclosure = null;
     }
 
     reset(){
@@ -35,11 +36,20 @@ class MsAssembly{
             starter: null,
             leader: null
         };
+        this.enclosure = null;
     }
 
     // GET DATA FROM JSON //
     async getMotorStarterData(){
         const uri = "data/motorStarterData.json";
+        const response = await fetch(uri);
+        const data = await response.json();
+
+        return data;
+    }
+
+    async getMotorStarterEnclosureData(){
+        const uri = "data/motorStarterEnclosureData.json";
         const response = await fetch(uri);
         const data = await response.json();
 
@@ -68,6 +78,52 @@ class MsAssembly{
         return this[motorName];
     }
 
+    // UPDATE ENCLOSURE
+    async updateEnclosure(numStarters){
+        const data = await this.getMotorStarterEnclosureData();
+
+        // Calculate the maximum enclosure y value from motor assembly
+        const motorsArr = [this.motor1, this.motor2, this.motor3, this.motor4];
+        let yArr = [];
+
+        motorsArr.forEach(motor => {
+            if(motor.starter){
+                if(motor.starter.enclosureY){
+                    yArr.push(motor.starter.enclosureY);
+                };
+            };
+        });
+
+        const maxY = Math.max(...yArr);
+        console.log(...yArr);
+        console.log('maxY', maxY);
+
+        let result;
+
+        // Select enclosre based on maxY and number of starters
+        if(maxY == 24){
+            result = data.filter(enclosure => enclosure.code == "24H");
+        } else if(maxY == 20){
+            if(numStarters > 2){
+                result = data.filter(enclosure => enclosure.code == "24H");
+            } else if(numStarters <= 2){
+                result = data.filter(enclosure => enclosure.code == "20H");
+            };
+        } else if(maxY == 16){
+            if(numStarters == 4){
+                result = data.filter(enclosure => enclosure.code == "24H");
+            } else if(numStarters == 3){
+                result = data.filter(enclosure => enclosure.code == "18H");
+            } else if(numStarters < 3){
+                result = data.filter(enclosure => enclosure.code == "16H");
+            }
+        };
+
+        this.enclosure = result[0];
+
+        return this.enclosure;
+    }
+
     // CALC TOTAL COST
     calcCost(){
         let cost = 0;
@@ -88,14 +144,30 @@ class MsAssembly{
         });
 
         return cost;
-
     }
 
     buildPartNum(){
         // Returns string
-        
-        const partNum = 'MS-###';
 
+        const motorsArr = [
+            this.motor1,
+            this.motor2,
+            this.motor3,
+            this.motor4
+        ];
+
+        let partNum = `MS-${this.motor1.starter.voltage}-${this.enclosure.code}`;
+
+        motorsArr.forEach(motor => {
+            if(motor.starter){
+                partNum += `-${motor.starter.HP}`
+            };
+
+            if(motor.leader){
+                partNum +=`L${motor.leader}`;
+            };
+        });
+        
         return partNum;
     }
 

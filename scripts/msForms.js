@@ -252,7 +252,10 @@ msStartersForm.addEventListener('submit', e => {
 async function updateMsDisplay(){
 
     await addMSInputsToMsAssembly();
+    await updateMsEnclosure();
     buildMsNumberDisplay(msAssem);
+    
+    console.log(msAssem);
 };
 
 // Add starter and leader selections to msAssem object
@@ -300,4 +303,9 @@ async function addMSInputsToMsAssembly(){
     };
 
     await Promise.all(promises);
+};
+
+async function updateMsEnclosure(){
+
+    await msAssem.updateEnclosure(msInputs.numStarters);
 };

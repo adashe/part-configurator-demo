@@ -9,18 +9,19 @@ const buildMsNumberDisplay = (data) => {
 
     // Build and display part number at top of part number and contact pages
     partNumDisplay.forEach((element) => {
-        element.innerHTML = `MS-${motor1.starter.voltage}`;
 
-        motorArray.forEach(motor => {
-            if(motor.starter){
-                element.innerHTML += `-${motor.starter.HP}`
-            };
+        element.innerHTML = msAssem.buildPartNum();
+        // element.innerHTML = `MS-${motor1.starter.voltage}`;
 
-            if(motor.leader){
-                element.innerHTML += `M${motor.leader}`
-            };
+        // motorArray.forEach(motor => {
+        //     if(motor.starter){
+        //         element.innerHTML += `-${motor.starter.HP}`
+        //     };
 
-        });
+        //     if(motor.leader){
+        //         element.innerHTML += `M${motor.leader}`
+        //     };
+        // });
     });
 
     // Build and add editing and cost elements to display
@@ -44,7 +45,7 @@ const buildMsNumberDisplay = (data) => {
         </div>
     `;
 
-    // Display inputs on part number page
+    // Display ms form inputs on part number page
     let hpHTML = ''
 
     msInputs.hpArr.forEach((hp, i) => {
@@ -89,15 +90,14 @@ const buildMsNumberDisplay = (data) => {
                 partNumDets.innerHTML += motorHTML;
             };
         };
-
     });
 
-    // Add default features and price to bottom of display
+    // Add default features and ms form inputs to bottom of display
     partNumDets.innerHTML += defaultsHTML + inputsHTML; 
     
     addEventHandlersToDropdowns();
     addEventHandlerToEditMsInputs();
-    toggleAdminSettings();
+    // toggleAdminSettings();
 
     buildTotalMsCostDisplay();
 };
