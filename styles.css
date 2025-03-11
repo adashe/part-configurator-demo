@@ -280,8 +280,8 @@ form#ms-starters-form{
     margin: 20px auto 4px;
     font-weight: 600;
 }
-.starter-selector{
-    width: 130px;
+.starter-input{
+    width: 110px;
     margin: 4px auto;
 }
 .leader-selector{
@@ -297,6 +297,16 @@ form#ms-starters-form{
 }
 .leader-checkbox-div label{
     font-size: 12px;
+    margin-top: 4px;
+}
+input.leader-checkbox{
+    margin-bottom: 30px;
+}
+p.max-hp{
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 400;
+    margin: 0 5px;
 }
 
 #ms-hp-msg{

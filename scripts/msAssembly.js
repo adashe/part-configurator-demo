@@ -50,10 +50,18 @@ class MsAssembly{
     async updateMotor(motorName, voltage, hp, leaderName){
         const data = await this.getMotorStarterData();
 
-        let result = data.filter(starter => starter.voltage == voltage && starter.HP == hp);
+        let result = data.filter(starter => starter.voltage == voltage && starter.HP >= hp);
+        let selected = null;
+
+        if(result.length == 0){
+            console.log('No valid motor starter results.');
+            displayErrorMsg('No valid motor starter results.');
+        } else {
+            selected = result.reduce((prev,curr) => (prev.HP < curr.HP) ? prev : curr);
+        };
 
         this[motorName] = {
-            starter: result[0],
+            starter: selected,
             leader: leaderName
         };
 

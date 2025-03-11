@@ -44,6 +44,27 @@ const buildMsNumberDisplay = (data) => {
         </div>
     `;
 
+    // Display inputs on part number page
+    let hpHTML = ''
+
+    msInputs.hpArr.forEach((hp, i) => {
+        hpHTML += `<li>Motor ${i + 1}: ${hp} hp</li>`;
+    });
+
+    const inputsHTML = `
+        <div class="dropdown">
+            <div class="trigger">MS INPUTS</div>
+            <div class="content">        
+                <ul>
+                    ${hpHTML}
+                    <li>Enclosure Material: </li>
+                    <li>Enclosure Dimensions: </li>
+                    <li>Disconnect Size: </li>
+                </ul>
+            </div>
+        </div>
+    `;
+
     // Build dropdowns for each starter
     motorArray.forEach((motor, i) => {
 
@@ -56,8 +77,8 @@ const buildMsNumberDisplay = (data) => {
     
                             <ul>
                                 <li>Voltage: ${motor.starter.voltage}</li>
-                                <li>HP: ${motor.starter.HP}</li>
-                                <li>FLA: ${motor.starter.FLA}</li>
+                                <li>Rated HP: ${motor.starter.HP}</li>
+                                <li>Rated FLA: ${motor.starter.FLA}</li>
                                 <li>Price: $${motor.starter.cost.toFixed(2)}</li>
                             </ul>
     
@@ -72,7 +93,7 @@ const buildMsNumberDisplay = (data) => {
     });
 
     // Add default features and price to bottom of display
-    partNumDets.innerHTML += defaultsHTML; 
+    partNumDets.innerHTML += defaultsHTML + inputsHTML; 
     
     addEventHandlersToDropdowns();
     addEventHandlerToEditMsInputs();
