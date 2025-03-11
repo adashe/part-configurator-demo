@@ -5,6 +5,8 @@ const buildMsNumberDisplay = (data) => {
     const motor3 = data.motor3;
     const motor4 = data.motor4;
     const enclosure = data.enclosure;
+    const base = data.base;
+    const disconnect = data.disconnect;
 
     const motorArray = [motor1, motor2, motor3, motor4];
 
@@ -19,6 +21,9 @@ const buildMsNumberDisplay = (data) => {
 
     partNumDets.innerHTML = editMsInputsHtml;
 
+    // Calculate base cost
+    const totalBaseCost = enclosure.cost + base.cost + disconnect.cost;
+
     // Build dropdown for automatically-included parts
     const defaultsHTML = `
         <div class="dropdown">
@@ -27,12 +32,13 @@ const buildMsNumberDisplay = (data) => {
                 <ul>
                     <li>Enclosure Material: Polycarbonate</li>
                     <li>Enclosure Dimensions: ${enclosure.dimensions} in</li>
-                    <li>Disconnect Size: </li>
+                    <li>Disconnect Size: ${disconnect.FLA}</li>
                     <li>Local E-stop</li>
                     <li>Remote E-stop Ready</li>
                     <li>Overload Alarm Ready</li>
                     <li>Auxiliary Terminals</li>
                     <li>Standard 120VAC Control</li>
+                    <li>Base Price: $${totalBaseCost.toFixed(2)}</li>
                 </ul>
             </div>
         </div>
