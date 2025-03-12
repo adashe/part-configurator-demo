@@ -24,21 +24,32 @@ const buildMsNumberDisplay = (data) => {
     // Calculate base cost
     const totalBaseCost = enclosure.cost + base.cost + disconnect.cost;
 
+    // Build dropdown for assembly components
+    const baseHTML = `
+        <div class="dropdown">
+            <div class="trigger">BASE ASSEMBLY</div>
+            <div class="content">       
+                <ul>
+                    <li>Enclosure Material: Polycarbonate</li>
+                    <li>Enclosure Dimensions: ${enclosure.dimensions} in</li>
+                    <li>Disconnect Size: ${disconnect.FLA}</li>
+                    <li>Base Price: $${totalBaseCost.toFixed(2)}</li>
+                </ul>
+            </div>
+        </div>
+    `;
+
     // Build dropdown for automatically-included parts
     const defaultsHTML = `
         <div class="dropdown">
             <div class="trigger">INCLUDED FEATURES</div>
             <div class="content">       
                 <ul>
-                    <li>Enclosure Material: Polycarbonate</li>
-                    <li>Enclosure Dimensions: ${enclosure.dimensions} in</li>
-                    <li>Disconnect Size: ${disconnect.FLA}</li>
                     <li>Local E-stop</li>
                     <li>Remote E-stop Ready</li>
                     <li>Overload Alarm Ready</li>
                     <li>Auxiliary Terminals</li>
                     <li>Standard 120VAC Control</li>
-                    <li>Base Price: $${totalBaseCost.toFixed(2)}</li>
                 </ul>
             </div>
         </div>
@@ -56,6 +67,8 @@ const buildMsNumberDisplay = (data) => {
             <div class="trigger">MS INPUTS</div>
             <div class="content">        
                 <ul>
+                    <li>Voltage: ${msInputs.voltage}</li>
+                    <li>Number of Motors: ${msInputs.numStarters}</li>
                     ${hpHTML}
                 </ul>
             </div>
@@ -89,7 +102,7 @@ const buildMsNumberDisplay = (data) => {
     });
 
     // Add default features and ms form inputs to bottom of display
-    partNumDets.innerHTML += defaultsHTML + inputsHTML; 
+    partNumDets.innerHTML += baseHTML + defaultsHTML + inputsHTML; 
     
     addEventHandlersToDropdowns();
     addEventHandlerToEditMsInputs();

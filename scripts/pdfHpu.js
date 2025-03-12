@@ -58,7 +58,7 @@ const fillHpuPdfDets = () => {
     const defaultsHTML = `
         <h3>INCLUDED FEATURES</h3>
         <ul>
-            <li>Filter</li>
+            <li>Return Filter</li>
             <li>Pressure Gauge</li>
             <li>Level Sight Gauge</li>
             <li>Drain Plug</li>
@@ -103,6 +103,8 @@ const fillHpuPdfDets = () => {
             <li>Description: ${hpuAssem.manifold.description}</li>
             <li>Valve Pattern: ${hpuAssem.manifold.valvePattern}</li>
             <li>Number of Stations: ${hpuAssem.manifold.numStations}</li>
+            <li>P&T: ${hpuAssem.manifold.PT}</li>
+            <li>A&B: ${hpuAssem.manifold.AB}</li>
             <li>Price: $${manifoldCost}</li>
         </ul>
     `;

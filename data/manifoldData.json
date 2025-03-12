@@ -7,7 +7,9 @@
         "vCost": 571.18,
         "valvePattern": "D03",
         "material": "AL 6061-T6",
-        "numStations": 0
+        "numStations": 0,
+        "PT": "-10SAE",
+        "AB": "-8SAE"
     },    
     {
         "code": "31",
@@ -17,7 +19,9 @@
         "vCost": 571.18,
         "valvePattern": "D03",
         "material": "AL 6061-T6",
-        "numStations": 1
+        "numStations": 1,
+        "PT": "-10SAE",
+        "AB": "-8SAE"
     },
     {
         "code": "32",
@@ -27,7 +31,9 @@
         "vCost": 629.67,
         "valvePattern": "D03",
         "material": "AL 6061-T6",
-        "numStations": 2
+        "numStations": 2,
+        "PT": "-10SAE",
+        "AB": "-8SAE"
     },
     {
         "code": "33",
@@ -37,7 +43,9 @@
         "vCost": 703.19,
         "valvePattern": "D03",
         "material": "AL 6061-T6",
-        "numStations": 3
+        "numStations": 3,
+        "PT": "-10SAE",
+        "AB": "-8SAE"
     },
     {
         "code": "34",
@@ -47,7 +55,9 @@
         "vCost": 791.75,
         "valvePattern": "D03",
         "material": "AL 6061-T6",
-        "numStations": 4
+        "numStations": 4,
+        "PT": "-10SAE",
+        "AB": "-8SAE"
     },
     {
         "code": "35",
@@ -57,7 +67,9 @@
         "vCost": 858.82,
         "valvePattern": "D03",
         "material": "AL 6061-T6",
-        "numStations": 5
+        "numStations": 5,
+        "PT": "-10SAE",
+        "AB": "-8SAE"
     },
     {
         "code": "36",
@@ -67,7 +79,9 @@
         "vCost": 934.49,
         "valvePattern": "D03",
         "material": "AL 6061-T6",
-        "numStations": 6
+        "numStations": 6,
+        "PT": "-10SAE",
+        "AB": "-8SAE"
     },
     {
         "code": "50",
@@ -77,7 +91,9 @@
         "vCost": 0.00,
         "valvePattern": "D05",
         "material": "AL 6061-T6",
-        "numStations": 1
+        "numStations": 1,
+        "PT": "-12SAE",
+        "AB": "-8SAE"
     },
     {
         "code": "51",
@@ -87,6 +103,8 @@
         "vCost": 703.39,
         "valvePattern": "D05",
         "material": "AL 6061-T6",
-        "numStations": 1
+        "numStations": 1,
+        "PT": "-12SAE",
+        "AB": "-8SAE"
     }
 ]

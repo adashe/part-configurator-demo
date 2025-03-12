@@ -74,7 +74,7 @@ const buildHpuNumberDisplay = (data) => {
             <div class="trigger">INCLUDED FEATURES</div>
             <div class="content">        
                 <ul>
-                    <li>Filter</li>
+                    <li>Return Filter</li>
                     <li>Pressure Gauge</li>
                     <li>Level Sight Gauge</li>
                     <li>Drain Plug</li>
@@ -95,7 +95,7 @@ const buildHpuNumberDisplay = (data) => {
                     <li>Application Type: ${hpuInputs.appType}</li>
                     <li>Heat Exchanger Type: ${hpuInputs.heatExchType}</li>
                     <li>Number of Stations: ${hpuInputs.numStat}</li>
-                    <li>Port Size: ${hpuInputs.portSize}</li>
+                    <li>Valve Size: ${hpuInputs.portSize}</li>
                 </ul>
             </div>
         </div>
@@ -156,6 +156,8 @@ const buildHpuNumberDisplay = (data) => {
                     <li>Description: ${manifold.description}</li>
                     <li>Valve Pattern: ${manifold.valvePattern}</li>
                     <li>Number of Stations: ${manifold.numStations}</li>
+                    <li>P&T: ${manifold.PT}</li>
+                    <li>A&B: ${manifold.AB}</li>
                     <li>Price: $${manifoldCost}</li>
                     <li class="li-edit" id="edit-manifold">Edit manifold</li>
                 </ul>
