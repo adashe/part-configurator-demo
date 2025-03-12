@@ -1,6 +1,6 @@
 // Generate MS email
 const generateMsEmail = () => {
-    const msNum = `MS-###`;
+    const msNum = msAssem.buildPartNum();
     const msBody = genMsEmailBody();
     const totalCostBody = genMsTotalCostEmailBody();
 

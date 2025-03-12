@@ -13,15 +13,22 @@ const fillMsPdfDets = () => {
 
     const msHeaderHTML = `<h2>MS SELECTION: ${partNum}</h2>`;
 
+    // Calculate base cost
+    const totalBaseCost = msAssem.enclosure.cost + msAssem.base.cost + msAssem.disconnect.cost;
+
     // Build dets for automatically-included parts
     const defaultsHTML = `
         <h3>INCLUDED FEATURES: </h3>    
         <ul>
+            <li>Enclosure Material: Polycarbonate</li>
+            <li>Enclosure Dimensions: ${msAssem.enclosure.dimensions} in</li>
+            <li>Disconnect Size: ${msAssem.disconnect.FLA}</li>
             <li>Local E-stop</li>
             <li>Remote E-stop Ready</li>
             <li>Overload Alarm Ready</li>
             <li>Auxiliary Terminals</li>
             <li>Standard 120VAC Control</li>
+            <li>Base Price: $${totalBaseCost.toFixed(2)}</li>
         </ul>
     `;
 
@@ -47,7 +54,7 @@ const fillMsPdfDets = () => {
         };
     });
 
-    pdfDetsDiv.innerHTML = msHeaderHTML + motorsDetsHtml;
+    pdfDetsDiv.innerHTML = msHeaderHTML + motorsDetsHtml + defaultsHTML;
 };
 
 // Build msAssem total cost html for ms pdf

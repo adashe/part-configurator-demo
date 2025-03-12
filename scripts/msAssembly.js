@@ -125,8 +125,8 @@ class MsAssembly{
         });
 
         const maxY = Math.max(...yArr);
-        console.log(...yArr);
-        console.log('maxY', maxY);
+        // console.log(...yArr);
+        // console.log('maxY', maxY);
 
         let result;
 
