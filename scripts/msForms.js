@@ -295,8 +295,6 @@ async function updateMsAssemblyAndDisplay(){
     await updateMsBase();
     await updateMsDisconnect();
     buildMsNumberDisplay(msAssem);
-
-    console.log(msAssem);
 };
 
 // Add starter and leader selections to msAssem object
