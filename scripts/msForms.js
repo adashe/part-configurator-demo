@@ -103,14 +103,19 @@ const generateStarterDiv = (idx) => {
         </div>
     `;
 
-    const leaderCheckboxHtml = `
-        <div class="leader-checkbox-div">
-            <label for="leader${idx}-checkbox">Follower?</label>
-            <input type="checkbox" id="leader${idx}-checkbox" name="leader${idx}-checkbox" class="leader-checkbox"/>
-        </div>
-    `;
+    let leaderCheckboxHtml = '';
+    let leaderSelectorHtml = '';
 
-    const leaderSelectorHtml = generateLeaderSelectors(idx);
+    if(msInputs.numStarters > 1){
+        leaderCheckboxHtml = `
+            <div class="leader-checkbox-div">
+                <label for="leader${idx}-checkbox">Follower?</label>
+                <input type="checkbox" id="leader${idx}-checkbox" name="leader${idx}-checkbox" class="leader-checkbox"/>
+            </div>
+        `;
+
+        leaderSelectorHtml = generateLeaderSelectors(idx);
+    };
 
     const closingDivHtml = '</div>';
 
@@ -148,20 +153,54 @@ const generateLeaderOptions = (idx) => {
 
     let html = '<option value="" disabled selected hidden>Select leader...</option>';
 
-    if(idx == 2){
-        html += '<option value="1">Motor 1</option>';
-    }
+    // Options for one motor
+    if(idx == 1 && msInputs.numStarters == 1){
+        html += '<option value="0">None</option>';
+    };
+    if(idx == 1 && msInputs.numStarters == 2){
+        html += '<option value="2">Motor 2</option>';
+    };
+    if(idx == 1 && msInputs.numStarters == 3){
+        html += '<option value="2">Motor 2</option>';
+        html += '<option value="3">Motor 3</option>';
+    };
+    if(idx == 1 && msInputs.numStarters == 4){
+        html += '<option value="2">Motor 2</option>';
+        html += '<option value="3">Motor 3</option>';
+        html += '<option value="4">Motor 4</option>';
+    };
 
-    if(idx == 3){
+    // Options for two motors
+    if(idx == 2 && msInputs.numStarters == 2){
+        html += '<option value="1">Motor 1</option>';
+    };
+    if(idx == 2 && msInputs.numStarters == 3){
+        html += '<option value="1">Motor 1</option>';
+        html += '<option value="3">Motor 3</option>';
+    };
+    if(idx == 2 && msInputs.numStarters == 4){
+        html += '<option value="1">Motor 1</option>';
+        html += '<option value="3">Motor 3</option>';
+        html += '<option value="4">Motor 4</option>';
+    };
+
+    // Options for three motors
+    if(idx == 3 && msInputs.numStarters == 3){
         html += '<option value="1">Motor 1</option>';
         html += '<option value="2">Motor 2</option>';
-    }
+    };
+    if(idx == 3 && msInputs.numStarters == 4){
+        html += '<option value="1">Motor 1</option>';
+        html += '<option value="2">Motor 2</option>';
+        html += '<option value="4">Motor 4</option>';
+    };
 
+    // Options for four motors
     if(idx == 4){
         html += '<option value="1">Motor 1</option>';
         html += '<option value="2">Motor 2</option>';
         html += '<option value="3">Motor 3</option>';
-    }
+    };
 
     return html;
 };
