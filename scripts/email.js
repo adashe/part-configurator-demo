@@ -1,3 +1,5 @@
+const defaultEmail = 'configurator@suncoastcontrols.com';
+
 const generateEmailButtons = document.querySelectorAll('.generate-email');
 
 generateEmailButtons.forEach(button => {

@@ -5,7 +5,7 @@ const generateHpuEmail = () => {
     const valveBody = genValveEmailBody();
     const totalCostBody = genHpuTotalCostEmailBody();
 
-    const emailAddress = 'test@example.com';
+    const emailAddress = defaultEmail;
     const emailSubject = `Sun Coast Part Number Configurator: ${hpuNum}`;
     const bodyText = `Sun Coast Part Configurator ${hpuBody}${valveBody}${totalCostBody}`;
 

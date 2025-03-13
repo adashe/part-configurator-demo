@@ -4,7 +4,7 @@ const generateMsEmail = () => {
     const msBody = genMsEmailBody();
     const totalCostBody = genMsTotalCostEmailBody();
 
-    const emailAddress = 'test@example.com';
+    const emailAddress = defaultEmail;
     const emailSubject = `Sun Coast Part Number Configurator: ${msNum}`;
     const bodyText = `Sun Coast Part Configurator ${msBody}${totalCostBody}`; 
 
