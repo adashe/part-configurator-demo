@@ -5,6 +5,8 @@ const generateEmailButtons = document.querySelectorAll('.generate-email');
 generateEmailButtons.forEach(button => {
     button.addEventListener('click', e => {
         e.preventDefault();
+
+        addContactInfoToContactInputs();
     
         if(currConfigurator == 'hpu'){
             generateHpuEmail();

@@ -7,8 +7,7 @@ let contactInputs = {
     phone: null
 };
 
-contactForm.addEventListener('submit', e => {
-    e.preventDefault();
+const addContactInfoToContactInputs = () => {
 
     contactInputs = {
         contactName: contactForm.contactName.value,
@@ -17,6 +16,12 @@ contactForm.addEventListener('submit', e => {
         phone: contactForm.phone.value
     };
 
+};
+
+contactForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    addContactInfoToContactInputs();
     generatePDF();
     displayPdfContainer();
 
