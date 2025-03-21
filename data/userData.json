@@ -8,5 +8,10 @@
         "username": "dist",
         "password": "dev-halsey",
         "userType": "dist"
+    },
+    {
+        "username": "cust",
+        "password": "leahy",
+        "userType": "cust"
     }
 ]

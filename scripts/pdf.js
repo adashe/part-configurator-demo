@@ -2,6 +2,8 @@ const appContainer = document.querySelector('#container');
 const pdfContainer = document.querySelector('#container-pdf');
 
 const pdfContactDiv = document.querySelector('#pdf-contact-div');
+const pdfCustMsgDiv = document.querySelector('#pdf-cust-msg-div');
+
 const pdfPrintButton = document.querySelector('.pdf-print');
 
 
@@ -23,6 +25,7 @@ pdfPrintButton.addEventListener('click', e => {
 
 const generatePDF = () => {
     fillContactPdfDets();
+    addCustomerMsg();
 
     if(currConfigurator == 'hpu'){
         generateHpuPdf();
@@ -53,4 +56,9 @@ const fillContactPdfDets = () => {
     `;
 
     pdfContactDiv.innerHTML = html;
+};
+
+const addCustomerMsg = () => {
+    pdfCustMsgDiv.innerHTML = `<p>Print or save this page for your own records.</p>`;
+    pdfCustMsgDiv.innerHTML += `\n<p>If you wish to proceed with your order, <br>select "Submit As Email" to send this part number to Sun Coast.</p>`
 };

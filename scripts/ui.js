@@ -85,6 +85,9 @@ const displayContactDiv = () => {
     partNumDiv.style.display = 'none';
     contactDiv.style.display = 'block';
     emailConfDiv.style.display = 'none';
+
+    // Show / hide distributor select when a customer is logged in
+    toggleCustSettings();
 };
 
 // Display email confirmation div

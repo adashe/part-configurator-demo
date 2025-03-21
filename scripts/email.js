@@ -6,7 +6,7 @@ generateEmailButtons.forEach(button => {
     button.addEventListener('click', e => {
         e.preventDefault();
 
-        addContactInfoToContactInputs();
+        updateContactInputs();
     
         if(currConfigurator == 'hpu'){
             generateHpuEmail();
@@ -25,3 +25,14 @@ const createMailtoLink = (email, subject, bodyText) => {
     const mailtoLink = `mailto:${email}?subject=${subjectEncoded}&body=${bodyEncoded}`;
     return mailtoLink;
 };
+
+const genContactEmailBody = () => {
+
+    let contactHtml = `\n\nCUSTOMER INFO:\n${contactInputs.contactName}\n${contactInputs.companyName}\n${contactInputs.email}\n${contactInputs.phone}`;
+
+    if(currentUser.userType == 'cust' && contactInputs.distributor){
+        contactHtml += `\n${contactInputs.distributor}`;
+    };
+
+    return contactHtml;
+}
