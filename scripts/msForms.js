@@ -38,6 +38,7 @@ msVoltageBtn.addEventListener('click', e=> {
 let msInputs = {
     voltage: null,
     numStarters: null,
+    enclosureMaterial: null,
     hpArr: []
 };
 
@@ -46,6 +47,7 @@ const resetMsInputs = () => {
     msInputs = {
         voltage: null,
         numStarters: null,
+        enclosureMaterial: null,
         hpArr: []
     };
 };
@@ -56,6 +58,7 @@ msVoltageForm.addEventListener('submit', e => {
 
     msInputs.voltage = msVoltageForm.msVoltage.value;
     msInputs.numStarters = msVoltageForm.msNumStarters.value;
+    msInputs.enclosureMaterial = msVoltageForm.msEnclosureMaterial.value;
     
     displayMsStartersForm();
 });
@@ -345,7 +348,7 @@ async function addMSInputsToMsAssembly(){
 };
 
 async function updateMsEnclosure(){
-    await msAssem.updateEnclosure(msInputs.numStarters);
+    await msAssem.updateEnclosure(msInputs.enclosureMaterial, msInputs.numStarters);
 };
 
 async function updateMsBase(){

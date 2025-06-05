@@ -4,6 +4,7 @@ const buildMsNumberDisplay = (data) => {
     const motor2 = data.motor2;
     const motor3 = data.motor3;
     const motor4 = data.motor4;
+    const enclosureType = data.enclosureType;
     const enclosure = data.enclosure;
     const base = data.base;
     const disconnect = data.disconnect;
@@ -30,7 +31,7 @@ const buildMsNumberDisplay = (data) => {
             <div class="trigger">BASE ASSEMBLY</div>
             <div class="content">       
                 <ul>
-                    <li>Enclosure Material: Polycarbonate</li>
+                    <li>Enclosure Material: ${enclosure.material.toUpperCase()}</li>
                     <li>Enclosure Dimensions: ${enclosure.dimensions} in</li>
                     <li>Disconnect Size: ${disconnect.FLA}</li>
                     <li>Base Price: $${totalBaseCost.toFixed(2)}</li>

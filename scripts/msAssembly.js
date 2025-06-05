@@ -19,6 +19,7 @@ class MsAssembly{
         this.enclosure = null;
         this.base = null;
         this.disconnect = null;
+        
     }
 
     reset(){
@@ -40,6 +41,7 @@ class MsAssembly{
         };
         this.enclosure = null;
         this.base = null;
+        this.disconnect = null;
     }
 
     // GET DATA FROM JSON //
@@ -109,7 +111,7 @@ class MsAssembly{
     }
 
     // UPDATE ENCLOSURE
-    async updateEnclosure(numStarters){
+    async updateEnclosure(enclosureMaterial, numStarters){
         const data = await this.getMotorStarterEnclosureData();
 
         // Calculate the maximum enclosure y value from motor assembly
@@ -129,6 +131,11 @@ class MsAssembly{
         // console.log('maxY', maxY);
 
         let result;
+
+        // Filter enclosure data based on enclosure material
+        //
+        //
+        //
 
         // Select enclosre based on maxY and number of starters
         if(maxY == 24){
