@@ -300,6 +300,9 @@ async function addMSInputsToMsAssembly() {
     // Reset msAssem when new data is submitted
     msAssem.reset();
 
+    // Reset msInputs.hpArr when new data is submitted
+    msInputs.hpArr = [];
+
     // Use a counter based on how many motors are selected to track motor iterations
     let counter = [];
 

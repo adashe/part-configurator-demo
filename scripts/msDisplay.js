@@ -64,7 +64,7 @@ const buildMsNumberDisplay = (data) => {
         hpHTML += `<li>Motor ${i + 1}: ${hp} hp</li>`;
     });
 
-    const inputsHTML = `
+    inputsHTML = `
         <div class="dropdown">
             <div class="trigger">MS INPUTS</div>
             <div class="content">        
