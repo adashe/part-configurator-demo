@@ -1,369 +1,432 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
     <title>Part Configurator</title>
-</head>
-<body>
-
+  </head>
+  <body>
     <div id="container">
-        <div id="login-div">
-            <div id="user-status">LOGIN</div>
-            <div id="logout">LOGOUT</div>
-        </div>
+      <div id="login-div">
+        <div id="user-status">LOGIN</div>
+        <div id="logout">LOGOUT</div>
+      </div>
 
-        <h2 class="suncoast">SUN COAST CONTROLS</h2>
-        <h1>Part Configurator</h1>
+      <h2 class="suncoast">SUN COAST CONTROLS</h2>
+      <h1>Part Configurator</h1>
 
-        <!-- COMPONENT DIV -->
-        <div id="component-div" class="page-div">
+      <!-- COMPONENT DIV -->
+      <div id="component-div" class="page-div">
+        <h2 id="select-configurator">Select configurator:</h2>
+        <button class="button hpu-start">HYDRAULIC POWER UNIT</button>
+        <button class="button ms-start">MOTOR STARTER PANEL</button>
+        <button class="button gw-start">HMI GLOBAL WATCH</button>
+      </div>
 
-            <h2 id="select-configurator">Select configurator:</h2>
-            <button class="button hpu-start">HYDRAULIC POWER UNIT</button>
-            <button class="button ms-start">MOTOR STARTER PANEL</button>
-            <button class="button gw-start">HMI GLOBAL WATCH</button>
-        </div>
-    
-        <!-- HPU DIV -->
-        <div id="hpu-div" class="page-div">
-            <h2>
-                HPU CONFIGURATOR
-            </h2>
+      <!-- HPU DIV -->
+      <div id="hpu-div" class="page-div">
+        <h2>HPU CONFIGURATOR</h2>
 
-            <form id="hpu-sys-params-form">
-                <h3>System Parameters</h3>
+        <form id="hpu-sys-params-form">
+          <h3>System Parameters</h3>
 
-                <div>
-                    <label for="maxPressure">Max Pressure (psi):</label>
-                    <input type="number" id="maxPressure" placeholder="ex. 2000" min="0" max="3000" required>
-                </div>
+          <div>
+            <label for="maxPressure">Max Pressure (psi):</label>
+            <input
+              type="number"
+              id="maxPressure"
+              placeholder="ex. 2000"
+              min="0"
+              max="3000"
+              required
+            />
+          </div>
 
-                <div>
-                    <label for="maxFlow">Max Flow (gpm):</label>
-                    <input type="number" id="maxFlow" placeholder="ex. 8" min="0" max="21" step="0.1" required>
-                </div>
+          <div>
+            <label for="maxFlow">Max Flow (gpm):</label>
+            <input
+              type="number"
+              id="maxFlow"
+              placeholder="ex. 8"
+              min="0"
+              max="21"
+              step="0.1"
+              required
+            />
+          </div>
 
-                <div>
-                    <label for="applicationType">Application Type:</label>
-                    <select name="applicationType" id="applicationType" required>
-                        <option value="" disabled selected hidden>...</option>
-                        <option value="pressure-holding">Pressure Holding</option>
-                        <option value="cylinder">Cylinder</option>
-                        <option value="motor">Motor</option>
-                    </select>
-                </div>
+          <div>
+            <label for="applicationType">Application Type:</label>
+            <select name="applicationType" id="applicationType" required>
+              <option value="" disabled selected hidden>...</option>
+              <option value="pressure-holding">Pressure Holding</option>
+              <option value="cylinder">Cylinder</option>
+              <option value="motor">Motor</option>
+            </select>
+          </div>
 
-                <div>
-                    <label for="reservoirOrientation">Reservoir Orientation:</label>
-                    <select name="reservoirOrientation" id="reservoirOrientation" required>
-                        <option value="horizontal" selected>Horizontal (default)</option>
-                        <option value="vertical">Vertical</option>
-                    </select>
-                </div>
+          <div>
+            <label for="reservoirOrientation">Reservoir Orientation:</label>
+            <select
+              name="reservoirOrientation"
+              id="reservoirOrientation"
+              required
+            >
+              <option value="horizontal" selected>Horizontal (default)</option>
+              <option value="vertical">Vertical</option>
+            </select>
+          </div>
 
-                <div>
-                    <label for="heatExchType">Heat Exchanger Type:</label>
-                    <select name="heatExchType" id="heatExchType" required>
-                        <option value="" disabled selected hidden>...</option>
-                        <option value="none">No heat exchanger</option>
-                        <option value="air">Air</option>
-                        <option value="water">Water</option>
-                    </select>
-                </div>
+          <div>
+            <label for="heatExchType">Heat Exchanger Type:</label>
+            <select name="heatExchType" id="heatExchType" required>
+              <option value="" disabled selected hidden>...</option>
+              <option value="none">No heat exchanger</option>
+              <option value="air">Air</option>
+              <option value="water">Water</option>
+            </select>
+          </div>
 
-                <input class="button" type="submit" value="CONTINUE">
-                <button class="button gray restart">RESTART CONFIGURATOR</button>
-            </form>
+          <input class="button" type="submit" value="CONTINUE" />
+          <button class="button gray restart">RESTART CONFIGURATOR</button>
+        </form>
 
-            <form id="hpu-manifold-form">
-                <h3>Manifold Options</h3>
+        <form id="hpu-manifold-form">
+          <h3>Manifold Options</h3>
 
-                <div>
-                    <label for="hpuPortSize">Valve Size:</label>
-                    <select name="hpuPortSize" id="hpuPortSize" required>
-                        <option value="" disabled selected hidden>...</option>
-                        <option value="D03">D03</option>
-                        <option value="D05">D05</option>
-                    </select>
-                </div>
+          <div>
+            <label for="hpuPortSize">Valve Size:</label>
+            <select name="hpuPortSize" id="hpuPortSize" required>
+              <option value="" disabled selected hidden>...</option>
+              <option value="D03">D03</option>
+              <option value="D05">D05</option>
+            </select>
+          </div>
 
-                <div id="hpu-number-stations-div">                    
-                    <label for="hpuNumberStations">Number of Stations:</label>
-                    <select name="hpuNumberStations" id="hpuNumberStations" required disabled>
-                        <option value="" disabled selected hidden>...</option>
-                    </select>
-                </div>
+          <div id="hpu-number-stations-div">
+            <label for="hpuNumberStations">Number of Stations:</label>
+            <select
+              name="hpuNumberStations"
+              id="hpuNumberStations"
+              required
+              disabled
+            >
+              <option value="" disabled selected hidden>...</option>
+            </select>
+          </div>
 
-                <input class="button" type="submit" value="CONTINUE">
-                <button class="button gray hpu-sys-params-btn">PREVIOUS</button>
-                <button class="button gray restart">RESTART CONFIGURATOR</button>
-            </form>
+          <input class="button" type="submit" value="CONTINUE" />
+          <button class="button gray hpu-sys-params-btn">PREVIOUS</button>
+          <button class="button gray restart">RESTART CONFIGURATOR</button>
+        </form>
 
-            <form id="hpu-valve-form">
-                <h3>Valve Options</h3>
-                <p>Valve selections are not required for HPU configuration, but are recommended for accuracy.</p>               
-                <button class="button yellow hpu-valves-btn" id="hpu-edit-valves-btn">EDIT VALVES</button>
-                <input class="button" type="submit" value="GENERATE PART NUMBER">
-                <button class="button gray hpu-mani-btn">PREVIOUS</button>  
-                <button class="button gray restart">RESTART CONFIGURATOR</button> 
-            </form>
-            
+        <form id="hpu-valve-form">
+          <h3>Valve Options</h3>
+          <p>
+            Valve selections are not required for HPU configuration, but are
+            recommended for accuracy.
+          </p>
+          <button class="button yellow hpu-valves-btn" id="hpu-edit-valves-btn">
+            EDIT VALVES
+          </button>
+          <input class="button" type="submit" value="GENERATE PART NUMBER" />
+          <button class="button gray hpu-mani-btn">PREVIOUS</button>
+          <button class="button gray restart">RESTART CONFIGURATOR</button>
+        </form>
+      </div>
 
-        </div>
-    
-        <!-- MS DIV -->
-        <div id="msp-div" class="page-div">
-            <h2>
-                MOTOR STARTER PANEL CONFIGURATOR
-            </h2>
+      <!-- MS DIV -->
+      <div id="msp-div" class="page-div">
+        <h2>MOTOR STARTER PANEL CONFIGURATOR</h2>
 
-            <form id="ms-voltage-form">
-                <div>
-                    <label for="msVoltage">Voltage: </label>
-                    <select name="msVoltage" id="msVoltage" required>
-                        <option value="" disabled selected hidden>...</option>
-                        <option value="208V">208V</option>
-                        <option value="240V">240V</option>
-                        <option value="480V">480V</option>
-                    </select>
-                </div>
+        <form id="ms-voltage-form">
+          <div>
+            <label for="msVoltage">Voltage: </label>
+            <select name="msVoltage" id="msVoltage" required>
+              <option value="" disabled selected hidden>...</option>
+              <option value="208V">208V</option>
+              <option value="240V">240V</option>
+              <option value="480V">480V</option>
+            </select>
+          </div>
 
-                <div>
-                    <label for="msNumStarters">Number of motors: </label>
-                    <select name="msNumStarters" id="msNumStarters" required>
-                        <option value="" disabled selected hidden>...</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-                </div>
+          <div>
+            <label for="msNumStarters">Number of motors: </label>
+            <select name="msNumStarters" id="msNumStarters" required>
+              <option value="" disabled selected hidden>...</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </div>
 
-                <div>
-                    <label for="msEnclosureMaterial">Enclosure type: </label>
-                    <select name="msEnclosureMaterial" id="msEnclosureMaterial" required>
-                        <option value="" disabled selected hidden>...</option>
-                        <option value="polycarbonate">Polycarbonate</option>
-                        <option value="steel">Steel</option>
-                    </select>
-                </div>
+          <div>
+            <label for="msEnclosureMaterial">Enclosure type: </label>
+            <select
+              name="msEnclosureMaterial"
+              id="msEnclosureMaterial"
+              required
+            >
+              <option value="" disabled selected hidden>...</option>
+              <option value="polycarbonate">Polycarbonate</option>
+              <option value="steel">Steel</option>
+            </select>
+          </div>
 
-                <input class="button" type="submit" value="CONTINUE">
-                <button class="button gray restart">RESTART CONFIGURATOR</button>
-            </form>
+          <input class="button" type="submit" value="CONTINUE" />
+          <button class="button gray restart">RESTART CONFIGURATOR</button>
+        </form>
 
-            <form id="ms-starters-form">
+        <form id="ms-starters-form">
+          <div id="generated-starters-div" class="starter-div"></div>
 
-                <div id="generated-starters-div" class="starter-div"></div>
+          <input class="button" type="submit" value="GENERATE PART NUMBER" />
+          <button class="button gray ms-voltage-btn">PREVIOUS</button>
+          <button class="button gray restart">RESTART CONFIGURATOR</button>
+        </form>
+      </div>
 
-                <input class="button" type="submit" value="GENERATE PART NUMBER">
-                <button class="button gray ms-voltage-btn">PREVIOUS</button>  
-                <button class="button gray restart">RESTART CONFIGURATOR</button>
-            </form>
-        </div>
-    
-        <!-- HMI DIV -->
-        <div id="hmi-div" class="page-div">
-            <h2>
-                HMI GLOBAL WATCH CONFIGURATOR
-            </h2>
+      <!-- HMI DIV -->
+      <div id="hmi-div" class="page-div">
+        <h2>HMI GLOBAL WATCH CONFIGURATOR</h2>
 
-            <form id="hmi-form">        
-                <input class="button" type="submit" value="SUBMIT">
-                <button class="button gray restart">RESTART CONFIGURATOR</button>
-            </form>
-        </div>
-    
-        <!-- PART NUMBER DIV -->
-        <div id="part-num-div" class="page-div">
-            <h2>PART NUMBER</h2>
+        <form id="hmi-form">
+          <input class="button" type="submit" value="SUBMIT" />
+          <button class="button gray restart">RESTART CONFIGURATOR</button>
+        </form>
+      </div>
 
-            <h2 class="part-num-disp"></h2>
+      <!-- PART NUMBER DIV -->
+      <div id="part-num-div" class="page-div">
+        <h2>PART NUMBER</h2>
 
-            <div id="part-num-dets"></div>
-            <div id="valve-dets"></div>
+        <h2 class="part-num-disp"></h2>
 
-            <div id="total-cost-disp"></div>
+        <div id="part-num-dets"></div>
+        <div id="valve-dets"></div>
 
-            <button class="button contact">EMAIL OR SAVE AS PDF</button>
-            <button class="button gray restart">RESTART CONFIGURATOR</button>
-        </div>
+        <div id="total-cost-disp"></div>
 
-        <!-- CONTACT DIV -->
-        <div id="contact-div" class="page-div">
-            <h2>
-                CUSTOMER DETAILS
-            </h2>
+        <button class="button contact">EMAIL OR SAVE AS PDF</button>
+        <button class="button gray restart">RESTART CONFIGURATOR</button>
+      </div>
 
-            <h2 class="part-num-disp"></h2>
+      <!-- CONTACT DIV -->
+      <div id="contact-div" class="page-div">
+        <h2>CUSTOMER DETAILS</h2>
 
-            <form id="contact-form">
-                <div>
-                    <label for="contactName">Contact Name: </label>
-                    <input type="text" id="contactName" name="contactName" placeholder="Contact Name" required>
-                </div>
+        <h2 class="part-num-disp"></h2>
 
-                <div>
-                    <label for="companyName">Company Name: </label>
-                    <input type="text" id="companyName" name="companyName" placeholder="Company Name" required>
-                </div>
+        <form id="contact-form">
+          <div>
+            <label for="contactName">Contact Name: </label>
+            <input
+              type="text"
+              id="contactName"
+              name="contactName"
+              placeholder="Contact Name"
+              required
+            />
+          </div>
 
-                <div>
-                    <label for="email">Email: </label>
-                    <input type="email" id="email" name="email" autocomplete="on" placeholder="customer@email.com" required>
-                </div>
+          <div>
+            <label for="companyName">Company Name: </label>
+            <input
+              type="text"
+              id="companyName"
+              name="companyName"
+              placeholder="Company Name"
+              required
+            />
+          </div>
 
-                <div>
-                    <label for="phone">Phone: </label>
-                    <input type="tel" id="phone" name="phone" autocomplete="on" placeholder="1-555-555-555" required>
-                </div>
+          <div>
+            <label for="email">Email: </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="on"
+              placeholder="customer@email.com"
+              required
+            />
+          </div>
 
-                <div id="dist-select-div">
-                    <label for="distributor">Distributor: </label>
-                    <select name="distributor" id="distributor" required>
-                        <option value="Scott Industrial">Scott Industrial</option>
-                    </select>
-                </div>
+          <div>
+            <label for="phone">Phone: </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              autocomplete="on"
+              placeholder="1-555-555-555"
+              required
+            />
+          </div>
 
+          <div id="dist-select-div">
+            <label for="distributor">Distributor: </label>
+            <select name="distributor" id="distributor" required>
+              <option value="Scott Industrial">Scott Industrial</option>
+            </select>
+          </div>
 
-                <input id="generate-pdf" class="button" type="submit" value="GENERATE PDF">
-                <button class="button generate-email">SUBMIT AS EMAIL</button>
-                <button class="button gray details">RETURN TO PART DETAILS</button>
-                <button class="button gray restart">RESTART CONFIGURATOR</button>
-            </form>
+          <input
+            id="generate-pdf"
+            class="button"
+            type="submit"
+            value="GENERATE PDF"
+          />
+          <button class="button generate-email">SUBMIT AS EMAIL</button>
+          <button class="button gray details">RETURN TO PART DETAILS</button>
+          <button class="button gray restart">RESTART CONFIGURATOR</button>
+        </form>
+      </div>
 
-        </div>
-    
-        <!-- EMAIL CONFIRMATION DIV -->
-        <div id="email-conf-div" class="page-div">
-            <h2>
-                Email sent!
-            </h2>
-            <p>Your part number has been sent and a Sun Coast representative will reach out soon.</p>
-            <button class="restart button">RESTART CONFIGURATOR</button>
-            <button class="button gray details">RETURN TO PART DETAILS</button>
-        </div>
-
+      <!-- EMAIL CONFIRMATION DIV -->
+      <div id="email-conf-div" class="page-div">
+        <h2>Email sent!</h2>
+        <p>
+          Your part number has been sent and a Sun Coast representative will
+          reach out soon.
+        </p>
+        <button class="restart button">RESTART CONFIGURATOR</button>
+        <button class="button gray details">RETURN TO PART DETAILS</button>
+      </div>
     </div>
-
 
     <!-- LOGIN POPUP DIV -->
     <div class="login-popup-wrapper">
-        <div class="login-popup-div">
-            <h2 class="suncoast">SUN COAST CONTROLS</h2>
-            <h1>Part Configurator</h1>
-            <h2>User Login</h2>
-            <div class="login-popup-content">
-                <form id="login-form">
-                    <div>
-                        <input type="text" id="username" autocomplete="on" placeholder="username" required>
-                        <input type="password" id="password" placeholder="password" required>
-                        <div id="login-error"></div>
-                        <input id="login-btn" class="button" type="submit" value="LOGIN">
-                    </div>
-                </form>
+      <div class="login-popup-div">
+        <h2 class="suncoast">SUN COAST CONTROLS</h2>
+        <h1>Part Configurator</h1>
+        <h2>User Login</h2>
+        <div class="login-popup-content">
+          <form id="login-form">
+            <div>
+              <input
+                type="text"
+                id="username"
+                autocomplete="on"
+                placeholder="username"
+                required
+              />
+              <input
+                type="password"
+                id="password"
+                placeholder="password"
+                required
+              />
+              <div id="login-error"></div>
+              <input
+                id="login-btn"
+                class="button"
+                type="submit"
+                value="LOGIN"
+              />
             </div>
+          </form>
         </div>
+      </div>
     </div>
 
     <!-- TABLE POPUP DIV -->
     <div class="table-wrapper">
-        <div class="table-div">
-            <div class="table-close-x">x</div>
-            <div class="table-content">
-                <table>
-                    <h2 id="table-h2"></h2>
-                    <thead></thead>
-                    <tbody></tbody>
-                </table>
-            </div>
+      <div class="table-div">
+        <div class="table-close-x">x</div>
+        <div class="table-content">
+          <table>
+            <h2 id="table-h2"></h2>
+            <thead></thead>
+            <tbody></tbody>
+          </table>
         </div>
+      </div>
     </div>
 
     <!-- VALVE FORM POPUP DIV -->
     <div class="valve-popup-wrapper">
-        <div class="valve-popup-div">
-            <div class="valve-popup-close-x">x</div>
-            <h2>Valve Options</h2>
+      <div class="valve-popup-div">
+        <div class="valve-popup-close-x">x</div>
+        <h2>Valve Options</h2>
 
-            <form id="valve-popup-form">
+        <form id="valve-popup-form">
+          <div id="valve-settings-div">
+            <div id="valve-port-size-div"></div>
+            <div id="valve-sol-volt-div">
+              <label for="SolenoidVoltage"></label>
+              <select name="SolenoidVoltage" id="SolenoidVoltage" required>
+                <option value="" disabled selected hidden>
+                  Select solenoid voltage...
+                </option>
+                <option value="110VAC">110VAC</option>
+                <option value="24VDC">24VDC</option>
+              </select>
+            </div>
+            <div>
+              <button class="button valve-img-btn">VIEW VALVE IMAGES</button>
+            </div>
+          </div>
 
-                <div id="valve-settings-div">
-                    <div id="valve-port-size-div"></div>
-                    <div id="valve-sol-volt-div">
-                        <label for="SolenoidVoltage"></label>
-                        <select name="SolenoidVoltage" id="SolenoidVoltage" required>
-                            <option value="" disabled selected hidden>Select solenoid voltage...</option>
-                            <option value="110VAC">110VAC</option>
-                            <option value="24VDC">24VDC</option>
-                        </select>
-                    </div>
-                    <div>
-                        <button class="button valve-img-btn">VIEW VALVE IMAGES</button>
-                    </div>
-                    
-                </div>
+          <div id="valve-dropdowns-div">
+            <div class="valve-popup-content"></div>
+          </div>
 
-                <div id="valve-dropdowns-div">
-                    <div class="valve-popup-content"></div>
-                </div>
-                
-
-                <input class="button" type="submit" value="SUBMIT VALVE SELECTIONS">
-            </form>
-
-        </div>
+          <input class="button" type="submit" value="SUBMIT VALVE SELECTIONS" />
+        </form>
+      </div>
     </div>
 
     <!-- VALVE IMAGES DIV -->
     <div class="valve-img-wrapper">
-        <div id="valve-img-div">
-            <div class="valve-img-close-x">x</div>
-            <h2>VALVE IMAGES</h2>
-            <div class="valve-img-content"></div>
-            <button class="button gray valve-img-popup-close-btn">CLOSE</button>
-        </div>
+      <div id="valve-img-div">
+        <div class="valve-img-close-x">x</div>
+        <h2>VALVE IMAGES</h2>
+        <div class="valve-img-content"></div>
+        <button class="button gray valve-img-popup-close-btn">CLOSE</button>
+      </div>
     </div>
 
     <!-- ERROR POPUP DIV -->
     <div class="error-popup-wrapper">
-        <div class="error-popup-div">
-            <div class="error-popup-close-x">x</div>
-            <h2 class="error-popup-header">Configuration Error</h2>
-            <div class="error-popup-content">
-                <p>Error!</p>
-            </div>
-            <button class="button gray error-popup-close-btn">CLOSE</button>
+      <div class="error-popup-div">
+        <div class="error-popup-close-x">x</div>
+        <h2 class="error-popup-header">Configuration Error</h2>
+        <div class="error-popup-content">
+          <p>Error!</p>
         </div>
+        <button class="button gray error-popup-close-btn">CLOSE</button>
+      </div>
     </div>
 
     <!-- PDF DIV -->
     <div id="container-pdf">
-        <div class="no-print" id="pdf-cust-msg-div"></div>  
-        <div class="no-print" id="pdf-nav">
-            <button class="button restart">RESTART CONFIGURATOR</button>
-            <button class="button details">RETURN TO PART DETAILS</button>
-            <button class="button pdf-print">PRINT OR SAVE AS PDF</button>
-            <button class="button generate-email">SUBMIT AS EMAIL</button>
-        </div>
+      <div class="no-print" id="pdf-cust-msg-div"></div>
+      <div class="no-print" id="pdf-nav">
+        <button class="button restart">RESTART CONFIGURATOR</button>
+        <button class="button details">RETURN TO PART DETAILS</button>
+        <button class="button pdf-print">PRINT OR SAVE AS PDF</button>
+        <button class="button generate-email">SUBMIT AS EMAIL</button>
+      </div>
 
-        <div id="pdf-page">
-            <h2 class="suncoast">SUN COAST CONTROLS</h2>
-            <h1>Part Configurator</h1>
-    
-            <div id="pdf-contact-div"></div>    
-            <div id="pdf-dets-div"></div>
-            <div id="pdf-valve-div"></div>
-            <div id="pdf-total-list-price-div"></div>
+      <div id="pdf-page">
+        <h2 class="suncoast">SUN COAST CONTROLS</h2>
+        <h1>Part Configurator</h1>
 
-        </div>
+        <div id="pdf-contact-div"></div>
+        <div id="pdf-dets-div"></div>
+        <div id="pdf-valve-div"></div>
+        <div id="pdf-total-list-price-div"></div>
+      </div>
     </div>
-
 
     <script src="scripts/user.js"></script>
     <script src="scripts/loginForm.js"></script>
@@ -377,7 +440,7 @@
     <script src="scripts/valveImages.js"></script>
     <script src="scripts/msForms.js"></script>
 
-    <script src="scripts/hpuNum.js"></script>
+    <script src="scripts/hpuDisplay.js"></script>
     <script src="scripts/valveDisplay.js"></script>
     <script src="scripts/msDisplay.js"></script>
 
@@ -393,5 +456,5 @@
 
     <script src="scripts/app.js"></script>
     <script src="scripts/ui.js"></script>
-</body>
+  </body>
 </html>

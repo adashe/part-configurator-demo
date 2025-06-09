@@ -1,32 +1,33 @@
 // Build configured MS number and details
 const buildMsNumberDisplay = (data) => {
-    const motor1 = data.motor1;
-    const motor2 = data.motor2;
-    const motor3 = data.motor3;
-    const motor4 = data.motor4;
-    const enclosureType = data.enclosureType;
-    const enclosure = data.enclosure;
-    const base = data.base;
-    const disconnect = data.disconnect;
+  const {
+    motor1,
+    motor2,
+    motor3,
+    motor4,
+    enclosureType,
+    enclosure,
+    base,
+    disconnect,
+  } = msAssem;
 
-    const motorArray = [motor1, motor2, motor3, motor4];
+  const motorArray = [motor1, motor2, motor3, motor4];
 
-    // Build and display part number at top of part number and contact pages
-    partNumDisplay.forEach((element) => {
+  // Build and display part number at top of part number and contact pages
+  partNumDisplay.forEach((element) => {
+    element.innerHTML = msAssem.buildPartNum();
+  });
 
-        element.innerHTML = msAssem.buildPartNum();
-    });
+  // Build and add editing and cost elements to display
+  const editMsInputsHtml = `<p class="edit-inputs" id="edit-ms-inputs">Edit MS inputs</p>`;
 
-    // Build and add editing and cost elements to display
-    const editMsInputsHtml = `<p class="edit-inputs" id="edit-ms-inputs">Edit MS inputs</p>`;
+  partNumDets.innerHTML = editMsInputsHtml;
 
-    partNumDets.innerHTML = editMsInputsHtml;
+  // Calculate base cost
+  const totalBaseCost = enclosure.cost + base.cost + disconnect.cost;
 
-    // Calculate base cost
-    const totalBaseCost = enclosure.cost + base.cost + disconnect.cost;
-
-    // Build dropdown for assembly components
-    const baseHTML = `
+  // Build dropdown for assembly components
+  const baseHTML = `
         <div class="dropdown">
             <div class="trigger">BASE ASSEMBLY</div>
             <div class="content">       
@@ -40,8 +41,8 @@ const buildMsNumberDisplay = (data) => {
         </div>
     `;
 
-    // Build dropdown for automatically-included parts
-    const defaultsHTML = `
+  // Build dropdown for automatically-included parts
+  const defaultsHTML = `
         <div class="dropdown">
             <div class="trigger">INCLUDED FEATURES</div>
             <div class="content">       
@@ -56,14 +57,14 @@ const buildMsNumberDisplay = (data) => {
         </div>
     `;
 
-    // Display dropdown for ms form inputs
-    let hpHTML = ''
+  // Display dropdown for ms form inputs
+  let hpHTML = "";
 
-    msInputs.hpArr.forEach((hp, i) => {
-        hpHTML += `<li>Motor ${i + 1}: ${hp} hp</li>`;
-    });
+  msInputs.hpArr.forEach((hp, i) => {
+    hpHTML += `<li>Motor ${i + 1}: ${hp} hp</li>`;
+  });
 
-    const inputsHTML = `
+  const inputsHTML = `
         <div class="dropdown">
             <div class="trigger">MS INPUTS</div>
             <div class="content">        
@@ -76,12 +77,11 @@ const buildMsNumberDisplay = (data) => {
         </div>
     `;
 
-    // Build dropdowns for each starter
-    motorArray.forEach((motor, i) => {
-
-        if(motor.starter){
-            if(motor.starter.voltage){
-                const motorHTML = `
+  // Build dropdowns for each starter
+  motorArray.forEach((motor, i) => {
+    if (motor.starter) {
+      if (motor.starter.voltage) {
+        const motorHTML = `
                     <div class="dropdown">
                         <div class="trigger">MOTOR ${i + 1}</div>
                         <div class="content">
@@ -90,42 +90,46 @@ const buildMsNumberDisplay = (data) => {
                                 <li>Voltage: ${motor.starter.voltage}</li>
                                 <li>Rated HP: ${motor.starter.HP}</li>
                                 <li>Rated FLA: ${motor.starter.FLA}</li>
-                                <li>Price: $${motor.starter.cost.toFixed(2)}</li>
+                                <li>Price: $${motor.starter.cost.toFixed(
+                                  2
+                                )}</li>
                             </ul>
     
                         </div>
                     </div>
                 `;
-    
-                partNumDets.innerHTML += motorHTML;
-            };
-        };
-    });
 
-    // Add default features and ms form inputs to bottom of display
-    partNumDets.innerHTML += baseHTML + defaultsHTML + inputsHTML; 
-    
-    addEventHandlersToDropdowns();
-    addEventHandlerToEditMsInputs();
-    // toggleAdminSettings();
+        partNumDets.innerHTML += motorHTML;
+      }
+    }
+  });
 
-    buildTotalMsCostDisplay();
+  // Add default features and ms form inputs to bottom of display
+  partNumDets.innerHTML += baseHTML + defaultsHTML + inputsHTML;
+
+  addEventHandlersToDropdowns();
+  addEventHandlerToEditMsInputs();
+  // toggleAdminSettings();
+
+  buildTotalMsCostDisplay();
 };
 
 // Add event handler to the edit ms inputs button
 const addEventHandlerToEditMsInputs = () => {
-    const editMsInputs = document.querySelector('#edit-ms-inputs');
+  const editMsInputs = document.querySelector("#edit-ms-inputs");
 
-    editMsInputs.addEventListener('click', e => {
-        e.preventDefault();
+  editMsInputs.addEventListener("click", (e) => {
+    e.preventDefault();
 
-        displayMsVoltageForm();
-    });
+    displayMsVoltageForm();
+  });
 };
 
 // Build msAssem total list price html
 const buildTotalMsCostDisplay = () => {
-    const total = msAssem.calcCost();
+  const total = msAssem.calcCost();
 
-    totalCostDisplay.innerHTML = `<h4 class="total-price">TOTAL LIST PRICE: $${total.toFixed(2)}</h4>`
+  totalCostDisplay.innerHTML = `<h4 class="total-price">TOTAL LIST PRICE: $${total.toFixed(
+    2
+  )}</h4>`;
 };
