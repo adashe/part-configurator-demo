@@ -7,51 +7,51 @@ const valveImgContent = document.querySelector(".valve-img-content");
 const valveImgForm = document.querySelector("#valve-img-form");
 
 valveImageButton.addEventListener("click", (e) => {
-  e.preventDefault();
-  displayValveImg();
+    e.preventDefault();
+    displayValveImg();
 });
 
 // Display popup with valve images
 async function displayValveImg() {
-  await generateValveImages();
+    await generateValveImages();
 }
 
 // Valve popup close buttons
 valveImgCloseButtonX.addEventListener("click", (e) => {
-  e.preventDefault();
-  valveImgContent.innerHTML = "";
-  valveImgWrapper.style.display = "none";
+    e.preventDefault();
+    valveImgContent.innerHTML = "";
+    valveImgWrapper.style.display = "none";
 });
 
 valveImgCloseBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  valveImgContent.innerHTML = "";
-  valveImgWrapper.style.display = "none";
+    e.preventDefault();
+    valveImgContent.innerHTML = "";
+    valveImgWrapper.style.display = "none";
 });
 
 async function generateValveImages() {
-  if (!valveInputs.solVolt) {
-    displayErrorMsg("Select voltage to view images");
-  } else {
-    const data = await valveAssem.getFilteredValveData(
-      valveInputs.portSize,
-      valveInputs.solVolt
-    );
+    if (!valveInputs.solVolt) {
+        displayErrorMsg("Select voltage to view images");
+    } else {
+        const data = await valveAssem.getFilteredValveData(
+            valveInputs.portSize,
+            valveInputs.solVolt
+        );
 
-    html = `<div>`;
+        html = `<div>`;
 
-    data.forEach((valve) => {
-      html += `
+        data.forEach((valve) => {
+            html += `
                 <img src="${valve.img}" alt="${valve.code}" />
                 <p class="caption">${valve.code}</p>
             `;
-    });
+        });
 
-    html += `</div>`;
+        html += `</div>`;
 
-    valveImgContent.innerHTML = html;
+        valveImgContent.innerHTML = html;
 
-    valveImgWrapper.style.display = "block";
-    valveImgWrapper.scrollTop = 0;
-  }
+        valveImgWrapper.style.display = "block";
+        valveImgWrapper.scrollTop = 0;
+    }
 }
