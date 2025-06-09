@@ -15,42 +15,28 @@ const generateHpuPdf = () => {
 const fillHpuPdfDets = () => {
   const { reservoir, pump, motor, manifold, heatExchanger } = hpuAssem;
 
-  // Determine individual item cost based on V or H reservoir
-  let reservoirCost = null;
-  let pumpCost = null;
-  let protoMotorCost = null;
-  let manifoldCost = null;
-  let heatExchangerCost = null;
+  // Set status of horizontal or vertical reservoir for cost selection
+  let horizontal = null;
 
-  const filterCost = () => {
-    if (reservoir.code.includes("H")) {
-      reservoirCost = reservoir.hCost.toFixed(2);
-      pumpCost = pump.hCost.toFixed(2);
-      protoMotorCost = motor.hCost.toFixed(2);
-      manifoldCost = manifold.hCost.toFixed(2);
-      heatExchangerCost = heatExchanger.hCost.toFixed(2);
-    } else if (reservoir.code.includes("V")) {
-      reservoirCost = reservoir.vCost.toFixed(2);
-      pumpCost = pump.vCost.toFixed(2);
-      protoMotorCost = motor.vCost.toFixed(2);
-      manifoldCost = manifold.vCost.toFixed(2);
-      heatExchangerCost = heatExchanger.vCost.toFixed(2);
-    }
-  };
-
-  filterCost();
-
-  // Add adapter cost to SAE B motor types
-  let motorCost = null;
-
-  if (pump.mountType == "SAE A" && motor.type == "MF") {
-    motorCost = protoMotorCost;
-  } else if (pump.mountType == "SAE A" && motor.type == "MTC") {
-    motorCost = (parseFloat(protoMotorCost) + motor.SAEAadapterCost).toFixed(2);
-  } else if (pump.mountType == "SAE B") {
-    motorCost = (parseFloat(protoMotorCost) + motor.SAEBadapterCost).toFixed(2);
+  if (reservoir.code.includes("H")) {
+    horizontal = true;
+  } else if (reservoir.code.includes("V")) {
+    horizontal = false;
   }
 
+  // Add adapter cost to SAE B motor types
+  let motorCost = horizontal ? motor.hCost : motor.vCost;
+  console.log(horizontal, motorCost);
+
+  if (pump.mountType == "SAE A" && motor.type == "MF") {
+    // pass
+  } else if (pump.mountType == "SAE A" && motor.type == "MTC") {
+    motorCost = parseFloat(motorCost) + motor.SAEAadapterCost;
+  } else if (pump.mountType == "SAE B") {
+    motorCost = parseFloat(motorCost) + motor.SAEBadapterCost;
+  }
+
+  // Reset div contents
   pdfDetsDiv.innerHTML = "";
 
   // Build part number HTML
@@ -75,7 +61,11 @@ const fillHpuPdfDets = () => {
         <ul>
             <li>Capacity: ${reservoir.capacity}</li>
             <li>Heat Dissipation: ${reservoir.heatDis}</li>
-            <li>Price: $${reservoirCost}</li>
+            <li>Price: $${
+              horizontal
+                ? reservoir.hCost.toFixed(2)
+                : reservoir.vCost.toFixed(2)
+            }</li>
         </ul>
     `;
 
@@ -86,7 +76,9 @@ const fillHpuPdfDets = () => {
             <li>Description: ${pump.description}</li>
             <li>Dissipation: ${pump.dispCID}</li>
             <li>Mount Type: ${pump.mountType}</li> 
-            <li>Price: $${pumpCost}</li>
+            <li>Price: $${
+              horizontal ? pump.hCost.toFixed(2) : pump.vCost.toFixed(2)
+            }</li>
         </ul> 
     `;
 
@@ -96,7 +88,7 @@ const fillHpuPdfDets = () => {
             <li>Part Number: ${motor.partNum}</li>
             <li>Description: ${motor.description}</li>
             <li>Output HP: ${motor.outputHP}</li>
-            <li>Price: $${motorCost}</li>
+            <li>Price: $${motorCost.toFixed(2)}</li>
         </ul>
     `;
 
@@ -108,7 +100,9 @@ const fillHpuPdfDets = () => {
             <li>Number of Stations: ${manifold.numStations}</li>
             <li>P&T: ${manifold.PT}</li>
             <li>A&B: ${manifold.AB}</li>
-            <li>Price: $${manifoldCost}</li>
+            <li>Price: $${
+              horizontal ? manifold.hCost.toFixed(2) : manifold.vCost.toFixed(2)
+            }</li>
         </ul>
     `;
 
@@ -119,7 +113,6 @@ const fillHpuPdfDets = () => {
             <h3>HEAT EXCHANGER: ${heatExchanger.code}</h3>
             <ul>
                 <li>Description: No heat exchanger</li>
-                <li>Price: $${heatExchangerCost}</li>
             </ul> 
         `;
   } else {
@@ -130,7 +123,11 @@ const fillHpuPdfDets = () => {
                 <li>Type: ${heatExchanger.type}</li>
                 <li>Max Flow: ${heatExchanger.maxFlow}</li>
                 <li>Heat Dissipation: ${heatExchanger.heatDis}</li>
-                <li>Price: $${heatExchangerCost}</li>
+                <li>Price: $${
+                  horizontal
+                    ? heatExchanger.hCost.toFixed(2)
+                    : heatExchanger.vCost.toFixed(2)
+                }</li>
             </ul>
         `;
   }

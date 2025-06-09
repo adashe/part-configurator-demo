@@ -20,40 +20,24 @@ tableCloseButtonX.addEventListener("click", (e) => {
 const buildHpuNumberDisplay = (data) => {
   const { reservoir, pump, motor, manifold, heatExchanger } = hpuAssem;
 
-  // Determine individual item cost based on V or H reservoir
-  let reservoirCost = null;
-  let pumpCost = null;
-  let protoMotorCost = null;
-  let manifoldCost = null;
-  let heatExchangerCost = null;
+  // Set status of horizontal or vertical reservoir for cost selection
+  let horizontal = null;
 
-  const filterCost = () => {
-    if (reservoir.code.includes("H")) {
-      reservoirCost = reservoir.hCost.toFixed(2);
-      pumpCost = pump.hCost.toFixed(2);
-      protoMotorCost = motor.hCost.toFixed(2);
-      manifoldCost = manifold.hCost.toFixed(2);
-      heatExchangerCost = heatExchanger.hCost.toFixed(2);
-    } else if (reservoir.code.includes("V")) {
-      reservoirCost = reservoir.vCost.toFixed(2);
-      pumpCost = pump.vCost.toFixed(2);
-      protoMotorCost = motor.vCost.toFixed(2);
-      manifoldCost = manifold.vCost.toFixed(2);
-      heatExchangerCost = heatExchanger.vCost.toFixed(2);
-    }
-  };
-
-  filterCost();
+  if (reservoir.code.includes("H")) {
+    horizontal = true;
+  } else if (reservoir.code.includes("V")) {
+    horizontal = false;
+  }
 
   // Add adapter cost to SAE B motor types
-  let motorCost = null;
+  let motorCost = horizontal ? motor.hCost : motor.vCost;
 
   if (pump.mountType == "SAE A" && motor.type == "MF") {
-    motorCost = protoMotorCost;
+    // pass
   } else if (pump.mountType == "SAE A" && motor.type == "MTC") {
-    motorCost = (parseFloat(protoMotorCost) + motor.SAEAadapterCost).toFixed(2);
+    motorCost = parseFloat(motorCost) + motor.SAEAadapterCost;
   } else if (pump.mountType == "SAE B") {
-    motorCost = (parseFloat(protoMotorCost) + motor.SAEBadapterCost).toFixed(2);
+    motorCost = parseFloat(motorCost) + motor.SAEBadapterCost;
   }
 
   // Display part number at top of part number and contact pages
@@ -103,7 +87,11 @@ const buildHpuNumberDisplay = (data) => {
                 <ul>
                     <li>Capacity: ${reservoir.capacity} gal.</li>
                     <li>Heat Dissipation: ${reservoir.heatDis} HP</li>
-                    <li>Price: $${reservoirCost}</li>
+                    <li>Price: $${
+                      horizontal
+                        ? reservoir.hCost.toFixed(2)
+                        : reservoir.vCost.toFixed(2)
+                    }</li>
                     <li class="li-edit" id="edit-reservoir">Edit reservoir</li>
                 </ul>
             </div>
@@ -119,7 +107,9 @@ const buildHpuNumberDisplay = (data) => {
                     <li>Description: ${pump.description}</li>
                     <li>Displacement: ${pump.dispCID} in<sup>3</sup>/r</li>
                     <li>Mount Type: ${pump.mountType}</li> 
-                    <li>Price: $${pumpCost}</li>
+                    <li>Price: $${
+                      horizontal ? pump.hCost.toFixed(2) : pump.vCost.toFixed(2)
+                    }</li>
                     <li class="li-edit" id="edit-pump">Edit pump</li>
                 </ul>
             </div>
@@ -134,7 +124,7 @@ const buildHpuNumberDisplay = (data) => {
                     <li>Part Number: ${motor.partNum}</li>
                     <li>Description: ${motor.description}</li>
                     <li>Output: ${motor.outputHP} HP</li>
-                    <li>Price: $${motorCost}</li>
+                    <li>Price: $${motorCost.toFixed(2)}</li>
                     <li class="li-edit" id="edit-motor">Edit motor</li>
                 </ul>
             </div>
@@ -151,7 +141,11 @@ const buildHpuNumberDisplay = (data) => {
                     <li>Number of Stations: ${manifold.numStations}</li>
                     <li>P&T: ${manifold.PT}</li>
                     <li>A&B: ${manifold.AB}</li>
-                    <li>Price: $${manifoldCost}</li>
+                    <li>Price: $${
+                      horizontal
+                        ? manifold.hCost.toFixed(2)
+                        : manifold.vCost.toFixed(2)
+                    }</li>
                     <li class="li-edit" id="edit-manifold">Edit manifold</li>
                 </ul>
             </div>
@@ -183,7 +177,11 @@ const buildHpuNumberDisplay = (data) => {
                         <li>Type: ${heatExchanger.type}</li>
                         <li>Max Flow: ${heatExchanger.maxFlow} gpm</li>
                         <li>Heat Dissipation: ${heatExchanger.heatDis} HP</li>
-                        <li>Price: $${heatExchangerCost}</li>
+                        <li>Price: $${
+                          horizontal
+                            ? heatExchanger.hCost.toFixed(2)
+                            : heatExchanger.vCost.toFixed(2)
+                        }</li>
                         <li class="li-edit" id="edit-heat-exchanger">Edit heat exchanger</li>
                     </ul>
                 </div>
