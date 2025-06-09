@@ -90,9 +90,9 @@ const buildMsNumberDisplay = (data) => {
                                 <li>Voltage: ${motor.starter.voltage}</li>
                                 <li>Rated HP: ${motor.starter.HP}</li>
                                 <li>Rated FLA: ${motor.starter.FLA}</li>
-                                <li>Price: $${motor.starter.cost.toFixed(
-                                    2
-                                )}</li>
+                                <li>
+                                    Price: $${motor.starter.cost.toFixed(2)}
+                                </li>
                             </ul>
     
                         </div>
