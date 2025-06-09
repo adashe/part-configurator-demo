@@ -19,7 +19,6 @@ tableCloseButtonX.addEventListener("click", (e) => {
 // Build configured HPU part number and details
 const buildHpuNumberDisplay = (data) => {
   const { reservoir, pump, motor, manifold, heatExchanger } = hpuAssem;
-  const hpuCost = hpuAssem.calcCost();
 
   // Determine individual item cost based on V or H reservoir
   let reservoirCost = null;
@@ -193,6 +192,8 @@ const buildHpuNumberDisplay = (data) => {
   }
 
   const editHpuInputsHTML = `<p class="edit-inputs" id="edit-hpu-inputs">Edit HPU inputs</p>`;
+
+  const hpuCost = hpuAssem.calcCost();
   const hpuCostHTML = `<p class="assem-price">HPU LIST PRICE: $${hpuCost}</p>`;
 
   partNumDets.innerHTML =

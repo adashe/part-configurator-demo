@@ -109,7 +109,6 @@ const buildMsNumberDisplay = (data) => {
 
   addEventHandlersToDropdowns();
   addEventHandlerToEditMsInputs();
-  // toggleAdminSettings();
 
   buildTotalMsCostDisplay();
 };

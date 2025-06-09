@@ -14,7 +14,6 @@ const generateHpuPdf = () => {
 // Build HPU pdf page
 const fillHpuPdfDets = () => {
   const { reservoir, pump, motor, manifold, heatExchanger } = hpuAssem;
-  const hpuCost = hpuAssem.calcCost();
 
   // Determine individual item cost based on V or H reservoir
   let reservoirCost = null;
@@ -136,6 +135,7 @@ const fillHpuPdfDets = () => {
         `;
   }
 
+  const hpuCost = hpuAssem.calcCost();
   const hpuCostHTML = `<div class="pdf-cost"><h4>HPU LIST PRICE: $${hpuCost}</h4></div>`;
 
   pdfDetsDiv.innerHTML =
