@@ -296,15 +296,17 @@ async function addValveInputsToValveAssembly() {
     valveAssem.countFlowControl();
 }
 
-// Update valve and HPU number display when edits are made from the display page, including updating the heat exchanger if necessary
+// Update valve and hpu display when edits are made from the display page, including updating the heat exchanger if necessary
 async function updateValvesAndHPU() {
     await addValveInputsToValveAssembly();
 
     if (partNumDiv.style.display == "block") {
-        if (hpuAssem.totalCost != null) {
-            buildHpuNumberDisplay(hpuAssem);
-            buildValveDisplay(valveAssem);
-            displayPartNumDiv();
+        if (currentUser.userType === "admin") {
+            displayErrorMsg(
+                `The HPU part number has been recalculated <br>based on valve inputs.`
+            );
         }
+
+        await updateHpuDiv();
     }
 }
