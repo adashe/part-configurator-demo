@@ -128,7 +128,7 @@ const addEventHandlerToEditMsInputs = () => {
 const buildTotalMsCostDisplay = () => {
     const total = msAssem.calcCost();
 
-    totalCostDisplay.innerHTML = `<h4 class="total-price">TOTAL LIST PRICE: $${total.toFixed(
-        2
-    )}</h4>`;
+    totalCostDisplay.innerHTML = `<h4 class="total-price">TOTAL LIST PRICE: 
+            $${total.toFixed(2)}</h4>
+        `;
 };
