@@ -196,9 +196,16 @@ class MsAssembly {
 
         let result = data.filter((disconnect) => disconnect.FLA >= totalAmp);
 
-        this.disconnect = result.reduce((prev, curr) =>
-            prev.FLA < curr.FLA ? prev : curr
-        );
+        if (result > 0) {
+            this.disconnect = result.reduce((prev, curr) =>
+                prev.FLA < curr.FLA ? prev : curr
+            );
+        } else {
+            console.log("No valid disconnect results. FLA is too high.");
+            displayErrorMsg(
+                "No valid disconnect results. <br>FLA is too high."
+            );
+        }
 
         return this.disconnect;
     }
