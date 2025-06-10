@@ -16,7 +16,7 @@
     {
         "code": "20H",
         "partNumber": "PC2016",
-        "dimensions": "10x16x8",
+        "dimensions": "20x16x8",
         "cost": 911.78,
         "material": "polycarbonate"
     },
@@ -28,28 +28,28 @@
         "material": "polycarbonate"
     },
     {
-        "code": "XX",
+        "code": "16HS",
         "partNumber": "SCE-16P148ELISS",
         "dimensions": "16x14x8",
         "cost": 352.02,
         "material": "steel"
     },
     {
-        "code": "XX",
+        "code": "20HS",
         "partNumber": "SCE-20EL1608SSLP",
         "dimensions": "20x16x8",
         "cost": 546.4,
         "material": "steel"
     },
     {
-        "code": "XX",
+        "code": "24HS",
         "partNumber": "SCE-24EL2410SSLPPL",
         "dimensions": "24x24x10",
         "cost": 886.48,
         "material": "steel"
     },
     {
-        "code": "XX",
+        "code": "30HS",
         "partNumber": "SCE-30EL2410SSLP",
         "dimensions": "30x24x10",
         "cost": 889.82,
