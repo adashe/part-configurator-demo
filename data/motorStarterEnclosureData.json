@@ -31,28 +31,28 @@
         "code": "16HS",
         "partNumber": "SCE-16P148ELISS",
         "dimensions": "16x14x8",
-        "cost": 352.02,
+        "cost": 370.5,
         "material": "steel"
     },
     {
         "code": "20HS",
         "partNumber": "SCE-20EL1608SSLP",
         "dimensions": "20x16x8",
-        "cost": 546.4,
+        "cost": 574.58,
         "material": "steel"
     },
     {
         "code": "24HS",
         "partNumber": "SCE-24EL2410SSLPPL",
         "dimensions": "24x24x10",
-        "cost": 886.48,
+        "cost": 935.75,
         "material": "steel"
     },
     {
         "code": "30HS",
         "partNumber": "SCE-30EL2410SSLP",
         "dimensions": "30x24x10",
-        "cost": 889.82,
+        "cost": 948.46,
         "material": "steel"
     }
 ]
