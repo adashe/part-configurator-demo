@@ -1,6 +1,7 @@
 const msVoltageForm = document.querySelector("#ms-voltage-form");
 const msStartersForm = document.querySelector("#ms-starters-form");
 
+const msVoltageSelector = document.querySelector("#msVoltage");
 const msVoltageBtn = document.querySelector(".ms-voltage-btn");
 const msNumStarters = document.querySelector("#msNumStarters");
 
@@ -65,6 +66,13 @@ msNumStarters.addEventListener("change", (e) => {
 
     msInputs.voltage = msVoltageForm.msVoltage.value;
     msInputs.numStarters = msVoltageForm.msNumStarters.value;
+
+    msStartersForm.reset();
+    generateAllStarterDivs();
+});
+
+msVoltageSelector.addEventListener("change", (e) => {
+    msInputs.voltage = msVoltageForm.msVoltage.value;
 
     msStartersForm.reset();
     generateAllStarterDivs();
@@ -223,7 +231,7 @@ const calculateStarterMaxHP = () => {
         if (msInputs.numStarters == 1) {
             maxHP = 60;
         } else if (msInputs.numStarters == 2) {
-            maxHP = 30;
+            maxHP = 25;
         } else if (msInputs.numStarters == 3 || msInputs.numStarters == 4) {
             maxHP = 10;
         }

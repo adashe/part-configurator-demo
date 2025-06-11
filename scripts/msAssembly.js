@@ -202,9 +202,11 @@ class MsAssembly {
 
         // Add base amperage to amp total
         totalAmp += this.base.amperage;
+        /* console.log(totalAmp); */
 
         // Filter out disconnects with insufficient FLA
         let result = data.filter((disconnect) => disconnect.FLA >= totalAmp);
+        /* console.log(result); */
 
         if (result.length == 0) {
             this.disconnect = null;
