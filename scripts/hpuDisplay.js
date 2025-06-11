@@ -513,9 +513,9 @@ const displayHeatExchangerTable = (data) => {
 const buildTotalCostDisplay = () => {
     const total = calcTotalHpuCost();
 
-    totalCostDisplay.innerHTML = `<h4 class="total-price">TOTAL LIST PRICE: $${total.toFixed(
-        2
-    )}</h4>`;
+    totalCostDisplay.innerHTML = `
+        <h4 class="total-price">TOTAL LIST PRICE: $${total.toFixed(2)}</h4>
+    `;
 };
 
 // Calculate total cost of HPU and valves

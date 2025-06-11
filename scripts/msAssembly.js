@@ -19,6 +19,7 @@ class MsAssembly {
         this.enclosure = null;
         this.base = null;
         this.disconnect = null;
+        this.totalCost = null;
     }
 
     reset() {
@@ -41,6 +42,7 @@ class MsAssembly {
         this.enclosure = null;
         this.base = null;
         this.disconnect = null;
+        this.totalCost = null;
     }
 
     // GET DATA FROM JSON //
@@ -196,14 +198,15 @@ class MsAssembly {
 
         let result = data.filter((disconnect) => disconnect.FLA >= totalAmp);
 
-        if (result > 0) {
-            this.disconnect = result.reduce((prev, curr) =>
-                prev.FLA < curr.FLA ? prev : curr
-            );
-        } else {
+        if (result.length == 0) {
+            this.disconnect = null;
             console.log("No valid disconnect results. FLA is too high.");
             displayErrorMsg(
                 "No valid disconnect results. <br>FLA is too high."
+            );
+        } else {
+            this.disconnect = result.reduce((prev, curr) =>
+                prev.FLA < curr.FLA ? prev : curr
             );
         }
 
@@ -212,23 +215,40 @@ class MsAssembly {
 
     // CALC TOTAL COST
     calcCost() {
+        let prices = [
+            this.base.cost + this.enclosure.cost + this.disconnect.cost,
+        ];
         let cost = 0;
 
-        // Add cost of base, enclosure, and disconnect
-        cost += this.base.cost + this.enclosure.cost + this.disconnect.cost;
+        // Check for null values, then sum the prices of base, enclosure, and disconnect
+        if (prices.includes(null)) {
+            console.log("Invalid configuration");
+            displayErrorMsg("Invalid configuration.");
+            this.totalCost = null;
+        } else {
+            cost = prices.reduce((x, y) => x + y, cost);
+            this.totalCost = cost;
 
-        // Add cost of each motor starter
-        const motorsArr = [this.motor1, this.motor2, this.motor3, this.motor4];
+            // Add cost of each motor starter
+            const motorsArr = [
+                this.motor1,
+                this.motor2,
+                this.motor3,
+                this.motor4,
+            ];
 
-        motorsArr.forEach((motor) => {
-            if (motor.starter) {
-                if (motor.starter.cost) {
-                    cost += motor.starter.cost;
+            motorsArr.forEach((motor) => {
+                if (motor.starter) {
+                    if (motor.starter.cost) {
+                        cost += motor.starter.cost;
+                    }
                 }
-            }
-        });
+            });
 
-        return cost;
+            this.totalCost = cost;
+        }
+
+        return this.totalCost;
     }
 
     buildPartNum() {

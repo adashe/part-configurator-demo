@@ -281,9 +281,7 @@ const addEventListenersToStarterDivs = () => {
 // On submit, process starter inputs, generate MS part number, and display part number page
 msStartersForm.addEventListener("submit", (e) => {
     e.preventDefault();
-
     updateMsAssemblyAndDisplay();
-    displayPartNumDiv();
 });
 
 // Update and show part number display with msAssem object
@@ -292,7 +290,12 @@ async function updateMsAssemblyAndDisplay() {
     await updateMsEnclosure();
     await updateMsBase();
     await updateMsDisconnect();
-    buildMsNumberDisplay(msAssem);
+    msAssem.calcCost();
+
+    if (msAssem.totalCost != null) {
+        buildMsNumberDisplay(msAssem);
+        displayPartNumDiv();
+    }
 }
 
 // Add starter and leader selections to msAssem object

@@ -1,15 +1,7 @@
 // Build configured MS number and details
 const buildMsNumberDisplay = (data) => {
-    const {
-        motor1,
-        motor2,
-        motor3,
-        motor4,
-        enclosureType,
-        enclosure,
-        base,
-        disconnect,
-    } = msAssem;
+    const { motor1, motor2, motor3, motor4, enclosure, base, disconnect } =
+        msAssem;
 
     const motorArray = [motor1, motor2, motor3, motor4];
 
