@@ -1,46 +1,44 @@
-const hpuSysParamsForm = document.querySelector('#hpu-sys-params-form');
-const hpuManifoldForm = document.querySelector('#hpu-manifold-form');
-const hpuValveForm = document.querySelector('#hpu-valve-form');
+const hpuSysParamsForm = document.querySelector("#hpu-sys-params-form");
+const hpuManifoldForm = document.querySelector("#hpu-manifold-form");
+const hpuValveForm = document.querySelector("#hpu-valve-form");
 
-const hpuSysParamsButtons = document.querySelectorAll('.hpu-sys-params-btn');
-const hpuManifoldButtons = document.querySelectorAll('.hpu-mani-btn');
-const hpuValvesPopupButtons = document.querySelectorAll('.hpu-valves-btn');
-const hpuEditValvesButton = document.querySelector('#hpu-edit-valves-btn'); 
+const hpuSysParamsButtons = document.querySelectorAll(".hpu-sys-params-btn");
+const hpuManifoldButtons = document.querySelectorAll(".hpu-mani-btn");
+const hpuValvesPopupButtons = document.querySelectorAll(".hpu-valves-btn");
+const hpuEditValvesButton = document.querySelector("#hpu-edit-valves-btn");
 
-const hpuPortSize = document.querySelector('#hpuPortSize');
-const hpuNumStatDiv = document.querySelector('#hpu-number-stations-div');
+const hpuPortSize = document.querySelector("#hpuPortSize");
+const hpuNumStatDiv = document.querySelector("#hpu-number-stations-div");
 
 const hpuAssem = new HpuAssembly();
 const valveAssem = new ValveAssembly();
 
-
 // DISPLAY AND HIDE FORM ELEMENTS
 const displayHpuSysParamsForm = () => {
-    hpuDiv.style.display = 'block';
-    partNumDiv.style.display = 'none';
+    hpuDiv.style.display = "block";
+    partNumDiv.style.display = "none";
 
-    hpuSysParamsForm.style.display = 'block';
-    hpuManifoldForm.style.display = 'none';
-    hpuValveForm.style.display = 'none';
+    hpuSysParamsForm.style.display = "block";
+    hpuManifoldForm.style.display = "none";
+    hpuValveForm.style.display = "none";
 };
 
 const displayHpuManifoldForm = () => {
-    hpuSysParamsForm.style.display = 'none';
-    hpuManifoldForm.style.display = 'block';
-    hpuValveForm.style.display = 'none';
+    hpuSysParamsForm.style.display = "none";
+    hpuManifoldForm.style.display = "block";
+    hpuValveForm.style.display = "none";
 };
 
 const displayHpuValveForm = () => {
-    hpuSysParamsForm.style.display = 'none';
-    hpuManifoldForm.style.display = 'none';
-    hpuValveForm.style.display = 'block';
+    hpuSysParamsForm.style.display = "none";
+    hpuManifoldForm.style.display = "none";
+    hpuValveForm.style.display = "block";
 };
-
 
 // BUTTONS
 // Buttons to display system parameters form
 hpuSysParamsButtons.forEach((button) => {
-    button.addEventListener('click', e => {
+    button.addEventListener("click", (e) => {
         e.preventDefault();
         displayHpuSysParamsForm();
     });
@@ -48,20 +46,19 @@ hpuSysParamsButtons.forEach((button) => {
 
 // Buttons to display manifold options form
 hpuManifoldButtons.forEach((button) => {
-    button.addEventListener('click', e => {
+    button.addEventListener("click", (e) => {
         e.preventDefault();
         displayHpuManifoldForm();
     });
 });
 
 // Buttons to display valve popup form
-hpuValvesPopupButtons.forEach(button => {
-    button.addEventListener('click', e => {
+hpuValvesPopupButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
         e.preventDefault();
         displayValvePopup();
     });
 });
-
 
 // PROCESS FORM INPUTS
 // Initiate null values for HPU inputs
@@ -88,8 +85,8 @@ const resetHpuInputs = () => {
     };
 };
 
-// Process sys params form inputs
-hpuSysParamsForm.addEventListener('submit', e => {
+// Process sys params form inputs and proceed to manifold form
+hpuSysParamsForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     hpuInputs.maxPres = parseInt(hpuSysParamsForm.maxPressure.value);
@@ -101,8 +98,8 @@ hpuSysParamsForm.addEventListener('submit', e => {
     displayHpuManifoldForm();
 });
 
-// Process manifold form inputs
-hpuManifoldForm.addEventListener('submit', e => {
+// Process manifold form inputs and proceed to valve form
+hpuManifoldForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     hpuInputs.numStat = hpuManifoldForm.hpuNumberStations.value;
@@ -124,7 +121,7 @@ const generateHpuNumberStationsDropdown = () => {
                 <option value="4">4</option>
                 <option value="5">5</option>
                 <option value="6">6</option>
-            </select>`
+            </select>`;
 
     const htmlD05 = `
             <label for="hpuNumberStations">Number of Stations:</label>
@@ -132,69 +129,68 @@ const generateHpuNumberStationsDropdown = () => {
                     <option value="" disabled selected hidden>...</option>
                     <option value="0">0</option>
                     <option value="1">1</option>
-                </select>`
+                </select>`;
 
-    if(hpuPortSize.value == 'D03'){
+    if (hpuPortSize.value == "D03") {
         hpuNumStatDiv.innerHTML = htmlD03;
-    } else if (hpuPortSize.value == 'D05'){
+    } else if (hpuPortSize.value == "D05") {
         hpuNumStatDiv.innerHTML = htmlD05;
     } else {
-        hpuNumStatDiv.innerHTML = '';
-    };
+        hpuNumStatDiv.innerHTML = "";
+    }
 
     // Add event listener to reset valve options form and valve assembly if number of stations is changed
-    const hpuNumberStations = document.querySelector('#hpuNumberStations');
+    const hpuNumberStations = document.querySelector("#hpuNumberStations");
 
-    hpuNumberStations.addEventListener('change', e => {
+    hpuNumberStations.addEventListener("change", (e) => {
         e.preventDefault();
-        solenoidVoltage.value = '';
+        solenoidVoltage.value = "";
         valveAssem.reset();
         resetValveInputs();
 
         // Disable valve popup access if 0 stations selected
-        if(hpuNumberStations.value == 0){
-            hpuEditValvesButton.innerHTML = 'EDIT VALVES<br><i>Disabled - No stations available</i>';
+        if (hpuNumberStations.value == 0) {
+            hpuEditValvesButton.innerHTML =
+                "EDIT VALVES<br><i>Disabled - No stations available</i>";
             hpuEditValvesButton.disabled = true;
-        } else if (hpuNumberStations.value > 0){
-            hpuEditValvesButton.innerHTML = 'EDIT VALVES';
+        } else if (hpuNumberStations.value > 0) {
+            hpuEditValvesButton.innerHTML = "EDIT VALVES";
             hpuEditValvesButton.disabled = false;
-        };
+        }
     });
 };
 
 // Reset number of stations and valve options form if port size is changed
-hpuPortSize.addEventListener('change', e => {
+hpuPortSize.addEventListener("change", (e) => {
     e.preventDefault();
     generateHpuNumberStationsDropdown();
 });
 
-
 // Process hpu input into hpuAssem when the final hpu form (valve page) is submitted
-hpuValveForm.addEventListener('submit', e => {
+hpuValveForm.addEventListener("submit", (e) => {
     e.preventDefault();
     updateHpuDiv();
 });
 
 // Process hpu inputs and valveAssem into hpuAssem and display part number page
-async function updateHpuDiv(){
-
+async function updateHpuDiv() {
     await hpuAssem.calcHpuNum(
-        hpuInputs.maxPres, 
-        hpuInputs.maxFlow, 
-        hpuInputs.appType, 
+        hpuInputs.maxPres,
+        hpuInputs.maxFlow,
+        hpuInputs.appType,
         hpuInputs.resOrient,
         hpuInputs.heatExchType,
-        hpuInputs.numStat, 
+        hpuInputs.numStat,
         hpuInputs.portSize,
-        valveAssem.numLvalves, 
-        valveAssem.numFlwCtrl,
-        );
+        valveAssem.numLvalves,
+        valveAssem.numFlwCtrl
+    );
 
-    if(hpuAssem.totalCost != null){
+    // Builds and displays assembly number details page if number is valid
+    // Interrupts user flow if invalid
+    if (hpuAssem.totalCost != null) {
         buildHpuNumberDisplay(hpuAssem);
         buildValveDisplay(valveAssem);
-        displayPartNumDiv();    
-    };
-
-};
-
+        displayPartNumDiv();
+    }
+}

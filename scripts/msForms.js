@@ -23,7 +23,7 @@ const displayMsStartersForm = () => {
 };
 
 // BUTTONS
-// Return to voltage from when voltage button is clicked (on starter page)
+// Return to voltage form when voltage button is clicked (on starter page)
 msVoltageBtn.addEventListener("click", (e) => {
     e.preventDefault();
     displayMsVoltageForm();
@@ -48,7 +48,7 @@ const resetMsInputs = () => {
     };
 };
 
-// Proceed to starters form with updated HP values when voltage form is submitted
+// Process voltage form inputs and proceed to starters form
 msVoltageForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -59,7 +59,7 @@ msVoltageForm.addEventListener("submit", (e) => {
     displayMsStartersForm();
 });
 
-// Generate / reset starter selectors and hp values when the number of starters is changed
+// Generate / reset starter selectors and HP values when the number of starters is changed
 msNumStarters.addEventListener("change", (e) => {
     e.preventDefault();
 
@@ -153,6 +153,7 @@ const generateLeaderOptions = (idx) => {
     let html =
         '<option value="" disabled selected hidden>Select leader...</option>';
 
+    // Hardcoded options for leaders; unable to get dynamic option generation to function
     // Options for one motor
     if (idx == 1 && msInputs.numStarters == 1) {
         html += '<option value="0">None</option>';
@@ -242,7 +243,7 @@ const calculateStarterMaxHP = () => {
 };
 
 // FORM INTERACTIVITY
-// Add event listeners to after generating starter divs
+// Add event listeners to starter checkboxes after generating starter divs
 const addEventListenersToStarterDivs = () => {
     const leaderCheckboxes = document.querySelectorAll(".leader-checkbox");
     const leaderSelectors = document.querySelectorAll(".leader-selector");
@@ -292,6 +293,8 @@ async function updateMsAssemblyAndDisplay() {
     await updateMsDisconnect();
     msAssem.calcCost();
 
+    // Builds and displays assembly number details page if number is valid
+    // Interrupts user flow if invalid
     if (msAssem.totalCost != null) {
         buildMsNumberDisplay(msAssem);
         displayPartNumDiv();
@@ -347,6 +350,7 @@ async function addMSInputsToMsAssembly() {
     await Promise.all(promises);
 }
 
+// Update assembly object; separated from parent functions to manage async flow
 async function updateMsEnclosure() {
     await msAssem.updateEnclosure(
         msInputs.enclosureMaterial,

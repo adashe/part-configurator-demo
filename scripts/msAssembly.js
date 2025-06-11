@@ -82,9 +82,12 @@ class MsAssembly {
     async updateMotor(motorName, voltage, hp, leaderName) {
         const data = await this.getMotorStarterData();
 
+        // Filter data for starters with matching voltage and sufficient HP
         let result = data.filter(
             (starter) => starter.voltage == voltage && starter.HP >= hp
         );
+
+        // Select the starter with the smallest sufficient HP
         let selected = null;
 
         if (result.length == 0) {
@@ -96,6 +99,7 @@ class MsAssembly {
             );
         }
 
+        // Build motor object including motor data and reference to leading motor
         this[motorName] = {
             starter: selected,
             leader: leaderName,
@@ -108,6 +112,7 @@ class MsAssembly {
     async updateBase(voltage) {
         const data = await this.getMotorStarterBaseData();
 
+        // Select the base that matches the required voltage (208V, 240V, or 480V)
         let result = data.filter((base) => base.voltage == voltage);
 
         this.base = result[0];
@@ -184,6 +189,7 @@ class MsAssembly {
 
         let totalAmp = 0;
 
+        // Sum amps for all valid motor starters
         const motorsArr = [this.motor1, this.motor2, this.motor3, this.motor4];
 
         motorsArr.forEach((motor) => {
@@ -194,8 +200,10 @@ class MsAssembly {
             }
         });
 
+        // Add base amperage to amp total
         totalAmp += this.base.amperage;
 
+        // Filter out disconnects with insufficient FLA
         let result = data.filter((disconnect) => disconnect.FLA >= totalAmp);
 
         if (result.length == 0) {
@@ -205,6 +213,7 @@ class MsAssembly {
                 "No valid disconnect results. <br>FLA is too high."
             );
         } else {
+            // Select the disconnect with the smallest sufficient FLA capacity
             this.disconnect = result.reduce((prev, curr) =>
                 prev.FLA < curr.FLA ? prev : curr
             );
