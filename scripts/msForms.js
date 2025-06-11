@@ -60,19 +60,20 @@ msVoltageForm.addEventListener("submit", (e) => {
     displayMsStartersForm();
 });
 
+// Generate / reset starter selectors and HP values when the voltage is changed
+msVoltageSelector.addEventListener("change", (e) => {
+    msInputs.voltage = msVoltageForm.msVoltage.value;
+
+    msStartersForm.reset();
+    generateAllStarterDivs();
+});
+
 // Generate / reset starter selectors and HP values when the number of starters is changed
 msNumStarters.addEventListener("change", (e) => {
     e.preventDefault();
 
     msInputs.voltage = msVoltageForm.msVoltage.value;
     msInputs.numStarters = msVoltageForm.msNumStarters.value;
-
-    msStartersForm.reset();
-    generateAllStarterDivs();
-});
-
-msVoltageSelector.addEventListener("change", (e) => {
-    msInputs.voltage = msVoltageForm.msVoltage.value;
 
     msStartersForm.reset();
     generateAllStarterDivs();
