@@ -67,7 +67,7 @@ async function prefillValvePopupFromValveAssembly() {
         let station = `station${i}`;
 
         if (valveAssem[station]) {
-            if (valveAssem[station].valve && valveAssem[station].valve.code) {
+            if (valveAssem[station]?.valve && valveAssem[station]?.valve.code) {
                 let elementID = `valve${i}`;
                 let element = document.getElementById(elementID);
                 element.value = valveAssem[station].valve.code;
@@ -300,7 +300,7 @@ async function addValveInputsToValveAssembly() {
 async function updateValvesAndHPU() {
     await addValveInputsToValveAssembly();
 
-    if (partNumDiv.style.display == "block") {
+    if (partNumDiv.style.display === "block") {
         if (currentUser.userType === "admin") {
             displayErrorMsg(
                 `The HPU part number has been recalculated <br>based on valve inputs.`

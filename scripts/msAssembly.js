@@ -134,10 +134,8 @@ class MsAssembly {
         let yArr = [];
 
         motorsArr.forEach((motor) => {
-            if (motor.starter) {
-                if (motor.starter.enclosureY) {
-                    yArr.push(motor.starter.enclosureY);
-                }
+            if (motor.starter?.enclosureY) {
+                yArr.push(motor.starter.enclosureY);
             }
         });
 
@@ -193,10 +191,9 @@ class MsAssembly {
         const motorsArr = [this.motor1, this.motor2, this.motor3, this.motor4];
 
         motorsArr.forEach((motor) => {
-            if (motor.starter) {
-                if (motor.starter.FLA) {
-                    totalAmp += motor.starter.FLA;
-                }
+            if (motor.starter?.FLA) {
+                totalAmp += motor.starter.FLA;
+                console.log(totalAmp);
             }
         });
 
