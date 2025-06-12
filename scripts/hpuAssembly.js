@@ -61,7 +61,7 @@ class HpuAssembly {
 
         // CALCULATION //
         // let reservoirCapacity = pump.gpm@1750
-        // select reservoir with smallest greater than capacity
+        // Select reservoir with smallest greater than capacity
 
         if (this.pump == null) {
             console.log("Cannot calculate reservoir without pump.");
@@ -124,11 +124,10 @@ class HpuAssembly {
         const data = await this.getPumpData();
 
         // CALCULATION //
-        // if maxPressure >= 1500 or if sysType == 'pressure holding':
-        // use gear pump table
-        // else use piston pump table
-        // find smallest displacement greater than minDis
-        // if minDis is greater than available values, 'flow is too high'
+        // If maxPressure >= 1500 or if sysType == 'pressure holding', use gear pump table
+        // Else use piston pump table
+        // Find smallest displacement greater than minDis
+        // If minDis is greater than available values, return 'flow is too high'
 
         const rotationSpeed = 1750;
         const minDis = (231 * maxFl) / rotationSpeed;
@@ -165,9 +164,9 @@ class HpuAssembly {
         const data = await this.getMotorData();
 
         // CALCULATION //
-        // if pump mount type SAE == A: use F motors (first table)
-        // if pump mount type SAE == B: use M motors (second table)
-        // select motor with output HP within 10% of minHP
+        // If pump mount type SAE == A: use F motors (first table)
+        // If pump mount type SAE == B: use M motors (second table)
+        // Select motor with output HP within 10% of minHP
 
         if (this.pump == null) {
             console.log("Cannot calculate motor without pump.");
@@ -228,10 +227,10 @@ class HpuAssembly {
         const data = await this.getManifoldData();
 
         // CALCULATION //
-        // port size D03 can use 0-6 stations
-        // select manifold with selected number of stations
-        // port size D05 can use 0-1 station
-        // select manifold with selected number of stations
+        // Port size D03 can use 0-6 stations
+        // Select manifold with selected number of stations
+        // Port size D05 can use 0-1 station
+        // Select manifold with selected number of stations
         // 0 means no valves // add null row
 
         if (numSt == 0) {
@@ -277,12 +276,12 @@ class HpuAssembly {
 
         // CALCULATION //
 
-        // constants
-        // Base multiplier	= 15%
+        // Constants
+        // Base multiplier = 15%
         // Adder for > 1000 psi	= 2% (.02)
         // Adder for > 2000 psi	= 5% (.05)
-        // Adder per flow control	= 2% (.02)
-        // Adder per L spool Valve	= -10%
+        // Adder per flow control = 2% (.02)
+        // Adder per L spool Valve = -10%
 
         // Calculate adder 1
         // L valves = num valves with L spool (contains L in code)
@@ -312,7 +311,7 @@ class HpuAssembly {
         const adder3 = numFlowCtrl * 0.02;
         // console.log('adder 3', adder3);
 
-        // needed dissipation = minHP (from motor calc) * (base multiplier + ADDER1 + ADDER2 + ADDER3)
+        // Needed dissipation = minHP (from motor calc) * (base multiplier + ADDER1 + ADDER2 + ADDER3)
         const minHP = (maxPres * maxFl) / (1714 * 0.85);
         // console.log('min HP in HE', minHP);
         const baseMult = 0.15;
@@ -320,22 +319,22 @@ class HpuAssembly {
         const minHtDis = minHP * allAdders;
         // console.log('min ht dis', minHtDis);
 
-        // reservoir heat dissipation (reservoir table)
+        // Reservoir heat dissipation (reservoir table)
         // value = needed dissipation - reservoir dissipation
         const reqDis = minHtDis - this.reservoir.heatDis;
         // console.log('req dis (min ht dis - reservoir ht dis)', reqDis)
 
         // console.log('reqDis:', reqDis);
 
-        // if value is negative, you don't need a heat exchanger ==> select 0 from table
+        // If value is negative, you don't need a heat exchanger ==> select 0 from table
         if (reqDis <= 0) {
             this.heatExchanger = data[0];
             return this.heatExchanger;
         }
 
-        // if value is positive:
-        // look up heat exchanger with the smallest greater than heat dissipation in the matching cooling type table
-        // if no cooling type, use 0 for heat exchanger
+        // If value is positive:
+        // Look up heat exchanger with the smallest greater than heat dissipation in the matching cooling type table
+        // If no cooling type, use 0 for heat exchanger
         let result = [];
 
         if (htExType == "air") {
@@ -362,7 +361,7 @@ class HpuAssembly {
             );
         }
 
-        // final calculation of needed dissipation cannot be less than 0
+        // Final calculation of needed dissipation cannot be less than 0
 
         // console.log('heat exchanger', this.heatExchanger);
 
