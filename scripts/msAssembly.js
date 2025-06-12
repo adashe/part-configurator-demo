@@ -246,10 +246,8 @@ class MsAssembly {
             ];
 
             motorsArr.forEach((motor) => {
-                if (motor.starter) {
-                    if (motor.starter.cost) {
-                        cost += motor.starter.cost;
-                    }
+                if (motor.starter?.cost) {
+                    cost += motor.starter.cost;
                 }
             });
 
