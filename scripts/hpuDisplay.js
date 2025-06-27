@@ -44,6 +44,7 @@ const buildHpuNumberDisplay = (data) => {
                     <li>Level Sight Gauge</li>
                     <li>Drain Plug</li>
                     <li>Cleanout Covers</li>
+                    <li>Relief Valve</li>
                 </ul>
             </div>
         </div>
